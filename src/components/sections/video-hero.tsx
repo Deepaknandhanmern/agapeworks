@@ -31,45 +31,54 @@ const slides = [
   },
 ];
 
-const videoSources = slides.map((slide) => slide.src);
+// Homepage is statically generated, so this can't be computed at build
+// time (it would freeze on whatever day the site was last deployed).
+// It's picked client-side on mount instead, so it reflects the visitor's
+// actual current day; the SSR/first-paint render uses slides[0] as a
+// stable default to avoid a hydration mismatch, then switches right after.
+function useVideoOfTheDay() {
+  const [index, setIndex] = useState(0);
 
-function usePreloadedVideos(sources: string[]) {
-  const [resolved, setResolved] = useState<string[]>(sources);
+  useEffect(() => {
+    const id = setTimeout(() => setIndex(new Date().getDate() % slides.length), 0);
+    return () => clearTimeout(id);
+  }, []);
+
+  return index;
+}
+
+function usePreloadedVideo(src: string) {
+  const [resolved, setResolved] = useState(src);
 
   useEffect(() => {
     let cancelled = false;
-    const objectUrls: string[] = [];
+    let objectUrl: string | undefined;
 
-    Promise.all(
-      sources.map(async (src, i) => {
-        try {
-          const res = await fetch(src);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          objectUrls[i] = url;
-          return url;
-        } catch {
-          return src;
-        }
+    fetch(src)
+      .then((res) => res.blob())
+      .then((blob) => {
+        if (cancelled) return;
+        objectUrl = URL.createObjectURL(blob);
+        setResolved(objectUrl);
       })
-    ).then((urls) => {
-      if (!cancelled) setResolved(urls);
-    });
+      .catch(() => {
+        // fall back to the original URL, already the default state
+      });
 
     return () => {
       cancelled = true;
-      objectUrls.forEach((url) => url && URL.revokeObjectURL(url));
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
     };
-  }, [sources]);
+  }, [src]);
 
   return resolved;
 }
 
 export function VideoHero() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const videoSrcs = usePreloadedVideos(videoSources);
+  const slideIndex = useVideoOfTheDay();
+  const slide = slides[slideIndex];
+  const videoSrc = usePreloadedVideo(slide.src);
   const shouldReduceMotion = useReducedMotion();
-  const accent = slides[activeIndex].accent;
 
   return (
     <section
@@ -78,52 +87,32 @@ export function VideoHero() {
         "relative flex h-screen min-h-[720px] w-full flex-col overflow-hidden bg-black text-white"
       )}
     >
-      {slides.map((slide, i) => (
-        <video
-          key={slide.src}
-          src={videoSrcs[i]}
-          muted
-          autoPlay
-          playsInline
-          loop
-          aria-hidden="true"
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out motion-reduce:transition-none",
-            i === activeIndex ? "opacity-100" : "opacity-0"
-          )}
-        />
-      ))}
+      <video
+        key={slide.src}
+        src={videoSrc}
+        muted
+        autoPlay
+        playsInline
+        loop
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out motion-reduce:transition-none"
+      />
       <div className="absolute inset-0 z-[1] bg-black/10" />
 
       <VideoHeroNavbar />
 
       <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1340px] flex-col items-end justify-end gap-[150px] px-[15px] pt-[190px] pb-[60px] min-[810px]:max-[1199.98px]:gap-7 min-[810px]:max-[1199.98px]:px-6 min-[810px]:max-[1199.98px]:pb-[52px] max-[809.98px]:items-start max-[809.98px]:gap-[72px] max-[809.98px]:px-[18px] max-[809.98px]:pt-[140px] max-[809.98px]:pb-11">
-        {/* Video switcher + availability */}
+        {/* Video of the day + availability */}
         <div className="flex w-full items-center justify-between max-[809.98px]:flex-col max-[809.98px]:items-start max-[809.98px]:gap-7">
-          <div className="flex flex-[4] flex-wrap items-center gap-6">
-            {slides.map((slide, i) => (
-              <button
-                key={slide.label}
-                type="button"
-                onClick={() => setActiveIndex(i)}
-                className={cn(
-                  "role-link inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[-0.12px] transition-[opacity,transform] duration-300 hover:translate-x-1 motion-reduce:transition-none motion-reduce:hover:translate-x-0",
-                  i === activeIndex ? "opacity-100" : "opacity-55 hover:opacity-75"
-                )}
-              >
-                <span className="text-[8px] leading-3 tracking-[-0.08px] text-white/60">
-                  0{i + 1} /
-                </span>
-                {slide.label}
-              </button>
-            ))}
-          </div>
+          <p className="text-xs font-medium uppercase tracking-[-0.12px] text-white/60">
+            Today’s wave — {slide.label}
+          </p>
 
-          <div className="flex flex-1 items-center justify-end gap-2 max-[809.98px]:justify-start">
+          <div className="flex items-center gap-2">
             <motion.span
               aria-hidden="true"
               className="size-[7px] shrink-0 rounded-full"
-              style={{ backgroundColor: accent, boxShadow: `0 0 8px 2px ${accent}` }}
+              style={{ backgroundColor: slide.accent, boxShadow: `0 0 8px 2px ${slide.accent}` }}
               animate={
                 shouldReduceMotion ? undefined : { scale: [1, 1.45, 1], opacity: [1, 0.45, 1] }
               }
@@ -144,7 +133,7 @@ export function VideoHero() {
             transition={{ duration: 0.9, ease: springEase }}
             className="flex-[2] text-[clamp(64px,8.5vw,132px)] leading-[92%] font-medium tracking-[-4px] uppercase min-[810px]:max-[1199.98px]:text-[clamp(56px,10vw,96px)] min-[810px]:max-[1199.98px]:leading-[100%] min-[810px]:max-[1199.98px]:tracking-[-3px] max-[809.98px]:text-[clamp(40px,13vw,64px)] max-[809.98px]:leading-[104%] max-[809.98px]:tracking-[-2px]"
           >
-            agapeworks<span style={{ color: accent }}>.</span>
+            agapeworks<span style={{ color: slide.accent }}>.</span>
           </motion.h1>
 
           <div className="flex flex-1 flex-col items-start gap-6 pl-[50px] max-[809.98px]:max-w-[420px] max-[809.98px]:pl-0 min-[810px]:max-[1199.98px]:pl-6">
