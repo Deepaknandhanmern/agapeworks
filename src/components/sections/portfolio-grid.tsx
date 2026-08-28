@@ -11,17 +11,22 @@ import {
 import { ExternalLink, Globe } from "lucide-react";
 import { projects, type Project } from "@/lib/portfolio-data";
 
-function LivePreview({ url, title }: { url: string; title: string }) {
+function LivePreview({ url, screenshot, title }: { url: string; screenshot?: string; title: string }) {
   return (
     <div className="relative w-full" style={{ paddingTop: "62.5%" }}>
       <div className="absolute inset-0 overflow-hidden bg-muted">
-        <iframe
-          src={url}
-          title={title}
-          loading="lazy"
-          tabIndex={-1}
-          className="pointer-events-none absolute left-0 top-0 h-[400%] w-[400%] origin-top-left scale-[0.25]"
-        />
+        {screenshot ? (
+          // eslint-disable-next-line @next/next/no-img-element -- static local asset, not worth next/image for a single file
+          <img src={screenshot} alt={`${title} website preview`} className="h-full w-full object-cover object-top" />
+        ) : (
+          <iframe
+            src={url}
+            title={title}
+            loading="lazy"
+            tabIndex={-1}
+            className="pointer-events-none absolute left-0 top-0 h-[400%] w-[400%] origin-top-left scale-[0.25]"
+          />
+        )}
       </div>
     </div>
   );
@@ -41,7 +46,7 @@ export function PortfolioGrid() {
               onClick={() => setActive(project)}
               className="group flex flex-col overflow-hidden rounded-xl border bg-card text-left shadow-sm transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
-              <LivePreview url={project.url} title={project.name} />
+              <LivePreview url={project.url} screenshot={project.screenshot} title={project.name} />
               <div className="flex flex-1 flex-col gap-1 p-5">
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="font-semibold text-foreground">{project.name}</h3>
@@ -87,8 +92,17 @@ export function PortfolioGrid() {
             </DialogDescription>
           </DialogHeader>
           <div className="h-[75vh] w-full overflow-hidden rounded-lg border bg-muted">
-            {active?.url && (
-              <iframe src={active.url} title={active.name} className="h-full w-full" />
+            {active?.screenshot ? (
+              // eslint-disable-next-line @next/next/no-img-element -- static local asset, not worth next/image for a single file
+              <img
+                src={active.screenshot}
+                alt={`${active.name} website preview`}
+                className="h-full w-full object-cover object-top"
+              />
+            ) : (
+              active?.url && (
+                <iframe src={active.url} title={active.name} className="h-full w-full" />
+              )
             )}
           </div>
         </DialogContent>
