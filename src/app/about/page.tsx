@@ -1,0 +1,137 @@
+import type { Metadata } from "next";
+import { Header } from "@/components/ui/header-3";
+import { AntiMetalButton } from "@/components/ui/anti-metal-button";
+import {
+  Globe2,
+  MessageCircle,
+  Repeat,
+  ShieldCheck,
+  Users,
+} from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About — Agape Works",
+  description:
+    "Agape Works is a remote-first product engineering team built on one standard: selfless, deliberate care for the product and the people building it.",
+};
+
+const values = [
+  {
+    icon: Users,
+    title: "Senior engineers only",
+    description:
+      "No bait-and-switch juniors. The people who scope your project are the people who build it.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Direct access, no account layer",
+    description:
+      "You talk to the engineers and designers on your project — not a go-between relaying messages.",
+  },
+  {
+    icon: Repeat,
+    title: "Weekly, working demos",
+    description:
+      "Every engagement runs on a visible cadence. You see real progress every week, not a status report.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Documentation, built in",
+    description:
+      "Your team can pick up the code the day we leave. Nothing lives only in our heads.",
+  },
+];
+
+export default function AboutPage() {
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+
+      <main className="flex-1">
+        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-16 pt-20 text-center sm:pt-28">
+          <div className="inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
+            About Us
+          </div>
+          <h1 className="max-w-2xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Work, done with agape.
+          </h1>
+          <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
+            Agape means selfless, deliberate care — for the product, and for the people we build
+            it with. That&apos;s not a tagline here. It&apos;s the standard every engagement is
+            held to.
+          </p>
+        </section>
+
+        {/* Mission */}
+        <section className="mx-auto w-full max-w-3xl px-4 pb-24 text-center">
+          <p className="text-lg leading-8 text-muted-foreground">
+            Most software studios optimize for one of two things: speed, or polish. We built Agape
+            Works around a different bet — that a small team of senior engineers, working
+            directly with a client and shipping visibly every week, produces better outcomes than
+            either extreme. Fixed scope. Real access. Code your own team can maintain long after
+            we&apos;re gone.
+          </p>
+        </section>
+
+        {/* Values */}
+        <section className="border-t bg-muted/20">
+          <div className="mx-auto w-full max-w-5xl px-4 py-24">
+            <div className="mb-12 flex flex-col items-center gap-3 text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+                What that looks like in practice
+              </h2>
+              <p className="max-w-lg text-muted-foreground">
+                Four commitments we hold on every engagement, regardless of size.
+              </p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2">
+              {values.map(({ icon: Icon, title, description }) => (
+                <div
+                  key={title}
+                  className="flex flex-col gap-3 rounded-xl border bg-card p-6 shadow-sm"
+                >
+                  <div className="flex size-10 items-center justify-center rounded-lg bg-accent">
+                    <Icon className="size-5 text-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">{title}</h3>
+                  <p className="text-sm leading-6 text-muted-foreground">{description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Where we work */}
+        <section className="mx-auto w-full max-w-3xl px-4 py-24 text-center">
+          <div className="mb-4 flex justify-center">
+            <div className="flex size-12 items-center justify-center rounded-full bg-accent">
+              <Globe2 className="size-6 text-foreground" />
+            </div>
+          </div>
+          <h2 className="mb-3 text-3xl font-semibold tracking-tight text-foreground">
+            Remote-first, by design
+          </h2>
+          <p className="text-lg leading-8 text-muted-foreground">
+            We&apos;re a distributed team working with founders and product teams across
+            continents and time zones. Remote-first isn&apos;t a compromise for us — it&apos;s
+            how we&apos;ve chosen to hire the right person for each engagement, wherever they are.
+          </p>
+        </section>
+
+        {/* CTA */}
+        <section className="border-t bg-muted/20">
+          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
+              Want to see how we&apos;d approach your project?
+            </h2>
+            <p className="max-w-md text-muted-foreground">
+              Tell us what you&apos;re building — we&apos;ll tell you what it takes to get it
+              shipped.
+            </p>
+            <AntiMetalButton href="/contact" label="Get in touch" />
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}

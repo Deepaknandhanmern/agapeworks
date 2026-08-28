@@ -1,0 +1,57 @@
+---
+title: "A Technical SEO Checklist Before You Launch"
+description: "The unglamorous, easy-to-skip fundamentals that decide whether search engines can actually find and understand your site."
+date: "2026-06-02"
+author: "Agape Works"
+tags: ["SEO"]
+---
+
+Content strategy and backlinks get the attention, but most SEO problems we find during a launch
+review are more basic than that: search engines simply can't read the site correctly. No amount
+of great content fixes a crawl error.
+
+Here's the checklist we run before anything ships.
+
+## Crawlability
+
+- **`robots.txt` exists and isn't accidentally blocking everything.** A `Disallow: /` left over
+  from staging is the single most common launch-day mistake we see.
+- **`sitemap.xml` is generated and submitted** to Google Search Console and Bing Webmaster Tools.
+- **Canonical tags are correct** on every page — especially on sites with both `www` and non-`www`
+  versions, or trailing-slash inconsistencies, which silently split ranking signal between
+  duplicate URLs.
+
+## Structured data
+
+- **JSON-LD for `Organization`** on every page (name, logo, sameAs social links) — this is what
+  populates knowledge panels and gives AI-driven search answers something concrete to cite.
+- **`Article` schema on blog posts**, `Product` schema on pricing/product pages if applicable.
+- Validate everything in [Google's Rich Results Test](https://search.google.com/test/rich-results)
+  before launch, not after.
+
+## Performance
+
+- **Core Web Vitals pass on mobile**, not just desktop — Google's index is mobile-first, and most
+  real traffic is mobile too.
+- Images are served in modern formats (WebP/AVIF) and properly sized, not just scaled down with
+  CSS.
+- Fonts don't block first paint — a slow web font is a common, invisible cause of a bad Largest
+  Contentful Paint score.
+
+## Metadata
+
+- **Every page has a unique title and description** — templated boilerplate repeated across pages
+  tells search engines the content is duplicate, even when it isn't.
+- Open Graph and Twitter Card tags are set, so shared links render properly instead of a blank
+  card.
+- Heading structure is a real hierarchy (one `h1`, logically nested `h2`/`h3`) — not just whatever
+  size text looked right in the design.
+
+## Why this list, not a content calendar
+
+None of this is exciting. It's also the reason a technically clean site with modest content
+regularly outranks a content-rich site with a broken sitemap and duplicate titles. Content earns
+rankings over months; a crawl error can suppress them from day one.
+
+We run this exact checklist on every site we ship. If you want a second pair of eyes on yours,
+[get in touch](/contact).

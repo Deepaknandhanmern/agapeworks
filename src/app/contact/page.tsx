@@ -1,0 +1,70 @@
+import type { Metadata } from "next";
+import { Header } from "@/components/ui/header-3";
+import { ContactForm } from "@/components/sections/contact-form";
+import { Clock, Mail, MapPin } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Contact — Agape Works",
+  description: "Tell us about your project — Agape Works replies within one business day.",
+};
+
+const contactPoints = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "hello@agapeworks.dev",
+  },
+  {
+    icon: Clock,
+    label: "Response time",
+    value: "Within 1 business day",
+  },
+  {
+    icon: MapPin,
+    label: "Working with",
+    value: "Remote-first, worldwide",
+  },
+];
+
+export default function ContactPage() {
+  return (
+    <div className="flex min-h-screen flex-col bg-background">
+      <Header />
+
+      <main className="flex-1">
+        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-12 pt-20 text-center sm:pt-28">
+          <div className="inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
+            Get in touch
+          </div>
+          <h1 className="max-w-2xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Let&apos;s talk about your project.
+          </h1>
+          <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
+            Whether you know exactly what you need or just have an idea — tell us about it and
+            we&apos;ll get back to you with next steps.
+          </p>
+        </section>
+
+        <section className="mx-auto w-full max-w-5xl px-4 pb-24">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
+            <div className="flex flex-col gap-6">
+              {contactPoints.map(({ icon: Icon, label, value }) => (
+                <div key={label} className="flex items-start gap-3">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent">
+                    <Icon className="size-4 text-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{label}</p>
+                    <p className="text-sm text-muted-foreground">{value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <ContactForm />
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
