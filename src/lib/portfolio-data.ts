@@ -12,7 +12,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: "Zenvyra Cleaning",
-    url: "https://www.zenvyracleaning.com",
+    url: "https://zenvyracleaning.in",
     description: "Cleaning services website built and launched by Agape Works.",
   },
   {
@@ -22,8 +22,8 @@ export const projects: Project[] = [
     screenshot: "/portfolio/ucx-group.png",
   },
   {
-    name: "Coming soon",
-    url: null,
-    description: "Another project is in the works — check back soon.",
+    name: "Kathir Solar Solutions",
+    url: "https://kathirsolarsolutions.in",
+    description: "Solar energy company website built and launched by Agape Works.",
   },
 ];
