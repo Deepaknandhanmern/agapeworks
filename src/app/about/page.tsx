@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
+import { About3 } from "@/components/ui/about-3";
 import {
   Globe2,
   MessageCircle,
@@ -8,6 +9,12 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+
+// Small inline wordmark, since there's no logo image asset yet — used in
+// place of a fabricated/borrowed logo file for the About3 breakout card.
+const wordmarkSvg =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 40"><text x="0" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="30" fill="#0a0a0a">agapeworks.</text></svg>';
+const wordmarkDataUri = `data:image/svg+xml;utf8,${encodeURIComponent(wordmarkSvg)}`;
 
 export const metadata: Metadata = {
   title: "About — Agape Works",
@@ -116,6 +123,40 @@ export default function AboutPage() {
             continents and time zones. Remote-first isn&apos;t a compromise for us — it&apos;s
             how we&apos;ve chosen to hire the right person for each engagement, wherever they are.
           </p>
+        </section>
+
+        {/* Team, process, and honest stats */}
+        <section className="border-t">
+          <About3
+            title="The team behind the work"
+            description="A small, senior, remote-first team — the people who scope your project are the same people who build it, every time."
+            mainImage={{
+              src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
+              alt: "Engineers collaborating on a laptop",
+            }}
+            secondaryImage={{
+              src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
+              alt: "Remote engineer working from a laptop",
+            }}
+            breakout={{
+              src: wordmarkDataUri,
+              alt: "Agape Works",
+              title: "Fixed scope. Real access. Weekly demos.",
+              description:
+                "Every engagement runs on the same standard — no matter the size of the project.",
+              buttonText: "See our process",
+              buttonUrl: "/services",
+            }}
+            companies={[]}
+            achievementsTitle="What we actually commit to"
+            achievementsDescription="No inflated numbers — just the standard every engagement is held to, the same one listed above."
+            achievements={[
+              { label: "Weeks to first ship", value: "2–4" },
+              { label: "Code ownership, yours", value: "100%" },
+              { label: "Bait-and-switch juniors", value: "0" },
+              { label: "Senior engineer on your call", value: "1+" },
+            ]}
+          />
         </section>
 
         {/* CTA */}
