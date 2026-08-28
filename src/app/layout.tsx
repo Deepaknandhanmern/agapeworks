@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { AIChatLauncher } from "@/components/ui/ai-chat-launcher";
-import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -22,17 +21,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
-          <CinematicFooter />
-          <AIChatLauncher />
-        </ThemeProvider>
+        {children}
+        <CinematicFooter />
+        <AIChatLauncher />
       </body>
     </html>
   );
