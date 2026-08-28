@@ -13,20 +13,25 @@ const figtree = Figtree({
 
 const springEase = [0.16, 1, 0.3, 1] as const;
 
+// Self-hosted from /public/videos (remuxed with ffmpeg -movflags +faststart)
+// instead of the original CloudFront URLs: those files had their moov atom
+// after mdat ("not fast-start"), which forces browsers to fetch most/all of
+// a 7-18MB file before playback can begin at all. Fast-start files stream
+// and start playing almost immediately.
 const slides = [
   {
     label: "WATER WAVE",
-    src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260629_030107_874273ea-684a-4e90-bb96-8fdfde48d53d.mp4",
+    src: "/videos/water-wave.mp4",
     accent: "#F598F2",
   },
   {
     label: "GRIDWAVE",
-    src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260629_032424_3c9c2a9d-807b-4482-80e6-dd6d9dfd4545.mp4",
+    src: "/videos/gridwave.mp4",
     accent: "#ffffff",
   },
   {
     label: "LIGHT TUNNEL",
-    src: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260627_094019_4214ea73-b963-46a4-8327-61489192de99.mp4",
+    src: "/videos/light-tunnel.mp4",
     accent: "#ffffff",
   },
 ];
@@ -47,37 +52,9 @@ function useVideoOfTheDay() {
   return index;
 }
 
-function usePreloadedVideo(src: string) {
-  const [resolved, setResolved] = useState(src);
-
-  useEffect(() => {
-    let cancelled = false;
-    let objectUrl: string | undefined;
-
-    fetch(src)
-      .then((res) => res.blob())
-      .then((blob) => {
-        if (cancelled) return;
-        objectUrl = URL.createObjectURL(blob);
-        setResolved(objectUrl);
-      })
-      .catch(() => {
-        // fall back to the original URL, already the default state
-      });
-
-    return () => {
-      cancelled = true;
-      if (objectUrl) URL.revokeObjectURL(objectUrl);
-    };
-  }, [src]);
-
-  return resolved;
-}
-
 export function VideoHero() {
   const slideIndex = useVideoOfTheDay();
   const slide = slides[slideIndex];
-  const videoSrc = usePreloadedVideo(slide.src);
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -89,7 +66,8 @@ export function VideoHero() {
     >
       <video
         key={slide.src}
-        src={videoSrc}
+        src={slide.src}
+        preload="auto"
         muted
         autoPlay
         playsInline
