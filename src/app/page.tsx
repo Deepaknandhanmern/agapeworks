@@ -3,6 +3,7 @@ import { VerticalTabs } from "@/components/ui/vertical-tabs";
 import { Globe } from "@/components/ui/globe";
 import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
 import { Integrations } from "@/components/ui/integrations-4-2";
+import { FlowSection } from "@/components/ui/story-scroll";
 import { VideoHero } from "@/components/sections/video-hero";
 import { ArrowRight, Gauge, ShieldCheck } from "lucide-react";
 
@@ -69,26 +70,32 @@ export default function Home() {
         <ArcGalleryHero images={teamImages} />
 
         {/* About Us */}
-        <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-4 px-4 py-24 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
-            About Us
+        <FlowSection aria-label="Who we are" style={{ backgroundColor: "#000", color: "#fff" }}>
+          <p className="text-xs font-bold uppercase tracking-[0.2em]">01 — Who we are</p>
+          <hr className="my-[2vw] border-none border-t border-white/20" />
+          <div>
+            <h2 className="text-[clamp(3.5rem,12vw,14rem)] font-bold uppercase leading-[0.85] tracking-tight">
+              Agape
+              <br />
+              Means
+              <br />
+              Care
+            </h2>
           </div>
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-            A small team of senior engineers, working like it.
-          </h2>
-          <p className="text-lg leading-8 text-muted-foreground">
+          <hr className="my-[2vw] border-none border-t border-white/20" />
+          <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
             Agape means selfless, deliberate care — the standard we hold every engagement to.
             Direct access to the people building your product, weekly working demos, and
             documentation your team can actually pick up when we&apos;re done.
           </p>
           <a
             href="/about"
-            className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
+            className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-medium underline underline-offset-4 hover:opacity-80"
           >
             More about us
             <ArrowRight className="size-4" />
           </a>
-        </section>
+        </FlowSection>
 
         {/* Services */}
         <section id="services">
