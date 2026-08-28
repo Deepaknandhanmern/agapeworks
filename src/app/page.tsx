@@ -1,9 +1,9 @@
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { VerticalTabs } from "@/components/ui/vertical-tabs";
-import { Globe } from "@/components/ui/globe";
 import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
 import { Integrations } from "@/components/ui/integrations-4-2";
 import { FlowSection } from "@/components/ui/story-scroll";
+import Featured_05 from "@/components/ui/globe-feature-section";
 import { VideoHero } from "@/components/sections/video-hero";
 import { ArrowRight, Gauge, ShieldCheck } from "lucide-react";
 
@@ -187,23 +187,8 @@ export default function Home() {
 
         {/* Global reach */}
         <section className="border-t">
-          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-24 text-center">
-            <div className="flex flex-col items-center gap-3">
-              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-                Wherever your team is, we&apos;re already there
-              </h2>
-              <p className="max-w-lg text-muted-foreground">
-                Remote-first by design — we&apos;ve shipped projects for clients across five
-                continents.
-              </p>
-            </div>
-            <div className="relative flex h-[380px] w-full max-w-lg items-center justify-center overflow-hidden rounded-2xl border bg-card shadow-sm md:h-[460px]">
-              <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-foreground to-foreground/10 bg-clip-text text-center text-7xl font-semibold leading-none text-transparent">
-                Global
-              </span>
-              <Globe className="top-20" />
-              <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.15),rgba(255,255,255,0))]" />
-            </div>
+          <div className="mx-auto w-full max-w-5xl px-4 pb-24">
+            <Featured_05 />
           </div>
         </section>
 
