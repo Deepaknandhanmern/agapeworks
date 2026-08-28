@@ -3,7 +3,7 @@ import { VerticalTabs } from "@/components/ui/vertical-tabs";
 import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
 import { Integrations } from "@/components/ui/integrations-4-2";
 import { FlowSection } from "@/components/ui/story-scroll";
-import Featured_05 from "@/components/ui/globe-feature-section";
+import { WorldMap } from "@/components/ui/map";
 import { VideoHero } from "@/components/sections/video-hero";
 import { ArrowRight, Gauge, ShieldCheck } from "lucide-react";
 
@@ -187,8 +187,45 @@ export default function Home() {
 
         {/* Global reach */}
         <section className="border-t">
-          <div className="mx-auto w-full max-w-5xl px-4 pb-24">
-            <Featured_05 />
+          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-24">
+            <div className="flex flex-col items-center gap-3 text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+                Wherever your team is, we&apos;re already there
+              </h2>
+              <p className="max-w-lg text-muted-foreground">
+                Remote-first by design — we&apos;ve shipped projects for clients across five
+                continents.
+              </p>
+            </div>
+            <WorldMap
+              lineColor="#0ea5e9"
+              dots={[
+                {
+                  start: { lat: 64.2008, lng: -149.4937, label: "Fairbanks" },
+                  end: { lat: 34.0522, lng: -118.2437, label: "Los Angeles" },
+                },
+                {
+                  start: { lat: 64.2008, lng: -149.4937, label: "Fairbanks" },
+                  end: { lat: -15.7975, lng: -47.8919, label: "Brasília" },
+                },
+                {
+                  start: { lat: -15.7975, lng: -47.8919, label: "Brasília" },
+                  end: { lat: 38.7223, lng: -9.1393, label: "Lisbon" },
+                },
+                {
+                  start: { lat: 51.5074, lng: -0.1278, label: "London" },
+                  end: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
+                },
+                {
+                  start: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
+                  end: { lat: 43.1332, lng: 131.9113, label: "Vladivostok" },
+                },
+                {
+                  start: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
+                  end: { lat: -1.2921, lng: 36.8219, label: "Nairobi" },
+                },
+              ]}
+            />
           </div>
         </section>
 
