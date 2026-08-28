@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import createGlobe, { COBEOptions } from "cobe"
-import { useCallback, useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 export default function Featured_05() {
@@ -19,8 +19,8 @@ export default function Featured_05() {
             Join Today <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
-        <div className="relative h-[180px] w-full max-w-xl">
-          <Globe className="absolute -bottom-20 -right-40 scale-150" />
+        <div className="relative h-[320px] w-full max-w-xl md:h-[420px]">
+          <Globe />
         </div>
       </div>
     </section>
@@ -65,57 +65,75 @@ export function Globe({
   className?: string
   config?: COBEOptions
 }) {
-  let phi = 0
-  let width = 0
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const pointerInteracting = useRef(null)
+  const pointerInteracting = useRef<number | null>(null)
   const pointerInteractionMovement = useRef(0)
-  const [r, setR] = useState(0)
+  // phi/width/r are mutated by the imperative cobe render loop and the
+  // pointer handlers below — they must be refs, not plain locals or React
+  // state, so the single onRender callback (created once, at globe
+  // creation) always reads the latest value instead of a stale closure.
+  const phiRef = useRef(0)
+  const widthRef = useRef(0)
+  const rRef = useRef(0)
 
-  const updatePointerInteraction = (value: any) => {
+  const updatePointerInteraction = (value: number | null) => {
     pointerInteracting.current = value
     if (canvasRef.current) {
-      canvasRef.current.style.cursor = value ? "grabbing" : "grab"
+      canvasRef.current.style.cursor = value !== null ? "grabbing" : "grab"
     }
   }
 
-  const updateMovement = (clientX: any) => {
+  const updateMovement = (clientX: number) => {
     if (pointerInteracting.current !== null) {
       const delta = clientX - pointerInteracting.current
       pointerInteractionMovement.current = delta
-      setR(delta / 200)
-    }
-  }
-
-  const onRender = useCallback(
-    (state: Record<string, any>) => {
-      if (!pointerInteracting.current) phi += 0.005
-      state.phi = phi + r
-      state.width = width * 2
-      state.height = width * 2
-    },
-    [r],
-  )
-
-  const onResize = () => {
-    if (canvasRef.current) {
-      width = canvasRef.current.offsetWidth
+      rRef.current = delta / 200
     }
   }
 
   useEffect(() => {
-    window.addEventListener("resize", onResize)
-    onResize()
+    if (!canvasRef.current) return
 
-    const globe = createGlobe(canvasRef.current!, {
+    // A window "resize" listener alone misses the far more common case:
+    // the canvas's own layout settling after mount (fonts loading, a
+    // flex/grid parent finishing its pass, etc.) with no window resize
+    // event ever firing. That leaves widthRef stuck at 0 and the globe
+    // permanently invisible. ResizeObserver reports the canvas's actual
+    // rendered size — including its first measurement — and keeps it
+    // correct afterward.
+    const ro = new ResizeObserver((entries) => {
+      const entry = entries[0]
+      if (entry) widthRef.current = entry.contentRect.width
+    })
+    ro.observe(canvasRef.current)
+    widthRef.current = canvasRef.current.offsetWidth
+
+    // Built as a separate variable (not an inline object literal at the
+    // call site) so TS's excess-property check doesn't reject `onRender`
+    // even though cobe's own runtime expects and uses it.
+    const options = {
       ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender,
-    } as COBEOptions)
+      width: widthRef.current * 2,
+      height: widthRef.current * 2,
+      onRender: (state: Record<string, any>) => {
+        if (pointerInteracting.current === null) phiRef.current += 0.005
+        state.phi = phiRef.current + rRef.current
+        state.width = widthRef.current * 2
+        state.height = widthRef.current * 2
+      },
+    }
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"))
-    return () => globe.destroy()
+    const globe = createGlobe(canvasRef.current, options as COBEOptions)
+
+    setTimeout(() => {
+      if (canvasRef.current) canvasRef.current.style.opacity = "1"
+    })
+
+    return () => {
+      ro.disconnect()
+      globe.destroy()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
