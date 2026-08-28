@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils"; // Your shadcn/ui utils file
@@ -24,7 +24,10 @@ const cardVariants = cva(
 );
 
 export interface ServiceCardProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<
+      React.HTMLAttributes<HTMLDivElement>,
+      "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd"
+    >,
     VariantProps<typeof cardVariants> {
   /**
    * The main title of the card.
@@ -48,14 +51,14 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
   ({ className, variant, title, href, imgSrc, imgAlt, ...props }, ref) => {
 
     // Animation variants for Framer Motion
-    const cardAnimation = {
+    const cardAnimation: Variants = {
       hover: {
         scale: 1.02,
         transition: { duration: 0.3 },
       },
     };
 
-    const imageAnimation = {
+    const imageAnimation: Variants = {
       hover: {
         scale: 1.1,
         rotate: 3,
@@ -64,10 +67,10 @@ const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps>(
       },
     };
 
-    const arrowAnimation = {
+    const arrowAnimation: Variants = {
         hover: {
             x: 5,
-            transition: { duration: 0.3, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" as const },
+            transition: { duration: 0.3, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" },
         }
     }
 
