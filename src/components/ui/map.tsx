@@ -4,10 +4,17 @@ import { useRef, useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import DottedMap from "dotted-map";
 
+interface MapPoint {
+  lat: number;
+  lng: number;
+  label?: string;
+  hq?: boolean;
+}
+
 interface MapProps {
   dots?: Array<{
-    start: { lat: number; lng: number; label?: string };
-    end: { lat: number; lng: number; label?: string };
+    start: MapPoint;
+    end: MapPoint;
   }>;
   lineColor?: string;
   showLabels?: boolean;
@@ -18,7 +25,7 @@ interface MapProps {
 
 export function WorldMap({
   dots = [],
-  lineColor = "#0ea5e9",
+  lineColor = "#d1f140",
   showLabels = true,
   labelClassName = "text-sm",
   animationDuration = 2,
@@ -60,6 +67,10 @@ export function WorldMap({
     [map, isDark]
   );
 
+  // Head office marker uses black (vs. the lime route lines) so it reads as
+  // the hub the other regions radiate from, rather than just another stop.
+  const hqColor = "#000000";
+
   const projectPoint = (lat: number, lng: number) => {
     const x = (lng + 180) * (800 / 360);
     const y = (90 - lat) * (400 / 180);
@@ -82,7 +93,7 @@ export function WorldMap({
   const fullCycleDuration = totalAnimationTime + pauseTime;
 
   return (
-    <div className="w-full aspect-[2/1] md:aspect-[2.5/1] lg:aspect-[2/1] dark:bg-black bg-white rounded-lg relative font-sans overflow-hidden">
+    <div className="w-full aspect-[2/1] md:aspect-[2.5/1] lg:aspect-[2/1] bg-white rounded-lg relative font-sans overflow-hidden">
       {/*
         A plain <img>, not next/image: this src is a data: URI that changes
         after mount (light/dark recompute) — next/image's <Image> silently
@@ -203,22 +214,22 @@ export function WorldMap({
                   <circle
                     cx={startPoint.x}
                     cy={startPoint.y}
-                    r="3"
-                    fill={lineColor}
+                    r={dot.start.hq ? "5" : "3"}
+                    fill={dot.start.hq ? hqColor : lineColor}
                     filter="url(#glow)"
                     className="drop-shadow-lg"
                   />
                   <circle
                     cx={startPoint.x}
                     cy={startPoint.y}
-                    r="3"
-                    fill={lineColor}
+                    r={dot.start.hq ? "5" : "3"}
+                    fill={dot.start.hq ? hqColor : lineColor}
                     opacity="0.5"
                   >
                     <animate
                       attributeName="r"
-                      from="3"
-                      to="12"
+                      from={dot.start.hq ? "5" : "3"}
+                      to={dot.start.hq ? "20" : "12"}
                       dur="2s"
                       begin="0s"
                       repeatCount="indefinite"
@@ -242,16 +253,28 @@ export function WorldMap({
                     className="pointer-events-none"
                   >
                     <foreignObject
-                      x={startPoint.x - 50}
-                      y={startPoint.y - 35}
-                      width="100"
+                      x={startPoint.x - 60}
+                      y={startPoint.y - 38}
+                      width="120"
                       height="30"
                       className="block"
                     >
                       <div className="flex items-center justify-center h-full">
-                        <span className="text-sm font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
-                          {dot.start.label}
-                        </span>
+                        {dot.start.hq ? (
+                          <span
+                            className="flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-sm font-semibold shadow-sm"
+                            style={{ backgroundColor: hqColor, borderColor: hqColor, color: "#fff" }}
+                          >
+                            {dot.start.label}
+                            <span className="rounded-sm bg-white/25 px-1 text-[10px] font-bold tracking-wide">
+                              HQ
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="text-sm font-medium px-2 py-0.5 rounded-md bg-white/95 text-black border border-gray-200 shadow-sm">
+                            {dot.start.label}
+                          </span>
+                        )}
                       </div>
                     </foreignObject>
                   </motion.g>
@@ -270,22 +293,22 @@ export function WorldMap({
                   <circle
                     cx={endPoint.x}
                     cy={endPoint.y}
-                    r="3"
-                    fill={lineColor}
+                    r={dot.end.hq ? "5" : "3"}
+                    fill={dot.end.hq ? hqColor : lineColor}
                     filter="url(#glow)"
                     className="drop-shadow-lg"
                   />
                   <circle
                     cx={endPoint.x}
                     cy={endPoint.y}
-                    r="3"
-                    fill={lineColor}
+                    r={dot.end.hq ? "5" : "3"}
+                    fill={dot.end.hq ? hqColor : lineColor}
                     opacity="0.5"
                   >
                     <animate
                       attributeName="r"
-                      from="3"
-                      to="12"
+                      from={dot.end.hq ? "5" : "3"}
+                      to={dot.end.hq ? "20" : "12"}
                       dur="2s"
                       begin="0.5s"
                       repeatCount="indefinite"
@@ -309,16 +332,28 @@ export function WorldMap({
                     className="pointer-events-none"
                   >
                     <foreignObject
-                      x={endPoint.x - 50}
-                      y={endPoint.y - 35}
-                      width="100"
+                      x={endPoint.x - 60}
+                      y={endPoint.y - 38}
+                      width="120"
                       height="30"
                       className="block"
                     >
                       <div className="flex items-center justify-center h-full">
-                        <span className="text-sm font-medium px-2 py-0.5 rounded-md bg-white/95 dark:bg-black/95 text-black dark:text-white border border-gray-200 dark:border-gray-700 shadow-sm">
-                          {dot.end.label}
-                        </span>
+                        {dot.end.hq ? (
+                          <span
+                            className="flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-sm font-semibold shadow-sm"
+                            style={{ backgroundColor: hqColor, borderColor: hqColor, color: "#fff" }}
+                          >
+                            {dot.end.label}
+                            <span className="rounded-sm bg-white/25 px-1 text-[10px] font-bold tracking-wide">
+                              HQ
+                            </span>
+                          </span>
+                        ) : (
+                          <span className="text-sm font-medium px-2 py-0.5 rounded-md bg-white/95 text-black border border-gray-200 shadow-sm">
+                            {dot.end.label}
+                          </span>
+                        )}
                       </div>
                     </foreignObject>
                   </motion.g>
@@ -336,7 +371,7 @@ export function WorldMap({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
-            className="absolute bottom-4 left-4 bg-white/90 dark:bg-black/90 text-black dark:text-white px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-sm sm:hidden border border-gray-200 dark:border-gray-700"
+            className="absolute bottom-4 left-4 bg-white/90 text-black px-3 py-2 rounded-lg text-sm font-medium backdrop-blur-sm sm:hidden border border-gray-200"
           >
             {hoveredLocation}
           </motion.div>

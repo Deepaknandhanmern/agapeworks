@@ -175,9 +175,9 @@ function PhoneMockup() {
       <div className="flex h-[400px] items-center justify-center">
         <motion.div
           style={{ rotate, y }}
-          className="relative h-[360px] w-[186px] rounded-[2rem] border-[6px] border-neutral-900 bg-neutral-900 shadow-xl dark:border-neutral-700 dark:bg-neutral-700"
+          className="relative h-[360px] w-[186px] rounded-[2rem] border-[6px] border-primary bg-primary shadow-xl"
         >
-          <div className="absolute left-1/2 top-0 z-10 h-4 w-16 -translate-x-1/2 rounded-b-xl bg-neutral-900 dark:bg-neutral-700" />
+          <div className="absolute left-1/2 top-0 z-10 h-4 w-16 -translate-x-1/2 rounded-b-xl bg-primary" />
           <div className="relative h-full w-full overflow-hidden rounded-[1.55rem] bg-card">
             <AnimatePresence mode="wait">
               <motion.div

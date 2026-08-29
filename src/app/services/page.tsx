@@ -6,6 +6,7 @@ import { AIVoiceInput } from "@/components/ui/ai-voice-input";
 import { DeviceShowcase } from "@/components/sections/device-showcase";
 import { Marquee } from "@/components/ui/marquee";
 import { mainServices, supportingServices } from "@/lib/services-data";
+import { DotPattern } from "@/components/ui/dot-pattern";
 import { techStack } from "@/lib/tech-stack-data";
 
 const cardColors = ["orange", "purple", "blue"] as const;
@@ -36,14 +37,14 @@ export default function ServicesPage() {
           </p>
         </section>
 
-        {/* Main Services */}
+        {/* How We Help */}
         <section className="mx-auto w-full max-w-5xl px-4 pb-24">
           <div className="mb-12 flex flex-col items-center gap-3 text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-              Main Services
+              How We Help
             </h2>
             <p className="max-w-lg text-muted-foreground">
-              The core disciplines behind every product we build.
+              The core disciplines behind every product we build — including AI.
             </p>
           </div>
           <div className="grid grid-cols-1 place-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -145,15 +146,18 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA */}
-        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
-          <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
-            Not sure which service you need?
-          </h2>
-          <p className="max-w-md text-muted-foreground">
-            Tell us about your project and we&apos;ll recommend the right scope — no
-            obligation.
-          </p>
-          <AntiMetalButton href="/contact" label="Book a demo" />
+        <section className="relative overflow-hidden">
+          <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
+              Not sure which service you need?
+            </h2>
+            <p className="max-w-md text-muted-foreground">
+              Tell us about your project and we&apos;ll recommend the right scope — no
+              obligation.
+            </p>
+            <AntiMetalButton href="/contact" label="Book a demo" />
+          </div>
         </section>
       </main>
     </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { CinematicFooter } from "@/components/ui/motion-footer";
-import { AIChatLauncher } from "@/components/ui/ai-chat-launcher";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -9,10 +8,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Body and headings use Apple's own system-font stack (globals.css
-// --font-sans): -apple-system/BlinkMacSystemFont resolve to San Francisco
-// on Mac/iOS (same technique apple.com itself uses, not a downloadable
-// webfont), falling back to Helvetica/Arial elsewhere.
+// Secondary/body text (globals.css --font-sans).
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+// Primary/heading font (globals.css --font-heading).
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Agape Works",
@@ -21,11 +27,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistMono.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geistMono.variable} ${inter.variable} ${montserrat.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         {children}
         <CinematicFooter />
-        <AIChatLauncher />
       </body>
     </html>
   );

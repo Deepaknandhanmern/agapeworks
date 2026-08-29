@@ -1,17 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { Figtree } from "next/font/google";
 import { VideoHeroNavbar } from "./video-hero-navbar";
-import { cn } from "@/lib/utils";
-
-const figtree = Figtree({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const springEase = [0.16, 1, 0.3, 1] as const;
+import { instrumentSerif } from "@/lib/hero-fonts";
 
 // Self-hosted from /public/videos (remuxed with ffmpeg -movflags +faststart)
 // instead of the original CloudFront URLs: those files had their moov atom
@@ -55,15 +46,9 @@ function useVideoOfTheDay() {
 export function VideoHero() {
   const slideIndex = useVideoOfTheDay();
   const slide = slides[slideIndex];
-  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section
-      className={cn(
-        figtree.className,
-        "relative flex h-screen min-h-[720px] w-full flex-col overflow-hidden bg-black text-white"
-      )}
-    >
+    <section className="relative flex h-screen min-h-[720px] w-full flex-col overflow-hidden bg-[hsl(201,100%,13%)] text-white">
       <video
         key={slide.src}
         src={slide.src}
@@ -73,77 +58,96 @@ export function VideoHero() {
         playsInline
         loop
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out motion-reduce:transition-none"
+        className="absolute inset-0 z-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out motion-reduce:transition-none"
       />
-      <div className="absolute inset-0 z-[1] bg-black/10" />
 
       <VideoHeroNavbar />
 
-      <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1340px] flex-col items-end justify-end gap-[150px] px-[15px] pt-[190px] pb-[60px] min-[810px]:max-[1199.98px]:gap-7 min-[810px]:max-[1199.98px]:px-6 min-[810px]:max-[1199.98px]:pb-[52px] max-[809.98px]:items-start max-[809.98px]:gap-[72px] max-[809.98px]:px-[18px] max-[809.98px]:pt-[140px] max-[809.98px]:pb-11">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-[90px] text-center">
         {/* Video of the day + availability */}
-        <div className="flex w-full items-center justify-between max-[809.98px]:flex-col max-[809.98px]:items-start max-[809.98px]:gap-7">
-          <p className="text-xs font-medium uppercase tracking-[-0.12px] text-white/60">
+        <div className="mb-10 flex flex-wrap items-center justify-center gap-6">
+          <p className="text-xs font-medium uppercase tracking-[0.12em] text-white/60">
             Today’s wave — {slide.label}
           </p>
 
           <div className="flex items-center gap-2">
-            <motion.span
-              aria-hidden="true"
-              className="size-[7px] shrink-0 rounded-full"
-              style={{ backgroundColor: slide.accent, boxShadow: `0 0 8px 2px ${slide.accent}` }}
-              animate={
-                shouldReduceMotion ? undefined : { scale: [1, 1.45, 1], opacity: [1, 0.45, 1] }
-              }
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <span className="text-xs font-medium uppercase tracking-[-0.12px] text-white/80">
+            <span className="relative flex size-[7px]">
+              <span
+                aria-hidden="true"
+                className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75 motion-reduce:hidden"
+                style={{ backgroundColor: slide.accent }}
+              />
+              <span
+                className="relative inline-flex size-[7px] rounded-full"
+                style={{ backgroundColor: slide.accent }}
+              />
+            </span>
+            <span className="text-xs font-medium uppercase tracking-[0.12em] text-white/80">
               Available for work
             </span>
           </div>
         </div>
 
-        {/* Name + CTA */}
-        <div className="flex w-full items-end justify-between max-[809.98px]:flex-col max-[809.98px]:items-start max-[809.98px]:gap-8">
-          <motion.h1
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.9, ease: springEase }}
-            className="flex-[2] text-[clamp(64px,8.5vw,132px)] leading-[92%] font-medium tracking-[-4px] uppercase min-[810px]:max-[1199.98px]:text-[clamp(56px,10vw,96px)] min-[810px]:max-[1199.98px]:leading-[100%] min-[810px]:max-[1199.98px]:tracking-[-3px] max-[809.98px]:text-[clamp(40px,13vw,64px)] max-[809.98px]:leading-[104%] max-[809.98px]:tracking-[-2px]"
-          >
-            agapeworks<span style={{ color: slide.accent }}>.</span>
-          </motion.h1>
+        <h1
+          className={`${instrumentSerif.className} animate-fade-rise max-w-7xl text-5xl font-normal leading-[0.95] tracking-[-2.46px] sm:text-7xl md:text-8xl`}
+        >
+          agapeworks<em className="not-italic text-white/60">.</em>
+        </h1>
 
-          <div className="flex flex-1 flex-col items-start gap-6 pl-[50px] max-[809.98px]:max-w-[420px] max-[809.98px]:pl-0 min-[810px]:max-[1199.98px]:pl-6">
-            <motion.p
-              initial={shouldReduceMotion ? false : { opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.9, ease: springEase }}
-              className="text-base leading-6 font-medium tracking-[-0.16px] text-white/80"
-            >
-              I craft bold brands and modern websites with purpose — blending
-              strategy, design, and code into experiences that move people and
-              grow businesses.
-            </motion.p>
+        <p className="animate-fade-rise-delay mt-8 max-w-2xl text-base leading-relaxed text-white/70 sm:text-lg">
+          I craft bold brands and modern websites with purpose — blending
+          strategy, design, and code into experiences that move people and
+          grow businesses.
+        </p>
 
-            <motion.a
-              href="/contact"
-              initial={shouldReduceMotion ? false : { opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.35 }}
-              transition={{ duration: 0.9, delay: 0.08, ease: springEase }}
-              className="group relative inline-flex items-center overflow-hidden rounded-full border border-white px-6 py-3 text-sm font-medium lowercase transition-colors duration-300 hover:border-[#F598F2] hover:text-black"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 translate-y-full bg-[#F598F2] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 motion-reduce:transition-none"
-              />
-              <span className="relative">start a project</span>
-            </motion.a>
-          </div>
-        </div>
+        <a
+          href="/contact"
+          className="liquid-glass animate-fade-rise-delay-2 mt-12 cursor-pointer rounded-full px-14 py-5 text-base text-white transition-transform hover:scale-[1.03]"
+        >
+          start a project
+        </a>
       </div>
+
+      <style>{`
+        .liquid-glass {
+          background: rgba(255, 255, 255, 0.01);
+          background-blend-mode: luminosity;
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          border: none;
+          box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          position: relative;
+          overflow: hidden;
+        }
+        .liquid-glass::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          padding: 1.4px;
+          background: linear-gradient(180deg,
+            rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+            rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+            rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+        }
+
+        @keyframes fade-rise {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
+        .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
+        .animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-fade-rise, .animate-fade-rise-delay, .animate-fade-rise-delay-2 {
+            animation: none;
+          }
+        }
+      `}</style>
     </section>
   );
 }

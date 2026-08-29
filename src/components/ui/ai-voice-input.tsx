@@ -88,18 +88,18 @@ export function AIVoiceInput({
             "group w-16 h-16 rounded-xl flex items-center justify-center transition-colors",
             submitted
               ? "bg-none"
-              : "bg-none hover:bg-black/10 dark:hover:bg-white/10"
+              : "bg-none hover:bg-black/10"
           )}
           type="button"
           onClick={handleClick}
         >
           {submitted ? (
             <div
-              className="w-6 h-6 rounded-sm animate-spin bg-black dark:bg-white cursor-pointer pointer-events-auto"
+              className="w-6 h-6 rounded-sm animate-spin bg-black cursor-pointer pointer-events-auto"
               style={{ animationDuration: "3s" }}
             />
           ) : (
-            <Mic className="w-6 h-6 text-black/70 dark:text-white/70" />
+            <Mic className="w-6 h-6 text-black/70" />
           )}
         </button>
 
@@ -107,8 +107,8 @@ export function AIVoiceInput({
           className={cn(
             "font-mono text-sm transition-opacity duration-300",
             submitted
-              ? "text-black/70 dark:text-white/70"
-              : "text-black/30 dark:text-white/30"
+              ? "text-black/70"
+              : "text-black/30"
           )}
         >
           {formatTime(time)}
@@ -121,8 +121,8 @@ export function AIVoiceInput({
               className={cn(
                 "w-0.5 rounded-full transition-all duration-300",
                 submitted
-                  ? "bg-black/50 dark:bg-white/50 animate-pulse"
-                  : "bg-black/10 dark:bg-white/10 h-1"
+                  ? "bg-black/50 animate-pulse"
+                  : "bg-black/10 h-1"
               )}
               style={
                 submitted && isClient
@@ -136,7 +136,7 @@ export function AIVoiceInput({
           ))}
         </div>
 
-        <p className="h-4 text-xs text-black/70 dark:text-white/70">
+        <p className="h-4 text-xs text-black/70">
           {submitted ? "Listening..." : "Click to speak"}
         </p>
       </div>

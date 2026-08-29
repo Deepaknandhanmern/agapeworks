@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
+import { DotPattern } from "@/components/ui/dot-pattern";
 import {
   Building2,
   Handshake,
@@ -132,15 +133,18 @@ export default function CollaborationPage() {
         </section>
 
         {/* CTA */}
-        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
-          <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
-            Interested in partnering with us?
-          </h2>
-          <p className="max-w-md text-muted-foreground">
-            Tell us which of these fits — client, agency, or referral partner — and we&apos;ll
-            take it from there.
-          </p>
-          <AntiMetalButton href="/contact" label="Get in touch" />
+        <section className="relative overflow-hidden">
+          <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
+            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
+              Interested in partnering with us?
+            </h2>
+            <p className="max-w-md text-muted-foreground">
+              Tell us which of these fits — client, agency, or referral partner — and we&apos;ll
+              take it from there.
+            </p>
+            <AntiMetalButton href="/contact" label="Get in touch" />
+          </div>
         </section>
       </main>
     </div>

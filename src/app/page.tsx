@@ -2,7 +2,8 @@ import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { VerticalTabs } from "@/components/ui/vertical-tabs";
 import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
 import { Integrations } from "@/components/ui/integrations-4-2";
-import { FlowSection } from "@/components/ui/story-scroll";
+import HowItWorks from "@/components/ui/how-it-works";
+import { DotPattern } from "@/components/ui/dot-pattern";
 import { WorldMap } from "@/components/ui/map";
 import { VideoHero } from "@/components/sections/video-hero";
 import { ArrowRight, Gauge, ShieldCheck } from "lucide-react";
@@ -24,30 +25,30 @@ const teamImages = [
 
 const process = [
   {
-    step: "01",
     title: "Discover",
     description: "We learn your business, users, and constraints before writing a line of code.",
+    colorTheme: "orange",
   },
   {
-    step: "02",
     title: "Design",
     description: "Clear scope, clear architecture, clear timeline — agreed before we start building.",
+    colorTheme: "blue",
   },
   {
-    step: "03",
     title: "Build",
     description: "Weekly ships, tight feedback loops, no black-box silence between updates.",
+    colorTheme: "purple",
   },
   {
-    step: "04",
     title: "Grow",
     description: "We stay on to measure impact and iterate — not disappear after launch.",
+    colorTheme: "orange",
   },
-];
+] as const;
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="home-theme flex min-h-screen flex-col bg-background">
       <main className="flex-1">
         <VideoHero />
 
@@ -69,34 +70,6 @@ export default function Home() {
 
         <ArcGalleryHero images={teamImages} />
 
-        {/* About Us */}
-        <FlowSection aria-label="Who we are" style={{ backgroundColor: "#000", color: "#fff" }}>
-          <p className="text-xs font-bold uppercase tracking-[0.2em]">01 — Who we are</p>
-          <hr className="my-[2vw] border-none border-t border-white/20" />
-          <div>
-            <h2 className="text-[clamp(3.5rem,12vw,14rem)] font-bold uppercase leading-[0.85] tracking-tight">
-              Agape
-              <br />
-              Means
-              <br />
-              Care
-            </h2>
-          </div>
-          <hr className="my-[2vw] border-none border-t border-white/20" />
-          <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-            Agape means selfless, deliberate care — the standard we hold every engagement to.
-            Direct access to the people building your product, weekly working demos, and
-            documentation your team can actually pick up when we&apos;re done.
-          </p>
-          <a
-            href="/about"
-            className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-medium underline underline-offset-4 hover:opacity-80"
-          >
-            More about us
-            <ArrowRight className="size-4" />
-          </a>
-        </FlowSection>
-
         {/* Services */}
         <section id="services">
           <VerticalTabs />
@@ -117,9 +90,9 @@ export default function Home() {
         </section>
 
         {/* Process */}
-        <section className="border-t bg-muted/20">
-          <div className="mx-auto w-full max-w-5xl px-4 py-24">
-            <div className="mb-12 flex flex-col items-center gap-3 text-center">
+        <section className="border-t bg-white">
+          <div className="mx-auto w-full max-w-5xl px-4 pt-24">
+            <div className="mb-4 flex flex-col items-center gap-3 text-center">
               <h2 className="text-3xl font-semibold tracking-tight text-foreground">
                 How we work
               </h2>
@@ -127,16 +100,8 @@ export default function Home() {
                 A simple, transparent process from first conversation to shipped product.
               </p>
             </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {process.map(({ step, title, description }) => (
-                <div key={step} className="flex flex-col gap-2">
-                  <span className="text-sm font-mono text-muted-foreground">{step}</span>
-                  <h3 className="font-semibold text-foreground">{title}</h3>
-                  <p className="text-sm leading-6 text-muted-foreground">{description}</p>
-                </div>
-              ))}
-            </div>
           </div>
+          <HowItWorks features={[...process]} />
         </section>
 
         {/* Why us */}
@@ -193,36 +158,28 @@ export default function Home() {
                 Wherever your team is, we&apos;re already there
               </h2>
               <p className="max-w-lg text-muted-foreground">
-                Remote-first by design — we&apos;ve shipped projects for clients across five
-                continents.
+                Headquartered in India, with teams delivering across the US, Europe, Australia,
+                and the GCC.
               </p>
             </div>
             <WorldMap
-              lineColor="#0ea5e9"
+              lineColor="#d1f140"
               dots={[
                 {
-                  start: { lat: 64.2008, lng: -149.4937, label: "Fairbanks" },
-                  end: { lat: 34.0522, lng: -118.2437, label: "Los Angeles" },
+                  start: { lat: 28.6139, lng: 77.209, label: "India", hq: true },
+                  end: { lat: 40.7128, lng: -74.006, label: "New York" },
                 },
                 {
-                  start: { lat: 64.2008, lng: -149.4937, label: "Fairbanks" },
-                  end: { lat: -15.7975, lng: -47.8919, label: "Brasília" },
+                  start: { lat: 28.6139, lng: 77.209, label: "India", hq: true },
+                  end: { lat: 51.5074, lng: -0.1278, label: "London" },
                 },
                 {
-                  start: { lat: -15.7975, lng: -47.8919, label: "Brasília" },
-                  end: { lat: 38.7223, lng: -9.1393, label: "Lisbon" },
+                  start: { lat: 28.6139, lng: 77.209, label: "India", hq: true },
+                  end: { lat: 25.2048, lng: 55.2708, label: "Dubai" },
                 },
                 {
-                  start: { lat: 51.5074, lng: -0.1278, label: "London" },
-                  end: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
-                },
-                {
-                  start: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
-                  end: { lat: 43.1332, lng: 131.9113, label: "Vladivostok" },
-                },
-                {
-                  start: { lat: 28.6139, lng: 77.209, label: "New Delhi" },
-                  end: { lat: -1.2921, lng: 36.8219, label: "Nairobi" },
+                  start: { lat: 28.6139, lng: 77.209, label: "India", hq: true },
+                  end: { lat: -33.8688, lng: 151.2093, label: "Sydney" },
                 },
               ]}
             />
@@ -230,8 +187,9 @@ export default function Home() {
         </section>
 
         {/* CTA */}
-        <section className="border-t bg-muted/20">
-          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
+        <section className="relative overflow-hidden border-t bg-muted/20">
+          <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
             <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
               Ready to build something worth shipping?
             </h2>

@@ -8,12 +8,12 @@ import { cn } from "@/lib/utils"
 
 export default function Featured_05() {
   return (
-    <section className="relative w-full mx-auto overflow-hidden rounded-3xl bg-muted border border-gray-200 dark:border-gray-800 shadow-md px-6 py-16 md:px-16 md:py-24 mt-48">
+    <section className="relative w-full mx-auto overflow-hidden rounded-3xl bg-muted border border-border shadow-md px-6 py-16 md:px-16 md:py-24 mt-48">
       <div className="flex flex-col-reverse items-center justify-between gap-10 md:flex-row">
         <div className="z-10 max-w-xl text-left">
-          <h1 className="text-3xl font-normal text-gray-900 dark:text-white">
+          <h1 className="text-3xl font-normal text-foreground">
             Build with <span className="text-primary">Ruixen UI</span>{" "}
-            <span className="text-gray-500 dark:text-gray-400">Empower your team with fast, elegant, and scalable UI components. Ruixen UI brings simplicity and performance to your modern apps.</span>
+            <span className="text-muted-foreground">Empower your team with fast, elegant, and scalable UI components. Ruixen UI brings simplicity and performance to your modern apps.</span>
           </h1>
           <Button className="mt-6 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2 text-sm font-semibold text-background transition hover:bg-black">
             Join Today <ArrowRight className="h-4 w-4" />
@@ -42,7 +42,7 @@ const GLOBE_CONFIG: COBEOptions & { onRender: () => void } = {
   mapSamples: 16000,
   mapBrightness: 1.2,
   baseColor: [1, 1, 1],
-  markerColor: [251 / 255, 100 / 255, 21 / 255],
+  markerColor: [209 / 255, 241 / 255, 64 / 255],
   glowColor: [1, 1, 1],
   markers: [
     { location: [14.5995, 120.9842], size: 0.03 },

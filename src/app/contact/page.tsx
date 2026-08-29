@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
 import { ContactForm } from "@/components/sections/contact-form";
 import { Clock, Mail, MapPin } from "lucide-react";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import { Calendar } from "@/components/ui/calendar";
 
 export const metadata: Metadata = {
   title: "Contact — Agape Works",
@@ -12,7 +14,7 @@ const contactPoints = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@agapeworks.dev",
+    value: "studio@agapeworks.in",
   },
   {
     icon: Clock,
@@ -24,6 +26,15 @@ const contactPoints = [
     label: "Working with",
     value: "Remote-first, worldwide",
   },
+];
+
+// Placeholder hrefs — swap in the real profile/scheduling URLs.
+const calendlyUrl = "#";
+
+const socialLinks = [
+  { icon: FaLinkedin, label: "LinkedIn", href: "#" },
+  { icon: FaFacebook, label: "Facebook", href: "#" },
+  { icon: FaInstagram, label: "Instagram", href: "#" },
 ];
 
 export default function ContactPage() {
@@ -59,10 +70,29 @@ export default function ContactPage() {
                   </div>
                 </div>
               ))}
+
+              <div className="flex items-center gap-3 pt-2">
+                {socialLinks.map(({ icon: Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex size-10 items-center justify-center rounded-lg bg-accent text-foreground transition-colors hover:bg-foreground hover:text-background"
+                  >
+                    <Icon className="size-4" />
+                  </a>
+                ))}
+              </div>
             </div>
 
             <ContactForm />
           </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-3xl px-4 pb-24">
+          <Calendar bookingLink={calendlyUrl} />
         </section>
       </main>
     </div>

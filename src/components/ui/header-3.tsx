@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { motion, useScroll as useFramerScroll, useMotionValueEvent } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
@@ -14,7 +16,7 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, Menu as MenuIcon } from 'lucide-react';
 import {
 	GlobeIcon,
 	SmartphoneIcon,
@@ -23,10 +25,6 @@ import {
 	ShoppingCartIcon,
 	CogIcon,
 	MegaphoneIcon,
-	SearchIcon,
-	WebhookIcon,
-	ShieldCheckIcon,
-	WrenchIcon,
 	Users,
 	Star,
 	FileText,
@@ -37,6 +35,80 @@ import {
 	HelpCircle,
 } from 'lucide-react';
 
+// Floating pill nav: expanded by default, collapses to a small icon when
+// scrolling down past 150px, re-expands once the visitor scrolls back up
+// far enough. Desktop only (md+) — mobile keeps the plain sticky bar +
+// full-screen drawer below, since the mega-menus don't fit a collapsing pill.
+const EXPAND_SCROLL_THRESHOLD = 80;
+
+const containerVariants = {
+	expanded: {
+		y: 0,
+		opacity: 1,
+		width: 'auto',
+		transition: {
+			type: 'spring' as const,
+			damping: 20,
+			stiffness: 300,
+			staggerChildren: 0.07,
+			delayChildren: 0.15,
+		},
+	},
+	collapsed: {
+		y: 0,
+		opacity: 1,
+		width: '3.5rem',
+		transition: {
+			type: 'spring' as const,
+			damping: 20,
+			stiffness: 300,
+			when: 'afterChildren' as const,
+			staggerChildren: 0.05,
+			staggerDirection: -1,
+		},
+	},
+};
+
+const fadeVariants = {
+	expanded: { opacity: 1, x: 0, transition: { type: 'spring' as const, damping: 15 } },
+	collapsed: { opacity: 0, x: -16, transition: { duration: 0.2 } },
+};
+
+const collapsedIconVariants = {
+	expanded: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } },
+	collapsed: {
+		opacity: 1,
+		scale: 1,
+		transition: { type: 'spring' as const, damping: 15, stiffness: 300, delay: 0.15 },
+	},
+};
+
+function useCollapseOnScroll() {
+	const [isExpanded, setExpanded] = React.useState(true);
+	const { scrollY } = useFramerScroll();
+	const lastScrollY = React.useRef(0);
+	const scrollPositionOnCollapse = React.useRef(0);
+
+	useMotionValueEvent(scrollY, 'change', (latest) => {
+		const previous = lastScrollY.current;
+
+		if (isExpanded && latest > previous && latest > 150) {
+			setExpanded(false);
+			scrollPositionOnCollapse.current = latest;
+		} else if (
+			!isExpanded &&
+			latest < previous &&
+			scrollPositionOnCollapse.current - latest > EXPAND_SCROLL_THRESHOLD
+		) {
+			setExpanded(true);
+		}
+
+		lastScrollY.current = latest;
+	});
+
+	return [isExpanded, setExpanded] as const;
+}
+
 type LinkItem = {
 	title: string;
 	href: string;
@@ -44,9 +116,87 @@ type LinkItem = {
 	description?: string;
 };
 
+function DesktopNavLinks() {
+	return (
+		<NavigationMenu>
+			<NavigationMenuList>
+				<NavigationMenuItem>
+					<NavigationMenuTrigger className="bg-transparent">Capabilities</NavigationMenuTrigger>
+					<NavigationMenuContent className="bg-background p-1 pr-1.5">
+						<div className="bg-popover w-sm rounded-md border p-3 shadow">
+							<p className="text-muted-foreground mb-2 px-2 text-xs font-semibold uppercase tracking-wide">
+								Main Services
+							</p>
+							<ul className="space-y-1">
+								{mainServiceLinks.map((item, i) => (
+									<li key={i}>
+										<NavigationMenuLink
+											href={item.href}
+											className="hover:bg-accent flex flex-row items-center gap-x-2 rounded-md p-2"
+										>
+											<item.icon className="text-foreground size-4" />
+											<span className="text-sm font-medium">{item.title}</span>
+										</NavigationMenuLink>
+									</li>
+								))}
+							</ul>
+						</div>
+						<div className="p-2">
+							<p className="text-muted-foreground text-sm">
+								Interested?{' '}
+								<a href="/contact" className="text-foreground font-medium hover:underline">
+									Schedule a demo
+								</a>
+							</p>
+						</div>
+					</NavigationMenuContent>
+				</NavigationMenuItem>
+				<NavigationMenuItem>
+					<NavigationMenuTrigger className="bg-transparent">Company</NavigationMenuTrigger>
+					<NavigationMenuContent className="bg-background p-1 pr-1.5 pb-1.5">
+						<div className="grid w-lg grid-cols-2 gap-2">
+							<ul className="bg-popover space-y-2 rounded-md border p-2 shadow">
+								{companyLinks.map((item, i) => (
+									<li key={i}>
+										<ListItem {...item} />
+									</li>
+								))}
+							</ul>
+							<ul className="space-y-2 p-3">
+								{companyLinks2.map((item, i) => (
+									<li key={i}>
+										<NavigationMenuLink
+											href={item.href}
+											className="flex p-2 hover:bg-accent flex-row rounded-md items-center gap-x-2"
+										>
+											<item.icon className="text-foreground size-4" />
+											<span className="font-medium">{item.title}</span>
+										</NavigationMenuLink>
+									</li>
+								))}
+							</ul>
+						</div>
+					</NavigationMenuContent>
+				</NavigationMenuItem>
+				<NavigationMenuLink className="px-4" asChild>
+					<a href="/portfolio" className="hover:bg-accent rounded-md p-2">
+						Digital Experiences
+					</a>
+				</NavigationMenuLink>
+				<NavigationMenuLink className="px-4" asChild>
+					<a href="/contact" className="hover:bg-accent rounded-md p-2">
+						Contact
+					</a>
+				</NavigationMenuLink>
+			</NavigationMenuList>
+		</NavigationMenu>
+	);
+}
+
 export function Header() {
 	const [open, setOpen] = React.useState(false);
 	const scrolled = useScroll(10);
+	const [isExpanded, setExpanded] = useCollapseOnScroll();
 
 	React.useEffect(() => {
 		if (open) {
@@ -59,158 +209,109 @@ export function Header() {
 		};
 	}, [open]);
 
+	const handlePillClick = () => {
+		if (!isExpanded) setExpanded(true);
+	};
+
 	return (
-		<header
-			className={cn('sticky top-0 z-50 w-full border-b border-transparent', {
-				'bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg':
-					scrolled,
-			})}
-		>
-			<nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
-				<div className="flex items-center gap-5">
+		<>
+			{/* Mobile: plain sticky bar + full-screen drawer (mega-menus don't fit a collapsing pill) */}
+			<header
+				className={cn('sticky top-0 z-50 w-full border-b border-transparent md:hidden', {
+					'bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg':
+						scrolled,
+				})}
+			>
+				<nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
 					<Link href="/" className="hover:bg-accent rounded-md p-2">
-						<span className="text-base font-bold tracking-tight">Agape</span>
+						<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-8 w-auto" priority />
 					</Link>
-					<NavigationMenu className="hidden md:flex">
-						<NavigationMenuList>
-							<NavigationMenuItem>
-								<NavigationMenuTrigger className="bg-transparent">Services</NavigationMenuTrigger>
-								<NavigationMenuContent className="bg-background p-1 pr-1.5">
-									<div className="bg-popover grid w-lg grid-cols-2 gap-4 rounded-md border p-3 shadow">
-										<div>
-											<p className="text-muted-foreground mb-2 px-2 text-xs font-semibold uppercase tracking-wide">
-												Main Services
-											</p>
-											<ul className="space-y-1">
-												{mainServiceLinks.map((item, i) => (
-													<li key={i}>
-														<NavigationMenuLink
-															href={item.href}
-															className="hover:bg-accent flex flex-row items-center gap-x-2 rounded-md p-2"
-														>
-															<item.icon className="text-foreground size-4" />
-															<span className="text-sm font-medium">{item.title}</span>
-														</NavigationMenuLink>
-													</li>
-												))}
-											</ul>
-										</div>
-										<div>
-											<p className="text-muted-foreground mb-2 px-2 text-xs font-semibold uppercase tracking-wide">
-												Supporting &amp; Technical
-											</p>
-											<ul className="space-y-1">
-												{supportingServiceLinks.map((item, i) => (
-													<li key={i}>
-														<NavigationMenuLink
-															href={item.href}
-															className="hover:bg-accent flex flex-row items-center gap-x-2 rounded-md p-2"
-														>
-															<item.icon className="text-foreground size-4" />
-															<span className="text-sm font-medium">{item.title}</span>
-														</NavigationMenuLink>
-													</li>
-												))}
-											</ul>
-										</div>
-									</div>
-									<div className="p-2">
-										<p className="text-muted-foreground text-sm">
-											Interested?{' '}
-											<a href="/contact" className="text-foreground font-medium hover:underline">
-												Schedule a demo
-											</a>
-										</p>
-									</div>
-								</NavigationMenuContent>
-							</NavigationMenuItem>
-							<NavigationMenuItem>
-								<NavigationMenuTrigger className="bg-transparent">Company</NavigationMenuTrigger>
-								<NavigationMenuContent className="bg-background p-1 pr-1.5 pb-1.5">
-									<div className="grid w-lg grid-cols-2 gap-2">
-										<ul className="bg-popover space-y-2 rounded-md border p-2 shadow">
-											{companyLinks.map((item, i) => (
-												<li key={i}>
-													<ListItem {...item} />
-												</li>
-											))}
-										</ul>
-										<ul className="space-y-2 p-3">
-											{companyLinks2.map((item, i) => (
-												<li key={i}>
-													<NavigationMenuLink
-														href={item.href}
-														className="flex p-2 hover:bg-accent flex-row rounded-md items-center gap-x-2"
-													>
-														<item.icon className="text-foreground size-4" />
-														<span className="font-medium">{item.title}</span>
-													</NavigationMenuLink>
-												</li>
-											))}
-										</ul>
-									</div>
-								</NavigationMenuContent>
-							</NavigationMenuItem>
-							<NavigationMenuLink className="px-4" asChild>
-								<a href="/portfolio" className="hover:bg-accent rounded-md p-2">
-									Portfolio
-								</a>
-							</NavigationMenuLink>
-							<NavigationMenuLink className="px-4" asChild>
-								<a href="/contact" className="hover:bg-accent rounded-md p-2">
-									Contact
-								</a>
-							</NavigationMenuLink>
-						</NavigationMenuList>
-					</NavigationMenu>
-				</div>
-				<div className="hidden items-center gap-2 md:flex">
-					<NotificationAlertDialog />
-					<Button variant="outline">Sign In</Button>
-					<Button>Get Started</Button>
-				</div>
-				<div className="flex items-center gap-2 md:hidden">
-					<NotificationAlertDialog />
-					<Button
-						size="icon"
-						variant="outline"
-						onClick={() => setOpen(!open)}
-						aria-expanded={open}
-						aria-controls="mobile-menu"
-						aria-label="Toggle menu"
-					>
-						<MenuToggleIcon open={open} className="size-5" duration={300} />
-					</Button>
-				</div>
-			</nav>
-			<MobileMenu open={open} className="flex flex-col justify-between gap-2 overflow-y-auto">
-				<NavigationMenu className="max-w-full">
-					<div className="flex w-full flex-col gap-y-2">
-						<span className="text-sm">Main Services</span>
-						{mainServiceLinks.map((link) => (
-							<ListItem key={link.title} {...link} />
-						))}
-						<span className="text-sm">Supporting &amp; Technical</span>
-						{supportingServiceLinks.map((link) => (
-							<ListItem key={link.title} {...link} />
-						))}
-						<span className="text-sm">Company</span>
-						{companyLinks.map((link) => (
-							<ListItem key={link.title} {...link} />
-						))}
-						{companyLinks2.map((link) => (
-							<ListItem key={link.title} {...link} />
-						))}
+					<div className="flex items-center gap-2">
+						<NotificationAlertDialog />
+						<Button
+							size="icon"
+							variant="outline"
+							onClick={() => setOpen(!open)}
+							aria-expanded={open}
+							aria-controls="mobile-menu"
+							aria-label="Toggle menu"
+						>
+							<MenuToggleIcon open={open} className="size-5" duration={300} />
+						</Button>
 					</div>
-				</NavigationMenu>
-				<div className="flex flex-col gap-2">
-					<Button variant="outline" className="w-full bg-transparent">
-						Sign In
-					</Button>
-					<Button className="w-full">Get Started</Button>
-				</div>
-			</MobileMenu>
-		</header>
+				</nav>
+				<MobileMenu open={open} className="flex flex-col justify-between gap-2 overflow-y-auto">
+					<NavigationMenu className="max-w-full">
+						<div className="flex w-full flex-col gap-y-2">
+							<span className="text-sm">Main Services</span>
+							{mainServiceLinks.map((link) => (
+								<ListItem key={link.title} {...link} />
+							))}
+							<span className="text-sm">Company</span>
+							{companyLinks.map((link) => (
+								<ListItem key={link.title} {...link} />
+							))}
+							{companyLinks2.map((link) => (
+								<ListItem key={link.title} {...link} />
+							))}
+						</div>
+					</NavigationMenu>
+					<div className="flex flex-col gap-2">
+						<Button className="w-full">Get Started</Button>
+					</div>
+				</MobileMenu>
+			</header>
+
+			{/* Desktop: floating pill that collapses to an icon on scroll-down */}
+			<div className="fixed inset-x-0 top-6 z-50 hidden justify-center md:flex">
+				<motion.nav
+					initial={{ y: -80, opacity: 0 }}
+					animate={isExpanded ? 'expanded' : 'collapsed'}
+					variants={containerVariants}
+					whileHover={!isExpanded ? { scale: 1.08 } : {}}
+					whileTap={!isExpanded ? { scale: 0.95 } : {}}
+					onClick={handlePillClick}
+					className={cn(
+						'relative flex h-14 items-center gap-3 rounded-full border bg-background/80 px-3 shadow-lg backdrop-blur-sm',
+						// Collapsed needs overflow-hidden so shrinking width clips its
+						// (fading) children instead of spilling past the pill's edge.
+						// Expanded needs overflow-visible so the NavigationMenu's
+						// dropdown viewport — a non-portaled absolute-positioned child —
+						// isn't clipped by this container when a menu is open.
+						isExpanded ? 'overflow-visible' : 'overflow-hidden cursor-pointer justify-center'
+					)}
+				>
+					<motion.div variants={fadeVariants} className="flex shrink-0 items-center">
+						<Link href="/" onClick={(e) => e.stopPropagation()} className="hover:bg-accent rounded-md p-1">
+							<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" priority />
+						</Link>
+					</motion.div>
+
+					<motion.div
+						variants={fadeVariants}
+						className={cn(!isExpanded && 'pointer-events-none opacity-0')}
+						onClick={(e) => e.stopPropagation()}
+					>
+						<DesktopNavLinks />
+					</motion.div>
+
+					<motion.div
+						variants={fadeVariants}
+						className={cn('flex shrink-0 items-center gap-2 pr-1', !isExpanded && 'pointer-events-none opacity-0')}
+						onClick={(e) => e.stopPropagation()}
+					>
+						<NotificationAlertDialog />
+						<Button>Get Started</Button>
+					</motion.div>
+
+					<div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+						<motion.div variants={collapsedIconVariants} animate={isExpanded ? 'expanded' : 'collapsed'}>
+							<MenuIcon className="h-5 w-5" />
+						</motion.div>
+					</div>
+				</motion.nav>
+			</div>
+		</>
 	);
 }
 
@@ -310,29 +411,6 @@ const mainServiceLinks: LinkItem[] = [
 		href: '/services',
 		description: 'Social, content, performance campaigns and brand identity',
 		icon: MegaphoneIcon,
-	},
-];
-
-const supportingServiceLinks: LinkItem[] = [
-	{
-		title: 'SEO & AEO',
-		href: '/services',
-		icon: SearchIcon,
-	},
-	{
-		title: 'API Development',
-		href: '/services',
-		icon: WebhookIcon,
-	},
-	{
-		title: 'Security',
-		href: '/services',
-		icon: ShieldCheckIcon,
-	},
-	{
-		title: 'Maintenance',
-		href: '/services',
-		icon: WrenchIcon,
 	},
 ];
 

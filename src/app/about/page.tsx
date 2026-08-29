@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { About3 } from "@/components/ui/about-3";
+import Testimonial1 from "@/components/ui/testimonial-1";
+import { DosAndDonts } from "@/components/sections/dos-and-donts";
+import { DotPattern } from "@/components/ui/dot-pattern";
 import {
   Globe2,
   MessageCircle,
@@ -9,12 +12,6 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
-
-// Small inline wordmark, since there's no logo image asset yet — used in
-// place of a fabricated/borrowed logo file for the About3 breakout card.
-const wordmarkSvg =
-  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 40"><text x="0" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="30" fill="#0a0a0a">agapeworks.</text></svg>';
-const wordmarkDataUri = `data:image/svg+xml;utf8,${encodeURIComponent(wordmarkSvg)}`;
 
 export const metadata: Metadata = {
   title: "About — Agape Works",
@@ -69,6 +66,11 @@ export default function AboutPage() {
           </p>
         </section>
 
+        {/* How we work */}
+        <section className="border-t">
+          <Testimonial1 />
+        </section>
+
         {/* Mission */}
         <section className="mx-auto w-full max-w-3xl px-4 pb-24 text-center">
           <p className="text-lg leading-8 text-muted-foreground">
@@ -108,6 +110,11 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Do's and Don'ts */}
+        <section className="border-t">
+          <DosAndDonts />
+        </section>
+
         {/* Where we work */}
         <section className="mx-auto w-full max-w-3xl px-4 py-24 text-center">
           <div className="mb-4 flex justify-center">
@@ -139,7 +146,7 @@ export default function AboutPage() {
               alt: "Remote engineer working from a laptop",
             }}
             breakout={{
-              src: wordmarkDataUri,
+              src: "/logo-black.png",
               alt: "Agape Works",
               title: "Fixed scope. Real access. Weekly demos.",
               description:
@@ -160,8 +167,9 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t bg-muted/20">
-          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
+        <section className="relative overflow-hidden border-t bg-muted/20">
+          <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
             <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
               Want to see how we&apos;d approach your project?
             </h2>
