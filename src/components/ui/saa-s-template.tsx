@@ -2,6 +2,8 @@
 
 import React from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
+import { DashboardShowcase } from "@/components/ui/dashboard-showcase";
+import { Features } from "@/components/ui/features-4";
 
 // Inline Button Component — intentionally self-contained (fixed black/white
 // colors, not theme tokens): this hero is a permanently dark section
@@ -244,6 +246,8 @@ export default function SaasTemplate() {
     <main className="saas-hero-scope min-h-screen w-full overflow-x-hidden bg-black text-white">
       <Navigation />
       <Hero />
+      <DashboardShowcase />
+      <Features />
     </main>
   );
 }

@@ -7,6 +7,23 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const secret = process.env.SESSION_SECRET;
 
+  // Maintenance mode — toggled by the MAINTENANCE_MODE env var (no redeploy
+  // needed, just flip it and restart the app). Excluded from the redirect:
+  // /maintenance itself (would otherwise loop), /dashboard (so the owner can
+  // keep working and switch this back off), every /api/* route (contact
+  // form, concierge chat, Vahi's cron reminders, etc. must keep functioning
+  // even with the public pages down), and Next's own internal asset paths.
+  if (
+    process.env.MAINTENANCE_MODE === "true" &&
+    pathname !== "/maintenance" &&
+    !pathname.startsWith("/dashboard") &&
+    !pathname.startsWith("/api") &&
+    !pathname.startsWith("/_next") &&
+    pathname !== "/favicon.ico"
+  ) {
+    return NextResponse.rewrite(new URL("/maintenance", request.url));
+  }
+
   if (pathname.startsWith("/vahi")) {
     if (pathname === "/vahi/login") {
       return NextResponse.next();
@@ -21,20 +38,26 @@ export function proxy(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (pathname === "/dashboard/login") {
-    return NextResponse.next();
-  }
+  if (pathname.startsWith("/dashboard")) {
+    if (pathname === "/dashboard/login") {
+      return NextResponse.next();
+    }
 
-  const token = request.cookies.get(SESSION_COOKIE)?.value;
-  if (!secret || !isValidSessionToken(token, secret)) {
-    const loginUrl = new URL("/dashboard/login", request.url);
-    loginUrl.searchParams.set("next", pathname);
-    return NextResponse.redirect(loginUrl);
+    const token = request.cookies.get(SESSION_COOKIE)?.value;
+    if (!secret || !isValidSessionToken(token, secret)) {
+      const loginUrl = new URL("/dashboard/login", request.url);
+      loginUrl.searchParams.set("next", pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+    return NextResponse.next();
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/vahi/:path*"],
+  // Broadened from just /dashboard and /vahi so maintenance mode can cover
+  // the whole site — excludes Next's internal asset paths, which never need
+  // auth or maintenance handling.
+  matcher: ["/((?!_next/static|_next/image).*)"],
 };

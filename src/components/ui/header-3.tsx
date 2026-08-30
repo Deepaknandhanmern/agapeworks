@@ -10,14 +10,8 @@ import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
 import { NotificationAlertDialog } from '@/components/ui/notification-alert-dialog';
 import { SiteBanner } from '@/components/sections/site-banner';
 import { createPortal } from 'react-dom';
-import {
-	NavigationMenu,
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuList,
-	NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
+import { Menu, MenuItem, HoveredLink } from '@/components/ui/navbar-menu';
+import { NavigationMenu, NavigationMenuLink } from '@/components/ui/navigation-menu';
 import { LucideIcon } from 'lucide-react';
 import {
 	GlobeIcon,
@@ -62,90 +56,65 @@ type LinkItem = {
 };
 
 function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
+	const [active, setActive] = React.useState<string | null>(null);
+
 	return (
-		<NavigationMenu>
-			<NavigationMenuList>
-				<NavigationMenuItem>
-					<NavigationMenuTrigger
-						className={cn(
-							'bg-transparent',
-							dark && 'text-white/80 hover:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white',
-						)}
-					>
-						Capabilities
-					</NavigationMenuTrigger>
-					<NavigationMenuContent className={cn('p-1 pr-1.5', dark ? '!bg-neutral-900' : 'bg-background')}>
-						<div className={cn('w-sm rounded-md border p-3 shadow', dark ? 'bg-neutral-900 border-white/10' : 'bg-popover')}>
-							<p className={cn('mb-2 px-2 text-xs font-semibold uppercase tracking-wide', dark ? 'text-white/50' : 'text-muted-foreground')}>
-								Main Services
-							</p>
-							<ul className="space-y-1">
-								{mainServiceLinks.map((item, i) => (
-									<li key={i}>
-										<NavigationMenuLink
-											href={item.href}
-											className={cn('flex flex-row items-center gap-x-2 rounded-md p-2', dark ? 'hover:bg-white/10' : 'hover:bg-accent')}
-										>
-											<item.icon className={cn('size-4', dark ? 'text-white' : 'text-foreground')} />
-											<span className={cn('text-sm font-medium', dark && 'text-white')}>{item.title}</span>
-										</NavigationMenuLink>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div className="p-2">
-							<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-								Not sure yet?{' '}
-								<a href="/scope" className={cn('font-medium hover:underline', dark ? 'text-white' : 'text-foreground')}>
-									Get an instant estimate
-								</a>
-							</p>
-							<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-								Ready now?{' '}
-								<a href="/contact" className={cn('font-medium hover:underline', dark ? 'text-white' : 'text-foreground')}>
-									Schedule a demo
-								</a>
-							</p>
-							<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-								Have a Vahi account?{' '}
-								<a href="/vahi/login" className={cn('font-medium hover:underline', dark ? 'text-white' : 'text-foreground')}>
-									Sign in
-								</a>
-							</p>
-						</div>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-				<NavigationMenuItem>
-					<NavigationMenuTrigger
-						className={cn(
-							'bg-transparent',
-							dark && 'text-white/80 hover:text-white data-[state=open]:bg-white/10 data-[state=open]:text-white',
-						)}
-					>
-						Company
-					</NavigationMenuTrigger>
-					<NavigationMenuContent className={cn('p-1 pr-1.5 pb-1.5', dark ? '!bg-neutral-900' : 'bg-background')}>
-						<ul className={cn('w-sm space-y-2 rounded-md border p-2 shadow', dark ? 'bg-neutral-900 border-white/10' : 'bg-popover')}>
-							{companyLinks.map((item, i) => (
-								<li key={i}>
-									<ListItem {...item} dark={dark} />
-								</li>
-							))}
-						</ul>
-					</NavigationMenuContent>
-				</NavigationMenuItem>
-				<NavigationMenuLink className="px-4" asChild>
-					<a href="/portfolio" className={cn('rounded-md p-2', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}>
-						Digital Experiences
-					</a>
-				</NavigationMenuLink>
-				<NavigationMenuLink className="px-4" asChild>
-					<a href="/products" className={cn('rounded-md p-2', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}>
-						Products
-					</a>
-				</NavigationMenuLink>
-			</NavigationMenuList>
-		</NavigationMenu>
+		<Menu setActive={setActive}>
+			<MenuItem setActive={setActive} active={active} item="Capabilities" dark={dark}>
+				<div className="w-72">
+					<p className={cn('mb-2 px-1 text-xs font-semibold uppercase tracking-wide', dark ? 'text-white/50' : 'text-muted-foreground')}>
+						Main Services
+					</p>
+					<div className="flex flex-col gap-1">
+						{mainServiceLinks.map((item) => (
+							<HoveredLink key={item.title} href={item.href} dark={dark} className="flex items-center gap-2 rounded-md px-1 py-1.5">
+								<item.icon className={cn('size-4 shrink-0', dark ? 'text-white/70' : 'text-foreground')} />
+								<span className={cn('text-sm font-medium', dark ? 'text-white' : 'text-foreground')}>{item.title}</span>
+							</HoveredLink>
+						))}
+					</div>
+					<div className={cn('mt-3 flex flex-col gap-1.5 border-t pt-3', dark ? 'border-white/10' : 'border-border')}>
+						<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
+							Not sure yet?{' '}
+							<HoveredLink href="/scope" dark={dark} className="font-medium underline-offset-2 hover:underline">
+								Get an instant estimate
+							</HoveredLink>
+						</p>
+						<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
+							Ready now?{' '}
+							<HoveredLink href="/contact" dark={dark} className="font-medium underline-offset-2 hover:underline">
+								Schedule a demo
+							</HoveredLink>
+						</p>
+						<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
+							Have a Vahi account?{' '}
+							<HoveredLink href="/vahi/login" dark={dark} className="font-medium underline-offset-2 hover:underline">
+								Sign in
+							</HoveredLink>
+						</p>
+					</div>
+				</div>
+			</MenuItem>
+			<MenuItem setActive={setActive} active={active} item="Company" dark={dark}>
+				<div className="flex w-64 flex-col gap-3">
+					{companyLinks.map((item) => (
+						<HoveredLink key={item.title} href={item.href} dark={dark} className="flex items-start gap-2">
+							<item.icon className={cn('mt-0.5 size-4 shrink-0', dark ? 'text-white/70' : 'text-foreground')} />
+							<span>
+								<span className={cn('block font-medium', dark ? 'text-white' : 'text-foreground')}>{item.title}</span>
+								<span className={cn('block text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>{item.description}</span>
+							</span>
+						</HoveredLink>
+					))}
+				</div>
+			</MenuItem>
+			<HoveredLink href="/portfolio" dark={dark} className="font-medium">
+				Digital Experiences
+			</HoveredLink>
+			<HoveredLink href="/products" dark={dark} className="font-medium">
+				Products
+			</HoveredLink>
+		</Menu>
 	);
 }
 

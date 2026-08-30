@@ -166,6 +166,14 @@
   --animate-marquee-reverse: marquee-reverse var(--duration, 30s) linear infinite;
   /* "Coming soon" banner text (src/components/sections/sellara-coming-soon.tsx) */
   --animate-shimmer: shimmer 3.5s linear infinite;
+  /* BorderBeam (src/components/ui/border-beam.tsx) */
+  --animate-border-beam: border-beam calc(var(--duration) * 1s) infinite linear;
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
 }
 
 @keyframes shimmer {
