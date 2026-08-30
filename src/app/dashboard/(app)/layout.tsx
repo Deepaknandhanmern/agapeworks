@@ -1,0 +1,50 @@
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { isAuthenticated } from "@/lib/auth";
+import { logoutAction } from "@/lib/actions/auth-actions";
+import { Button } from "@/components/ui/button";
+import { LayoutDashboard, Newspaper, FolderKanban, Inbox } from "lucide-react";
+
+const navItems = [
+  { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
+  { label: "Blog", href: "/dashboard/blog", icon: Newspaper },
+  { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
+  { label: "Enquiries", href: "/dashboard/enquiries", icon: Inbox },
+];
+
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  // Defense in depth: proxy.ts already redirects unauthenticated requests,
+  // but this layout re-checks so nothing here ever renders without it.
+  if (!(await isAuthenticated())) {
+    redirect("/dashboard/login");
+  }
+
+  return (
+    <div className="flex min-h-screen bg-background">
+      <aside className="flex w-60 shrink-0 flex-col border-r bg-card">
+        <div className="border-b p-4">
+          <Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" />
+        </div>
+        <nav className="flex flex-1 flex-col gap-1 p-3">
+          {navItems.map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              <Icon className="size-4" />
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <form action={logoutAction} className="border-t p-3">
+          <Button variant="outline" className="w-full" type="submit">
+            Log out
+          </Button>
+        </form>
+      </aside>
+      <main className="flex-1 overflow-y-auto p-8">{children}</main>
+    </div>
+  );
+}

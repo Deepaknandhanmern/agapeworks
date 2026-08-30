@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
@@ -201,6 +202,7 @@ const MarqueeItem = () => (
 );
 
 export function CinematicFooter() {
+  const pathname = usePathname();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const giantTextRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -252,6 +254,10 @@ export function CinematicFooter() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // The admin dashboard isn't part of the marketing site — skip the
+  // cinematic footer there. Checked after all hooks run (Rules of Hooks).
+  if (pathname?.startsWith("/dashboard")) return null;
 
   return (
     <>

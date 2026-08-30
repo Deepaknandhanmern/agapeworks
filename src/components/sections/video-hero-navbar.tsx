@@ -21,7 +21,7 @@ export function VideoHeroNavbar() {
         className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6"
       >
         <a href="/">
-          <Image src="/logo-white.png" alt="Agape Works" width={181} height={32} className="h-8 w-auto" priority />
+          <Image src="/logo-white.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" priority />
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

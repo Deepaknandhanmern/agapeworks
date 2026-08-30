@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll as useFramerScroll, useMotionValueEvent } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
@@ -16,7 +16,7 @@ import {
 	NavigationMenuList,
 	NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { LucideIcon, Menu as MenuIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import {
 	GlobeIcon,
 	SmartphoneIcon,
@@ -35,17 +35,13 @@ import {
 	HelpCircle,
 } from 'lucide-react';
 
-// Floating pill nav: expanded by default, collapses to a small icon when
-// scrolling down past 150px, re-expands once the visitor scrolls back up
-// far enough. Desktop only (md+) — mobile keeps the plain sticky bar +
-// full-screen drawer below, since the mega-menus don't fit a collapsing pill.
-const EXPAND_SCROLL_THRESHOLD = 80;
-
+// Floating pill nav: pinned/expanded at all times on desktop (md+) — mobile
+// keeps the plain sticky bar + full-screen drawer below.
 const containerVariants = {
-	expanded: {
+	hidden: { y: -80, opacity: 0 },
+	visible: {
 		y: 0,
 		opacity: 1,
-		width: 'auto',
 		transition: {
 			type: 'spring' as const,
 			damping: 20,
@@ -54,60 +50,12 @@ const containerVariants = {
 			delayChildren: 0.15,
 		},
 	},
-	collapsed: {
-		y: 0,
-		opacity: 1,
-		width: '3.5rem',
-		transition: {
-			type: 'spring' as const,
-			damping: 20,
-			stiffness: 300,
-			when: 'afterChildren' as const,
-			staggerChildren: 0.05,
-			staggerDirection: -1,
-		},
-	},
 };
 
 const fadeVariants = {
-	expanded: { opacity: 1, x: 0, transition: { type: 'spring' as const, damping: 15 } },
-	collapsed: { opacity: 0, x: -16, transition: { duration: 0.2 } },
+	hidden: { opacity: 0, x: -16 },
+	visible: { opacity: 1, x: 0, transition: { type: 'spring' as const, damping: 15 } },
 };
-
-const collapsedIconVariants = {
-	expanded: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } },
-	collapsed: {
-		opacity: 1,
-		scale: 1,
-		transition: { type: 'spring' as const, damping: 15, stiffness: 300, delay: 0.15 },
-	},
-};
-
-function useCollapseOnScroll() {
-	const [isExpanded, setExpanded] = React.useState(true);
-	const { scrollY } = useFramerScroll();
-	const lastScrollY = React.useRef(0);
-	const scrollPositionOnCollapse = React.useRef(0);
-
-	useMotionValueEvent(scrollY, 'change', (latest) => {
-		const previous = lastScrollY.current;
-
-		if (isExpanded && latest > previous && latest > 150) {
-			setExpanded(false);
-			scrollPositionOnCollapse.current = latest;
-		} else if (
-			!isExpanded &&
-			latest < previous &&
-			scrollPositionOnCollapse.current - latest > EXPAND_SCROLL_THRESHOLD
-		) {
-			setExpanded(true);
-		}
-
-		lastScrollY.current = latest;
-	});
-
-	return [isExpanded, setExpanded] as const;
-}
 
 type LinkItem = {
 	title: string;
@@ -196,7 +144,6 @@ function DesktopNavLinks() {
 export function Header() {
 	const [open, setOpen] = React.useState(false);
 	const scrolled = useScroll(10);
-	const [isExpanded, setExpanded] = useCollapseOnScroll();
 
 	React.useEffect(() => {
 		if (open) {
@@ -209,10 +156,6 @@ export function Header() {
 		};
 	}, [open]);
 
-	const handlePillClick = () => {
-		if (!isExpanded) setExpanded(true);
-	};
-
 	return (
 		<>
 			{/* Mobile: plain sticky bar + full-screen drawer (mega-menus don't fit a collapsing pill) */}
@@ -224,7 +167,7 @@ export function Header() {
 			>
 				<nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
 					<Link href="/" className="hover:bg-accent rounded-md p-2">
-						<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-8 w-auto" priority />
+						<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" priority />
 					</Link>
 					<div className="flex items-center gap-2">
 						<NotificationAlertDialog />
@@ -262,53 +205,28 @@ export function Header() {
 				</MobileMenu>
 			</header>
 
-			{/* Desktop: floating pill that collapses to an icon on scroll-down */}
+			{/* Desktop: floating pill, pinned/expanded at all times */}
 			<div className="fixed inset-x-0 top-6 z-50 hidden justify-center md:flex">
 				<motion.nav
-					initial={{ y: -80, opacity: 0 }}
-					animate={isExpanded ? 'expanded' : 'collapsed'}
+					initial="hidden"
+					animate="visible"
 					variants={containerVariants}
-					whileHover={!isExpanded ? { scale: 1.08 } : {}}
-					whileTap={!isExpanded ? { scale: 0.95 } : {}}
-					onClick={handlePillClick}
-					className={cn(
-						'relative flex h-14 items-center gap-3 rounded-full border bg-background/80 px-3 shadow-lg backdrop-blur-sm',
-						// Collapsed needs overflow-hidden so shrinking width clips its
-						// (fading) children instead of spilling past the pill's edge.
-						// Expanded needs overflow-visible so the NavigationMenu's
-						// dropdown viewport — a non-portaled absolute-positioned child —
-						// isn't clipped by this container when a menu is open.
-						isExpanded ? 'overflow-visible' : 'overflow-hidden cursor-pointer justify-center'
-					)}
+					className="relative flex h-14 items-center gap-3 overflow-visible rounded-full border bg-background/80 px-3 shadow-lg backdrop-blur-sm"
 				>
 					<motion.div variants={fadeVariants} className="flex shrink-0 items-center">
-						<Link href="/" onClick={(e) => e.stopPropagation()} className="hover:bg-accent rounded-md p-1">
-							<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" priority />
+						<Link href="/" className="hover:bg-accent rounded-md p-1">
+							<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-6 w-auto" priority />
 						</Link>
 					</motion.div>
 
-					<motion.div
-						variants={fadeVariants}
-						className={cn(!isExpanded && 'pointer-events-none opacity-0')}
-						onClick={(e) => e.stopPropagation()}
-					>
+					<motion.div variants={fadeVariants}>
 						<DesktopNavLinks />
 					</motion.div>
 
-					<motion.div
-						variants={fadeVariants}
-						className={cn('flex shrink-0 items-center gap-2 pr-1', !isExpanded && 'pointer-events-none opacity-0')}
-						onClick={(e) => e.stopPropagation()}
-					>
+					<motion.div variants={fadeVariants} className="flex shrink-0 items-center gap-2 pr-1">
 						<NotificationAlertDialog />
 						<Button>Get Started</Button>
 					</motion.div>
-
-					<div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-						<motion.div variants={collapsedIconVariants} animate={isExpanded ? 'expanded' : 'collapsed'}>
-							<MenuIcon className="h-5 w-5" />
-						</motion.div>
-					</div>
 				</motion.nav>
 			</div>
 		</>

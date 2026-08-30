@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { db } from "@/lib/db";
 
-const BLOG_DIR = path.join(process.cwd(), "src/content/blog");
 const CASE_STUDIES_DIR = path.join(process.cwd(), "src/content/case-studies");
 
 export type BlogPostMeta = {
@@ -12,7 +12,10 @@ export type BlogPostMeta = {
   date: string;
   author: string;
   tags: string[];
+  coverImage: string | null;
 };
+
+export type BlogPost = BlogPostMeta & { content: string };
 
 export type CaseStudyMeta = {
   slug: string;
@@ -24,6 +27,44 @@ export type CaseStudyMeta = {
   date: string;
 };
 
+/** Public-facing: published posts only, newest first. */
+export async function getAllBlogPosts(): Promise<BlogPostMeta[]> {
+  const posts = await db.blogPost.findMany({
+    where: { published: true },
+    orderBy: { date: "desc" },
+  });
+
+  return posts.map(toBlogPostMeta);
+}
+
+/** Public-facing: a single published post by slug, or null if missing/unpublished. */
+export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const post = await db.blogPost.findFirst({ where: { slug, published: true } });
+  if (!post) return null;
+
+  return { ...toBlogPostMeta(post), content: post.content };
+}
+
+function toBlogPostMeta(post: {
+  slug: string;
+  title: string;
+  description: string;
+  date: Date;
+  author: string;
+  tags: string;
+  coverImage: string | null;
+}): BlogPostMeta {
+  return {
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    date: post.date.toISOString(),
+    author: post.author,
+    tags: JSON.parse(post.tags) as string[],
+    coverImage: post.coverImage,
+  };
+}
+
 function slugsIn(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   return fs
@@ -34,28 +75,6 @@ function slugsIn(dir: string): string[] {
 
 function readSource(dir: string, slug: string): string {
   return fs.readFileSync(path.join(dir, `${slug}.mdx`), "utf8");
-}
-
-export function getAllBlogPosts(): BlogPostMeta[] {
-  return slugsIn(BLOG_DIR)
-    .map((slug) => {
-      const { data } = matter(readSource(BLOG_DIR, slug));
-      return {
-        slug,
-        title: data.title as string,
-        description: data.description as string,
-        date: data.date as string,
-        author: (data.author as string) ?? "Agape Works",
-        tags: (data.tags as string[]) ?? [],
-      };
-    })
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
-}
-
-export function getBlogPostSource(slug: string): string | null {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
-  return fs.readFileSync(filePath, "utf8");
 }
 
 export function getAllCaseStudies(): CaseStudyMeta[] {

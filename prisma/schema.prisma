@@ -1,0 +1,60 @@
+// Local dev uses SQLite (zero-config, file-based). If this ever deploys to
+// serverless hosting (Vercel etc.), swap `provider` to "postgresql", point
+// DATABASE_URL at a hosted Postgres (Neon/Vercel Postgres), and swap the
+// driver adapter in src/lib/db.ts from @prisma/adapter-better-sqlite3 to
+// @prisma/adapter-pg — the schema below deliberately avoids SQLite-only or
+// Postgres-only types (no native arrays/enums; tags are stored as a
+// JSON-encoded string) so that migration doesn't need a schema rewrite.
+//
+// Prisma 7 requires a driver adapter at the PrismaClient constructor (see
+// src/lib/db.ts) — the datasource block below only configures the CLI
+// (migrate/studio), via prisma7.config.ts, not the runtime client.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  content     String
+  coverImage  String?
+  author      String   @default("Agape Works")
+  tags        String   @default("[]")
+  published   Boolean  @default(true)
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  url         String?
+  description String
+  screenshot  String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Enquiry {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  company     String?
+  service     String
+  budget      String
+  timeline    String
+  source      String?
+  message     String
+  status      String   @default("new")
+  createdAt   DateTime @default(now())
+}

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
 import { PortfolioGrid } from "@/components/sections/portfolio-grid";
+import { getProjects } from "@/lib/portfolio-data";
 
 export const metadata: Metadata = {
   title: "Portfolio — Agape Works",
   description: "Live projects built and shipped by Agape Works — click a project to preview it right on this page.",
 };
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
+  const projects = await getProjects();
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
@@ -26,7 +29,7 @@ export default function PortfolioPage() {
         </section>
 
         <section className="mx-auto w-full max-w-5xl px-4 pb-24">
-          <PortfolioGrid />
+          <PortfolioGrid projects={projects} />
         </section>
       </main>
     </div>

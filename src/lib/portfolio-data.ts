@@ -1,4 +1,7 @@
+import { db } from "@/lib/db";
+
 export type Project = {
+  id: string;
   name: string;
   url: string | null;
   description: string;
@@ -6,24 +9,12 @@ export type Project = {
    * Set when the live site blocks iframe embedding (X-Frame-Options/CSP).
    * A static screenshot is shown instead of a live iframe preview.
    */
-  screenshot?: string;
+  screenshot?: string | null;
 };
 
-export const projects: Project[] = [
-  {
-    name: "Zenvyra Cleaning",
-    url: "https://zenvyracleaning.in",
-    description: "Cleaning services website built and launched by Agape Works.",
-  },
-  {
-    name: "UCX Group",
-    url: "https://ucx-group.com",
-    description: "Corporate website built and launched by Agape Works.",
-    screenshot: "/portfolio/ucx-group.png",
-  },
-  {
-    name: "Kathir Solar Solutions",
-    url: "https://kathirsolarsolutions.in",
-    description: "Solar energy company website built and launched by Agape Works.",
-  },
-];
+export async function getProjects(): Promise<Project[]> {
+  return db.project.findMany({
+    orderBy: [{ order: "asc" }, { createdAt: "asc" }],
+    select: { id: true, name: true, url: true, description: true, screenshot: true },
+  });
+}

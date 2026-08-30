@@ -3,11 +3,16 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Header } from "@/components/ui/header-3";
 import { mdxComponents } from "@/components/mdx-components";
-import { getAllBlogPosts, getBlogPostSource, type BlogPostMeta } from "@/lib/content";
+import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/content";
 
-export function generateStaticParams() {
-  return getAllBlogPosts().map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
+
+// New posts created after the last build still render (and get cached)
+// on first visit instead of 404ing until the next deploy.
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
@@ -15,17 +20,12 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const source = getBlogPostSource(slug);
-  if (!source) return {};
-
-  const { frontmatter } = await compileMDX<BlogPostMeta>({
-    source,
-    options: { parseFrontmatter: true },
-  });
+  const post = await getBlogPostBySlug(slug);
+  if (!post) return {};
 
   return {
-    title: `${frontmatter.title} — Agape Works`,
-    description: frontmatter.description,
+    title: `${post.title} — Agape Works`,
+    description: post.description,
   };
 }
 
@@ -43,12 +43,11 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const source = getBlogPostSource(slug);
-  if (!source) notFound();
+  const post = await getBlogPostBySlug(slug);
+  if (!post) notFound();
 
-  const { content, frontmatter } = await compileMDX<BlogPostMeta>({
-    source,
-    options: { parseFrontmatter: true },
+  const { content } = await compileMDX({
+    source: post.content,
     components: mdxComponents,
   });
 
@@ -59,17 +58,17 @@ export default async function BlogPostPage({
       <main className="flex-1">
         <article className="mx-auto w-full max-w-2xl px-4 pb-24 pt-20 sm:pt-28">
           <div className="mb-8 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-            <time dateTime={frontmatter.date}>{formatDate(frontmatter.date)}</time>
+            <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span>·</span>
-            <span>{frontmatter.author}</span>
-            {frontmatter.tags?.map((tag) => (
+            <span>{post.author}</span>
+            {post.tags.map((tag) => (
               <span key={tag} className="rounded-full border px-2 py-0.5">
                 {tag}
               </span>
             ))}
           </div>
           <h1 className="mb-8 text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            {frontmatter.title}
+            {post.title}
           </h1>
           <div>{content}</div>
         </article>

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/contact-schema";
+import { db } from "@/lib/db";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -27,12 +28,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // No email provider is configured yet (e.g. Resend, Nodemailer/SMTP).
-  // Wire one up here once credentials are available — for now, submissions
-  // are logged server-side so nothing is silently dropped.
-  console.log("New contact form submission:", {
-    ...fields,
-    submittedAt: new Date().toISOString(),
+  await db.enquiry.create({
+    data: {
+      name: fields.name,
+      email: fields.email,
+      company: fields.company || null,
+      service: fields.service,
+      budget: fields.budget,
+      timeline: fields.timeline,
+      source: fields.source || null,
+      message: fields.message,
+    },
   });
 
   return NextResponse.json({ ok: true });

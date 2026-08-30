@@ -42,3 +42,15 @@ next-env.d.ts
 
 # local tooling state
 /.claude/
+
+# database (SQLite dev DB, created at the project root per DATABASE_URL in
+# .env.local — swap for a hosted Postgres URL in production)
+/dev.db
+/dev.db-journal
+
+# generated Prisma client — regenerated via `npm run db:generate`
+/src/generated/
+
+# user-uploaded images (local-disk storage — see src/lib/upload.ts)
+/public/uploads/*
+!/public/uploads/.gitkeep

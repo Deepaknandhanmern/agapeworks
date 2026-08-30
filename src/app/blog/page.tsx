@@ -16,8 +16,8 @@ function formatDate(date: string) {
   });
 }
 
-export default function BlogIndexPage() {
-  const posts = getAllBlogPosts();
+export default async function BlogIndexPage() {
+  const posts = await getAllBlogPosts();
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -63,6 +63,9 @@ export default function BlogIndexPage() {
                 </span>
               </a>
             ))}
+            {posts.length === 0 && (
+              <p className="py-8 text-muted-foreground">No posts published yet — check back soon.</p>
+            )}
           </div>
         </section>
       </main>

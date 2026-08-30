@@ -1,27 +1,14 @@
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
-import { VerticalTabs } from "@/components/ui/vertical-tabs";
-import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
+import { ColorfulBentoGrid } from "@/components/ui/colorful-bento-grid";
 import { Integrations } from "@/components/ui/integrations-4-2";
 import HowItWorks from "@/components/ui/how-it-works";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { WorldMap } from "@/components/ui/map";
+import { ScrollReelTestimonials } from "@/components/ui/scroll-reel-testimonials";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { VideoHero } from "@/components/sections/video-hero";
-import { ArrowRight, Gauge, ShieldCheck } from "lucide-react";
-
-const teamImages = [
-  "https://images.unsplash.com/photo-1755004609214-c252674df1ca?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1750218537952-0ae056c7f53a?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1755038995605-038a7345658f?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1546238232-20216dec9f72?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1753724223372-9a1df8eb5212?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1754079132860-5b37dab49daa?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1754079132962-2f6c62f14d33?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1754764987594-2236e7736115?q=80&w=400&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1755048796967-75a82d214846?q=80&w=400&auto=format&fit=crop",
-];
+import { Gauge, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 const process = [
   {
@@ -46,11 +33,68 @@ const process = [
   },
 ] as const;
 
+const testimonials = [
+  {
+    quote: "Big effort - high quality. Best Framer content out there.",
+    author: "Jan Dittrich",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&auto=format&fit=crop",
+    alt: "Portrait of Jan Dittrich",
+  },
+  {
+    quote:
+      "I'm building a new website and it's absolutely ridiculous how valuable your content has been.",
+    author: "Michael Riddering",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80&auto=format&fit=crop",
+    alt: "Portrait of Michael Riddering",
+  },
+  {
+    quote: "Way too much value for free to be honest.",
+    author: "James Traf",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80&auto=format&fit=crop",
+    alt: "Portrait of James Traf",
+  },
+];
+
 export default function Home() {
   return (
     <div className="home-theme flex min-h-screen flex-col bg-background">
       <main className="flex-1">
         <VideoHero />
+
+        {/* About us */}
+        <section className="border-b">
+          <div className="mx-auto flex w-full max-w-3xl flex-col items-start px-4 py-24">
+            <p className="text-xl leading-9 text-muted-foreground md:text-2xl md:leading-10">
+              We&apos;re Agape Works — a small, senior, remote-first team building web, mobile,
+              and SaaS products for founders worldwide. We&apos;ve shipped real, live sites like{" "}
+              <LinkPreview
+                url="https://zenvyracleaning.in"
+                className="font-semibold text-foreground"
+              >
+                Zenvyra Cleaning
+              </LinkPreview>{" "}
+              and{" "}
+              <LinkPreview
+                url="https://ucx-group.com"
+                className="font-semibold text-foreground"
+              >
+                UCX Group
+              </LinkPreview>{" "}
+              — see for yourself, or{" "}
+              <Link
+                href="/about"
+                prefetch={false}
+                className="font-semibold text-foreground underline underline-offset-4"
+              >
+                read the full story
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
 
         {/* Trust strip */}
         <section className="border-y bg-muted/20">
@@ -68,21 +112,8 @@ export default function Home() {
           </div>
         </section>
 
-        <ArcGalleryHero images={teamImages} />
-
         {/* Services */}
-        <section id="services">
-          <VerticalTabs />
-          <div className="mx-auto -mt-8 flex w-full max-w-5xl justify-center px-4 pb-12">
-            <a
-              href="/services"
-              className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground"
-            >
-              View all services
-              <ArrowRight className="size-4" />
-            </a>
-          </div>
-        </section>
+        <ColorfulBentoGrid />
 
         {/* Integrations */}
         <section className="border-t">
@@ -183,6 +214,18 @@ export default function Home() {
                 },
               ]}
             />
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="border-t">
+          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 py-24">
+            <div className="flex flex-col items-center gap-3 text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+                What people are saying
+              </h2>
+            </div>
+            <ScrollReelTestimonials testimonials={testimonials} />
           </div>
         </section>
 

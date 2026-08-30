@@ -9,9 +9,17 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ExternalLink, Globe } from "lucide-react";
-import { projects, type Project } from "@/lib/portfolio-data";
+import type { Project } from "@/lib/portfolio-data";
 
-function LivePreview({ url, screenshot, title }: { url: string; screenshot?: string; title: string }) {
+function LivePreview({
+  url,
+  screenshot,
+  title,
+}: {
+  url: string;
+  screenshot?: string | null;
+  title: string;
+}) {
   return (
     <div className="relative w-full" style={{ paddingTop: "62.5%" }}>
       <div className="absolute inset-0 overflow-hidden bg-muted">
@@ -32,7 +40,7 @@ function LivePreview({ url, screenshot, title }: { url: string; screenshot?: str
   );
 }
 
-export function PortfolioGrid() {
+export function PortfolioGrid({ projects }: { projects: Project[] }) {
   const [active, setActive] = React.useState<Project | null>(null);
 
   return (
@@ -41,7 +49,7 @@ export function PortfolioGrid() {
         {projects.map((project) =>
           project.url ? (
             <button
-              key={project.name}
+              key={project.id}
               type="button"
               onClick={() => setActive(project)}
               className="group flex flex-col overflow-hidden rounded-xl border bg-card text-left shadow-sm transition-transform hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -57,7 +65,7 @@ export function PortfolioGrid() {
             </button>
           ) : (
             <div
-              key={project.name}
+              key={project.id}
               aria-disabled="true"
               className="flex flex-col overflow-hidden rounded-xl border border-dashed bg-muted/20 text-left"
             >

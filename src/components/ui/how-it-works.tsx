@@ -2,6 +2,7 @@
 
 import React from "react";
 import { LazyMotion, domAnimation, m } from "motion/react";
+import { DotPattern } from "@/components/ui/dot-pattern";
 
 interface CardProps {
   number: string;
@@ -178,14 +179,7 @@ export default function HowItWorks({
       <div
         className={`bg-white max-md:pt-10 max-md:pb-25 md:py-20 px-8 relative ${className}`}
       >
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.08]"
-          style={{
-            backgroundImage: "linear-gradient(#000 1px, transparent 1px)",
-            backgroundSize: "100% 32px",
-            marginTop: "4px",
-          }}
-        ></div>
+        <DotPattern className="opacity-[0.3] fill-neutral-400/80 [mask-image:radial-gradient(700px_circle_at_center,white,transparent)]" />
         <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r"></div>
         <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l"></div>
 
