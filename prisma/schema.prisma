@@ -1,14 +1,13 @@
-// Local dev uses SQLite (zero-config, file-based). If this ever deploys to
-// serverless hosting (Vercel etc.), swap `provider` to "postgresql", point
-// DATABASE_URL at a hosted Postgres (Neon/Vercel Postgres), and swap the
-// driver adapter in src/lib/db.ts from @prisma/adapter-better-sqlite3 to
-// @prisma/adapter-pg — the schema below deliberately avoids SQLite-only or
-// Postgres-only types (no native arrays/enums; tags are stored as a
-// JSON-encoded string) so that migration doesn't need a schema rewrite.
+// Hosted Postgres (Supabase) — local SQLite couldn't survive a fresh deploy
+// (the file is gitignored and Hostinger rebuilds from a clean clone every
+// time). The schema deliberately avoids Postgres-only types (no native
+// arrays/enums; tags are stored as a JSON-encoded string) — a holdover from
+// when this also had to run on SQLite, kept in case that ever matters again.
 //
 // Prisma 7 requires a driver adapter at the PrismaClient constructor (see
-// src/lib/db.ts) — the datasource block below only configures the CLI
-// (migrate/studio), via prisma7.config.ts, not the runtime client.
+// src/lib/db.ts, @prisma/adapter-pg) — the datasource block below only
+// configures the CLI (migrate/studio), via prisma7.config.ts, not the
+// runtime client.
 
 generator client {
   provider = "prisma-client"
@@ -16,7 +15,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model BlogPost {
