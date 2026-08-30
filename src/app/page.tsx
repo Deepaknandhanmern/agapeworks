@@ -6,7 +6,7 @@ import { DotPattern } from "@/components/ui/dot-pattern";
 import { WorldMap } from "@/components/ui/map";
 import { ScrollReelTestimonials } from "@/components/ui/scroll-reel-testimonials";
 import { LinkPreview } from "@/components/ui/link-preview";
-import { VideoHero } from "@/components/sections/video-hero";
+import { AgapeHero } from "@/components/sections/agape-hero";
 import { Gauge, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
@@ -62,7 +62,7 @@ export default function Home() {
   return (
     <div className="home-theme flex min-h-screen flex-col bg-background">
       <main className="flex-1">
-        <VideoHero />
+        <AgapeHero />
 
         {/* About us */}
         <section className="border-b">
