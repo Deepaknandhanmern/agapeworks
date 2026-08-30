@@ -78,6 +78,7 @@ model ClientProject {
   updatedAt   DateTime @updatedAt
   updates     ProjectUpdate[]
   comments    ProjectComment[]
+  files       ProjectFile[]
 }
 
 // "What shipped this week" entries on a client's status page — posted from
@@ -100,4 +101,99 @@ model ProjectComment {
   authorName      String
   message         String
   createdAt       DateTime      @default(now())
+}
+
+// Admin-uploaded files (invoices, spec sheets, onboarding PDFs) — for
+// admin's own reference and the client's reference on their status page.
+// Upload/delete is admin-only; the client can only view/download. The
+// actual bytes live in Supabase Storage (private bucket) — storagePath is
+// the object key there, and download URLs are always freshly signed
+// server-side (see src/lib/storage.ts), never stored.
+model ProjectFile {
+  id              String        @id @default(cuid())
+  clientProjectId String
+  clientProject   ClientProject @relation(fields: [clientProjectId], references: [id], onDelete: Cascade)
+  fileName        String
+  storagePath     String
+  sizeBytes       Int
+  contentType     String
+  createdAt       DateTime      @default(now())
+}
+
+// --- Vahi (GST billing tool, /vahi) -----------------------------------
+// A separate product from the Agape Works site itself. One BillingAccount
+// per paying business — accounts are created by admin (see the
+// billing-accounts dashboard section) after a sale, not self-signup, so
+// there's no public registration flow yet. Each account's data
+// (customers/items/invoices) is isolated by accountId; every read/write in
+// src/lib/vahi/ must filter or scope by the authenticated account.
+
+model BillingAccount {
+  id           String   @id @default(cuid())
+  businessName String
+  gstNumber    String?
+  email        String   @unique
+  passwordHash String
+  phone        String?
+  address      String?
+  createdAt    DateTime @default(now())
+  customers    BillingCustomer[]
+  items        BillingItem[]
+  invoices     Invoice[]
+}
+
+model BillingCustomer {
+  id        String         @id @default(cuid())
+  accountId String
+  account   BillingAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  name      String
+  phone     String?
+  email     String?
+  address   String?
+  createdAt DateTime       @default(now())
+  invoices  Invoice[]
+}
+
+model BillingItem {
+  id        String         @id @default(cuid())
+  accountId String
+  account   BillingAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  name      String
+  rate      Float
+  taxRate   Float          @default(18)
+  createdAt DateTime       @default(now())
+}
+
+model Invoice {
+  id            String            @id @default(cuid())
+  accountId     String
+  account       BillingAccount    @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  customerId    String
+  customer      BillingCustomer   @relation(fields: [customerId], references: [id])
+  invoiceNumber String
+  // unpaid | paid — plain string, see the datasource comment at the top of
+  // this file on avoiding native enums.
+  status        String            @default("unpaid")
+  issueDate     DateTime          @default(now())
+  dueDate       DateTime?
+  notes         String?
+  // Gates the public, no-login print/share view at /vahi/invoice/[publicToken]
+  // — same capability-URL pattern as ClientProject.statusToken.
+  publicToken   String            @unique @default(cuid())
+  // Set when an overdue-payment reminder email was last sent — lets both the
+  // manual "Send reminder" button and the automated cron endpoint
+  // (src/app/api/vahi/send-reminders) avoid re-sending too often.
+  remindedAt    DateTime?
+  createdAt     DateTime          @default(now())
+  lineItems     InvoiceLineItem[]
+}
+
+model InvoiceLineItem {
+  id        String  @id @default(cuid())
+  invoiceId String
+  invoice   Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  name      String
+  quantity  Float
+  rate      Float
+  taxRate   Float
 }
