@@ -54,7 +54,7 @@ export default async function CaseStudyPage({
       <Header />
 
       <main className="flex-1">
-        <article className="mx-auto w-full max-w-2xl px-4 pb-24 pt-20 sm:pt-28">
+        <article className="mx-auto w-full max-w-2xl px-4 pb-24 pt-8 sm:pt-10">
           <div className="mb-4 flex flex-wrap gap-2">
             {frontmatter.services?.map((service) => (
               <span

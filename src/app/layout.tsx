@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { CinematicFooter } from "@/components/ui/motion-footer";
 import { AnnouncementToast } from "@/components/sections/announcement-toast";
+import { BackToTopButton } from "@/components/ui/back-to-top-button";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <CinematicFooter />
         <AnnouncementToast />
+        <BackToTopButton />
       </body>
     </html>
   );

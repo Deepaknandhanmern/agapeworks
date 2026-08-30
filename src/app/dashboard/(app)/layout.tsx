@@ -4,12 +4,14 @@ import Image from "next/image";
 import { isAuthenticated } from "@/lib/auth";
 import { logoutAction } from "@/lib/actions/auth-actions";
 import { Button } from "@/components/ui/button";
-import { LayoutDashboard, Newspaper, FolderKanban, Inbox } from "lucide-react";
+import { CommandPalette } from "@/components/dashboard/command-palette";
+import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users } from "lucide-react";
 
 const navItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { label: "Blog", href: "/dashboard/blog", icon: Newspaper },
   { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
+  { label: "Client projects", href: "/dashboard/client-projects", icon: Users },
   { label: "Enquiries", href: "/dashboard/enquiries", icon: Inbox },
 ];
 
@@ -22,9 +24,17 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   return (
     <div className="flex min-h-screen bg-background">
+      <CommandPalette />
       <aside className="flex w-60 shrink-0 flex-col border-r bg-card">
         <div className="border-b p-4">
-          <Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" />
+          <Link href="/">
+            <Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" />
+          </Link>
+        </div>
+        <div className="px-4 pt-3">
+          <p className="rounded-md border border-dashed px-2 py-1.5 text-center text-xs text-muted-foreground">
+            Press <kbd className="rounded border bg-muted px-1 font-mono">⌘K</kbd> to jump anywhere
+          </p>
         </div>
         <nav className="flex flex-1 flex-col gap-1 p-3">
           {navItems.map(({ label, href, icon: Icon }) => (

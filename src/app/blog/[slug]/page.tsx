@@ -56,7 +56,7 @@ export default async function BlogPostPage({
       <Header />
 
       <main className="flex-1">
-        <article className="mx-auto w-full max-w-2xl px-4 pb-24 pt-20 sm:pt-28">
+        <article className="mx-auto w-full max-w-2xl px-4 pb-24 pt-8 sm:pt-10">
           <div className="mb-8 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span>·</span>

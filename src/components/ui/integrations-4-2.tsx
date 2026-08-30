@@ -14,14 +14,11 @@ export function Integrations() {
 				</p>
 			</div>
 
-			<Marquee durationSeconds={30} className="w-full">
+			<Marquee speed={30} pauseOnHover className="w-full mt-0 sm:mt-0">
 				{toolsWeUse.map(({ name, icon: Icon, color }) => (
-					<div
-						key={name}
-						className="flex shrink-0 items-center gap-3 rounded-full border bg-card px-6 py-3 shadow-sm"
-					>
-						<Icon className="size-6" style={{ color }} aria-hidden="true" />
-						<span className="text-sm font-medium whitespace-nowrap text-foreground">
+					<div key={name} className="flex shrink-0 items-center gap-3 px-8">
+						<Icon className="size-7" style={{ color }} aria-hidden="true" />
+						<span className="text-base font-medium whitespace-nowrap text-foreground">
 							{name}
 						</span>
 					</div>

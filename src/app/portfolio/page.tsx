@@ -16,7 +16,7 @@ export default async function PortfolioPage() {
       <Header />
 
       <main className="flex-1">
-        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-16 pt-20 text-center sm:pt-28">
+        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-16 pt-8 text-center sm:pt-10">
           <div className="inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
             Our Work
           </div>

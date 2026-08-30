@@ -1,5 +1,5 @@
 import { getAllEnquiriesForDashboard } from "@/lib/data/dashboard";
-import { EnquiryRow } from "./enquiry-row";
+import { EnquiryKanban } from "@/components/dashboard/enquiry-kanban";
 
 export default async function DashboardEnquiriesPage() {
   const enquiries = await getAllEnquiriesForDashboard();
@@ -8,16 +8,13 @@ export default async function DashboardEnquiriesPage() {
     <div>
       <h1 className="mb-6 text-2xl font-semibold text-foreground">Enquiries</h1>
 
-      <div className="flex flex-col gap-4">
-        {enquiries.map((enquiry) => (
-          <EnquiryRow key={enquiry.id} enquiry={enquiry} />
-        ))}
-        {enquiries.length === 0 && (
-          <p className="rounded-xl border bg-card p-8 text-center text-muted-foreground">
-            No enquiries yet.
-          </p>
-        )}
-      </div>
+      {enquiries.length === 0 ? (
+        <p className="rounded-xl border bg-card p-8 text-center text-muted-foreground">
+          No enquiries yet.
+        </p>
+      ) : (
+        <EnquiryKanban enquiries={enquiries} />
+      )}
     </div>
   );
 }

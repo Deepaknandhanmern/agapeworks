@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { AnimatedFeatureCard } from "@/components/ui/feature-card-1";
@@ -24,7 +26,7 @@ export default function ServicesPage() {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-16 pt-20 text-center sm:pt-28">
+        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-16 pt-8 text-center sm:pt-10">
           <div className="inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
             Our Services
           </div>
@@ -130,14 +132,11 @@ export default function ServicesPage() {
               Proven, production-grade tools — not whatever&apos;s trending this week.
             </p>
           </div>
-          <Marquee durationSeconds={28}>
+          <Marquee speed={28} pauseOnHover className="mt-0 sm:mt-0">
             {techStack.map(({ name, icon: Icon, color }) => (
-              <div
-                key={name}
-                className="flex shrink-0 items-center gap-3 rounded-full border bg-card px-6 py-3 shadow-sm"
-              >
-                <Icon className="size-6" style={{ color }} aria-hidden="true" />
-                <span className="text-sm font-medium whitespace-nowrap text-foreground">
+              <div key={name} className="flex shrink-0 items-center gap-3 px-8">
+                <Icon className="size-7" style={{ color }} aria-hidden="true" />
+                <span className="text-base font-medium whitespace-nowrap text-foreground">
                   {name}
                 </span>
               </div>
@@ -156,7 +155,16 @@ export default function ServicesPage() {
               Tell us about your project and we&apos;ll recommend the right scope — no
               obligation.
             </p>
-            <AntiMetalButton href="/contact" label="Book a demo" />
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <AntiMetalButton href="/contact" label="Book a demo" />
+              <Link
+                href="/scope"
+                className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
+              >
+                Get an instant estimate instead
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
           </div>
         </section>
       </main>

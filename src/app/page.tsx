@@ -5,10 +5,9 @@ import HowItWorks from "@/components/ui/how-it-works";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { WorldMap } from "@/components/ui/map";
 import { ScrollReelTestimonials } from "@/components/ui/scroll-reel-testimonials";
-import { LinkPreview } from "@/components/ui/link-preview";
 import { AgapeHero } from "@/components/sections/agape-hero";
+import Testimonial1 from "@/components/ui/testimonial-1";
 import { Gauge, ShieldCheck } from "lucide-react";
-import Link from "next/link";
 
 const process = [
   {
@@ -66,34 +65,7 @@ export default function Home() {
 
         {/* About us */}
         <section className="border-b">
-          <div className="mx-auto flex w-full max-w-3xl flex-col items-start px-4 py-24">
-            <p className="text-xl leading-9 text-muted-foreground md:text-2xl md:leading-10">
-              We&apos;re Agape Works — a small, senior, remote-first team building web, mobile,
-              and SaaS products for founders worldwide. We&apos;ve shipped real, live sites like{" "}
-              <LinkPreview
-                url="https://zenvyracleaning.in"
-                className="font-semibold text-foreground"
-              >
-                Zenvyra Cleaning
-              </LinkPreview>{" "}
-              and{" "}
-              <LinkPreview
-                url="https://ucx-group.com"
-                className="font-semibold text-foreground"
-              >
-                UCX Group
-              </LinkPreview>{" "}
-              — see for yourself, or{" "}
-              <Link
-                href="/about"
-                prefetch={false}
-                className="font-semibold text-foreground underline underline-offset-4"
-              >
-                read the full story
-              </Link>
-              .
-            </p>
-          </div>
+          <Testimonial1 />
         </section>
 
         {/* Trust strip */}

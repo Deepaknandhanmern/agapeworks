@@ -11,6 +11,12 @@ const statusStyles: Record<string, string> = {
   archived: "bg-muted text-muted-foreground/60",
 };
 
+const priorityStyles: Record<string, string> = {
+  high: "bg-destructive/10 text-destructive",
+  medium: "bg-amber-500/10 text-amber-600",
+  low: "bg-muted text-muted-foreground",
+};
+
 export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
   const [pending, startTransition] = useTransition();
 
@@ -20,6 +26,13 @@ export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
         <div>
           <div className="flex items-center gap-2">
             <p className="font-semibold text-foreground">{enquiry.name}</p>
+            {enquiry.priority && (
+              <span
+                className={`rounded-full px-2 py-0.5 text-xs font-medium uppercase ${priorityStyles[enquiry.priority] ?? priorityStyles.low}`}
+              >
+                {enquiry.priority}
+              </span>
+            )}
             <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusStyles[enquiry.status]}`}>
               {enquiry.status}
             </span>
@@ -46,6 +59,10 @@ export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
         <span className="rounded-full border px-2 py-0.5">{enquiry.timeline}</span>
         {enquiry.source && <span className="rounded-full border px-2 py-0.5">via {enquiry.source}</span>}
       </div>
+
+      {enquiry.aiSummary && (
+        <p className="mb-2 text-sm italic text-muted-foreground">&ldquo;{enquiry.aiSummary}&rdquo;</p>
+      )}
 
       <p className="mb-4 whitespace-pre-wrap text-sm text-foreground">{enquiry.message}</p>
 

@@ -25,7 +25,7 @@ export function DosAndDonts() {
   const [showDonts, setShowDonts] = useState(false);
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 py-24">
+    <div className="mx-auto w-full max-w-4xl px-4 py-24">
       <div className="mb-10 flex flex-col items-center gap-3 text-center">
         <h2 className="text-3xl font-semibold tracking-tight text-foreground">
           What we do — and don&apos;t
@@ -53,7 +53,7 @@ export function DosAndDonts() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
-          className="mx-auto flex max-w-xl flex-col gap-3"
+          className="grid gap-4 sm:grid-cols-2"
         >
           {(showDonts ? donts : dos).map((item) => (
             <li key={item} className="flex items-start gap-3 rounded-lg border bg-card p-4">

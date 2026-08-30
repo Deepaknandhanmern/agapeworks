@@ -11,7 +11,8 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 // Bottom-right corner announcement, shown once per visitor (remembered via
 // localStorage) with an entrance animation on load. Hidden on the admin
-// dashboard — this is a marketing element, not part of that UI.
+// dashboard and client status pages — this is a marketing element, not
+// part of that UI.
 export function AnnouncementToast() {
   const pathname = usePathname();
   const [dismissed, setDismissed] = useState(true);
@@ -24,7 +25,7 @@ export function AnnouncementToast() {
     }
   }, []);
 
-  if (pathname?.startsWith("/dashboard")) return null;
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/status")) return null;
 
   const handleDismiss = () => {
     setDismissed(true);

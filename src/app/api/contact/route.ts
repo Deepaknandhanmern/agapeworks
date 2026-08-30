@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/contact-schema";
 import { db } from "@/lib/db";
+import { triageEnquiry } from "@/lib/ai/enquiry-triage";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  await db.enquiry.create({
+  const enquiry = await db.enquiry.create({
     data: {
       name: fields.name,
       email: fields.email,
@@ -40,6 +41,25 @@ export async function POST(request: Request) {
       message: fields.message,
     },
   });
+
+  // Best-effort AI triage — never blocks or fails the submission response.
+  // Adds a few seconds of latency to this request; acceptable for a
+  // low-volume contact form and keeps the implementation dependency-free
+  // (no queue/worker infra).
+  const triage = await triageEnquiry({
+    service: fields.service,
+    budget: fields.budget,
+    timeline: fields.timeline,
+    message: fields.message,
+  });
+  if (triage) {
+    await db.enquiry
+      .update({
+        where: { id: enquiry.id },
+        data: { priority: triage.priority, aiSummary: triage.summary },
+      })
+      .catch(() => null);
+  }
 
   return NextResponse.json({ ok: true });
 }

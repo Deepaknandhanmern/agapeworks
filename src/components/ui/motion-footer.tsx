@@ -255,9 +255,10 @@ export function CinematicFooter() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // The admin dashboard isn't part of the marketing site — skip the
-  // cinematic footer there. Checked after all hooks run (Rules of Hooks).
-  if (pathname?.startsWith("/dashboard")) return null;
+  // The admin dashboard and client status pages aren't part of the
+  // marketing site — skip the cinematic footer there. Checked after all
+  // hooks run (Rules of Hooks).
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/status")) return null;
 
   return (
     <>
@@ -315,10 +316,19 @@ export function CinematicFooter() {
 
               <div className="flex flex-wrap justify-center gap-3 md:gap-6 w-full mt-2">
                 <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
+                  Terms of Service
+                </MagneticButton>
+                <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
                   Privacy Policy
                 </MagneticButton>
                 <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
-                  Terms of Service
+                  Refund Policy
+                </MagneticButton>
+                <MagneticButton as="a" href="/blog" className="footer-glass-pill px-6 py-3 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
+                  Blog
+                </MagneticButton>
+                <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
+                  Help Center
                 </MagneticButton>
                 <MagneticButton as="a" href="#" className="footer-glass-pill px-6 py-3 rounded-full text-muted-foreground font-medium text-xs md:text-sm hover:text-foreground">
                   Contact

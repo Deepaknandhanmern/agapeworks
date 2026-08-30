@@ -56,5 +56,49 @@ model Enquiry {
   source      String?
   message     String
   status      String   @default("new")
+  // AI triage (best-effort — populated shortly after creation, may stay
+  // null if the triage call fails; see src/lib/ai/enquiry-triage.ts).
+  priority    String?
+  aiSummary   String?
   createdAt   DateTime @default(now())
+}
+
+// Active client engagements — distinct from Project (the public portfolio
+// showcase). Each one gets a no-login status page at /status/[statusToken]
+// so a client can check progress without an account.
+model ClientProject {
+  id          String   @id @default(cuid())
+  projectName String
+  clientName  String
+  clientEmail String
+  // Discovery | Build | QA | Launched — plain string (see the datasource
+  // comment above on avoiding native enums).
+  phase       String   @default("Discovery")
+  statusToken String   @unique @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  updates     ProjectUpdate[]
+  comments    ProjectComment[]
+}
+
+// "What shipped this week" entries on a client's status page — posted from
+// the dashboard, triggers a best-effort email to the client on creation.
+model ProjectUpdate {
+  id              String        @id @default(cuid())
+  clientProjectId String
+  clientProject   ClientProject @relation(fields: [clientProjectId], references: [id], onDelete: Cascade)
+  title           String
+  body            String
+  createdAt       DateTime      @default(now())
+}
+
+// Client feedback left directly on their status page — no login, gated only
+// by knowing the unguessable statusToken.
+model ProjectComment {
+  id              String        @id @default(cuid())
+  clientProjectId String
+  clientProject   ClientProject @relation(fields: [clientProjectId], references: [id], onDelete: Cascade)
+  authorName      String
+  message         String
+  createdAt       DateTime      @default(now())
 }
