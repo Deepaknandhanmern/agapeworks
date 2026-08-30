@@ -33,8 +33,8 @@ export function MaintenanceScene() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">Agape Works</h1>
-          <p className="text-muted-foreground">We&apos;re currently upgrading our website.</p>
+          <h1 className="sr-only">Agape Works</h1>
+          <p className="text-lg font-medium text-foreground">We&apos;re currently upgrading our website.</p>
           <p className="text-muted-foreground">We&apos;ll be back shortly.</p>
         </div>
 
