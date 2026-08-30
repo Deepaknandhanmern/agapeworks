@@ -13,6 +13,7 @@ export async function getClientProjectByToken(statusToken: string) {
     include: {
       updates: { orderBy: { createdAt: "desc" } },
       comments: { orderBy: { createdAt: "desc" } },
+      files: { orderBy: { createdAt: "desc" } },
     },
   });
 }

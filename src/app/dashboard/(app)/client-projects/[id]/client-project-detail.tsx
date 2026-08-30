@@ -1,19 +1,33 @@
 "use client";
 
-import { useActionState, useState, useTransition } from "react";
-import { Check, Copy } from "lucide-react";
+import { useActionState, useEffect, useRef, useState, useTransition } from "react";
+import { Check, Copy, FileText, Download, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { setPhaseAction, postUpdateAction } from "@/lib/actions/client-project-actions";
+import {
+  setPhaseAction,
+  postUpdateAction,
+  uploadFileAction,
+  deleteFileAction,
+} from "@/lib/actions/client-project-actions";
 import { PHASES } from "@/lib/client-project-phases";
-import type { ClientProject, ProjectUpdate, ProjectComment } from "@/generated/prisma/client";
+import { playChime } from "@/lib/play-chime";
+import type { ClientProject, ProjectUpdate, ProjectComment, ProjectFile } from "@/generated/prisma/client";
 
 type FullClientProject = ClientProject & {
   updates: ProjectUpdate[];
   comments: ProjectComment[];
+  files: (ProjectFile & { url: string | null })[];
 };
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 const phaseStyles: Record<string, string> = {
   Discovery: "bg-muted text-muted-foreground",
@@ -51,8 +65,14 @@ function PhaseSelector({ id, currentPhase }: { id: string; currentPhase: string 
         <button
           key={phase}
           type="button"
-          disabled={pending}
-          onClick={() => startTransition(() => setPhaseAction(id, phase))}
+          disabled={pending || phase === currentPhase}
+          onClick={() =>
+            startTransition(async () => {
+              await setPhaseAction(id, phase);
+              playChime();
+              toast.success(`Phase updated to ${phase}`);
+            })
+          }
           className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
             phase === currentPhase
               ? (phaseStyles[phase] ?? phaseStyles.Discovery)
@@ -69,6 +89,15 @@ function PhaseSelector({ id, currentPhase }: { id: string; currentPhase: string 
 function PostUpdateForm({ id }: { id: string }) {
   const action = postUpdateAction.bind(null, id);
   const [state, formAction, pending] = useActionState(action, undefined);
+  const wasPending = useRef(false);
+
+  useEffect(() => {
+    if (wasPending.current && !pending && !state?.error) {
+      playChime();
+      toast.success("Update posted — client notified");
+    }
+    wasPending.current = pending;
+  }, [pending, state]);
 
   return (
     <form action={formAction} className="flex flex-col gap-3 rounded-xl border bg-card p-5">
@@ -91,6 +120,88 @@ function PostUpdateForm({ id }: { id: string }) {
         {pending ? "Posting..." : "Post update & notify client"}
       </Button>
     </form>
+  );
+}
+
+function UploadFileForm({ id }: { id: string }) {
+  const action = uploadFileAction.bind(null, id);
+  const [state, formAction, pending] = useActionState(action, undefined);
+  const formRef = useRef<HTMLFormElement>(null);
+  const wasPending = useRef(false);
+
+  useEffect(() => {
+    if (wasPending.current && !pending && !state?.error) {
+      playChime();
+      toast.success("File uploaded");
+      formRef.current?.reset();
+    }
+    wasPending.current = pending;
+  }, [pending, state]);
+
+  return (
+    <form ref={formRef} action={formAction} className="flex flex-wrap items-end gap-3 rounded-xl border bg-card p-4">
+      <div className="grid min-w-0 flex-1 gap-2">
+        <Label htmlFor="file">Upload a file</Label>
+        <Input id="file" name="file" type="file" required />
+      </div>
+      <Button type="submit" disabled={pending} className="shrink-0">
+        {pending ? "Uploading..." : "Upload"}
+      </Button>
+      {state?.error && <p className="w-full text-sm text-destructive">{state.error}</p>}
+    </form>
+  );
+}
+
+function FilesSection({ id, files }: { id: string; files: FullClientProject["files"] }) {
+  const [pending, startTransition] = useTransition();
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  return (
+    <div className="flex flex-col gap-3">
+      <UploadFileForm id={id} />
+      {files.length === 0 ? (
+        <p className="rounded-xl border border-dashed bg-card/50 p-4 text-center text-sm text-muted-foreground">
+          No files uploaded yet.
+        </p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {files.map((file) => (
+            <li key={file.id} className="flex items-center gap-3 rounded-xl border bg-card p-4">
+              <FileText className="size-4 shrink-0 text-muted-foreground" />
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium text-foreground">{file.fileName}</p>
+                <p className="text-xs text-muted-foreground">{formatFileSize(file.sizeBytes)}</p>
+              </div>
+              {file.url && (
+                <a
+                  href={file.url}
+                  className="flex shrink-0 items-center gap-1.5 text-sm font-medium text-foreground hover:underline"
+                >
+                  <Download className="size-3.5" />
+                  Download
+                </a>
+              )}
+              <button
+                type="button"
+                disabled={pending && deletingId === file.id}
+                onClick={() =>
+                  startTransition(async () => {
+                    setDeletingId(file.id);
+                    await deleteFileAction(id, file.id);
+                    playChime();
+                    toast.success("File deleted");
+                  })
+                }
+                className="shrink-0 text-muted-foreground hover:text-destructive disabled:opacity-50"
+                aria-label={`Delete ${file.fileName}`}
+              >
+                <Trash2 className="size-4" />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
@@ -125,6 +236,11 @@ export function ClientProjectDetail({
       <div>
         <h2 className="mb-2 text-sm font-semibold text-foreground">Phase</h2>
         <PhaseSelector id={project.id} currentPhase={project.phase} />
+      </div>
+
+      <div>
+        <h2 className="mb-3 text-sm font-semibold text-foreground">Files</h2>
+        <FilesSection id={project.id} files={project.files} />
       </div>
 
       <div>

@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 /** All admin-only reads live here — every export re-verifies auth itself. */
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+const PRIORITY_RANK: Record<string, number> = { high: 0, medium: 1, low: 2 };
 
 function getWeekStart(date: Date): Date {
   const d = new Date(date);
@@ -100,6 +101,62 @@ export async function getEnquiryVolumeByWeek(weeks = 8): Promise<EnquiryWeekBuck
   });
 }
 
+export type TodayGlance = {
+  topEnquiry: {
+    id: string;
+    name: string;
+    service: string;
+    priority: string | null;
+    aiSummary: string | null;
+  } | null;
+  updatesThisWeekCount: number;
+  recentUpdates: { projectName: string; projectId: string; title: string; createdAt: Date }[];
+};
+
+/** Powers the "Today at a glance" panel at the top of the Overview page. */
+export async function getTodayAtAGlance(): Promise<TodayGlance> {
+  await requireAuth();
+  const weekAgo = new Date(Date.now() - WEEK_MS);
+
+  const [newEnquiries, recentUpdates] = await Promise.all([
+    db.enquiry.findMany({
+      where: { status: "new" },
+      select: { id: true, name: true, service: true, priority: true, aiSummary: true, createdAt: true },
+      orderBy: { createdAt: "desc" },
+    }),
+    db.projectUpdate.findMany({
+      where: { createdAt: { gte: weekAgo } },
+      include: { clientProject: { select: { projectName: true } } },
+      orderBy: { createdAt: "desc" },
+    }),
+  ]);
+
+  const topEnquiry = [...newEnquiries].sort((a, b) => {
+    const rankA = a.priority ? (PRIORITY_RANK[a.priority] ?? 3) : 3;
+    const rankB = b.priority ? (PRIORITY_RANK[b.priority] ?? 3) : 3;
+    return rankA - rankB;
+  })[0];
+
+  return {
+    topEnquiry: topEnquiry
+      ? {
+          id: topEnquiry.id,
+          name: topEnquiry.name,
+          service: topEnquiry.service,
+          priority: topEnquiry.priority,
+          aiSummary: topEnquiry.aiSummary,
+        }
+      : null,
+    updatesThisWeekCount: recentUpdates.length,
+    recentUpdates: recentUpdates.slice(0, 3).map((u) => ({
+      projectName: u.clientProject.projectName,
+      projectId: u.clientProjectId,
+      title: u.title,
+      createdAt: u.createdAt,
+    })),
+  };
+}
+
 export type ActivityItem = {
   type: "post" | "project" | "enquiry";
   title: string;
@@ -186,11 +243,18 @@ export async function getClientProjectByIdForDashboard(id: string) {
     include: {
       updates: { orderBy: { createdAt: "desc" } },
       comments: { orderBy: { createdAt: "desc" } },
+      files: { orderBy: { createdAt: "desc" } },
     },
   });
 }
 
-const PRIORITY_RANK: Record<string, number> = { high: 0, medium: 1, low: 2 };
+export async function getAllBillingAccountsForDashboard() {
+  await requireAuth();
+  return db.billingAccount.findMany({
+    orderBy: { createdAt: "desc" },
+    include: { _count: { select: { invoices: true } } },
+  });
+}
 
 export async function getAllEnquiriesForDashboard() {
   await requireAuth();

@@ -1,11 +1,12 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Toaster } from "sonner";
 import { isAuthenticated } from "@/lib/auth";
 import { logoutAction } from "@/lib/actions/auth-actions";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/dashboard/command-palette";
-import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users } from "lucide-react";
+import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users, Receipt } from "lucide-react";
 
 const navItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -13,6 +14,7 @@ const navItems = [
   { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
   { label: "Client projects", href: "/dashboard/client-projects", icon: Users },
   { label: "Enquiries", href: "/dashboard/enquiries", icon: Inbox },
+  { label: "Vahi accounts", href: "/dashboard/billing-accounts", icon: Receipt },
 ];
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -25,6 +27,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   return (
     <div className="flex min-h-screen bg-background">
       <CommandPalette />
+      <Toaster position="bottom-right" richColors />
       <aside className="flex w-60 shrink-0 flex-col border-r bg-card">
         <div className="border-b p-4">
           <Link href="/">

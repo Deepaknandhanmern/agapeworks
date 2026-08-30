@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { contactFormSchema } from "@/lib/contact-schema";
 import { db } from "@/lib/db";
 import { triageEnquiry } from "@/lib/ai/enquiry-triage";
+import { sendEnquiryAutoReply } from "@/lib/email/send-enquiry-autoreply";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -46,12 +47,15 @@ export async function POST(request: Request) {
   // Adds a few seconds of latency to this request; acceptable for a
   // low-volume contact form and keeps the implementation dependency-free
   // (no queue/worker infra).
-  const triage = await triageEnquiry({
-    service: fields.service,
-    budget: fields.budget,
-    timeline: fields.timeline,
-    message: fields.message,
-  });
+  const [triage] = await Promise.all([
+    triageEnquiry({
+      service: fields.service,
+      budget: fields.budget,
+      timeline: fields.timeline,
+      message: fields.message,
+    }),
+    sendEnquiryAutoReply({ name: fields.name, email: fields.email, service: fields.service }),
+  ]);
   if (triage) {
     await db.enquiry
       .update({

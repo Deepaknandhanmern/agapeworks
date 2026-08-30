@@ -7,6 +7,7 @@ import { z } from "zod";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { sendUpdateNotification } from "@/lib/email/send-update-notification";
+import { uploadClientFile, deleteClientFile } from "@/lib/storage";
 import { PHASES } from "@/lib/client-project-phases";
 import type { ActionState } from "@/lib/actions/blog-actions";
 
@@ -89,5 +90,46 @@ export async function postUpdateAction(
     statusUrl: `${origin}/status/${project.statusToken}`,
   });
 
+  revalidatePath(`/dashboard/client-projects/${id}`);
+}
+
+export async function uploadFileAction(
+  id: string,
+  _prevState: ActionState,
+  formData: FormData,
+): Promise<ActionState> {
+  await requireAuth();
+
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) {
+    return { error: "Choose a file to upload." };
+  }
+
+  const result = await uploadClientFile(id, file);
+  if ("error" in result) {
+    return { error: result.error };
+  }
+
+  await db.projectFile.create({
+    data: {
+      clientProjectId: id,
+      fileName: file.name,
+      storagePath: result.storagePath,
+      sizeBytes: file.size,
+      contentType: file.type || "application/octet-stream",
+    },
+  });
+
+  revalidatePath(`/dashboard/client-projects/${id}`);
+}
+
+export async function deleteFileAction(id: string, fileId: string) {
+  await requireAuth();
+
+  const file = await db.projectFile.findUnique({ where: { id: fileId } });
+  if (!file || file.clientProjectId !== id) return;
+
+  await deleteClientFile(file.storagePath);
+  await db.projectFile.delete({ where: { id: fileId } });
   revalidatePath(`/dashboard/client-projects/${id}`);
 }

@@ -1,9 +1,11 @@
 "use client";
 
 import { useTransition } from "react";
+import { toast } from "sonner";
 import type { Enquiry } from "@/generated/prisma/client";
 import { Button } from "@/components/ui/button";
 import { setEnquiryStatusAction } from "@/lib/actions/enquiry-actions";
+import { playChime } from "@/lib/play-chime";
 
 const statusStyles: Record<string, string> = {
   new: "bg-accent text-foreground",
@@ -73,7 +75,13 @@ export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
             variant="outline"
             size="sm"
             disabled={pending}
-            onClick={() => startTransition(() => setEnquiryStatusAction(enquiry.id, "read"))}
+            onClick={() =>
+              startTransition(async () => {
+                await setEnquiryStatusAction(enquiry.id, "read");
+                playChime();
+                toast.success(`Marked ${enquiry.name}'s enquiry as read`);
+              })
+            }
           >
             Mark read
           </Button>
@@ -84,7 +92,13 @@ export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
             variant="outline"
             size="sm"
             disabled={pending}
-            onClick={() => startTransition(() => setEnquiryStatusAction(enquiry.id, "archived"))}
+            onClick={() =>
+              startTransition(async () => {
+                await setEnquiryStatusAction(enquiry.id, "archived");
+                playChime();
+                toast.success(`Archived ${enquiry.name}'s enquiry`);
+              })
+            }
           >
             Archive
           </Button>

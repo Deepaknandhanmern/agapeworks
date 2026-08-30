@@ -25,6 +25,26 @@ import { useSpeechToText } from "@/lib/use-speech-to-text";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+// Staged reveal for the estimate result — sections cascade in one after
+// another instead of appearing all at once, so the "it actually scoped my
+// project" moment reads as more than a plain state swap.
+const resultContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.05 } },
+} as const;
+const resultItem = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+} as const;
+const statPop = {
+  hidden: { opacity: 0, scale: 0.85 },
+  show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 320, damping: 22 } },
+} as const;
+const phaseList = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+} as const;
+
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
   return <p className="text-xs text-destructive">{message}</p>;
@@ -108,45 +128,52 @@ export function ScopeForm() {
         {status === "success" && estimate ? (
           <motion.div
             key="result"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            variants={resultContainer}
+            initial="hidden"
+            animate="show"
             className="flex flex-col gap-6"
           >
-            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <motion.div
+              variants={resultItem}
+              className="flex items-center gap-2 text-sm font-medium text-muted-foreground"
+            >
               <Sparkles className="size-4" />
               Your rough estimate
-            </div>
+            </motion.div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-xl border bg-background p-4">
+            <motion.div variants={resultContainer} className="grid gap-4 sm:grid-cols-2">
+              <motion.div variants={statPop} className="rounded-xl border bg-background p-4">
                 <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                   Timeline
                 </p>
                 <p className="mt-1 text-sm font-semibold text-foreground">{estimate.timeline}</p>
-              </div>
-              <div className="rounded-xl border bg-background p-4">
+              </motion.div>
+              <motion.div variants={statPop} className="rounded-xl border bg-background p-4">
                 <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                   Rough budget range
                 </p>
                 <p className="mt-1 text-sm font-semibold text-foreground">{estimate.budgetRange}</p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={resultItem}>
               <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Likely engagement
               </p>
               <p className="mt-1 text-sm text-foreground">{estimate.engagementType}</p>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={resultItem}>
               <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 How we&apos;d phase it
               </p>
-              <ol className="flex flex-col gap-2">
+              <motion.ol variants={phaseList} className="flex flex-col gap-2">
                 {estimate.phases.map((phase, i) => (
-                  <li key={phase.name} className="flex gap-3 rounded-lg border bg-background p-3">
+                  <motion.li
+                    key={phase.name}
+                    variants={resultItem}
+                    className="flex gap-3 rounded-lg border bg-background p-3"
+                  >
                     <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-foreground">
                       {i + 1}
                     </span>
@@ -154,21 +181,23 @@ export function ScopeForm() {
                       <p className="text-sm font-medium text-foreground">{phase.name}</p>
                       <p className="text-sm text-muted-foreground">{phase.description}</p>
                     </div>
-                  </li>
+                  </motion.li>
                 ))}
-              </ol>
-            </div>
+              </motion.ol>
+            </motion.div>
 
-            <div>
+            <motion.div variants={resultItem}>
               <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Our take
               </p>
               <p className="mt-1 text-sm text-foreground">{estimate.recommendations}</p>
-            </div>
+            </motion.div>
 
-            <p className="text-xs italic text-muted-foreground">{estimate.caveats}</p>
+            <motion.p variants={resultItem} className="text-xs italic text-muted-foreground">
+              {estimate.caveats}
+            </motion.p>
 
-            <div className="flex flex-wrap items-center gap-3 border-t pt-4">
+            <motion.div variants={resultItem} className="flex flex-wrap items-center gap-3 border-t pt-4">
               <AntiMetalButton href="/contact" label="Turn this into a real scope" />
               <button
                 type="button"
@@ -178,7 +207,7 @@ export function ScopeForm() {
                 <RotateCcw className="size-3.5" />
                 Start over
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col gap-5">

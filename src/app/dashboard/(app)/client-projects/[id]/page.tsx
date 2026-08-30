@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 import { getClientProjectByIdForDashboard } from "@/lib/data/dashboard";
+import { getSignedFileUrl } from "@/lib/storage";
 import { ClientProjectDetail } from "./client-project-detail";
 
 export default async function ClientProjectDetailPage({
@@ -17,5 +18,11 @@ export default async function ClientProjectDetailPage({
   const protocol = host?.startsWith("localhost") ? "http" : "https";
   const statusUrl = `${protocol}://${host}/status/${project.statusToken}`;
 
-  return <ClientProjectDetail project={project} statusUrl={statusUrl} />;
+  const files = await Promise.all(
+    project.files.map(async (file) => ({ ...file, url: await getSignedFileUrl(file.storagePath) })),
+  );
+
+  return (
+    <ClientProjectDetail project={{ ...project, files }} statusUrl={statusUrl} />
+  );
 }

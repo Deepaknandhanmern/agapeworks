@@ -2,11 +2,13 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
 import { NotificationAlertDialog } from '@/components/ui/notification-alert-dialog';
+import { SiteBanner } from '@/components/sections/site-banner';
 import { createPortal } from 'react-dom';
 import {
 	NavigationMenu,
@@ -104,6 +106,12 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 									Schedule a demo
 								</a>
 							</p>
+							<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
+								Have a Vahi account?{' '}
+								<a href="/vahi/login" className={cn('font-medium hover:underline', dark ? 'text-white' : 'text-foreground')}>
+									Sign in
+								</a>
+							</p>
 						</div>
 					</NavigationMenuContent>
 				</NavigationMenuItem>
@@ -132,8 +140,8 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 					</a>
 				</NavigationMenuLink>
 				<NavigationMenuLink className="px-4" asChild>
-					<a href="/contact" className={cn('rounded-md p-2', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}>
-						Contact
+					<a href="/products" className={cn('rounded-md p-2', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}>
+						Products
 					</a>
 				</NavigationMenuLink>
 			</NavigationMenuList>
@@ -144,6 +152,8 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {}) {
 	const [open, setOpen] = React.useState(false);
 	const dark = variant === 'dark';
+	const pathname = usePathname();
+	const isHome = pathname === '/';
 
 	React.useEffect(() => {
 		if (open) {
@@ -158,6 +168,10 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 
 	return (
 		<>
+			{/* Shown on every page except home — the home page's hero is its own
+			    distinct opening moment and doesn't need a banner competing with it. */}
+			{!isHome && <SiteBanner />}
+
 			{/* Mobile: plain bar (non-sticky, scrolls with the page) + full-screen drawer */}
 			<header
 				className={cn('relative z-50 w-full border-b md:hidden', {
@@ -196,10 +210,40 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 							{companyLinks.map((link) => (
 								<ListItem key={link.title} {...link} dark={dark} />
 							))}
+							<div className="mt-2 flex flex-col gap-1 border-t pt-2" style={{ borderColor: dark ? 'rgba(255,255,255,0.1)' : undefined }}>
+								<a
+									href="/portfolio"
+									className={cn('rounded-md p-2 text-sm font-medium', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}
+								>
+									Digital Experiences
+								</a>
+								<a
+									href="/products"
+									className={cn('rounded-md p-2 text-sm font-medium', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}
+								>
+									Products
+								</a>
+								<a
+									href="/vahi/login"
+									className={cn('rounded-md p-2 text-sm font-medium', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}
+								>
+									Vahi sign in
+								</a>
+							</div>
 						</div>
 					</NavigationMenu>
 					<div className="flex flex-col gap-2">
-						<Button className={cn('w-full', dark && 'bg-white text-black hover:bg-neutral-200')}>Get Started</Button>
+						<div className="flex gap-2">
+							<Button asChild variant="outline" className={cn('flex-1', dark && 'border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white')}>
+								<Link href="/signin">Sign In</Link>
+							</Button>
+							<Button asChild variant="outline" className={cn('flex-1', dark && 'border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white')}>
+								<Link href="/signup">Sign Up</Link>
+							</Button>
+						</div>
+						<Button asChild className={cn('w-full', dark && 'bg-white text-black hover:bg-neutral-200')}>
+							<Link href="/contact">Contact</Link>
+						</Button>
 					</div>
 				</MobileMenu>
 			</header>
@@ -223,8 +267,13 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 						<DesktopNavLinks dark />
 					</motion.div>
 
-					<motion.div variants={fadeVariants} className="flex shrink-0 items-center">
-						<Button className="rounded-full bg-white px-6 py-3 text-black hover:bg-neutral-200">Get Started</Button>
+					<motion.div variants={fadeVariants} className="flex shrink-0 items-center gap-4">
+						<Link href="/signin" className="text-sm font-medium text-white/70 transition-colors hover:text-white">
+							Sign In
+						</Link>
+						<Button asChild className="rounded-full bg-white px-6 py-3 text-black hover:bg-neutral-200">
+							<Link href="/contact">Contact</Link>
+						</Button>
 					</motion.div>
 				</motion.div>
 			) : (
@@ -246,9 +295,14 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 							<DesktopNavLinks />
 						</motion.div>
 
-						<motion.div variants={fadeVariants} className="flex shrink-0 items-center gap-2 pr-1">
+						<motion.div variants={fadeVariants} className="flex shrink-0 items-center gap-3 pr-1">
 							<NotificationAlertDialog />
-							<Button>Get Started</Button>
+							<Link href="/signin" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+								Sign In
+							</Link>
+							<Button asChild>
+								<Link href="/contact">Contact</Link>
+							</Button>
 						</motion.div>
 					</motion.nav>
 				</div>

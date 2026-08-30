@@ -1,10 +1,17 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, FileText, Download } from "lucide-react";
 import { getClientProjectByToken } from "@/lib/data/status-page";
+import { getSignedFileUrl } from "@/lib/storage";
 import { PHASES } from "@/lib/client-project-phases";
 import { CommentForm } from "./comment-form";
+
+function formatFileSize(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 function PhaseStepper({ currentPhase }: { currentPhase: string }) {
   const currentIndex = PHASES.indexOf(currentPhase as (typeof PHASES)[number]);
@@ -48,6 +55,10 @@ export default async function StatusPage({ params }: { params: Promise<{ token: 
   const { token } = await params;
   const project = await getClientProjectByToken(token);
   if (!project) notFound();
+
+  const files = await Promise.all(
+    project.files.map(async (file) => ({ ...file, url: await getSignedFileUrl(file.storagePath) })),
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -94,6 +105,37 @@ export default async function StatusPage({ params }: { params: Promise<{ token: 
             </ul>
           )}
         </div>
+
+        {files.length > 0 && (
+          <div>
+            <h2 className="mb-3 text-sm font-semibold text-foreground">Files</h2>
+            <ul className="flex flex-col gap-2">
+              {files.map((file) => (
+                <li
+                  key={file.id}
+                  className="flex items-center gap-3 rounded-xl border bg-card p-4"
+                >
+                  <FileText className="size-4 shrink-0 text-muted-foreground" />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-foreground">{file.fileName}</p>
+                    <p className="text-xs text-muted-foreground">{formatFileSize(file.sizeBytes)}</p>
+                  </div>
+                  {file.url ? (
+                    <a
+                      href={file.url}
+                      className="flex shrink-0 items-center gap-1.5 text-sm font-medium text-foreground hover:underline"
+                    >
+                      <Download className="size-3.5" />
+                      Download
+                    </a>
+                  ) : (
+                    <span className="shrink-0 text-xs text-muted-foreground">Unavailable</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div>
           <h2 className="mb-3 text-sm font-semibold text-foreground">Leave feedback</h2>
