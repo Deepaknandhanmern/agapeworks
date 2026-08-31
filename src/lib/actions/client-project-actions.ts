@@ -33,7 +33,12 @@ export async function createClientProjectAction(
     return { error: parsed.error.issues[0]?.message ?? "Invalid submission." };
   }
 
-  const project = await db.clientProject.create({ data: parsed.data });
+  // Normalized so it matches whatever casing the client later types into the
+  // client-portal sign-in form (src/lib/client-portal/auth.ts does the same
+  // normalization on that side).
+  const project = await db.clientProject.create({
+    data: { ...parsed.data, clientEmail: parsed.data.clientEmail.trim().toLowerCase() },
+  });
   revalidatePath("/dashboard/client-projects");
   redirect(`/dashboard/client-projects/${project.id}`);
 }

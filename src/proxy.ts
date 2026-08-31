@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { SESSION_COOKIE, isValidSessionToken } from "@/lib/session-token";
 import { VAHI_SESSION_COOKIE, verifyVahiSessionToken } from "@/lib/vahi/session-token";
+import { CLIENT_SESSION_COOKIE, verifyClientSessionToken } from "@/lib/client-portal/session-token";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -34,6 +35,18 @@ export function proxy(request: NextRequest) {
       const loginUrl = new URL("/vahi/login", request.url);
       loginUrl.searchParams.set("next", pathname);
       return NextResponse.redirect(loginUrl);
+    }
+    return NextResponse.next();
+  }
+
+  if (pathname.startsWith("/client")) {
+    if (pathname === "/client/verify") {
+      return NextResponse.next();
+    }
+
+    const token = request.cookies.get(CLIENT_SESSION_COOKIE)?.value;
+    if (!secret || !verifyClientSessionToken(token, secret)) {
+      return NextResponse.redirect(new URL("/signin", request.url));
     }
     return NextResponse.next();
   }

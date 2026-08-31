@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { DotPattern } from "@/components/ui/dot-pattern";
@@ -50,12 +52,14 @@ const partnerTypes = [
     title: "Agencies (white-label)",
     description:
       "Need overflow engineering capacity without growing headcount? We work behind your brand, reporting to you — your client only ever sees you.",
+    href: "/partner-program",
   },
   {
     icon: Handshake,
     title: "Referral partners",
     description:
-      "Consultants and advisors who send us clients get a fair, transparent referral arrangement — ask us for the details.",
+      "Consultants and advisors who send us clients get a fair, transparent referral arrangement — see how the program works.",
+    href: "/partner-program",
   },
 ];
 
@@ -116,7 +120,7 @@ export default function CollaborationPage() {
               </p>
             </div>
             <div className="grid gap-6 sm:grid-cols-3">
-              {partnerTypes.map(({ icon: Icon, title, description }) => (
+              {partnerTypes.map(({ icon: Icon, title, description, href }) => (
                 <div
                   key={title}
                   className="flex flex-col gap-3 rounded-xl border bg-card p-6 shadow-sm"
@@ -126,6 +130,15 @@ export default function CollaborationPage() {
                   </div>
                   <h3 className="font-semibold text-foreground">{title}</h3>
                   <p className="text-sm leading-6 text-muted-foreground">{description}</p>
+                  {href && (
+                    <Link
+                      href={href}
+                      className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:underline"
+                    >
+                      See the partner program
+                      <ArrowRight className="size-3.5" />
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>

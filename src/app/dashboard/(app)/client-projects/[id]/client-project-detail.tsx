@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect, useRef, useState, useTransition } from "react";
 import { Check, Copy, FileText, Download, Trash2 } from "lucide-react";
-import { toast } from "sonner";
+import { notify } from "@/components/ui/toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -70,7 +70,7 @@ function PhaseSelector({ id, currentPhase }: { id: string; currentPhase: string 
             startTransition(async () => {
               await setPhaseAction(id, phase);
               playChime();
-              toast.success(`Phase updated to ${phase}`);
+              notify.success(`Phase updated to ${phase}`);
             })
           }
           className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
@@ -94,7 +94,7 @@ function PostUpdateForm({ id }: { id: string }) {
   useEffect(() => {
     if (wasPending.current && !pending && !state?.error) {
       playChime();
-      toast.success("Update posted — client notified");
+      notify.success("Update posted — client notified", { title: "Client notified" });
     }
     wasPending.current = pending;
   }, [pending, state]);
@@ -132,7 +132,7 @@ function UploadFileForm({ id }: { id: string }) {
   useEffect(() => {
     if (wasPending.current && !pending && !state?.error) {
       playChime();
-      toast.success("File uploaded");
+      notify.success("File uploaded");
       formRef.current?.reset();
     }
     wasPending.current = pending;
@@ -189,7 +189,7 @@ function FilesSection({ id, files }: { id: string; files: FullClientProject["fil
                     setDeletingId(file.id);
                     await deleteFileAction(id, file.id);
                     playChime();
-                    toast.success("File deleted");
+                    notify.warning("File deleted");
                   })
                 }
                 className="shrink-0 text-muted-foreground hover:text-destructive disabled:opacity-50"

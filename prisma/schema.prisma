@@ -44,6 +44,13 @@ model Project {
   updatedAt   DateTime @updatedAt
 }
 
+// Footer "Stay Connected" signup (src/components/ui/footer-section.tsx).
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
 model Enquiry {
   id          String   @id @default(cuid())
   name        String
@@ -76,9 +83,19 @@ model ClientProject {
   statusToken String   @unique @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  // Set when the client opens /client/[id] in the client portal — compared
+  // against the latest update/file createdAt to show an unread indicator on
+  // /client. Unrelated to the token-based /status/[token] page, which has
+  // no concept of a returning, identified visitor.
+  clientLastViewedAt DateTime?
   updates     ProjectUpdate[]
   comments    ProjectComment[]
   files       ProjectFile[]
+
+  // The client portal's primary query (src/lib/data/client-portal.ts) looks
+  // up all projects by clientEmail — normalized lowercase on write, so an
+  // exact-value index still serves the case-insensitive query.
+  @@index([clientEmail])
 }
 
 // "What shipped this week" entries on a client's status page — posted from

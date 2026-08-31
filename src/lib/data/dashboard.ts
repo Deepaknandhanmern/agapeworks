@@ -248,6 +248,11 @@ export async function getClientProjectByIdForDashboard(id: string) {
   });
 }
 
+export async function getAllNewsletterSubscribersForDashboard() {
+  await requireAuth();
+  return db.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } });
+}
+
 export async function getAllBillingAccountsForDashboard() {
   await requireAuth();
   return db.billingAccount.findMany({

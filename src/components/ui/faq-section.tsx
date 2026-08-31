@@ -42,8 +42,20 @@ const faqs = [
 ];
 
 function FAQ() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
     <div className="w-full py-20 lg:py-32">
+      {/* eslint-disable-next-line react/no-danger -- static JSON we authored above, not user input */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto w-full max-w-5xl px-4">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="flex flex-col gap-6">

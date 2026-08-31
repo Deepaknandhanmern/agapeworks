@@ -21,6 +21,11 @@ const quickLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+];
+
 // Same facts as the contact page's own contactPoints — kept as plain text
 // here (a footer isn't the place to duplicate its icon-card treatment).
 const contactPoints = [
@@ -39,12 +44,28 @@ const socialLinks = [
 
 function Footerdemo() {
   const [subscribed, setSubscribed] = React.useState(false);
+  const [error, setError] = React.useState("");
 
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // No newsletter list is wired up yet — this just gives real feedback
-    // instead of silently doing nothing when clicked.
-    setSubscribed(true);
+    setError("");
+
+    const email = new FormData(e.currentTarget).get("email");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        setError(json.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+      setSubscribed(true);
+    } catch {
+      setError("Couldn't reach the server. Please try again.");
+    }
   };
 
   return (
@@ -60,7 +81,13 @@ function Footerdemo() {
               <p className="text-sm font-medium text-foreground">Thanks — you&apos;re on the list.</p>
             ) : (
               <form onSubmit={handleSubscribe} className="relative">
-                <Input type="email" placeholder="Enter your email" required className="pr-12 backdrop-blur-sm" />
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  required
+                  className="pr-12 backdrop-blur-sm"
+                />
                 <Button
                   type="submit"
                   size="icon"
@@ -69,6 +96,7 @@ function Footerdemo() {
                   <Send className="h-4 w-4" />
                   <span className="sr-only">Subscribe</span>
                 </Button>
+                {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
               </form>
             )}
             <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
@@ -120,7 +148,14 @@ function Footerdemo() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t pt-8 text-center">
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 border-t pt-8 text-center">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            {legalLinks.map((link) => (
+              <Link key={link.label} href={link.href} className="transition-colors hover:text-primary">
+                {link.label}
+              </Link>
+            ))}
+          </div>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Agape Works. All rights reserved.
           </p>

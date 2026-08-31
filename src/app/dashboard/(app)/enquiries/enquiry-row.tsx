@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { toast } from "sonner";
+import { notify } from "@/components/ui/toast";
 import type { Enquiry } from "@/generated/prisma/client";
 import { Button } from "@/components/ui/button";
 import { setEnquiryStatusAction } from "@/lib/actions/enquiry-actions";
@@ -79,7 +79,7 @@ export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
               startTransition(async () => {
                 await setEnquiryStatusAction(enquiry.id, "read");
                 playChime();
-                toast.success(`Marked ${enquiry.name}'s enquiry as read`);
+                notify.success(`Marked ${enquiry.name}'s enquiry as read`);
               })
             }
           >
@@ -96,7 +96,7 @@ export function EnquiryRow({ enquiry }: { enquiry: Enquiry }) {
               startTransition(async () => {
                 await setEnquiryStatusAction(enquiry.id, "archived");
                 playChime();
-                toast.success(`Archived ${enquiry.name}'s enquiry`);
+                notify.warning(`Archived ${enquiry.name}'s enquiry`);
               })
             }
           >

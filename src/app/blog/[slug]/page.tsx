@@ -26,6 +26,18 @@ export async function generateMetadata({
   return {
     title: `${post.title} — Agape Works`,
     description: post.description,
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      authors: [post.author],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
   };
 }
 
@@ -51,8 +63,20 @@ export default async function BlogPostPage({
     components: mdxComponents,
   });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    author: { "@type": "Person", name: post.author },
+    publisher: { "@type": "Organization", name: "Agape Works" },
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      {/* eslint-disable-next-line react/no-danger -- static JSON built from this post's own frontmatter above, not raw user input */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
 
       <main className="flex-1">

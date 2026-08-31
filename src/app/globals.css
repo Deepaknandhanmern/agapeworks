@@ -83,12 +83,14 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* Homepage-only "three color" theme: white, black, and the lime accent
-   (#d1f140) — no other hues. Scoped to .home-theme (src/app/page.tsx) so
-   the rest of the site keeps its default neutral palette while this is
-   tried out. Neutral surfaces (muted/border/sidebar) are black at reduced
-   opacity rather than a fourth gray, and the accent is reserved for the
-   things that should pop: rings, highlighted charts, hover accents. */
+/* Homepage-only "three color" theme: white, black, and an amber/gold
+   accent (#fcd34d — the same amber-300 already used deliberately for
+   Sellara's branding) — no other hues. Scoped to .home-theme
+   (src/app/page.tsx) so the rest of the site keeps its default neutral
+   palette while this is tried out. Neutral surfaces (muted/border/sidebar)
+   are black at reduced opacity rather than a fourth gray, and the accent
+   is reserved for the things that should pop: rings, highlighted charts,
+   hover accents. */
 .home-theme {
   --background: #ffffff;
   --foreground: #000000;
@@ -102,12 +104,12 @@
   --secondary-foreground: #000000;
   --muted: rgba(0, 0, 0, 0.04);
   --muted-foreground: rgba(0, 0, 0, 0.6);
-  --accent: #d1f140;
+  --accent: #fcd34d;
   --accent-foreground: #000000;
   --border: rgba(0, 0, 0, 0.12);
   --input: rgba(0, 0, 0, 0.12);
-  --ring: #d1f140;
-  --chart-1: #d1f140;
+  --ring: #fcd34d;
+  --chart-1: #fcd34d;
   --chart-2: #000000;
   --chart-3: rgba(0, 0, 0, 0.7);
   --chart-4: rgba(0, 0, 0, 0.45);
@@ -116,10 +118,10 @@
   --sidebar-foreground: #000000;
   --sidebar-primary: #000000;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #d1f140;
+  --sidebar-accent: #fcd34d;
   --sidebar-accent-foreground: #000000;
   --sidebar-border: rgba(0, 0, 0, 0.12);
-  --sidebar-ring: #d1f140;
+  --sidebar-ring: #fcd34d;
 }
 
 @layer base {
@@ -310,49 +312,6 @@
     animation: none;
     opacity: 1;
     filter: none;
-    transform: none;
-  }
-}
-
-/* Scroll-reel testimonials: per-character rise-in and whole-block exit. */
-@keyframes scroll-reel-char-rise {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scroll-reel-exit {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-12px);
-  }
-}
-
-.scroll-reel-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(12px);
-  animation: scroll-reel-char-rise 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.scroll-reel-exit {
-  animation: scroll-reel-exit 200ms cubic-bezier(0.4, 0, 1, 1) forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reel-char,
-  .scroll-reel-exit {
-    animation: none;
-    opacity: 1;
     transform: none;
   }
 }

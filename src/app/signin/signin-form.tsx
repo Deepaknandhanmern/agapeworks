@@ -1,25 +1,39 @@
 "use client";
 
-import { SignInPage } from "@/components/ui/sign-in";
+import { useActionState } from "react";
+import { Mail, CheckCircle2 } from "lucide-react";
+import { requestLoginLinkAction } from "@/lib/client-portal/actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-// UI only — no account system exists yet on the main site (this was built
-// ahead of that decision, per the user's "first do the UI alone" request).
-// Wire this up to real auth once what an account is actually for is decided.
 export function SignInForm() {
-  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
+  const [state, formAction, pending] = useActionState(requestLoginLinkAction, undefined);
+
+  if (state?.success) {
+    return (
+      <div className="flex flex-col items-center gap-3 text-center">
+        <CheckCircle2 className="size-10 text-[#006300]" />
+        <p className="text-sm text-muted-foreground">{state.success}</p>
+      </div>
+    );
+  }
 
   return (
-    <SignInPage
-      title={<span className="font-light tracking-tighter text-foreground">Welcome back</span>}
-      description="Sign in to your Agape Works account."
-      heroImageSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop"
-      onSignIn={handleSignIn}
-      onCreateAccount={() => {
-        window.location.href = "/signup";
-      }}
-      submitLabel="Sign In"
-    />
+    <form action={formAction} className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" name="email" type="email" placeholder="you@company.com" autoFocus required />
+      </div>
+      {state?.error && <p className="text-sm text-destructive">{state.error}</p>}
+      <Button type="submit" disabled={pending} className="mt-2">
+        {pending ? "Sending..." : "Email me a sign-in link"}
+      </Button>
+      <p className="flex items-start gap-1.5 text-xs text-muted-foreground">
+        <Mail className="mt-0.5 size-3.5 shrink-0" />
+        If that email has a project with Agape Works, you&apos;ll get a link to sign in — no
+        password needed.
+      </p>
+    </form>
   );
 }
