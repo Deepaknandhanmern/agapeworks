@@ -52,7 +52,7 @@ export function proxy(request: NextRequest) {
   }
 
   if (pathname.startsWith("/dashboard")) {
-    if (pathname === "/dashboard/login") {
+    if (pathname === "/dashboard/login" || pathname === "/dashboard/login/verify") {
       return NextResponse.next();
     }
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { Footerdemo } from "@/components/ui/footer-section";
 import { AnnouncementToast } from "@/components/sections/announcement-toast";
+import { WedlyTeaser } from "@/components/sections/wedly-teaser";
 import { ConciergeChat } from "@/components/sections/concierge-chat";
 import { GoogleAnalytics } from "@/components/sections/google-analytics";
 import { BackToTopButton } from "@/components/ui/back-to-top-button";
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Footerdemo />
         <AnnouncementToast />
+        <WedlyTeaser />
         <ConciergeChat />
         <BackToTopButton />
       </body>

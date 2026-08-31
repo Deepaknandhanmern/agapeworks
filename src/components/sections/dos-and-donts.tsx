@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
-import Switch from "@/components/ui/star-wars-toggle-switch";
+import Switch from "@/components/ui/simple-toggle";
 
 const dos = [
   "Senior engineers scope and build your project — the same people, start to finish.",

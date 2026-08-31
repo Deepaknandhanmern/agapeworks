@@ -8,6 +8,8 @@ import {
   createSessionToken,
   isValidSessionToken,
 } from "@/lib/session-token";
+import { TOTP_PENDING_COOKIE, PENDING_DURATION_MS, createPendingToken, isValidPendingToken } from "@/lib/totp-pending-token";
+import { verifyTotp } from "@/lib/totp";
 
 function getSessionSecret(): string {
   const secret = process.env.SESSION_SECRET;
@@ -57,4 +59,38 @@ export async function requireAuth(): Promise<void> {
   if (!(await isAuthenticated())) {
     throw new Error("Unauthorized");
   }
+}
+
+/** 2FA is opt-in — off entirely until this env var is set. */
+export function isTotpEnabled(): boolean {
+  return !!process.env.ADMIN_TOTP_SECRET;
+}
+
+/** Sets the short-lived "password step passed" cookie. Call only after verifyPassword succeeds. */
+export async function createPendingTotpSession(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.set(TOTP_PENDING_COOKIE, createPendingToken(getSessionSecret()), {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: PENDING_DURATION_MS / 1000,
+  });
+}
+
+export async function destroyPendingTotpSession(): Promise<void> {
+  const cookieStore = await cookies();
+  cookieStore.delete(TOTP_PENDING_COOKIE);
+}
+
+export async function hasPendingTotpSession(): Promise<boolean> {
+  const cookieStore = await cookies();
+  return isValidPendingToken(cookieStore.get(TOTP_PENDING_COOKIE)?.value, getSessionSecret());
+}
+
+/** Verifies a submitted 6-digit code against ADMIN_TOTP_SECRET. */
+export function verifyTotpCode(code: string): boolean {
+  const secret = process.env.ADMIN_TOTP_SECRET;
+  if (!secret) return false;
+  return verifyTotp(secret, code);
 }
