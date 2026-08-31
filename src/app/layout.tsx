@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Montserrat } from "next/font/google";
-import { CinematicFooter } from "@/components/ui/motion-footer";
+import { Footerdemo } from "@/components/ui/footer-section";
 import { AnnouncementToast } from "@/components/sections/announcement-toast";
 import { ConciergeChat } from "@/components/sections/concierge-chat";
+import { GoogleAnalytics } from "@/components/sections/google-analytics";
 import { BackToTopButton } from "@/components/ui/back-to-top-button";
 import "./globals.css";
 
@@ -35,8 +36,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistMono.variable} ${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <GoogleAnalytics />
         {children}
-        <CinematicFooter />
+        <Footerdemo />
         <AnnouncementToast />
         <ConciergeChat />
         <BackToTopButton />

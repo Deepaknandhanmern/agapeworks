@@ -1,63 +1,64 @@
-import { readexPro } from "@/lib/hero-fonts";
+import { readexPro, silkscreen } from "@/lib/hero-fonts";
 import { Header } from "@/components/ui/header-3";
+import { HeroStat } from "@/components/sections/hero-stat";
 
+// Cinematic video hero — full-bleed looping video behind a single centered
+// composition (headline, subhead, CTA) with a real-stats footer. Uses the
+// site's shared Header (dark variant) for nav, same as every other page —
+// this section deliberately does not introduce a second nav system.
 export function AgapeHero() {
   return (
     <section
-      className={`${readexPro.className} relative h-screen w-full overflow-hidden bg-black text-white antialiased`}
+      className={`${readexPro.className} relative flex h-screen w-full flex-col overflow-hidden bg-black text-white antialiased`}
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
-        loop
         muted
+        loop
         playsInline
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4"
+        aria-hidden="true"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
       />
+      {/* Wash for text legibility across the whole viewport, heavier toward the bottom where the stats footer sits */}
+      <div className="pointer-events-none absolute inset-0 bg-black/35" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 to-transparent" />
 
-      <Header variant="dark" />
+      <div className="relative z-10 flex h-full flex-col">
+        <Header variant="dark" />
 
-      <div className="relative h-full w-full">
-        <h1 className="absolute left-4 top-[18%] text-[14vw] font-medium leading-[0.95] tracking-[-0.04em] text-white md:left-10 md:text-[13vw]">
-          build
-        </h1>
-        <h1 className="absolute right-4 top-[38%] text-[14vw] font-medium leading-[0.95] tracking-[-0.04em] text-white md:right-10 md:text-[13vw]">
-          with
-        </h1>
-        <h1 className="absolute left-[18%] top-[58%] text-[14vw] font-medium leading-[0.95] tracking-[-0.04em] text-white md:left-[28%] md:text-[13vw]">
-          care
-        </h1>
+        <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+          <h1
+            className={`${silkscreen.className} text-balance text-[13vw] leading-[1.05] tracking-tight sm:text-[9vw] md:text-[clamp(28px,6.2vw,80px)] md:tracking-[-0.02em]`}
+          >
+            <span className="block">Software, built</span>
+            <span className="block">with genuine care.</span>
+          </h1>
 
-        <p className="absolute left-6 top-[46%] max-w-[240px] text-[15px] leading-snug text-white/90 md:left-10">
-          we partner with founders to design, build, and ship software that holds up under real users
-        </p>
+          <p className="mt-6 max-w-md text-balance text-base leading-relaxed text-white/80 md:mt-8 md:max-w-lg md:text-lg">
+            A small team of senior engineers who design, build, and ship software that holds up
+            under real users.
+          </p>
 
-        <div className="absolute right-6 top-[14%] md:right-24">
-          <div className="flex items-center justify-end gap-3">
-            <div className="hidden h-px w-24 rotate-[20deg] bg-white/40 md:block" />
-            <span className="text-4xl font-medium tracking-tight md:text-5xl">weekly</span>
-          </div>
-          <p className="mt-1 text-right text-xs text-white/70 md:text-sm">ships & demos</p>
+          <a
+            href="/contact"
+            className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5 hover:scale-[1.02] md:mt-10"
+            style={{
+              boxShadow:
+                "0 0 0 1px rgba(255,255,255,0.15), 0 0 22px rgba(255,255,255,0.32), 0 0 44px rgba(255,255,255,0.12)",
+            }}
+          >
+            Get Started
+          </a>
         </div>
 
-        <div className="absolute left-6 bottom-20 md:left-20 md:bottom-24">
-          <div className="flex items-center gap-3">
-            <span className="text-4xl font-medium tracking-tight md:text-5xl">remote</span>
-            <div className="hidden h-px w-24 rotate-[-20deg] bg-white/40 md:block" />
-          </div>
-          <p className="mt-1 text-xs text-white/70 md:text-sm">first, globally distributed</p>
-        </div>
-
-        <div className="absolute right-6 bottom-16 md:right-20 md:bottom-20">
-          <div className="flex items-center justify-end gap-3">
-            <div className="hidden h-px w-24 rotate-[-20deg] bg-white/40 md:block" />
-            <span className="text-4xl font-medium tracking-tight md:text-5xl">5</span>
-          </div>
-          <p className="mt-1 text-right text-xs text-white/70 md:text-sm">regions we deliver in</p>
+        <div className="grid grid-cols-2 gap-6 px-6 pb-10 sm:grid-cols-4 sm:gap-4 md:pb-14">
+          <HeroStat glyph="<" staticValue="2–4" suffix=" wks" label="To first working demo" displayClassName={silkscreen.className} delay={0} />
+          <HeroStat glyph="%" target={100} suffix="%" label="Code ownership, yours" displayClassName={silkscreen.className} delay={80} />
+          <HeroStat glyph="*" target={0} label="Bait-and-switch juniors" displayClassName={silkscreen.className} delay={160} />
+          <HeroStat glyph="#" target={1} suffix="+" label="Senior engineer, every call" displayClassName={silkscreen.className} delay={240} />
         </div>
       </div>
-
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-black" />
     </section>
   );
 }

@@ -12,13 +12,6 @@ const featured = [
     rotate: "",
   },
   {
-    title: "Mobile App Development",
-    description: "Android, iOS, React Native, Flutter, API-driven apps.",
-    icon: Smartphone,
-    bg: "bg-emerald-100",
-    rotate: "",
-  },
-  {
     title: "SaaS Development",
     description: "Multi-tenant platforms, billing, admin panels, and APIs.",
     icon: SquareStack,
@@ -37,6 +30,13 @@ const featured = [
     description: "Social, content, performance campaigns, and brand identity.",
     icon: Megaphone,
     bg: "bg-amber-100",
+    rotate: "",
+  },
+  {
+    title: "Mobile App Development",
+    description: "Android, iOS, React Native, Flutter, API-driven apps.",
+    icon: Smartphone,
+    bg: "bg-emerald-100",
     rotate: "",
   },
 ];

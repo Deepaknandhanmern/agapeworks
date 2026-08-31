@@ -22,6 +22,7 @@ import { services } from "@/lib/services-data";
 import { timelineOptions } from "@/lib/contact-schema";
 import { scopeRequestSchema, type ScopeRequest, type ScopeEstimate } from "@/lib/ai/scope-schema";
 import { useSpeechToText } from "@/lib/use-speech-to-text";
+import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -105,6 +106,7 @@ export function ScopeForm() {
 
       setEstimate(json.estimate);
       setStatus("success");
+      trackEvent("scope_estimate_completed", { service: data.service });
     } catch {
       setErrorMessage("Couldn't reach the server. Please try again.");
       setStatus("error");

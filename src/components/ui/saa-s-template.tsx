@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Header } from "@/components/ui/header-3";
 import { DashboardShowcase } from "@/components/ui/dashboard-showcase";
 import { Features } from "@/components/ui/features-4";
 
@@ -48,91 +49,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
-
-// Navigation Component
-const Navigation = React.memo(() => {
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-
-  return (
-    <header className="fixed top-0 w-full z-50 border-b border-gray-800/50 bg-black/80 backdrop-blur-md">
-      <nav className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <a href="/" className="text-xl font-semibold text-white">
-            Agape Works
-          </a>
-
-          <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <a href="/" className="text-sm text-white/60 hover:text-white transition-colors">
-              Home
-            </a>
-            <a href="/services" className="text-sm text-white/60 hover:text-white transition-colors">
-              Services
-            </a>
-            <a href="/portfolio" className="text-sm text-white/60 hover:text-white transition-colors">
-              Portfolio
-            </a>
-          </div>
-
-          <div className="hidden md:flex items-center gap-4">
-            <Button type="button" variant="ghost" size="sm">
-              Sign in
-            </Button>
-            <Button type="button" variant="default" size="sm">
-              Sign Up
-            </Button>
-          </div>
-
-          <button
-            type="button"
-            className="md:hidden text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </nav>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50 animate-[slideDown_0.3s_ease-out]">
-          <div className="px-6 py-4 flex flex-col gap-4">
-            <a
-              href="/"
-              className="text-sm text-white/60 hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Home
-            </a>
-            <a
-              href="/services"
-              className="text-sm text-white/60 hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Services
-            </a>
-            <a
-              href="/portfolio"
-              className="text-sm text-white/60 hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Portfolio
-            </a>
-            <div className="flex flex-col gap-2 pt-4 border-t border-gray-800/50">
-              <Button type="button" variant="ghost" size="sm">
-                Sign in
-              </Button>
-              <Button type="button" variant="default" size="sm">
-                Sign Up
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-});
-
-Navigation.displayName = "Navigation";
 
 // Hero Component
 const Hero = React.memo(() => {
@@ -244,7 +160,7 @@ Hero.displayName = "Hero";
 export default function SaasTemplate() {
   return (
     <main className="saas-hero-scope min-h-screen w-full overflow-x-hidden bg-black text-white">
-      <Navigation />
+      <Header variant="dark" />
       <Hero />
       <DashboardShowcase />
       <Features />

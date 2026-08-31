@@ -26,6 +26,7 @@ import {
   timelineOptions,
   sourceOptions,
 } from "@/lib/contact-schema";
+import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -94,6 +95,7 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      trackEvent("contact_form_submitted", { service: data.service });
       reset();
       setStep(0);
     } catch {

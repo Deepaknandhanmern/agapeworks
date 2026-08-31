@@ -7,6 +7,7 @@ import { WorldMap } from "@/components/ui/map";
 import { ScrollReelTestimonials } from "@/components/ui/scroll-reel-testimonials";
 import { AgapeHero } from "@/components/sections/agape-hero";
 import Testimonial1 from "@/components/ui/testimonial-1";
+import { FAQ } from "@/components/ui/faq-section";
 import { Gauge, ShieldCheck } from "lucide-react";
 
 const process = [
@@ -199,6 +200,11 @@ export default function Home() {
             </div>
             <ScrollReelTestimonials testimonials={testimonials} />
           </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="border-t">
+          <FAQ />
         </section>
 
         {/* CTA */}

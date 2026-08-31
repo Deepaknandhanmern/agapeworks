@@ -24,6 +24,7 @@ import {
 	Users,
 	Star,
 	Handshake,
+	Sparkles,
 } from 'lucide-react';
 
 // Floating pill nav: pinned/expanded at all times on desktop (md+) — mobile
@@ -95,6 +96,40 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 					</div>
 				</div>
 			</MenuItem>
+			<MenuItem setActive={setActive} active={active} item="Products" dark={dark}>
+				<div className="flex w-[26rem] gap-4">
+					<Link href="/sellara" className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4">
+						<span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
+							<Sparkles className="size-3 text-amber-300" /> Sellara
+						</span>
+						<p
+							className="animate-shimmer bg-clip-text text-lg font-semibold tracking-tight text-transparent"
+							style={{
+								backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.35) 0%, #ffffff 50%, rgba(255,255,255,0.35) 100%)',
+								backgroundSize: '200% auto',
+							}}
+						>
+							Launching soon
+						</p>
+						<span className="mt-1 block text-xs text-white/40 transition-colors group-hover:text-white/70">
+							AI commerce platform →
+						</span>
+					</Link>
+					<div className="flex flex-1 flex-col gap-3">
+						<HoveredLink href="/billing" dark={dark} className="flex flex-col gap-0.5">
+							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Vahi</span>
+							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>GST billing, now available</span>
+						</HoveredLink>
+						<HoveredLink href="/products" dark={dark} className="flex flex-col gap-0.5">
+							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Digital Presence Plan</span>
+							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>Website + hosting, launching soon</span>
+						</HoveredLink>
+						<HoveredLink href="/products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
+							See all products →
+						</HoveredLink>
+					</div>
+				</div>
+			</MenuItem>
 			<MenuItem setActive={setActive} active={active} item="Company" dark={dark}>
 				<div className="flex w-64 flex-col gap-3">
 					{companyLinks.map((item) => (
@@ -110,9 +145,6 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 			</MenuItem>
 			<HoveredLink href="/portfolio" dark={dark} className="font-medium">
 				Digital Experiences
-			</HoveredLink>
-			<HoveredLink href="/products" dark={dark} className="font-medium">
-				Products
 			</HoveredLink>
 		</Menu>
 	);
@@ -351,43 +383,43 @@ function ListItem({
 const mainServiceLinks: LinkItem[] = [
 	{
 		title: 'Web Development',
-		href: '/services',
+		href: '/services/web-development',
 		description: 'Websites, eCommerce, web applications, custom platforms',
 		icon: GlobeIcon,
 	},
 	{
 		title: 'Mobile App Development',
-		href: '/services',
+		href: '/services/mobile-app-development',
 		description: 'Android, iOS, React Native, Flutter, API-driven apps',
 		icon: SmartphoneIcon,
 	},
 	{
 		title: 'SaaS Development',
-		href: '/services',
+		href: '/saas',
 		description: 'Multi-tenant platforms, billing, admin panels and APIs',
 		icon: LayersIcon,
 	},
 	{
 		title: 'AI Solutions',
-		href: '/services',
+		href: '/services/ai-solutions',
 		description: 'Custom AI features, LLM integrations, and automation',
 		icon: BotIcon,
 	},
 	{
 		title: 'E-Commerce Development',
-		href: '/services',
+		href: '/services/ecommerce-development',
 		description: 'Online stores, checkout flows, and payment integrations',
 		icon: ShoppingCartIcon,
 	},
 	{
 		title: 'Custom Software & Automation',
-		href: '/services',
+		href: '/services/custom-software-automation',
 		description: 'Bespoke internal tools and workflow automation',
 		icon: CogIcon,
 	},
 	{
 		title: 'Digital Marketing & Branding',
-		href: '/services',
+		href: '/services/digital-marketing-branding',
 		description: 'Social, content, performance campaigns and brand identity',
 		icon: MegaphoneIcon,
 	},

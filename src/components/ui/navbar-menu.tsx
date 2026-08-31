@@ -47,7 +47,13 @@ export const MenuItem = ({
       {active !== null && (
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={transition}>
           {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 -translate-x-1/2 pt-4">
+            // top-full (not top: 100% + gap) so there's no dead pixel-space
+            // between the trigger and this wrapper — the pt-4 below still
+            // gives the same visual breathing room, but it's now padding
+            // *inside* a continuously-hoverable element instead of an empty
+            // gap the cursor has to cross, which was closing the dropdown
+            // before a pointer could ever reach it.
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
                 layoutId="active-menu"
