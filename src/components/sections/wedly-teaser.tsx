@@ -27,7 +27,12 @@ export function WedlyTeaser() {
     }
   }, []);
 
-  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/status") || pathname?.startsWith("/client")) {
+  if (
+    pathname?.startsWith("/dashboard") ||
+    pathname?.startsWith("/status") ||
+    pathname?.startsWith("/client") ||
+    pathname?.startsWith("/wedly")
+  ) {
     return null;
   }
 

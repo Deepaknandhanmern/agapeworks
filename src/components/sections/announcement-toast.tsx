@@ -25,7 +25,7 @@ export function AnnouncementToast() {
     }
   }, []);
 
-  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/status")) return null;
+  if (pathname?.startsWith("/dashboard") || pathname?.startsWith("/status") || pathname?.startsWith("/wedly")) return null;
 
   const handleDismiss = () => {
     setDismissed(true);

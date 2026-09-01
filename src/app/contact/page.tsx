@@ -23,8 +23,8 @@ const contactPoints = [
   },
   {
     icon: MapPin,
-    label: "Working with",
-    value: "Remote-first, worldwide",
+    label: "Based in",
+    value: "Coimbatore & Chennai, India",
   },
 ];
 

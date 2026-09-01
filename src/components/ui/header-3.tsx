@@ -24,7 +24,7 @@ import {
 	Users,
 	Star,
 	Handshake,
-	Sparkles,
+	Heart,
 } from 'lucide-react';
 
 // Floating pill nav: pinned/expanded at all times on desktop (md+) — mobile
@@ -98,9 +98,9 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 			</MenuItem>
 			<MenuItem setActive={setActive} active={active} item="Products" dark={dark}>
 				<div className="flex w-[26rem] gap-4">
-					<Link href="/sellara" className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4">
+					<Link href="/wedly" className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4">
 						<span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
-							<Sparkles className="size-3 text-amber-300" /> Sellara
+							<Heart className="size-3 text-amber-300" /> Wedly
 						</span>
 						<p
 							className="animate-shimmer bg-clip-text text-lg font-semibold tracking-tight text-transparent"
@@ -112,14 +112,10 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 							Launching soon
 						</p>
 						<span className="mt-1 block text-xs text-white/40 transition-colors group-hover:text-white/70">
-							AI commerce platform →
+							Wedding memories, live →
 						</span>
 					</Link>
 					<div className="flex flex-1 flex-col gap-3">
-						<HoveredLink href="/billing" dark={dark} className="flex flex-col gap-0.5">
-							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Vahi</span>
-							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>GST billing, now available</span>
-						</HoveredLink>
 						<HoveredLink href="/products" dark={dark} className="flex flex-col gap-0.5">
 							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Digital Presence Plan</span>
 							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>Website + hosting, launching soon</span>

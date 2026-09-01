@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Sparkles } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Banner } from "@/components/ui/banner";
 import { Button } from "@/components/ui/button";
 
-const STORAGE_KEY = "agape-site-banner-dismissed";
+// New key (was agape-site-banner-dismissed) — a new banner message deserves
+// a fresh dismiss state, so visitors who already dismissed the old Vahi
+// message still see this one.
+const STORAGE_KEY = "agape-site-banner-dismissed-wedly";
 
 /**
  * Full-width bar shown above the shared Header on every page except home
@@ -39,11 +42,11 @@ export function SiteBanner() {
     <Banner variant="muted" layout="center" isClosable onClose={handleClose} className="text-foreground md:py-2">
       <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
         <p className="flex items-center gap-2 text-sm">
-          <Sparkles className="size-4 shrink-0 opacity-70" aria-hidden="true" />
-          Vahi is live — GST billing built for small businesses.
+          <Heart className="size-4 shrink-0 opacity-70" aria-hidden="true" />
+          Wedly — wedding memories, live — coming soon.
         </p>
         <Button asChild size="sm" className="rounded-full">
-          <a href="/billing">Learn more</a>
+          <a href="/wedly">Learn more</a>
         </Button>
       </div>
     </Banner>
