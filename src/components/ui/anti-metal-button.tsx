@@ -62,7 +62,7 @@ export type AntiMetalButtonProps = SharedProps &
   );
 
 // Renders as <a> when `href` is passed, <button> otherwise. Needed because
-// several call sites navigate on click — nesting this <button> inside a
+// several call sites navigate on click - nesting this <button> inside a
 // <Link>/<a> (the previous approach) is invalid HTML: the browser's parser
 // restructures that during the initial HTML parse, producing a DOM that
 // doesn't match what React expects to hydrate, which throws a hydration

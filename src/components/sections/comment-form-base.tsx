@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 type Status = "idle" | "loading" | "success" | "error";
 
 /**
- * The actual comment form (fields, loading/error/success state) — the
+ * The actual comment form (fields, loading/error/success state) - the
  * status page (token-based) and the client portal (session-based) post
  * comments through different endpoints, but the form itself is identical,
  * so only `onSubmit` differs between the two thin wrappers that use this.
@@ -53,7 +53,7 @@ export function CommentFormBase({
     return (
       <div className="flex items-center gap-2 rounded-xl border bg-card p-4 text-sm text-foreground">
         <CheckCircle2 className="size-4 text-[#006300]" />
-        Feedback sent — thanks!
+        Feedback sent - thanks!
         <button
           type="button"
           onClick={() => setStatus("idle")}
@@ -82,7 +82,7 @@ export function CommentFormBase({
         <Textarea
           id="message"
           name="message"
-          placeholder="Looks great — one thing I noticed is..."
+          placeholder="Looks great - one thing I noticed is..."
           className="min-h-24 resize-none"
           required
         />

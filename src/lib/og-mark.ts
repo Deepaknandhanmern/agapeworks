@@ -1,7 +1,7 @@
 import "server-only";
 
 // Shared between src/app/opengraph-image.tsx and
-// src/app/blog/[slug]/opengraph-image.tsx — the real Agape Works mark (same
+// src/app/blog/[slug]/opengraph-image.tsx - the real Agape Works mark (same
 // crop as the favicon), embedded as a data URI since next/og's Satori
 // renderer can't read local files at request time.
 export const OG_MARK_DATA_URI =

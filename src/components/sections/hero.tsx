@@ -24,7 +24,7 @@ export function Hero() {
           Consulting &amp; product engineering
         </div>
         <h1 className="text-balance text-4xl font-bold tracking-tight text-slate-950 dark:text-white sm:text-6xl">
-          Work, done with agape — deliberate care that shows in the product.
+          Work, done with agape - deliberate care that shows in the product.
         </h1>
         <p className="max-w-xl text-balance text-lg leading-7 font-light text-slate-700 dark:text-neutral-300">
           Agape Works partners with founders and product teams to plan, build, and ship

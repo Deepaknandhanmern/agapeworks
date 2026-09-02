@@ -19,7 +19,7 @@ import {
   sellaraPlans,
 } from "@/lib/sellara-data";
 
-// Placeholder brand name — see the comment at the top of sellara-data.ts.
+// Placeholder brand name - see the comment at the top of sellara-data.ts.
 const PRODUCT_NAME = "Sellara";
 
 const fadeUp = {
@@ -161,7 +161,7 @@ function Hero() {
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/70"
         >
           <Sparkles className="size-3.5 text-amber-300" />
-          An Agape Works product — early access
+          An Agape Works product - early access
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -178,7 +178,7 @@ function Hero() {
           className="mt-6 max-w-xl text-balance text-lg leading-7 text-white/60"
         >
           {PRODUCT_NAME} gives merchants a premium storefront, an AI shopping assistant for
-          customers, and AI-generated content and support — all in one platform.
+          customers, and AI-generated content and support - all in one platform.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -263,7 +263,7 @@ function ChatDemo() {
   );
 }
 
-// Small local hook — this page doesn't otherwise depend on a scroll library,
+// Small local hook - this page doesn't otherwise depend on a scroll library,
 // and Framer's `whileInView` doesn't expose a plain boolean for effects.
 function useInView(ref: React.RefObject<HTMLElement | null>) {
   const [inView, setInView] = React.useState(false);
@@ -295,7 +295,7 @@ function AICommerceSection() {
           </h2>
           <p className="mt-4 max-w-md text-white/60">
             Every {PRODUCT_NAME} store ships with an AI shopping assistant grounded in the
-            merchant&apos;s real catalog — prices, stock, sizes, and policies. It recommends,
+            merchant&apos;s real catalog - prices, stock, sizes, and policies. It recommends,
             compares, and guides customers to checkout. It never invents a product.
           </p>
           <ul className="mt-6 flex flex-col gap-2 text-sm text-white/50">
@@ -360,7 +360,7 @@ function StoreBuilderSection() {
             Tell it what you want. Watch the store change.
           </h2>
           <p className="mt-4 text-white/60">
-            The builder isn&apos;t a form with fields — it&apos;s a conversation. Try one of these
+            The builder isn&apos;t a form with fields - it&apos;s a conversation. Try one of these
             real prompts merchants use.
           </p>
         </Reveal>
@@ -412,7 +412,7 @@ function StorefrontShowcase() {
             Storefronts that feel expensive to make.
           </h2>
           <p className="mt-4 text-white/60">
-            Real interactions, not screenshots — hover the cards below.
+            Real interactions, not screenshots - hover the cards below.
           </p>
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-3">
@@ -496,7 +496,7 @@ function PricingSection() {
             One payment. Own it for life.
           </h2>
           <p className="mt-4 text-white/60">
-            No monthly platform fee, ever. AI usage stays metered — each plan includes a monthly
+            No monthly platform fee, ever. AI usage stays metered - each plan includes a monthly
             AI credit allowance, with top-up packs available anytime you need more.
           </p>
         </Reveal>
@@ -539,7 +539,7 @@ function PricingSection() {
         </div>
         <p className="mx-auto mt-8 flex max-w-md items-center justify-center gap-1.5 text-center text-xs text-white/40">
           <ShieldCheck className="size-3.5 shrink-0" />
-          Placeholder pricing for early access — final numbers may change before launch.
+          Placeholder pricing for early access - final numbers may change before launch.
         </p>
       </div>
     </section>

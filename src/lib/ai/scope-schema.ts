@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// No server-only imports here — this file is shared by the client-side form
+// No server-only imports here - this file is shared by the client-side form
 // (scope-form.tsx) and the server-side route/estimate call. Keeping the
 // Anthropic client out of this module is what keeps it safe to import from
 // a "use client" component.

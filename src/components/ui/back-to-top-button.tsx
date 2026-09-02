@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 const SHOW_AFTER_PX = 400;
 
-// Global, present on every route (including /dashboard) — unlike the
+// Global, present on every route (including /dashboard) - unlike the
 // marketing footer's own scroll-to-top, which only exists at the bottom of
 // the page and is skipped entirely on the dashboard.
 export function BackToTopButton() {

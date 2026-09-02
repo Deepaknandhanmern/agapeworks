@@ -5,8 +5,8 @@ import { Clock, Mail, MapPin } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
 
 export const metadata: Metadata = {
-  title: "Contact — Agape Works",
-  description: "Tell us about your project — Agape Works replies within one business day.",
+  title: "Contact - Agape Works",
+  description: "Tell us about your project - Agape Works replies within one business day.",
 };
 
 const contactPoints = [
@@ -27,7 +27,7 @@ const contactPoints = [
   },
 ];
 
-// Placeholder hrefs — swap in the real profile URLs.
+// Placeholder hrefs - swap in the real profile URLs.
 const socialLinks = [
   { icon: FaLinkedin, label: "LinkedIn", href: "#" },
   { icon: FaFacebook, label: "Facebook", href: "#" },
@@ -48,7 +48,7 @@ export default function ContactPage() {
             Let&apos;s talk about your project.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            Whether you know exactly what you need or just have an idea — tell us about it and
+            Whether you know exactly what you need or just have an idea - tell us about it and
             we&apos;ll get back to you with next steps.
           </p>
         </section>

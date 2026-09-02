@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import type { StatTrend } from "@/lib/data/dashboard";
 
-// Stat-tile contract (label · value · delta · trend) — see the dataviz skill's
+// Stat-tile contract (label · value · delta · trend) - see the dataviz skill's
 // marks-and-anatomy.md "Figures" section. The sparkline is a decorative
 // summary, not an interactive chart, so it skips the hover layer that a real
 // chart form requires.

@@ -24,7 +24,7 @@ import {
 	Briefcase,
 } from 'lucide-react';
 
-// Floating pill nav: pinned/expanded at all times on desktop (md+) — mobile
+// Floating pill nav: pinned/expanded at all times on desktop (md+) - mobile
 // keeps the plain sticky bar + full-screen drawer below.
 const containerVariants = {
 	hidden: { y: -80, opacity: 0 },
@@ -436,6 +436,6 @@ const companyLinks: LinkItem[] = [
 		title: 'Careers',
 		href: '/careers',
 		icon: Briefcase,
-		description: 'Senior engineers only — see what we look for',
+		description: 'Senior engineers only - see what we look for',
 	},
 ];

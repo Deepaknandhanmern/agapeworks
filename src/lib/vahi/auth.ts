@@ -40,13 +40,13 @@ export async function destroyVahiSession(): Promise<void> {
   cookieStore.delete(VAHI_SESSION_COOKIE);
 }
 
-/** Cached per-request — returns the logged-in account's id, or null. */
+/** Cached per-request - returns the logged-in account's id, or null. */
 export const getVahiAccountId = cache(async (): Promise<string | null> => {
   const cookieStore = await cookies();
   return verifyVahiSessionToken(cookieStore.get(VAHI_SESSION_COOKIE)?.value, getSessionSecret());
 });
 
-/** Guard for every Vahi page/action — redirects to login if not signed in. */
+/** Guard for every Vahi page/action - redirects to login if not signed in. */
 export async function requireVahiAccount(): Promise<string> {
   const accountId = await getVahiAccountId();
   if (!accountId) redirect("/vahi/login");

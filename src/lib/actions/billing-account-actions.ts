@@ -19,7 +19,7 @@ const accountSchema = z.object({
   phone: z.string().optional(),
 });
 
-/** Generates a readable one-time password — shown to admin once to hand off. */
+/** Generates a readable one-time password - shown to admin once to hand off. */
 function generatePassword(): string {
   return randomBytes(6).toString("base64url").slice(0, 8);
 }

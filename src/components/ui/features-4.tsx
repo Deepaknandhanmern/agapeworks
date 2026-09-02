@@ -19,7 +19,7 @@ const features = [
   {
     icon: Pencil,
     title: "Fully customizable",
-    description: "Your brand, your workflows — not a template you have to work around.",
+    description: "Your brand, your workflows - not a template you have to work around.",
   },
   {
     icon: Settings2,
@@ -42,7 +42,7 @@ export function Features() {
             The foundation for SaaS teams that ship
           </h2>
           <p className="text-white/50">
-            Every SaaS platform we build shares the same foundation — fast, secure, and yours to
+            Every SaaS platform we build shares the same foundation - fast, secure, and yours to
             keep.
           </p>
         </div>

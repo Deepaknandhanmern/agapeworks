@@ -9,8 +9,7 @@ const STORAGE_KEY = "agape-vivira-teaser-dismissed";
 const EASE = [0.16, 1, 0.3, 1] as const;
 const VIVIRA_URL = "https://vivira.agapeworks.in";
 
-// Bottom-left counterpart to AnnouncementToast (which owns bottom-right) —
-// Vivira is the one product currently being promoted site-wide, hosted on
+// Bottom-left counterpart to AnnouncementToast (which owns bottom-right) - // Vivira is the one product currently being promoted site-wide, hosted on
 // its own subdomain, so this links out there rather than to a page here.
 export function ViviraTeaser() {
   const pathname = usePathname();
@@ -37,7 +36,7 @@ export function ViviraTeaser() {
     try {
       window.localStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // localStorage unavailable — dismissal just won't be remembered.
+      // localStorage unavailable - dismissal just won't be remembered.
     }
   };
 
@@ -58,7 +57,7 @@ export function ViviraTeaser() {
               rel="noopener noreferrer"
               className="text-sm font-medium text-foreground hover:underline"
             >
-              🛒 Vivira — our AI cart plugin for WooCommerce. Take a look
+              🛒 Vivira - our AI cart plugin for WooCommerce. Take a look
             </a>
             <button
               type="button"

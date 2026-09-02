@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Careers — Agape Works",
+  title: "Careers - Agape Works",
   description:
-    "Agape Works hires senior engineers only — no bait-and-switch juniors. Remote-first, direct client access, weekly working demos.",
+    "Agape Works hires senior engineers only - no bait-and-switch juniors. Remote-first, direct client access, weekly working demos.",
 };
 
 const lookingFor = [
@@ -26,7 +26,7 @@ const lookingFor = [
     icon: MessageCircle,
     title: "Comfortable talking to clients directly",
     description:
-      "There's no account-manager layer here — engineers scope and discuss work with clients themselves.",
+      "There's no account-manager layer here - engineers scope and discuss work with clients themselves.",
   },
   {
     icon: Repeat,
@@ -56,7 +56,7 @@ export default function CareersPage() {
             Senior engineers only. No exceptions.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            Agape Works is a small, remote-first team — the people who scope a project are the
+            Agape Works is a small, remote-first team - the people who scope a project are the
             same people who build it. That only works if everyone on the team is genuinely
             senior.
           </p>
@@ -91,12 +91,11 @@ export default function CareersPage() {
 
         <section className="mx-auto w-full max-w-3xl px-4 py-24 text-center">
           <h2 className="mb-3 text-3xl font-semibold tracking-tight text-foreground">
-            No open-role list — and that's on purpose
+            No open-role list - and that's on purpose
           </h2>
           <p className="text-lg leading-8 text-muted-foreground">
             We're small enough that we hire when the right person turns up, not on a fixed
-            headcount plan. If the description above sounds like you, send a short note —
-            what you've built, and a link to your code or past work — rather than a formal
+            headcount plan. If the description above sounds like you, send a short note - what you've built, and a link to your code or past work - rather than a formal
             application. We read every message ourselves.
           </p>
         </section>
@@ -108,7 +107,7 @@ export default function CareersPage() {
               Think you're a fit?
             </h2>
             <p className="max-w-md text-muted-foreground">
-              Email us directly — no forms, no ATS.
+              Email us directly - no forms, no ATS.
             </p>
             <a
               href="mailto:studio@agapeworks.in?subject=Interested in working at Agape Works"

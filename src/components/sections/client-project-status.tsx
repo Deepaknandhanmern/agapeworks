@@ -6,7 +6,7 @@ import type { ClientProject, ProjectUpdate, ProjectComment, ProjectFile } from "
 
 // Extracted from src/app/status/[token]/page.tsx so the client portal
 // (/client/[id]) can show identical content without duplicating ~150 lines.
-// Purely presentational — the two pages differ only in how they authorize
+// Purely presentational - the two pages differ only in how they authorize
 // access (token match vs. session-email ownership) and how comments get
 // posted (the commentForm slot), not in what's displayed.
 
@@ -70,7 +70,7 @@ export function ClientProjectStatus({
   project: ProjectWithDetail;
   files: FileWithUrl[];
   commentForm: ReactNode;
-  /** Only the session-based client portal offers this — the token-based status page stays read/comment-only. */
+  /** Only the session-based client portal offers this - the token-based status page stays read/comment-only. */
   uploadForm?: ReactNode;
 }) {
   return (
@@ -88,7 +88,7 @@ export function ClientProjectStatus({
         <h2 className="mb-3 text-sm font-semibold text-foreground">What&apos;s shipped</h2>
         {project.updates.length === 0 ? (
           <p className="rounded-xl border border-dashed bg-card/50 p-6 text-center text-sm text-muted-foreground">
-            No updates yet — check back soon.
+            No updates yet - check back soon.
           </p>
         ) : (
           <ul className="flex flex-col gap-3">

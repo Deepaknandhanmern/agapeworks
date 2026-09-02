@@ -17,14 +17,14 @@ interface Notification {
     read: boolean
 }
 
-// Real site announcements — not fabricated chat messages. Each links
+// Real site announcements - not fabricated chat messages. Each links
 // somewhere real; nothing here is invented.
 const initialNotifications: Notification[] = [
     {
         id: "vivira",
         icon: ShoppingCart,
         title: "Vivira is live",
-        description: "Our AI cart plugin for WooCommerce — recovers abandoned carts automatically.",
+        description: "Our AI cart plugin for WooCommerce - recovers abandoned carts automatically.",
         time: "New",
         href: "https://vivira.agapeworks.in",
         read: false,
@@ -33,7 +33,7 @@ const initialNotifications: Notification[] = [
         id: "partner-program",
         icon: Handshake,
         title: "Partner program is live",
-        description: "Refer clients or resell under your own brand — see how it works.",
+        description: "Refer clients or resell under your own brand - see how it works.",
         time: "This week",
         href: "/partner-program",
         read: false,
@@ -124,7 +124,7 @@ function NotificationRow({
 export function NotificationAlertDialog() {
     const [notifications, setNotifications] = useState<Notification[]>(initialNotifications)
 
-    // Click-to-open only — no auto-show, no auto-dismiss.
+    // Click-to-open only - no auto-show, no auto-dismiss.
     const [open, setOpen] = useState(false)
     const [showAllNotifications, setShowAllNotifications] = useState(false)
 

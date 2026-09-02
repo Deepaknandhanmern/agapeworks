@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
   const email = parsed.data.email.trim().toLowerCase();
 
-  // Upsert so re-subscribing (or double-submitting) never errors — the
+  // Upsert so re-subscribing (or double-submitting) never errors - the
   // person just ends up subscribed either way, which is all they asked for.
   await db.newsletterSubscriber.upsert({
     where: { email },

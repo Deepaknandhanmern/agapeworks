@@ -13,7 +13,7 @@ export function ClientProjectForm() {
     <form action={formAction} className="flex max-w-md flex-col gap-5">
       <div className="grid gap-2">
         <Label htmlFor="projectName">Project name</Label>
-        <Input id="projectName" name="projectName" placeholder="Acme Inc. — Website Rebuild" required />
+        <Input id="projectName" name="projectName" placeholder="Acme Inc. - Website Rebuild" required />
       </div>
 
       <div className="grid gap-2">
@@ -31,7 +31,7 @@ export function ClientProjectForm() {
           required
         />
         <p className="text-xs text-muted-foreground">
-          Update notifications go here — no account or password needed.
+          Update notifications go here - no account or password needed.
         </p>
       </div>
 

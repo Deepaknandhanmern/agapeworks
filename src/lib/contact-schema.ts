@@ -36,7 +36,7 @@ export const contactFormSchema = z.object({
   ...stepOneSchema.shape,
   ...stepTwoSchema.shape,
   ...stepThreeSchema.shape,
-  // Honeypot — real visitors never see or fill this field. Deliberately has
+  // Honeypot - real visitors never see or fill this field. Deliberately has
   // no length/format constraint: a filled value must still pass validation
   // so the route handler can accept it silently (return success) instead of
   // tipping off the bot with a validation error.

@@ -6,7 +6,7 @@ import { Check, X } from "lucide-react";
 import Switch from "@/components/ui/simple-toggle";
 
 const dos = [
-  "Senior engineers scope and build your project — the same people, start to finish.",
+  "Senior engineers scope and build your project - the same people, start to finish.",
   "Ship visible, working demos every week.",
   "Agree on fixed scope before writing a line of code.",
   "Hand off documentation your own team can actually maintain.",
@@ -28,7 +28,7 @@ export function DosAndDonts() {
     <div className="mx-auto w-full max-w-4xl px-4 py-24">
       <div className="mb-10 flex flex-col items-center gap-3 text-center">
         <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-          What we do — and don&apos;t
+          What we do - and don&apos;t
         </h2>
         <p className="max-w-lg text-muted-foreground">
           Flip the switch to see the difference.

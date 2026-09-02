@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 
 /**
  * Admin-only file storage (invoices, spec sheets, onboarding PDFs) for
- * client projects. The bucket is private — every download URL is signed
+ * client projects. The bucket is private - every download URL is signed
  * on demand and expires, never stored. SUPABASE_SECRET_KEY is a privileged
  * key; this module must never be imported by client components.
  */

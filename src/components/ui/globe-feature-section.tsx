@@ -28,7 +28,7 @@ export default function Featured_05() {
 }
 
 // cobe@2.0.1's shipped COBEOptions type omits `onRender`, which the
-// runtime fully supports (its documented render-loop hook) — extend the
+// runtime fully supports (its documented render-loop hook) - extend the
 // type locally to work around the incomplete type declaration.
 const GLOBE_CONFIG: COBEOptions & { onRender: () => void } = {
   width: 800,
@@ -69,7 +69,7 @@ export function Globe({
   const pointerInteracting = useRef<number | null>(null)
   const pointerInteractionMovement = useRef(0)
   // phi/width/r are mutated by the imperative cobe render loop and the
-  // pointer handlers below — they must be refs, not plain locals or React
+  // pointer handlers below - they must be refs, not plain locals or React
   // state, so the single onRender callback (created once, at globe
   // creation) always reads the latest value instead of a stale closure.
   const phiRef = useRef(0)
@@ -99,7 +99,7 @@ export function Globe({
     // flex/grid parent finishing its pass, etc.) with no window resize
     // event ever firing. That leaves widthRef stuck at 0 and the globe
     // permanently invisible. ResizeObserver reports the canvas's actual
-    // rendered size — including its first measurement — and keeps it
+    // rendered size - including its first measurement - and keeps it
     // correct afterward.
     const ro = new ResizeObserver((entries) => {
       const entry = entries[0]

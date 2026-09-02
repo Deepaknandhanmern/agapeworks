@@ -6,7 +6,7 @@ import { Calculator } from "lucide-react";
 // Cart-abandonment-rate default (70%) is the widely-cited Baymard Institute
 // industry average, not something invented for this page. The 10% recovery
 // rate is a conservative, clearly-labeled assumption for typical automated
-// reminder campaigns — not a claim about Vivira's actual performance, since
+// reminder campaigns - not a claim about Vivira's actual performance, since
 // Vivira has no real installs/data yet (see src/app/products/page.tsx).
 const DEFAULT_ORDERS_PER_MONTH = 200;
 const DEFAULT_AOV = 1500;
@@ -86,8 +86,7 @@ export function ViviraRoiCalculator() {
 
       <p className="mt-4 text-xs leading-5 text-muted-foreground">
         Based on your inputs, assuming a 70% cart abandonment rate is typical (industry average
-        per Baymard Institute) and a conservative 10% recovery rate from automated reminders —
-        an estimate for planning purposes, not a guarantee of Vivira&apos;s actual results.
+        per Baymard Institute) and a conservative 10% recovery rate from automated reminders - an estimate for planning purposes, not a guarantee of Vivira&apos;s actual results.
       </p>
     </div>
   );

@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — Agape Works",
+  title: "About - Agape Works",
   description:
     "Agape Works is a remote-first product engineering team built on one standard: selfless, deliberate care for the product and the people building it.",
 };
@@ -30,7 +30,7 @@ const values = [
     icon: MessageCircle,
     title: "Direct access, no account layer",
     description:
-      "You talk to the engineers and designers on your project — not a go-between relaying messages.",
+      "You talk to the engineers and designers on your project - not a go-between relaying messages.",
   },
   {
     icon: Repeat,
@@ -60,7 +60,7 @@ export default function AboutPage() {
             Work, done with agape.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            Agape means selfless, deliberate care — for the product, and for the people we build
+            Agape means selfless, deliberate care - for the product, and for the people we build
             it with. That&apos;s not a tagline here. It&apos;s the standard every engagement is
             held to.
           </p>
@@ -75,7 +75,7 @@ export default function AboutPage() {
         <section className="mx-auto w-full max-w-3xl px-4 pb-24 text-center">
           <p className="text-lg leading-8 text-muted-foreground">
             Most software studios optimize for one of two things: speed, or polish. We built Agape
-            Works around a different bet — that a small team of senior engineers, working
+            Works around a different bet - that a small team of senior engineers, working
             directly with a client and shipping visibly every week, produces better outcomes than
             either extreme. Fixed scope. Real access. Code your own team can maintain long after
             we&apos;re gone.
@@ -127,7 +127,7 @@ export default function AboutPage() {
           </h2>
           <p className="text-lg leading-8 text-muted-foreground">
             We&apos;re a distributed team working with founders and product teams across
-            continents and time zones. Remote-first isn&apos;t a compromise for us — it&apos;s
+            continents and time zones. Remote-first isn&apos;t a compromise for us - it&apos;s
             how we&apos;ve chosen to hire the right person for each engagement, wherever they are.
           </p>
         </section>
@@ -136,7 +136,7 @@ export default function AboutPage() {
         <section className="border-t">
           <About3
             title="The team behind the work"
-            description="A small, senior, remote-first team — the people who scope your project are the same people who build it, every time."
+            description="A small, senior, remote-first team - the people who scope your project are the same people who build it, every time."
             mainImage={{
               src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
               alt: "Engineers collaborating on a laptop",
@@ -150,13 +150,13 @@ export default function AboutPage() {
               alt: "Agape Works",
               title: "Fixed scope. Real access. Weekly demos.",
               description:
-                "Every engagement runs on the same standard — no matter the size of the project.",
+                "Every engagement runs on the same standard - no matter the size of the project.",
               buttonText: "See our process",
               buttonUrl: "/services",
             }}
             companies={[]}
             achievementsTitle="What we actually commit to"
-            achievementsDescription="No inflated numbers — just the standard every engagement is held to, the same one listed above."
+            achievementsDescription="No inflated numbers - just the standard every engagement is held to, the same one listed above."
             achievements={[
               { label: "Weeks to first ship", value: "2–4" },
               { label: "Reply time, every message", value: "1 day" },
@@ -174,7 +174,7 @@ export default function AboutPage() {
               Want to see how we&apos;d approach your project?
             </h2>
             <p className="max-w-md text-muted-foreground">
-              Tell us what you&apos;re building — we&apos;ll tell you what it takes to get it
+              Tell us what you&apos;re building - we&apos;ll tell you what it takes to get it
               shipped.
             </p>
             <AntiMetalButton href="/contact" label="Get in touch" />

@@ -59,7 +59,7 @@ export const supportingServices: ServiceItem[] = [
     step: "01",
     title: "SEO & AEO",
     description:
-      "Technical and on-page SEO combined with answer-engine optimization for AI-powered search — structured data, entities, and answer-focused content.",
+      "Technical and on-page SEO combined with answer-engine optimization for AI-powered search - structured data, entities, and answer-focused content.",
     icon: Search,
   },
   {
@@ -79,11 +79,11 @@ export const supportingServices: ServiceItem[] = [
     step: "04",
     title: "Maintenance",
     description:
-      "Ongoing support, bug fixes, and dependency updates after launch — so the product keeps running.",
+      "Ongoing support, bug fixes, and dependency updates after launch - so the product keeps running.",
     icon: Wrench,
   },
 ];
 
-// Combined list — kept for call sites that just need "all services" (e.g.
+// Combined list - kept for call sites that just need "all services" (e.g.
 // the contact form's service picker) without caring about grouping.
 export const services: ServiceItem[] = [...mainServices, ...supportingServices];

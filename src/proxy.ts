@@ -8,7 +8,7 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const secret = process.env.SESSION_SECRET;
 
-  // Maintenance mode — toggled by the MAINTENANCE_MODE env var (no redeploy
+  // Maintenance mode - toggled by the MAINTENANCE_MODE env var (no redeploy
   // needed, just flip it and restart the app). Excluded from the redirect:
   // /maintenance itself (would otherwise loop), /dashboard (so the owner can
   // keep working and switch this back off), every /api/* route (contact
@@ -70,7 +70,7 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Broadened from just /dashboard and /vahi so maintenance mode can cover
-  // the whole site — excludes Next's internal asset paths, which never need
+  // the whole site - excludes Next's internal asset paths, which never need
   // auth or maintenance handling.
   matcher: ["/((?!_next/static|_next/image).*)"],
 };

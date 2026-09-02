@@ -19,9 +19,9 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Partner Program — Agape Works",
+  title: "Partner Program - Agape Works",
   description:
-    "Refer clients or resell under your own brand — how Agape Works' agency and referral partner program actually works.",
+    "Refer clients or resell under your own brand - how Agape Works' agency and referral partner program actually works.",
 };
 
 const tracks = [
@@ -30,11 +30,11 @@ const tracks = [
     title: "Agency partners",
     tagline: "White-label",
     description:
-      "You keep the client relationship and the brand — we're the engineering team behind the curtain.",
+      "You keep the client relationship and the brand - we're the engineering team behind the curtain.",
     points: [
       "We work under your brand; your client only ever sees you",
       "Reporting, standups, and demos happen with you, not your client",
-      "Scales up or down with your pipeline — no headcount to carry between projects",
+      "Scales up or down with your pipeline - no headcount to carry between projects",
     ],
   },
   {
@@ -42,10 +42,10 @@ const tracks = [
     title: "Referral partners",
     tagline: "Introduce & earn",
     description:
-      "Consultants, advisors, and operators who run into founders needing a build team — and don't want to build one themselves.",
+      "Consultants, advisors, and operators who run into founders needing a build team - and don't want to build one themselves.",
     points: [
       "Introduce a client, we run the engagement, you get a referral payout",
-      "No obligation beyond the introduction — you don't manage delivery",
+      "No obligation beyond the introduction - you don't manage delivery",
       "Transparent terms agreed upfront, in writing, before any work starts",
     ],
   },
@@ -56,13 +56,13 @@ const steps = [
     icon: ClipboardList,
     title: "Tell us which track fits",
     description:
-      "Agency white-label or referral — reach out and we'll figure out the right fit together.",
+      "Agency white-label or referral - reach out and we'll figure out the right fit together.",
   },
   {
     icon: Users2,
     title: "One short call",
     description:
-      "We agree scope, reporting lines, and — for referrals — the exact payout terms, before anything is signed.",
+      "We agree scope, reporting lines, and - for referrals - the exact payout terms, before anything is signed.",
   },
   {
     icon: ShieldCheck,
@@ -82,7 +82,7 @@ const faqs = [
   {
     question: "Is there a minimum number of referrals or a contract?",
     answer:
-      "No. Send one client or ten — there's no minimum, no exclusivity requirement, and no long-term contract to sign.",
+      "No. Send one client or ten - there's no minimum, no exclusivity requirement, and no long-term contract to sign.",
   },
   {
     question: "What's the referral payout?",
@@ -92,12 +92,12 @@ const faqs = [
   {
     question: "Can an agency white-label the entire engagement, including client calls?",
     answer:
-      "Yes — that's the default for this track. We can join calls under your name, use your reporting templates, and stay off any client-facing communication if you'd rather run it yourself.",
+      "Yes - that's the default for this track. We can join calls under your name, use your reporting templates, and stay off any client-facing communication if you'd rather run it yourself.",
   },
   {
     question: "Do you compete with agencies for the same clients?",
     answer:
-      "No — the agency track exists because we'd rather be your delivery team than a competitor. We don't approach your clients directly.",
+      "No - the agency track exists because we'd rather be your delivery team than a competitor. We don't approach your clients directly.",
   },
 ];
 
@@ -115,7 +115,7 @@ export default function PartnerProgramPage() {
             Bring the client. We&apos;ll bring the team.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            Two ways to work with Agape Works without joining as a client yourself — refer a
+            Two ways to work with Agape Works without joining as a client yourself - refer a
             project our way, or resell our delivery under your own brand.
           </p>
         </section>
@@ -199,7 +199,7 @@ export default function PartnerProgramPage() {
               Have a client or a pipeline in mind?
             </h2>
             <p className="max-w-md text-muted-foreground">
-              Tell us which track fits — agency or referral — and we&apos;ll take it from there.
+              Tell us which track fits - agency or referral - and we&apos;ll take it from there.
             </p>
             <AntiMetalButton href="/contact" label="Apply to partner" />
           </div>

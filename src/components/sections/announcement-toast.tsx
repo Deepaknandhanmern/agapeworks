@@ -11,7 +11,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 // Bottom-right corner announcement, shown once per visitor (remembered via
 // localStorage) with an entrance animation on load. Hidden on the admin
-// dashboard and client status pages — this is a marketing element, not
+// dashboard and client status pages - this is a marketing element, not
 // part of that UI.
 export function AnnouncementToast() {
   const pathname = usePathname();
@@ -32,7 +32,7 @@ export function AnnouncementToast() {
     try {
       window.localStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // localStorage unavailable (private browsing, etc.) — dismissal just
+      // localStorage unavailable (private browsing, etc.) - dismissal just
       // won't be remembered for next visit, no functional impact otherwise.
     }
   };

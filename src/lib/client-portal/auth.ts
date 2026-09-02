@@ -36,13 +36,13 @@ export async function destroyClientSession(): Promise<void> {
   cookieStore.delete(CLIENT_SESSION_COOKIE);
 }
 
-/** Cached per-request — returns the signed-in client's normalized email, or null. */
+/** Cached per-request - returns the signed-in client's normalized email, or null. */
 export const getClientEmail = cache(async (): Promise<string | null> => {
   const cookieStore = await cookies();
   return verifyClientSessionToken(cookieStore.get(CLIENT_SESSION_COOKIE)?.value, getSessionSecret());
 });
 
-/** Guard for every client-portal page — redirects to /signin if not signed in. */
+/** Guard for every client-portal page - redirects to /signin if not signed in. */
 export async function requireClientEmail(): Promise<string> {
   const email = await getClientEmail();
   if (!email) redirect("/signin");

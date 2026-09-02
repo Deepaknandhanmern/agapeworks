@@ -51,7 +51,7 @@ export function TodayGlance({ data }: { data: TodayGlanceData }) {
           ) : (
             <div className="flex items-center gap-2 rounded-xl border border-dashed p-4 text-sm text-muted-foreground">
               <PartyPopper className="size-4" />
-              You&apos;re all caught up — no new enquiries.
+              You&apos;re all caught up - no new enquiries.
             </div>
           )}
         </div>

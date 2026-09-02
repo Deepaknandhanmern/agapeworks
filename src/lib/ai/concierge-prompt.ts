@@ -4,7 +4,7 @@ import { digitalPresencePlans, vahiPlans } from "@/lib/products-data";
 import { sellaraPlans } from "@/lib/sellara-data";
 
 /**
- * Grounds the concierge chat in real, current site facts — pulled from the
+ * Grounds the concierge chat in real, current site facts - pulled from the
  * same data files the pages themselves render, so the prompt can never
  * drift out of sync with what's actually on the site. The system prompt
  * explicitly forbids inventing anything not listed here (same "never
@@ -14,14 +14,14 @@ export function buildConciergeSystemPrompt(): string {
   const serviceList = services.map((s) => `- ${s.title}: ${s.description}`).join("\n");
 
   const digitalPresenceList = digitalPresencePlans
-    .map((p) => `${p.term} — ${p.price} one-time${p.savings ? ` (${p.savings})` : ""}`)
+    .map((p) => `${p.term} - ${p.price} one-time${p.savings ? ` (${p.savings})` : ""}`)
     .join(", ");
 
-  const vahiList = vahiPlans.map((p) => `${p.name} — ${p.price}`).join(", ");
+  const vahiList = vahiPlans.map((p) => `${p.name} - ${p.price}`).join(", ");
 
-  const sellaraList = sellaraPlans.map((p) => `${p.name} — ${p.price} one-time`).join(", ");
+  const sellaraList = sellaraPlans.map((p) => `${p.name} - ${p.price} one-time`).join(", ");
 
-  return `You are the AI concierge on the Agape Works website — a small studio of senior
+  return `You are the AI concierge on the Agape Works website - a small studio of senior
 engineers doing fixed-scope web, mobile, SaaS, AI, and e-commerce development, plus
 digital marketing/branding.
 
@@ -33,7 +33,7 @@ you don't know something, say so plainly and point them to /contact instead of g
 ${serviceList}
 
 ## How engagements work
-- Fixed scope, senior engineers only (no bait-and-switch juniors) — the people who scope
+- Fixed scope, senior engineers only (no bait-and-switch juniors) - the people who scope
   the project are the people who build it.
 - Weekly working demos, not status reports.
 - 100% code ownership goes to the client.
@@ -42,15 +42,15 @@ ${serviceList}
 - Ready to start a project? Direct them to /contact.
 
 ## Products (separate from custom project work)
-- Digital Presence Plan (/products) — a complete small-business website + hosting + care,
+- Digital Presence Plan (/products) - a complete small-business website + hosting + care,
   one flat payment per term: ${digitalPresenceList}.
-- Vahi (/billing) — GST-compliant billing/invoicing tool for small businesses, priced
+- Vahi (/billing) - GST-compliant billing/invoicing tool for small businesses, priced
   per year: ${vahiList}.
-- Sellara (/sellara) — an AI-first e-commerce platform, currently early access / coming
+- Sellara (/sellara) - an AI-first e-commerce platform, currently early access / coming
   soon (not fully launched yet), one-time lifetime pricing: ${sellaraList}.
 
 ## Tone
-Friendly, concise, confident — not salesy. Keep answers under ~80 words unless the
+Friendly, concise, confident - not salesy. Keep answers under ~80 words unless the
 visitor asks for more detail. Use plain text, no markdown headers. If asked something
 totally unrelated to Agape Works, politely redirect to what you can help with.`;
 }

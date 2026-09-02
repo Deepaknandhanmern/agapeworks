@@ -5,20 +5,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 
-// Homepage hero — same structure as a pasted "space travel" hero mockup
+// Homepage hero - same structure as a pasted "space travel" hero mockup
 // (segmented pill nav with an active link, badge pill, two-line serif
 // headline, arrow-icon CTAs), reskinned with real Agape Works content: real
 // nav routes, the studio's own real logo asset, and the uploaded background
 // image in place of the mockup's fabricated spacecraft photo.
 //
 // Hosted locally (public/hero-background.jpg, downloaded from the original
-// Supabase URL) rather than referenced remotely — a remote source makes
+// Supabase URL) rather than referenced remotely - a remote source makes
 // next/image's optimizer fetch it cross-origin on every cold cache miss,
 // which was costing real LCP time in production.
 const BACKGROUND_IMAGE = "/hero-background.jpg";
 
 // Same top-level items as the shared Header (src/components/ui/header-3.tsx)
-// used on every other page — Capabilities/Company point at the closest
+// used on every other page - Capabilities/Company point at the closest
 // single-page proxy for those dropdowns' content since this nav is a flat
 // link list, not a mega-menu.
 const navLinks = [

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/ui/header-3";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Agape Works",
+  title: "Terms of Service - Agape Works",
   description: "The terms governing your use of agapeworks.in and its products.",
 };
 
@@ -26,10 +26,10 @@ export default function TermsPage() {
 
           <div className="flex flex-col gap-8 text-sm leading-7 text-muted-foreground">
             <p>
-              These terms cover your use of agapeworks.in — the marketing site, the client
+              These terms cover your use of agapeworks.in - the marketing site, the client
               portal, status pages, and the AI concierge chat. They&apos;re written in plain
               language rather than dense legal text, but they aren&apos;t a substitute for legal
-              advice — if you need this reviewed for a specific jurisdiction, have a lawyer look
+              advice - if you need this reviewed for a specific jurisdiction, have a lawyer look
               at it. Separate written agreements govern individual client engagements and take
               precedence over this page for the scope, price, and delivery of that work.
             </p>
@@ -51,7 +51,7 @@ export default function TermsPage() {
               <p>
                 Client portal access (/signin, /client) is provided to clients with an active or
                 past engagement, using the email on file for that engagement. You&apos;re
-                responsible for keeping access to that email address secure — anyone who can
+                responsible for keeping access to that email address secure - anyone who can
                 receive a sign-in link at it can access the associated project data. Individual
                 project status pages (/status/&lt;link&gt;) are accessible to anyone who has the
                 link; don&apos;t share it if you don&apos;t want others viewing that project.
@@ -64,7 +64,7 @@ export default function TermsPage() {
                 The on-site AI assistant and scope-estimate tool provide informational responses
                 to help you evaluate a potential project. They&apos;re not a substitute for a
                 real scoping conversation, don&apos;t constitute a quote or contractual
-                commitment, and may occasionally be inaccurate — treat output as a starting
+                commitment, and may occasionally be inaccurate - treat output as a starting
                 point, not a guarantee.
               </p>
             </section>
@@ -77,7 +77,7 @@ export default function TermsPage() {
                 The site&apos;s content, design, and branding belong to Agape Works unless
                 otherwise noted. Work delivered under a signed client engagement is governed by
                 that engagement&apos;s own ownership terms (we build on a 100% code-ownership
-                basis by default — see the engagement agreement for specifics).
+                basis by default - see the engagement agreement for specifics).
               </p>
             </section>
 

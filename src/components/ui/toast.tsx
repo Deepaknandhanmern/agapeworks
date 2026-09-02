@@ -7,10 +7,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 // Adapted from a pasted "toast.tsx" component that used a ref/imperative-
-// handle API (`toasterRef.current?.show(...)`) — reworked into plain
+// handle API (`toasterRef.current?.show(...)`) - reworked into plain
 // functions instead, matching sonner's own ergonomics (its whole appeal is
 // `toast.success("x")` callable from anywhere, no ref to thread through
-// props). Also drops the `dark:` variants — this site has no dark mode.
+// props). Also drops the `dark:` variants - this site has no dark mode.
 
 type Variant = "default" | "success" | "error" | "warning";
 type Position = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right";
@@ -121,7 +121,7 @@ export const notify = {
   warning: (message: string, options?: NotifyOptions) => showToast(message, "warning", options),
 };
 
-/** Mount once per app tree — every notify.*() call renders into this. */
+/** Mount once per app tree - every notify.*() call renders into this. */
 export function NotificationsToaster() {
   return <SonnerToaster toastOptions={{ unstyled: true, className: "flex justify-end" }} />;
 }

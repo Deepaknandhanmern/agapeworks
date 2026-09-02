@@ -12,9 +12,9 @@ import { techStack } from "@/lib/tech-stack-data";
 const cardColors = ["orange", "purple", "blue"] as const;
 
 export const metadata: Metadata = {
-  title: "Services — Agape Works",
+  title: "Services - Agape Works",
   description:
-    "Web, mobile, SaaS, and e-commerce development, AI solutions, custom software, SEO & AEO, and digital marketing — built on Next.js, React, React Native, Flutter, Laravel, PHP, WordPress, WooCommerce, and MySQL.",
+    "Web, mobile, SaaS, and e-commerce development, AI solutions, custom software, SEO & AEO, and digital marketing - built on Next.js, React, React Native, Flutter, Laravel, PHP, WordPress, WooCommerce, and MySQL.",
 };
 
 export default function ServicesPage() {
@@ -32,7 +32,7 @@ export default function ServicesPage() {
             Everything it takes to plan, build, and grow your product.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            From first line of code to first page of search — Agape Works covers the full
+            From first line of code to first page of search - Agape Works covers the full
             stack, in-house.
           </p>
         </section>
@@ -44,7 +44,7 @@ export default function ServicesPage() {
               How We Help
             </h2>
             <p className="max-w-lg text-muted-foreground">
-              The core disciplines behind every product we build — including AI.
+              The core disciplines behind every product we build - including AI.
             </p>
           </div>
           <div className="grid grid-cols-1 place-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -94,7 +94,7 @@ export default function ServicesPage() {
               Technologies we use
             </h2>
             <p className="max-w-lg text-muted-foreground">
-              Proven, production-grade tools — not whatever&apos;s trending this week.
+              Proven, production-grade tools - not whatever&apos;s trending this week.
             </p>
           </div>
           <Marquee speed={28} pauseOnHover className="mt-0 sm:mt-0">
@@ -117,7 +117,7 @@ export default function ServicesPage() {
               Not sure which service you need?
             </h2>
             <p className="max-w-md text-muted-foreground">
-              Tell us about your project and we&apos;ll recommend the right scope — no
+              Tell us about your project and we&apos;ll recommend the right scope - no
               obligation.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">

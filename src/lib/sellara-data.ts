@@ -1,7 +1,7 @@
 // Content for the Sellara marketing page (src/app/sellara). "Sellara" is a
-// placeholder product name — rename here and in sellara-landing.tsx's
+// placeholder product name - rename here and in sellara-landing.tsx's
 // PRODUCT_NAME constant once the brand is finalized; nothing else needs to
-// change. This is a marketing page only — no store-builder, AI assistant,
+// change. This is a marketing page only - no store-builder, AI assistant,
 // or commerce backend exists yet (see the build-brief conversation).
 
 export type ChatTurn = {
@@ -16,13 +16,13 @@ export const chatDemoScript: ChatTurn[] = [
     role: "ai",
     text: "Here are three options based on your budget and occasion:",
     products: [
-      { name: "Banarasi Silk — Maroon", price: "₹7,499" },
-      { name: "Kanjivaram Weave — Gold", price: "₹6,999" },
-      { name: "Soft Silk — Emerald", price: "₹5,899" },
+      { name: "Banarasi Silk - Maroon", price: "₹7,499" },
+      { name: "Kanjivaram Weave - Gold", price: "₹6,999" },
+      { name: "Soft Silk - Emerald", price: "₹5,899" },
     ],
   },
   { role: "customer", text: "Does the emerald one ship in 3 days?" },
-  { role: "ai", text: "Yes — it's in stock and ships within 2–3 business days to your pincode." },
+  { role: "ai", text: "Yes - it's in stock and ships within 2–3 business days to your pincode." },
 ];
 
 export type BuilderPreset = {
@@ -113,16 +113,16 @@ export const featureGroups: FeatureGroup[] = [
 export type SellaraPlan = {
   name: string;
   price: string;
-  /** Monthly AI credit allowance — undefined for tiers with no AI features. */
+  /** Monthly AI credit allowance - undefined for tiers with no AI features. */
   credits?: string;
   perks: string[];
   featured?: boolean;
 };
 
-// One-time payment — the platform itself is owned for life, no recurring
+// One-time payment - the platform itself is owned for life, no recurring
 // platform fee. AI features stay metered (a monthly credit allowance per
 // tier, topped up separately) because AI API calls are a real ongoing cost
-// to us even though the license is one-time — see the founder-pushback
+// to us even though the license is one-time - see the founder-pushback
 // discussion in the build-brief conversation for why "fully unlimited AI
 // forever" on a one-time payment isn't sustainable.
 export const sellaraPlans: SellaraPlan[] = [
@@ -130,7 +130,7 @@ export const sellaraPlans: SellaraPlan[] = [
     name: "Starter",
     price: "₹24,999",
     perks: [
-      "Own it for life — no monthly platform fee",
+      "Own it for life - no monthly platform fee",
       "E-commerce store, up to 100 products",
       "Cart & checkout",
       "Payments",
@@ -144,7 +144,7 @@ export const sellaraPlans: SellaraPlan[] = [
     price: "₹49,999",
     credits: "500 AI credits / month included",
     perks: [
-      "Own it for life — no monthly platform fee",
+      "Own it for life - no monthly platform fee",
       "Unlimited products",
       "Custom domain",
       "Premium animations",
@@ -160,7 +160,7 @@ export const sellaraPlans: SellaraPlan[] = [
     price: "₹89,999",
     credits: "2,000 AI credits / month included",
     perks: [
-      "Own it for life — no monthly platform fee",
+      "Own it for life - no monthly platform fee",
       "Advanced animations & 3D sections",
       "AI product descriptions & SEO",
       "AI recommendations",
@@ -175,7 +175,7 @@ export const sellaraPlans: SellaraPlan[] = [
     credits: "5,000 AI credits / month included",
     featured: true,
     perks: [
-      "Own it for life — no monthly platform fee",
+      "Own it for life - no monthly platform fee",
       "AI Store Builder",
       "AI Shopping Assistant",
       "AI Sales Agent & marketing",

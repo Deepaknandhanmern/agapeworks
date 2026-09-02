@@ -6,7 +6,7 @@ import { Header } from "@/components/ui/header-3";
 import { DashboardShowcase } from "@/components/ui/dashboard-showcase";
 import { Features } from "@/components/ui/features-4";
 
-// Inline Button Component — intentionally self-contained (fixed black/white
+// Inline Button Component - intentionally self-contained (fixed black/white
 // colors, not theme tokens): this hero is a permanently dark section
 // regardless of the site's light/dark mode, so the shared shadcn Button
 // (which resolves "default" to near-black in light mode) would disappear

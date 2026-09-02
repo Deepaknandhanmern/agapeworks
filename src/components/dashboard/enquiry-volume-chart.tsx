@@ -4,7 +4,7 @@ import * as React from "react";
 import type { EnquiryWeekBucket } from "@/lib/data/dashboard";
 
 // Stacked bar: weekly enquiry volume split by AI-triaged priority. Built to
-// the dataviz skill's spec — <=24px bars, 4px rounded data-end, 2px surface
+// the dataviz skill's spec - <=24px bars, 4px rounded data-end, 2px surface
 // gap between stacked segments, a legend (status colors are never
 // color-alone), and a per-segment hover tooltip with a table-view fallback
 // so every value stays reachable without hovering.
@@ -17,7 +17,7 @@ const SERIES = [
 type SeriesKey = (typeof SERIES)[number]["key"];
 
 const CHART_HEIGHT = 160;
-// Fraction of each week's band the bar fills — the rest is the "air" the
+// Fraction of each week's band the bar fills - the rest is the "air" the
 // mark spec calls for (never fill the slot). Viewbox units, not px: this SVG
 // scales fluidly with its container.
 const BAR_FILL_RATIO = 0.6;
@@ -169,7 +169,7 @@ export function EnquiryVolumeChart({ data }: { data: EnquiryWeekBucket[] }) {
                         }
                         onBlur={() => setTooltip(null)}
                       >
-                        <title>{`${week.label} — ${seg.label}: ${seg.value}`}</title>
+                        <title>{`${week.label} - ${seg.label}: ${seg.value}`}</title>
                       </rect>
                     );
                   })}

@@ -4,9 +4,9 @@ import { ScopeForm } from "@/components/sections/scope-form";
 import { Clock, ShieldCheck, Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Instant Project Estimate — Agape Works",
+  title: "Instant Project Estimate - Agape Works",
   description:
-    "Tell us what you're building and get a rough timeline, budget range, and build phases in seconds — powered by the same AI capability Agape Works builds for clients.",
+    "Tell us what you're building and get a rough timeline, budget range, and build phases in seconds - powered by the same AI capability Agape Works builds for clients.",
 };
 
 const points = [
@@ -18,12 +18,12 @@ const points = [
   {
     icon: ShieldCheck,
     label: "Honest",
-    value: "Conservative, realistic ranges — not an inflated best case",
+    value: "Conservative, realistic ranges - not an inflated best case",
   },
   {
     icon: Users,
     label: "No commitment",
-    value: "No email required — this doesn't create a lead or a quote",
+    value: "No email required - this doesn't create a lead or a quote",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function ScopePage() {
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
             Describe your project and get an instant, honest read on timeline, budget, and how
-            we&apos;d phase the build — the same AI capability we build for clients, demoed on
+            we&apos;d phase the build - the same AI capability we build for clients, demoed on
             our own site.
           </p>
         </section>

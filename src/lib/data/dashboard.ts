@@ -2,7 +2,7 @@ import "server-only";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
 
-/** All admin-only reads live here — every export re-verifies auth itself. */
+/** All admin-only reads live here - every export re-verifies auth itself. */
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 const PRIORITY_RANK: Record<string, number> = { high: 0, medium: 1, low: 2 };
@@ -81,7 +81,7 @@ export type EnquiryWeekBucket = {
   untriaged: number;
 };
 
-/** Weekly enquiry volume, split by AI-triaged priority — powers the Overview chart. */
+/** Weekly enquiry volume, split by AI-triaged priority - powers the Overview chart. */
 export async function getEnquiryVolumeByWeek(weeks = 8): Promise<EnquiryWeekBucket[]> {
   await requireAuth();
   const weekStarts = lastNWeekStarts(weeks);
@@ -202,7 +202,7 @@ export async function getRecentActivity(limit = 8): Promise<ActivityItem[]> {
     })),
     ...enquiries.map((e) => ({
       type: "enquiry" as const,
-      title: `${e.name} — ${e.service}`,
+      title: `${e.name} - ${e.service}`,
       date: e.createdAt,
       href: `/dashboard/enquiries`,
     })),
@@ -266,7 +266,7 @@ export async function getAllEnquiriesForDashboard() {
   const enquiries = await db.enquiry.findMany({ orderBy: { createdAt: "desc" } });
 
   // Highest-priority (AI-triaged) leads first; untriaged enquiries (priority
-  // still null — triage failed or hasn't run) sort after everything, newest
+  // still null - triage failed or hasn't run) sort after everything, newest
   // first within each group via the createdAt desc above.
   return [...enquiries].sort((a, b) => {
     const rankA = a.priority ? PRIORITY_RANK[a.priority] ?? 3 : 3;

@@ -4,7 +4,7 @@ import { hasPendingTotpSession } from "@/lib/auth";
 import { VerifyForm } from "./verify-form";
 
 export const metadata: Metadata = {
-  title: "Verify — Dashboard",
+  title: "Verify - Dashboard",
   robots: { index: false, follow: false },
 };
 
@@ -15,8 +15,7 @@ export default async function VerifyPage({
 }) {
   const { next } = await searchParams;
 
-  // Landed here without completing the password step (or it expired) —
-  // send back to the start rather than show a form that can't succeed.
+  // Landed here without completing the password step (or it expired) - // send back to the start rather than show a form that can't succeed.
   if (!(await hasPendingTotpSession())) {
     redirect("/dashboard/login");
   }

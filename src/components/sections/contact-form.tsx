@@ -130,7 +130,7 @@ export function ContactForm() {
             </motion.div>
             <h3 className="text-xl font-semibold text-foreground">Message sent</h3>
             <p className="max-w-xs text-sm text-muted-foreground">
-              Thanks for reaching out — we&apos;ll get back to you within one business day.
+              Thanks for reaching out - we&apos;ll get back to you within one business day.
             </p>
             <button
               type="button"
@@ -160,7 +160,7 @@ export function ContactForm() {
               </div>
             </div>
 
-            {/* Honeypot — hidden from real visitors */}
+            {/* Honeypot - hidden from real visitors */}
             <input
               type="text"
               tabIndex={-1}

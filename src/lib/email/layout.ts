@@ -11,8 +11,7 @@ export function escapeHtml(value: string): string {
 }
 
 /**
- * Shared black-and-white branded shell for every transactional email —
- * matches the site's own minimal palette (see globals.css --primary/--foreground)
+ * Shared black-and-white branded shell for every transactional email - * matches the site's own minimal palette (see globals.css --primary/--foreground)
  * rather than introducing a separate "email brand."
  */
 export function emailLayout(input: {
@@ -53,7 +52,7 @@ export function emailLayout(input: {
             </tr>
             <tr>
               <td style="padding:18px 32px;background:#fafafa;border-top:1px solid #eeeeee;">
-                <p style="margin:0;font-size:12px;color:#888888;">Agape Works — product engineering &amp; consulting</p>
+                <p style="margin:0;font-size:12px;color:#888888;">Agape Works - product engineering &amp; consulting</p>
               </td>
             </tr>
           </table>

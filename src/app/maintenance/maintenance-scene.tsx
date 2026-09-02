@@ -8,7 +8,7 @@ export function MaintenanceScene() {
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center gap-8 overflow-hidden bg-background px-4 text-center">
-      {/* Ambient glow — a slow breathing pulse behind the mark. */}
+      {/* Ambient glow - a slow breathing pulse behind the mark. */}
       {!reduceMotion && (
         <motion.div
           aria-hidden
@@ -21,7 +21,7 @@ export function MaintenanceScene() {
       <div className="relative flex flex-col items-center gap-6">
         <Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-7 w-auto" priority />
 
-        {/* Orbiting-ring motif — a quiet "in progress" signal, not a spinner tied to a real load state. */}
+        {/* Orbiting-ring motif - a quiet "in progress" signal, not a spinner tied to a real load state. */}
         <div className="relative flex size-16 items-center justify-center">
           <motion.span
             aria-hidden

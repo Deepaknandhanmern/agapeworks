@@ -24,13 +24,13 @@ export async function POST(request: Request) {
 
   const { website, ...fields } = parsed.data;
 
-  // Honeypot tripped — a real visitor never sees or fills this field.
+  // Honeypot tripped - a real visitor never sees or fills this field.
   // Accept silently (don't tip off the bot) instead of logging or erroring.
   if (website) {
     return NextResponse.json({ ok: true });
   }
 
-  // The form no longer asks for a budget range — the DB column is still
+  // The form no longer asks for a budget range - the DB column is still
   // required (other admin tooling reads it), so it's stored as this fixed
   // placeholder rather than adding a migration to drop it.
   const NO_BUDGET_COLLECTED = "Not specified";
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     },
   });
 
-  // Best-effort AI triage — never blocks or fails the submission response.
+  // Best-effort AI triage - never blocks or fails the submission response.
   // Adds a few seconds of latency to this request; acceptable for a
   // low-volume contact form and keeps the implementation dependency-free
   // (no queue/worker infra).

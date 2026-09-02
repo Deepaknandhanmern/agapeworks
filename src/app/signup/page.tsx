@@ -4,7 +4,7 @@ import Image from "next/image";
 import { SignUpForm } from "./signup-form";
 
 export const metadata: Metadata = {
-  title: "Sign Up — Agape Works",
+  title: "Sign Up - Agape Works",
 };
 
 export default function SignUpPageRoute() {

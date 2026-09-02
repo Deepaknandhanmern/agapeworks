@@ -23,13 +23,13 @@ const montserrat = Montserrat({
 });
 
 const SITE_URL = "https://agapeworks.in";
-const SITE_DESCRIPTION = "Agape Works — consulting and product engineering that ships.";
+const SITE_DESCRIPTION = "Agape Works - consulting and product engineering that ships.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  // Not a title template — every page already writes its own full
-  // "X — Agape Works" title (see e.g. src/app/services/page.tsx), so a
-  // "%s — Agape Works" template here would double up the suffix on all of
+  // Not a title template - every page already writes its own full
+  // "X - Agape Works" title (see e.g. src/app/services/page.tsx), so a
+  // "%s - Agape Works" template here would double up the suffix on all of
   // them. This is just the fallback for the rare page with no title of its own.
   title: "Agape Works",
   description: SITE_DESCRIPTION,
@@ -50,10 +50,10 @@ export const metadata: Metadata = {
   },
 };
 
-// Sitewide, not per-page — sameAs is deliberately omitted rather than
+// Sitewide, not per-page - sameAs is deliberately omitted rather than
 // pointing at the footer's placeholder "#" social links (see
 // src/components/ui/footer-section.tsx); fill it in once those are real.
-// address is region/country-level only (no street address on file) — real,
+// address is region/country-level only (no street address on file) - real,
 // not fabricated, since a fake precise address would be worse than none.
 const organizationJsonLd = {
   "@context": "https://schema.org",

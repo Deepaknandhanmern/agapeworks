@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!service) return {};
 
   return {
-    title: `${service.title} — Agape Works`,
+    title: `${service.title} - Agape Works`,
     description: service.description,
   };
 }
@@ -84,7 +84,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </h2>
               <p className="max-w-lg text-muted-foreground">
                 A taste of the kind of voice and conversational interfaces we build into
-                products — click the mic to try it.
+                products - click the mic to try it.
               </p>
               <div className="mt-4 w-full max-w-md rounded-2xl border bg-card p-4 shadow-sm">
                 <AIVoiceInput demoMode />
@@ -116,7 +116,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               Ready to talk through your {service.title.toLowerCase()} project?
             </h2>
             <p className="max-w-md text-muted-foreground">
-              Tell us what you&apos;re building — we&apos;ll tell you what it takes to ship it.
+              Tell us what you&apos;re building - we&apos;ll tell you what it takes to ship it.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <AntiMetalButton href="/contact" label="Book a demo" />

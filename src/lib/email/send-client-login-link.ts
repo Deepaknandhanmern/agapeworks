@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { emailLayout } from "./layout";
 
 /**
- * Best-effort — returns without throwing on any failure (missing/invalid
+ * Best-effort - returns without throwing on any failure (missing/invalid
  * key, Resend error), same shape as send-update-notification.ts.
  */
 export async function sendClientLoginLink(input: { email: string; loginUrl: string }): Promise<void> {
@@ -33,9 +33,9 @@ export async function sendClientLoginLink(input: { email: string; loginUrl: stri
         ctaLabel: "Sign in",
         ctaUrl: input.loginUrl,
       }),
-      text: `Use this link to sign in to Agape Works (expires in 15 minutes):\n\n${input.loginUrl}\n\nDidn't request this? You can safely ignore this email.\n\n— Agape Works`,
+      text: `Use this link to sign in to Agape Works (expires in 15 minutes):\n\n${input.loginUrl}\n\nDidn't request this? You can safely ignore this email.\n\n - Agape Works`,
     });
   } catch {
-    // Swallow — never let email delivery break the request-link flow.
+    // Swallow - never let email delivery break the request-link flow.
   }
 }

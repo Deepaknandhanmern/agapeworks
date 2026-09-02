@@ -3,14 +3,13 @@ import { db } from "@/lib/db";
 import { sendInvoiceReminder } from "@/lib/vahi/send-invoice-reminder";
 
 /**
- * Scans every account's overdue, unpaid invoices and emails a reminder —
- * meant to be triggered on a schedule (Hostinger cron job hitting this URL,
+ * Scans every account's overdue, unpaid invoices and emails a reminder - * meant to be triggered on a schedule (Hostinger cron job hitting this URL,
  * or a free external scheduler like cron-job.org) since this app has no
  * built-in cron of its own. Re-reminds at most once every 3 days per
  * invoice so a daily trigger doesn't spam the same customer.
  *
  * Gated by CRON_SECRET so this can't be triggered by anyone who finds the
- * URL — set it in .env.local / Hostinger env vars and pass it as
+ * URL - set it in .env.local / Hostinger env vars and pass it as
  * ?secret=... or an `Authorization: Bearer ...` header when scheduling.
  */
 export async function GET(request: Request) {

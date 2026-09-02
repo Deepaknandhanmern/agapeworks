@@ -33,7 +33,7 @@ export async function GET() {
   <channel>
     <title>Agape Works Blog</title>
     <link>${SITE_URL}/blog</link>
-    <description>Notes on product engineering, scoping, and shipping — from Agape Works.</description>
+    <description>Notes on product engineering, scoping, and shipping - from Agape Works.</description>
     <language>en</language>${items}
   </channel>
 </rss>`;

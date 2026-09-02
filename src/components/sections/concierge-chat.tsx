@@ -14,7 +14,7 @@ const EXCLUDED_PREFIXES = ["/dashboard", "/vahi", "/status", "/invoice", "/sella
 
 const SUPPORT_EMAIL = "studio@agapeworks.in";
 
-// Escalation to a real person — the chat transcript rides along in the
+// Escalation to a real person - the chat transcript rides along in the
 // email body so nothing has to be re-explained.
 function buildHandoffMailto(messages: ChatMessage[]) {
   const transcript = messages
@@ -38,7 +38,7 @@ function WelcomeBubble() {
       transition={{ duration: 0.3 }}
       className="max-w-[85%] self-start rounded-2xl rounded-tl-sm bg-muted px-3.5 py-2.5 text-sm text-foreground"
     >
-      Hi! I&apos;m the Agape Works concierge — ask me about services, pricing, or how projects work.
+      Hi! I&apos;m the Agape Works concierge - ask me about services, pricing, or how projects work.
     </motion.div>
   );
 }
@@ -197,7 +197,7 @@ export function ConciergeChat() {
               })}
               {unavailable && (
                 <div className="max-w-[90%] self-start rounded-2xl rounded-tl-sm bg-destructive/10 px-3.5 py-2.5 text-sm text-destructive">
-                  Chat isn&apos;t available right now — try the{" "}
+                  Chat isn&apos;t available right now - try the{" "}
                   <a href="/contact" className="underline">
                     contact form
                   </a>{" "}
@@ -206,7 +206,7 @@ export function ConciergeChat() {
               )}
               {atLimit && !unavailable && (
                 <div className="max-w-[90%] self-start rounded-2xl rounded-tl-sm bg-muted px-3.5 py-2.5 text-sm text-muted-foreground">
-                  Let&apos;s continue over email —{" "}
+                  Let&apos;s continue over email - {" "}
                   <a href="/contact" className="underline">
                     contact us here
                   </a>

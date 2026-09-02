@@ -40,7 +40,7 @@ export default function Testimonial1() {
                   className="max-w-xs rounded-lg border-none bg-popover p-4 text-popover-foreground shadow-lg"
                 >
                   <p className="text-sm">
-                    Direct access to the engineers building your product — no account
+                    Direct access to the engineers building your product - no account
                     layer relaying messages.
                   </p>
                 </TooltipContent>
@@ -69,7 +69,7 @@ export default function Testimonial1() {
                   className="max-w-xs rounded-lg border-none bg-popover p-4 text-popover-foreground shadow-lg"
                 >
                   <p className="text-sm">
-                    Weekly, working demos — you see real progress every week, not a
+                    Weekly, working demos - you see real progress every week, not a
                     status report.
                   </p>
                 </TooltipContent>

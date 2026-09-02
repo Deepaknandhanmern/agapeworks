@@ -14,7 +14,7 @@ interface AnimatedFeatureCardProps
   title: React.ReactNode;
   /**
    * Icon rendered in the center of the card. Pass a rendered element
-   * (e.g. `<Globe />`), not a component reference — this component is a
+   * (e.g. `<Globe />`), not a component reference - this component is a
    * client component, and a bare component reference can't cross the
    * server/client boundary from a server-rendered parent.
    */

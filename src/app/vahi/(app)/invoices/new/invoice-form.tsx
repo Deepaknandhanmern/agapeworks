@@ -59,7 +59,7 @@ export function InvoiceForm({ customers, items }: { customers: Customer[]; items
           </Select>
           {customers.length === 0 && (
             <p className="text-xs text-muted-foreground">
-              No customers yet — add one on the Customers page first.
+              No customers yet - add one on the Customers page first.
             </p>
           )}
         </div>

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // The Web Speech API isn't in the default DOM lib.d.ts and is only
-// available (as of writing) in Chromium browsers — unprefixed
+// available (as of writing) in Chromium browsers - unprefixed
 // `SpeechRecognition` on newer Chrome/Edge, `webkitSpeechRecognition`
 // elsewhere. Minimal ambient shape for just what we use.
 interface SpeechRecognitionResultLike {
@@ -40,7 +40,7 @@ function getSpeechRecognitionCtor(): SpeechRecognitionConstructor | undefined {
 }
 
 /**
- * Thin wrapper around the browser's built-in speech recognition — free,
+ * Thin wrapper around the browser's built-in speech recognition - free,
  * client-side only, no API calls or transcription costs. Unsupported in
  * Firefox and most non-Chromium browsers; callers should feature-detect via
  * `isSupported` and fall back to typing.
@@ -79,7 +79,7 @@ export function useSpeechToText() {
   }, []);
 
   // Returns a promise so the final onend-flushed transcript is captured
-  // before the caller reads it — recognition.stop() doesn't synchronously
+  // before the caller reads it - recognition.stop() doesn't synchronously
   // finalize pending results.
   const stop = useCallback((): Promise<string> => {
     return new Promise((resolve) => {

@@ -1,6 +1,6 @@
 "use client";
 
-// Tiny synthesized confirmation sound (Web Audio API) — no audio asset to
+// Tiny synthesized confirmation sound (Web Audio API) - no audio asset to
 // ship or load. A short two-tone "pop" that reads as a positive confirmation
 // without being intrusive. Silently no-ops if the browser blocks audio
 // before a user gesture, or has no AudioContext at all.
@@ -29,6 +29,6 @@ export function playChime() {
     osc.stop(now + 0.2);
     osc.onended = () => ctx.close();
   } catch {
-    // Audio is a nice-to-have — never let it break the actual action.
+    // Audio is a nice-to-have - never let it break the actual action.
   }
 }

@@ -1,4 +1,4 @@
-// Pure calculation helpers — shared by the invoice creation form (live
+// Pure calculation helpers - shared by the invoice creation form (live
 // totals as the user types) and the server action that persists the final
 // numbers, so the two can never drift apart.
 

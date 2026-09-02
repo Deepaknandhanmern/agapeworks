@@ -55,7 +55,7 @@ export async function getVahiInvoiceById(id: string) {
   });
 }
 
-/** Public — gated only by the unguessable publicToken, no login. */
+/** Public - gated only by the unguessable publicToken, no login. */
 export async function getInvoiceByPublicToken(publicToken: string) {
   return db.invoice.findUnique({
     where: { publicToken },

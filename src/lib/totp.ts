@@ -1,5 +1,5 @@
 // RFC 6238 TOTP (the algorithm behind Google Authenticator/Authy/1Password),
-// built on RFC 4226 HOTP — implemented with Node's built-in `crypto` rather
+// built on RFC 4226 HOTP - implemented with Node's built-in `crypto` rather
 // than a new dependency, matching how session-token.ts/vahi/session-token.ts
 // already hand-roll HMAC-based tokens in this codebase. Framework-free so it
 // has no dependency on anything but `crypto`.
@@ -71,12 +71,12 @@ export function verifyTotp(secret: string, code: string, window = 1): boolean {
   return false;
 }
 
-/** For the one-off setup script only — generates a new random secret. */
+/** For the one-off setup script only - generates a new random secret. */
 export function generateTotpSecret(): string {
   return base32Encode(randomBytes(20));
 }
 
-/** For the one-off setup script only — the URI most authenticator apps can import directly. */
+/** For the one-off setup script only - the URI most authenticator apps can import directly. */
 export function buildOtpauthUri(secret: string, accountLabel = "admin"): string {
   const issuer = "Agape Works";
   return `otpauth://totp/${encodeURIComponent(issuer)}:${encodeURIComponent(accountLabel)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&digits=${DIGITS}&period=${STEP_SECONDS}`;

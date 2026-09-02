@@ -17,7 +17,7 @@ export function VahiLoginForm({ next }: { next?: string }) {
     startTransition(async () => {
       const result = await vahiLoginAction(undefined, formData);
       if (result?.error) setError(result.error);
-      // On success, vahiLoginAction redirects itself — nothing else to do here.
+      // On success, vahiLoginAction redirects itself - nothing else to do here.
     });
   };
 

@@ -1,12 +1,11 @@
-// Client-portal tokens — parallel to src/lib/session-token.ts (admin) and
+// Client-portal tokens - parallel to src/lib/session-token.ts (admin) and
 // src/lib/vahi/session-token.ts (Vahi), kept separate because this is
 // per-email (not per-admin, not per-billing-account) and passwordless, so it
 // needs a second, short-lived token type for the magic link itself on top of
 // the usual session cookie. Same HMAC approach so proxy.ts can verify the
 // session without framework imports.
 //
-// A raw email cannot sit next to the "." delimiter every token here uses —
-// most real addresses contain a "." (in the local part or the domain), which
+// A raw email cannot sit next to the "." delimiter every token here uses - // most real addresses contain a "." (in the local part or the domain), which
 // would break `token.split(".")` parsing. The email segment is base64url
 // (RFC 4648 §5, alphabet A-Za-z0-9-_, no ".") encoded before signing and
 // decoded after the signature check passes, for both token types below.
@@ -37,8 +36,7 @@ function decodeEmail(encoded: string): string | null {
 
 /**
  * Verifies signature + expiry on a `${purpose}.${emailB64}.${expires}` token
- * and returns the decoded email, or null. Shared by both token types below —
- * the purpose prefix keeps a magic-link token from ever verifying as a
+ * and returns the decoded email, or null. Shared by both token types below - * the purpose prefix keeps a magic-link token from ever verifying as a
  * session token (or vice versa) even though they'd otherwise share a shape.
  */
 function verify(token: string | undefined, secret: string, expectedPurpose: string): string | null {

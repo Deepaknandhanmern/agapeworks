@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Globe, Smartphone, SquareStack, Bot, Megaphone, ArrowRight } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
-// Featured services shown in the bento grid — a subset of the full list in
+// Featured services shown in the bento grid - a subset of the full list in
 // src/lib/services-data.ts, picked to fill the 1-big + 4-small layout below.
 const featured = [
   {
@@ -53,7 +53,7 @@ const featured = [
 ];
 
 /**
- * Glossy, dimensional icon badge — a gradient-filled tile with an inner
+ * Glossy, dimensional icon badge - a gradient-filled tile with an inner
  * top highlight (glass reflection) and bottom inner shadow (depth), plus a
  * colored drop shadow beneath. CSS/SVG only, no 3D rendering or new deps.
  */
@@ -74,7 +74,7 @@ function IconBadge({
     <div
       className={`relative flex ${size} shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} shadow-lg ${shadow} transition-transform duration-300 ease-out group-hover:-translate-y-1 group-hover:rotate-3`}
     >
-      {/* Glass highlight — a soft white glow near the top-left, like light hitting a rounded surface */}
+      {/* Glass highlight - a soft white glow near the top-left, like light hitting a rounded surface */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-2xl"
@@ -105,7 +105,7 @@ export const ColorfulBentoGrid = () => {
             Everything it takes to build, ship, and grow.
           </h2>
           <p className="max-w-sm text-base font-medium text-neutral-500">
-            Full-stack product development — web, mobile, SaaS, and AI — handled by one senior
+            Full-stack product development - web, mobile, SaaS, and AI - handled by one senior
             team, start to finish.
           </p>
         </div>

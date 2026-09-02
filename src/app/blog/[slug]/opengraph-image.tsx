@@ -27,7 +27,7 @@ export default async function OpengraphImage({ params }: { params: { slug: strin
         <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 28, fontWeight: 700 }}>
           {/* eslint-disable-next-line @next/next/no-img-element -- next/og's Satori renderer requires a plain img element, not next/image */}
           <img src={OG_MARK_DATA_URI} width={38} height={33} alt="" />
-          Agape Works — Blog
+          Agape Works - Blog
         </div>
         <div
           style={{

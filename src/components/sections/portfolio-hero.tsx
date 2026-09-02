@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 
 // Every project gets identical treatment in the grid below (same card, same
-// click-to-preview) — this intro deliberately doesn't single any one of them
+// click-to-preview) - this intro deliberately doesn't single any one of them
 // out as "featured."
 export function PortfolioHero() {
   return (

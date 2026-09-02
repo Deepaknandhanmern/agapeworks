@@ -19,7 +19,7 @@ export default async function VahiInvoicesPage() {
 
       {invoices.length === 0 ? (
         <p className="rounded-xl border border-dashed bg-card/50 p-6 text-center text-sm text-muted-foreground">
-          No invoices yet — create your first one.
+          No invoices yet - create your first one.
         </p>
       ) : (
         <ul className="flex flex-col gap-2">

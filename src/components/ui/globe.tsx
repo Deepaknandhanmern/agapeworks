@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 
 // cobe's shipped .d.ts omits `onRender` from COBEOptions even though it's
-// the library's real, documented render-loop hook (see its README) — the
+// the library's real, documented render-loop hook (see its README) - the
 // actual onRender is supplied at the createGlobe() call below.
 const GLOBE_CONFIG: COBEOptions = {
   width: 800,
@@ -46,7 +46,7 @@ export function Globe({
   const pointerInteracting = useRef<number | null>(null)
   const pointerInteractionMovement = useRef(0)
   // phi/width/r are mutated by the imperative cobe render loop and the
-  // pointer handlers below — they must be refs, not plain locals or React
+  // pointer handlers below - they must be refs, not plain locals or React
   // state, so the single onRender callback (created once, at globe
   // creation) always reads the latest value instead of a stale closure.
   const phiRef = useRef(0)
@@ -76,7 +76,7 @@ export function Globe({
     // flex/grid parent finishing its pass, etc.) with no window resize
     // event ever firing. That leaves widthRef stuck at 0 and the globe
     // permanently invisible. ResizeObserver reports the canvas's actual
-    // rendered size — including its first measurement — and keeps it
+    // rendered size - including its first measurement - and keeps it
     // correct afterward.
     const ro = new ResizeObserver((entries) => {
       const entry = entries[0]

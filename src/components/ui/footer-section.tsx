@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -27,7 +29,7 @@ const legalLinks = [
   { label: "Terms of Service", href: "/terms" },
 ];
 
-// Same facts as the contact page's own contactPoints — kept as plain text
+// Same facts as the contact page's own contactPoints - kept as plain text
 // here (a footer isn't the place to duplicate its icon-card treatment).
 const contactPoints = [
   { icon: Mail, value: "studio@agapeworks.in" },
@@ -35,7 +37,7 @@ const contactPoints = [
   { icon: MapPin, value: "Coimbatore & Chennai, India" },
 ];
 
-// Same three profiles as the contact page — placeholder hrefs until real
+// Same three profiles as the contact page - placeholder hrefs until real
 // profile URLs exist, matching that page's own "swap in the real URLs" note.
 const socialLinks = [
   { icon: FaLinkedin, label: "LinkedIn", href: "#" },
@@ -44,6 +46,8 @@ const socialLinks = [
 ];
 
 function Footerdemo() {
+  const pathname = usePathname();
+  const isVivira = pathname?.startsWith("/products") ?? false;
   const [subscribed, setSubscribed] = React.useState(false);
   const [error, setError] = React.useState("");
 
@@ -70,7 +74,7 @@ function Footerdemo() {
   };
 
   return (
-    <footer className="relative border-t bg-background text-foreground">
+    <footer className={cn("relative border-t bg-background text-foreground", isVivira && "vivira-theme")}>
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
@@ -79,7 +83,7 @@ function Footerdemo() {
               Get occasional updates on what we&apos;re building and shipping.
             </p>
             {subscribed ? (
-              <p className="text-sm font-medium text-foreground">Thanks — you&apos;re on the list.</p>
+              <p className="text-sm font-medium text-foreground">Thanks - you&apos;re on the list.</p>
             ) : (
               <form onSubmit={handleSubscribe} className="relative">
                 <Input

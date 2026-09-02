@@ -13,9 +13,9 @@ import { ProductsTeaser } from "@/components/sections/products-teaser";
 import { Reveal } from "@/components/ui/reveal";
 import { ShieldCheck } from "lucide-react";
 
-const HOME_TITLE = "Agape Works — Software Development Company in Coimbatore & Chennai";
+const HOME_TITLE = "Agape Works - Software Development Company in Coimbatore & Chennai";
 const HOME_DESCRIPTION =
-  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond — fixed scope, senior engineers only, weekly working demos.";
+  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond - fixed scope, senior engineers only, weekly working demos.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -40,7 +40,7 @@ const process = [
   },
   {
     title: "Design",
-    description: "Clear scope, clear architecture, clear timeline — agreed before we start building.",
+    description: "Clear scope, clear architecture, clear timeline - agreed before we start building.",
     colorTheme: "blue",
   },
   {
@@ -50,7 +50,7 @@ const process = [
   },
   {
     title: "Grow",
-    description: "We stay on to measure impact and iterate — not disappear after launch.",
+    description: "We stay on to measure impact and iterate - not disappear after launch.",
     colorTheme: "orange",
   },
 ] as const;
@@ -122,16 +122,16 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-3xl px-4 py-24">
               <div className="flex flex-col items-center gap-4 text-center">
                 <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-                  Care isn&apos;t a slogan here — it&apos;s the process.
+                  Care isn&apos;t a slogan here - it&apos;s the process.
                 </h2>
                 <p className="leading-7 text-muted-foreground">
-                  Agape means selfless, deliberate care — and that&apos;s the standard we hold our
+                  Agape means selfless, deliberate care - and that&apos;s the standard we hold our
                   engagements to. Fixed scope, weekly demos, and code your own team can maintain
                   long after we&apos;re gone.
                 </p>
                 <ul className="flex flex-col gap-3 pt-2">
                   {[
-                    "Senior engineers only — no bait-and-switch juniors",
+                    "Senior engineers only - no bait-and-switch juniors",
                     "Fixed-scope engagements with weekly, working demos",
                     "Documentation and handoff built in, not bolted on",
                   ].map((item) => (
@@ -213,7 +213,7 @@ export default function Home() {
                 Ready to build something worth shipping?
               </h2>
               <p className="max-w-md text-muted-foreground">
-                Tell us where your product is today — we&apos;ll tell you what it takes to get it
+                Tell us where your product is today - we&apos;ll tell you what it takes to get it
                 where it needs to be.
               </p>
               <AntiMetalButton href="/contact" label="Book a demo" />

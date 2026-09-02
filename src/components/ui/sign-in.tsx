@@ -30,10 +30,10 @@ interface SignInPageProps {
   onGoogleSignIn?: () => void;
   onResetPassword?: () => void;
   onCreateAccount?: () => void;
-  /** Copy for the bottom prompt+link (e.g. "New here?" / "Create account") — defaults suit a sign-in page; override on a sign-up page (e.g. "Already have an account?" / "Sign in"). */
+  /** Copy for the bottom prompt+link (e.g. "New here?" / "Create account") - defaults suit a sign-in page; override on a sign-up page (e.g. "Already have an account?" / "Sign in"). */
   footerPrompt?: string;
   footerLinkLabel?: string;
-  /** Extra content rendered below the form's error/status area — e.g. a server action's error message. */
+  /** Extra content rendered below the form's error/status area - e.g. a server action's error message. */
   errorSlot?: React.ReactNode;
   submitLabel?: string;
   submitting?: boolean;

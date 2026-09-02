@@ -31,7 +31,7 @@ export function BillingAccountForm() {
   if (state && "password" in state && state.password) {
     return (
       <div className="flex flex-col gap-3 rounded-xl border bg-card p-5">
-        <p className="text-sm font-medium text-foreground">Account created — share these with the business:</p>
+        <p className="text-sm font-medium text-foreground">Account created - share these with the business:</p>
         <div className="flex items-center justify-between rounded-md border bg-muted/40 px-3 py-2 text-sm">
           <span>
             Login: <a href="/vahi/login" className="underline">vahi login page</a>
@@ -46,7 +46,7 @@ export function BillingAccountForm() {
           <CopyButton text={state.password} />
         </div>
         <p className="text-xs text-muted-foreground">
-          This password is shown once and isn&apos;t stored anywhere retrievable — save it now.
+          This password is shown once and isn&apos;t stored anywhere retrievable - save it now.
         </p>
       </div>
     );

@@ -48,7 +48,7 @@ const ACTION_ITEMS: CommandEntry[] = [
   },
 ];
 
-// Mounted once in the dashboard app layout — listens globally for ⌘K/Ctrl+K
+// Mounted once in the dashboard app layout - listens globally for ⌘K/Ctrl+K
 // so it's reachable from every /dashboard/* page without per-page wiring.
 export function CommandPalette() {
   const [open, setOpen] = React.useState(false);

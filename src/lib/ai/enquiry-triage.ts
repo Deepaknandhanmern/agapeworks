@@ -16,7 +16,7 @@ const SYSTEM_PROMPT = `You triage inbound leads for Agape Works, a small studio 
 engineers doing fixed-scope web/mobile/SaaS/AI development work. Given a contact form
 submission, decide how urgently the team should respond and write a one-line summary.
 
-Weigh these signals together — no single field decides it alone:
+Weigh these signals together - no single field decides it alone:
 - Budget: "$50k+" and "$25k-$50k" signal a serious, funded project. "Not sure yet" or
   "Under $10k" often means early-stage or a poor fit for a fixed-scope studio.
 - Timeline: "ASAP" or "Within 1 month" paired with a real budget is high priority.
@@ -29,7 +29,7 @@ Return "high" only for leads worth answering first today. Return "low" for leads
 wait or are likely a poor fit. Most real, plausible leads should land at "medium".`;
 
 /**
- * Best-effort classification — returns null on any failure (missing/invalid
+ * Best-effort classification - returns null on any failure (missing/invalid
  * API key, rate limit, parse failure) so callers can skip the DB update
  * instead of blocking enquiry creation on it.
  */

@@ -6,16 +6,16 @@ import { Check } from "lucide-react";
 import { vahiPlans } from "@/lib/products-data";
 
 export const metadata: Metadata = {
-  title: "Vahi — GST Billing — Agape Works",
+  title: "Vahi - GST Billing - Agape Works",
   description:
-    "Vahi is a simple GST-compliant invoicing and billing tool for small businesses — track payments, share invoices over WhatsApp, priced per year.",
+    "Vahi is a simple GST-compliant invoicing and billing tool for small businesses - track payments, share invoices over WhatsApp, priced per year.",
 };
 
 const includes = [
   "GST-compliant invoices with correct tax calculation",
   "Payment tracking so you always know who owes you",
   "Share invoices instantly over WhatsApp or email",
-  "Works from your phone — no computer needed",
+  "Works from your phone - no computer needed",
   "Your data backed up, never on paper alone",
 ];
 
@@ -34,7 +34,7 @@ export default function BillingPage() {
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
             Create GST-compliant invoices, track who&apos;s paid and who hasn&apos;t, and share
-            bills over WhatsApp — all from your phone. Priced per year.
+            bills over WhatsApp - all from your phone. Priced per year.
           </p>
         </section>
 
@@ -93,7 +93,7 @@ export default function BillingPage() {
                 Everything you need to bill properly
               </h2>
               <p className="max-w-lg text-muted-foreground">
-                Pro adds unlimited invoices and multi-branch support — both tiers get the same core tool.
+                Pro adds unlimited invoices and multi-branch support - both tiers get the same core tool.
               </p>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
@@ -115,7 +115,7 @@ export default function BillingPage() {
               Ready to stop chasing payments on paper?
             </h2>
             <p className="max-w-md text-muted-foreground">
-              Tell us a bit about your business — we&apos;ll set you up.
+              Tell us a bit about your business - we&apos;ll set you up.
             </p>
             <AntiMetalButton href="/contact" label="Get started" />
           </div>

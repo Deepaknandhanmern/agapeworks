@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-// Fixed-position overlay widgets — none are needed for first paint (each
+// Fixed-position overlay widgets - none are needed for first paint (each
 // starts closed/dismissed), so they're code-split out of the main bundle
 // and hydrated after it instead of shipping their JS to every page upfront.
 // `ssr: false` requires a Client Component boundary, hence this wrapper

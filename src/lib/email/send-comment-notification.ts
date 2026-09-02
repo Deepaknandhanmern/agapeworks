@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { emailLayout, escapeHtml } from "./layout";
 
 /**
- * Best-effort — mirrors send-update-notification.ts's contract, just
+ * Best-effort - mirrors send-update-notification.ts's contract, just
  * reversed direction (client → studio instead of studio → client). Nothing
  * else in this app emails the studio's own inbox; this is the first, so the
  * recipient is the one thing worth being able to override via env instead
@@ -40,6 +40,6 @@ export async function sendCommentNotification(input: {
       text: `New feedback on ${input.projectName}:\n\n${input.authorName}: ${input.message}\n\nView it here: ${input.dashboardUrl}`,
     });
   } catch {
-    // Swallow — the comment is already saved; the notification is a nice-to-have.
+    // Swallow - the comment is already saved; the notification is a nice-to-have.
   }
 }

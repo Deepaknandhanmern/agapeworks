@@ -26,7 +26,7 @@ import { trackEvent } from "@/lib/analytics";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-// Staged reveal for the estimate result — sections cascade in one after
+// Staged reveal for the estimate result - sections cascade in one after
 // another instead of appearing all at once, so the "it actually scoped my
 // project" moment reads as more than a plain state swap.
 const resultContainer = {

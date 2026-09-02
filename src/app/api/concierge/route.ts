@@ -13,7 +13,7 @@ const bodySchema = z.object({
 
 export async function POST(request: Request) {
   if (!process.env.GEMINI_API_KEY) {
-    return Response.json({ error: "Chat isn't available right now — try the contact form instead." }, { status: 503 });
+    return Response.json({ error: "Chat isn't available right now - try the contact form instead." }, { status: 503 });
   }
 
   let body: unknown;
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    // Gemini has no separate "assistant" role — prior replies are "model".
+    // Gemini has no separate "assistant" role - prior replies are "model".
     const contents = parsed.data.messages.map((m) => ({
       role: m.role === "assistant" ? ("model" as const) : ("user" as const),
       parts: [{ text: m.content }],
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
             if (chunk.text) controller.enqueue(encoder.encode(chunk.text));
           }
         } catch {
-          // Mid-stream failure — close what's been sent rather than erroring
+          // Mid-stream failure - close what's been sent rather than erroring
           // out a response that's already started.
         } finally {
           controller.close();

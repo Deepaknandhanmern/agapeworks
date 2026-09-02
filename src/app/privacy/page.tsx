@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/ui/header-3";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Agape Works",
+  title: "Privacy Policy - Agape Works",
   description: "How Agape Works collects, uses, and protects your information.",
 };
 
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
               This policy explains what information Agape Works (&quot;we,&quot; &quot;us&quot;)
               collects through agapeworks.in and related products, and how we use it. It&apos;s
               written in plain language rather than dense legal text, but it isn&apos;t a
-              substitute for legal advice — if you need this reviewed for a specific
+              substitute for legal advice - if you need this reviewed for a specific
               jurisdiction or regulatory regime, have a lawyer look at it.
             </p>
 
@@ -40,29 +40,29 @@ export default function PrivacyPage() {
               <p className="mb-3">We collect information in a few distinct ways:</p>
               <ul className="flex flex-col gap-2 pl-5 list-disc">
                 <li>
-                  <strong className="text-foreground">Forms you submit</strong> — the contact
+                  <strong className="text-foreground">Forms you submit</strong> - the contact
                   form, scope-estimate tool, and project enquiries collect your name, email,
                   company (optional), and project details (service, budget, timeline, and your
                   message). We use this only to respond to your enquiry.
                 </li>
                 <li>
-                  <strong className="text-foreground">Client project data</strong> — if you
+                  <strong className="text-foreground">Client project data</strong> - if you
                   engage us for a project, we store your name, email, and the project&apos;s
                   status, updates, files, and any feedback you leave, so we can deliver and
                   communicate about that work.
                 </li>
                 <li>
-                  <strong className="text-foreground">Client portal sign-in</strong> — signing in
+                  <strong className="text-foreground">Client portal sign-in</strong> - signing in
                   at /signin only requires your email address (no password). We send a one-time
                   sign-in link to that email and set a session cookie once you use it.
                 </li>
                 <li>
-                  <strong className="text-foreground">AI concierge chat</strong> — messages you
+                  <strong className="text-foreground">AI concierge chat</strong> - messages you
                   send to the on-site AI assistant are processed by our AI provider (Anthropic)
                   to generate a response. We don&apos;t use chat content for advertising.
                 </li>
                 <li>
-                  <strong className="text-foreground">Analytics</strong> — we use Google
+                  <strong className="text-foreground">Analytics</strong> - we use Google
                   Analytics to understand how the site is used (pages visited, general location,
                   device type, and a few specific actions like completing a scope estimate).
                 </li>
@@ -90,24 +90,24 @@ export default function PrivacyPage() {
               </p>
               <ul className="flex flex-col gap-2 pl-5 list-disc">
                 <li>
-                  <strong className="text-foreground">Resend</strong> — sends transactional
+                  <strong className="text-foreground">Resend</strong> - sends transactional
                   emails (form confirmations, project updates, sign-in links).
                 </li>
                 <li>
-                  <strong className="text-foreground">Google Analytics</strong> — site usage
+                  <strong className="text-foreground">Google Analytics</strong> - site usage
                   analytics.
                 </li>
                 <li>
-                  <strong className="text-foreground">Anthropic</strong> — processes messages
+                  <strong className="text-foreground">Anthropic</strong> - processes messages
                   sent to the AI concierge chat and scope-estimate tool.
                 </li>
                 <li>
-                  <strong className="text-foreground">Supabase</strong> — stores files you or we
+                  <strong className="text-foreground">Supabase</strong> - stores files you or we
                   upload as part of a client project (invoices, spec sheets, deliverables),
                   behind access-controlled, signed download links.
                 </li>
                 <li>
-                  <strong className="text-foreground">Hostinger</strong> — hosts the application
+                  <strong className="text-foreground">Hostinger</strong> - hosts the application
                   and its database.
                 </li>
               </ul>
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
                 Enquiry and contact-form submissions are kept as long as needed to respond and
                 for our own records. Client project data is kept for the duration of the
                 engagement and a reasonable period after, for reference and support. You can ask
-                us to delete your information at any time — see &quot;Contact us&quot; below.
+                us to delete your information at any time - see &quot;Contact us&quot; below.
               </p>
             </section>
 

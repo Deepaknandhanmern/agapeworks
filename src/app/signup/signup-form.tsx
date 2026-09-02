@@ -2,7 +2,7 @@
 
 import { SignInPage } from "@/components/ui/sign-in";
 
-// UI only — see the comment in src/app/signin/signin-form.tsx. Reuses the
+// UI only - see the comment in src/app/signin/signin-form.tsx. Reuses the
 // same visual component with sign-up copy; a real "create account" flow
 // will likely need more fields (name, etc.) once the account backend is
 // designed, so treat this shape as a starting point, not final.

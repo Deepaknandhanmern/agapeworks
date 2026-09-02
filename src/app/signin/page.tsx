@@ -4,7 +4,7 @@ import Image from "next/image";
 import { SignInForm } from "./signin-form";
 
 export const metadata: Metadata = {
-  title: "Sign In — Agape Works",
+  title: "Sign In - Agape Works",
 };
 
 export default async function SignInPageRoute({
@@ -28,7 +28,7 @@ export default async function SignInPageRoute({
         <div className="mb-6 flex flex-col gap-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight text-foreground">Sign in</h1>
           <p className="text-sm text-muted-foreground">
-            For clients with an active project — see status, updates, and files in one place.
+            For clients with an active project - see status, updates, and files in one place.
           </p>
         </div>
         {error === "expired" && (

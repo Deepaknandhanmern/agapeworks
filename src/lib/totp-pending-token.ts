@@ -1,5 +1,5 @@
 // Proves "the admin password step already passed" for the ~5 minutes it
-// takes to open an authenticator app and type a code — separate cookie,
+// takes to open an authenticator app and type a code - separate cookie,
 // separate name, short expiry, so it can never be mistaken for (or replayed
 // as) the real admin session token in src/lib/session-token.ts.
 import { createHmac, timingSafeEqual } from "crypto";

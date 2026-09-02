@@ -31,7 +31,7 @@ export function SignInForm() {
       </Button>
       <p className="flex items-start gap-1.5 text-xs text-muted-foreground">
         <Mail className="mt-0.5 size-3.5 shrink-0" />
-        If that email has a project with Agape Works, you&apos;ll get a link to sign in — no
+        If that email has a project with Agape Works, you&apos;ll get a link to sign in - no
         password needed.
       </p>
     </form>

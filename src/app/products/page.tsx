@@ -1,38 +1,36 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/ui/header-3";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Clock } from "lucide-react";
 import { FaWordpress, FaShopify } from "react-icons/fa6";
+import { ViviraProductHeader } from "@/components/sections/vivira-product-header";
 import { ViviraDownloadButton } from "@/components/sections/vivira-download-button";
 import { ViviraRoiCalculator } from "@/components/sections/vivira-roi-calculator";
+import { ViviraPricingSection } from "@/components/sections/vivira-pricing-section";
 
-// Served directly from this site (public/downloads/vivira.zip) — not a
+// Served directly from this site (public/downloads/vivira.zip) - not a
 // redirect to the subdomain. That file isn't in the repo yet; drop the real
 // plugin .zip in at that path and this link starts working.
 const VIVIRA_DOWNLOAD_PATH = "/downloads/vivira.zip";
 
 export const metadata: Metadata = {
-  title: "Products — Agape Works",
-  description: "Vivira — an AI cart plugin for WooCommerce that recovers abandoned carts automatically.",
+  title: "Vivira - Agape Works",
+  description: "Vivira - an AI cart plugin for WooCommerce that recovers abandoned carts automatically.",
 };
 
 export default function ProductsPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <Header />
+    <div className="vivira-theme relative flex min-h-screen flex-col text-foreground">
+      {/* Color, not black, is the dominant background here - black is
+          reserved for UI surfaces (nav, cards, footer) on top of it. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(160deg,#f97316_0%,#c026d3_45%,#9333ea_75%,#000000_100%)]"
+      />
 
       <main className="flex-1">
-        <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 pb-16 pt-8 text-center sm:pt-10">
-          {/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
-          <img src="/vivira-logo.svg" alt="Vivira" className="size-14" />
-          <h1 className="max-w-2xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Vivira — an AI cart that recovers itself
-          </h1>
-          <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            Vivira watches for abandoned carts and brings shoppers back automatically, so stores
-            keep the sales they&apos;d otherwise lose.
-          </p>
+        <ViviraProductHeader />
 
+        <section id="install" className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 pb-16 pt-8 text-center">
           <Tabs defaultValue="wordpress" className="mt-4 flex w-full flex-col items-center">
             <TabsList>
               <TabsTrigger value="wordpress" className="gap-2">
@@ -71,6 +69,10 @@ export default function ProductsPage() {
 
         <section className="border-t bg-muted/20 px-4 py-24">
           <ViviraRoiCalculator />
+        </section>
+
+        <section className="border-t">
+          <ViviraPricingSection />
         </section>
       </main>
     </div>

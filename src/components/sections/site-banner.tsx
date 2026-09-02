@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { Banner } from "@/components/ui/banner";
 import { Button } from "@/components/ui/button";
 
-// New key each time the banner message changes — a new message deserves a
+// New key each time the banner message changes - a new message deserves a
 // fresh dismiss state, so visitors who already dismissed a past one still
 // see this one.
 const STORAGE_KEY = "agape-site-banner-dismissed-vivira";
 
 /**
- * Full-width bar shown above the shared Header on every page — mounted by
+ * Full-width bar shown above the shared Header on every page - mounted by
  * Header itself, plus once more directly in src/app/page.tsx since the
  * homepage's hero has its own bespoke nav and doesn't render Header at all.
  * Dismissal is remembered per visitor, same pattern as AnnouncementToast.
@@ -33,7 +33,7 @@ export function SiteBanner() {
     try {
       window.localStorage.setItem(STORAGE_KEY, "1");
     } catch {
-      // localStorage unavailable — dismissal just won't be remembered.
+      // localStorage unavailable - dismissal just won't be remembered.
     }
   };
 
@@ -43,7 +43,7 @@ export function SiteBanner() {
         <p className="flex items-center gap-2 text-sm">
           {/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
           <img src="/vivira-logo.svg" alt="" className="size-4 shrink-0" />
-          Vivira — our AI cart plugin for WooCommerce — live now.
+          Vivira - our AI cart plugin for WooCommerce - live now.
         </p>
         <Button asChild size="sm" className="rounded-full">
           <a href="https://vivira.agapeworks.in" target="_blank" rel="noopener noreferrer">

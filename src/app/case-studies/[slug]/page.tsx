@@ -29,7 +29,7 @@ export async function generateMetadata({
   });
 
   return {
-    title: `${frontmatter.title} — Agape Works`,
+    title: `${frontmatter.title} - Agape Works`,
     description: frontmatter.summary,
   };
 }

@@ -47,7 +47,7 @@ export default async function VahiDashboardPage() {
         <h2 className="mb-3 text-sm font-semibold text-foreground">Recent invoices</h2>
         {recent.length === 0 ? (
           <p className="rounded-xl border border-dashed bg-card/50 p-6 text-center text-sm text-muted-foreground">
-            No invoices yet — create your first one.
+            No invoices yet - create your first one.
           </p>
         ) : (
           <ul className="flex flex-col gap-2">

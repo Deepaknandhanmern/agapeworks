@@ -31,11 +31,10 @@ async function getSiteOrigin(): Promise<string> {
 // Same generic response is returned on every path (match or no match) so
 // this form can never be used to confirm/deny whether an email has a
 // project on file.
-const GENERIC_MESSAGE = "If that email has a project with us, we've sent a sign-in link — check your inbox.";
+const GENERIC_MESSAGE = "If that email has a project with us, we've sent a sign-in link - check your inbox.";
 
 // In-memory per-email send cooldown. This is the one public form on the site
-// that emails a third party who never opted in (every other public form —
-// contact, scope estimate — emails *this business's own* inbox), so a bare,
+// that emails a third party who never opted in (every other public form - // contact, scope estimate - emails *this business's own* inbox), so a bare,
 // unthrottled "send email" button isn't acceptable even though nothing else
 // in this app has formal rate-limiting. A persistent Node process is enough
 // for this; it resets on deploy, which is fine for abuse prevention, not

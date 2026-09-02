@@ -159,7 +159,7 @@ export async function sendReminderAction(id: string): Promise<{ error?: string }
   const protocol = host?.startsWith("localhost") ? "http" : "https";
 
   const sent = await sendInvoiceReminder(invoice, `${protocol}://${host}`);
-  if (!sent) return { error: "Couldn't send the reminder — check your Resend setup." };
+  if (!sent) return { error: "Couldn't send the reminder - check your Resend setup." };
 
   await db.invoice.update({ where: { id }, data: { remindedAt: new Date() } });
   revalidatePath(`/vahi/invoices/${id}`);

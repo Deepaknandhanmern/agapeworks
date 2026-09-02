@@ -5,8 +5,8 @@ import { PortfolioGrid } from "@/components/sections/portfolio-grid";
 import { getProjects } from "@/lib/portfolio-data";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Agape Works",
-  description: "Live projects built and shipped by Agape Works — click a project to preview it right on this page.",
+  title: "Portfolio - Agape Works",
+  description: "Live projects built and shipped by Agape Works - click a project to preview it right on this page.",
 };
 
 export default async function PortfolioPage() {

@@ -7,7 +7,7 @@ import { getClientProjectsByEmail } from "@/lib/data/client-portal";
 import { LogoutButton } from "./logout-button";
 
 export const metadata: Metadata = {
-  title: "My Projects — Agape Works",
+  title: "My Projects - Agape Works",
 };
 
 const phaseStyles: Record<string, string> = {

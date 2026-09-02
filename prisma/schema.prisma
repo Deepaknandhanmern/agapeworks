@@ -51,6 +51,16 @@ model NewsletterSubscriber {
   createdAt DateTime @default(now())
 }
 
+// Captured before the Vivira WordPress plugin download is allowed to start
+// (src/components/sections/vivira-download-button.tsx) — a lightweight lead
+// gate, not an account: no password, no session.
+model ViviraDownloadLead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+}
+
 model Enquiry {
   id          String   @id @default(cuid())
   name        String

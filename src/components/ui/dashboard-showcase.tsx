@@ -4,7 +4,7 @@ import React from "react";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { BarChart3, Receipt, KanbanSquare } from "lucide-react";
 
-// Mockup panels only — not real client screenshots. The three views mirror
+// Mockup panels only - not real client screenshots. The three views mirror
 // dashboard work Agape Works has actually shipped (this site's own admin
 // dashboard, and the Vahi billing product), kept abstract rather than
 // screenshotting private admin data.
@@ -108,7 +108,7 @@ export function DashboardShowcase() {
         <div className="mx-auto mb-10 max-w-xl text-center">
           <h2 className="text-balance text-3xl font-medium text-white sm:text-4xl">The dashboards we build</h2>
           <p className="mt-3 text-white/50">
-            Analytics, billing, operations — real dashboard work we&apos;ve shipped, including this
+            Analytics, billing, operations - real dashboard work we&apos;ve shipped, including this
             site&apos;s own admin panel and the Vahi billing product.
           </p>
         </div>

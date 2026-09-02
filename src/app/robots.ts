@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
       // Authenticated apps (nothing here should be indexed) and capability
-      // URLs — /status/[token] and /invoice/[token] are gated by an
+      // URLs - /status/[token] and /invoice/[token] are gated by an
       // unguessable link, not a login, so they must never be crawled or
       // they stop being private-by-obscurity.
       disallow: ["/dashboard", "/vahi", "/client", "/status", "/invoice", "/api"],

@@ -75,7 +75,7 @@ export const LinkPreview = ({
   return (
     <>
       {isMounted ? (
-        // A <span>, not a <div> — this component is often used inline
+        // A <span>, not a <div> - this component is often used inline
         // inside flowing prose (e.g. a <p>), where a block-level element
         // like <div> would be invalid HTML and trip a hydration error.
         <span className="hidden">

@@ -23,7 +23,7 @@ export default async function ClientProjectsPage() {
 
       {projects.length === 0 ? (
         <p className="rounded-xl border bg-card p-8 text-center text-muted-foreground">
-          No client projects yet — create one to generate a status page.
+          No client projects yet - create one to generate a status page.
         </p>
       ) : (
         <div className="flex flex-col gap-3">

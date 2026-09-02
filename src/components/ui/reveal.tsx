@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 /**
- * Generic scroll-triggered entrance for homepage sections — fades/rises in
+ * Generic scroll-triggered entrance for homepage sections - fades/rises in
  * once as it enters the viewport, `once: true` so it doesn't replay on every
  * scroll up/down. Respects prefers-reduced-motion via Framer's own hook
  * (renders instantly visible, no transform) rather than the CSS media-query

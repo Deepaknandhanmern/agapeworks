@@ -12,32 +12,32 @@ const faqs = [
   {
     question: "How does pricing work?",
     answer:
-      "We scope every project individually rather than publish fixed rates — tell us what you're building and we'll give you a real number, usually within a day. Want a rough idea first? Try the instant AI estimate at /scope, no obligation.",
+      "We scope every project individually rather than publish fixed rates - tell us what you're building and we'll give you a real number, usually within a day. Want a rough idea first? Try the instant AI estimate at /scope, no obligation.",
   },
   {
     question: "How long does a typical project take?",
     answer:
-      "Most engagements ship a first working version in 2–4 weeks, then continue in weekly releases from there — you see real progress every week, not a status report.",
+      "Most engagements ship a first working version in 2–4 weeks, then continue in weekly releases from there - you see real progress every week, not a status report.",
   },
   {
     question: "Who actually builds my project?",
     answer:
-      "The senior engineer who scopes your project is the same one who builds it — no bait-and-switch juniors, and no account-manager layer relaying messages between you and the people writing the code.",
+      "The senior engineer who scopes your project is the same one who builds it - no bait-and-switch juniors, and no account-manager layer relaying messages between you and the people writing the code.",
   },
   {
     question: "Do I own the code afterward?",
     answer:
-      "Yes — 100% code ownership, plus documentation built in from the start, so your own team can pick it up and maintain it long after we're gone.",
+      "Yes - 100% code ownership, plus documentation built in from the start, so your own team can pick it up and maintain it long after we're gone.",
   },
   {
     question: "Do you work with teams outside India?",
     answer:
-      "Yes — we're a remote-first team and have delivered work for clients across multiple continents and time zones.",
+      "Yes - we're a remote-first team and have delivered work for clients across multiple continents and time zones.",
   },
   {
     question: "What if I'm not ready to commit to a full project yet?",
     answer:
-      "Get an instant, AI-generated scope estimate in about 15 seconds at /scope — or just tell us what you're thinking through the contact form. Either way, no pressure to commit.",
+      "Get an instant, AI-generated scope estimate in about 15 seconds at /scope - or just tell us what you're thinking through the contact form. Either way, no pressure to commit.",
   },
 ];
 
@@ -68,7 +68,7 @@ function FAQ() {
                   Questions before you reach out
                 </h2>
                 <p className="max-w-lg text-left text-lg leading-relaxed text-muted-foreground">
-                  The things people usually ask before starting a project — if yours isn&apos;t
+                  The things people usually ask before starting a project - if yours isn&apos;t
                   here, just ask.
                 </p>
               </div>

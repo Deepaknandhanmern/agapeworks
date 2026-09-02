@@ -6,8 +6,7 @@ import Link, { type LinkProps } from "next/link";
 import { cn } from "@/lib/utils";
 
 // Adapted from the classic Aceternity "navbar-menu" hover-dropdown pattern.
-// The original hardcodes Tailwind's `dark:` variant for its dark styling —
-// this site doesn't use that (dark mode was removed sitewide), so every
+// The original hardcodes Tailwind's `dark:` variant for its dark styling - // this site doesn't use that (dark mode was removed sitewide), so every
 // component here takes an explicit `dark` boolean instead, matching the
 // convention already used throughout header-3.tsx.
 
@@ -48,7 +47,7 @@ export const MenuItem = ({
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={transition}>
           {active === item && (
             // top-full (not top: 100% + gap) so there's no dead pixel-space
-            // between the trigger and this wrapper — the pt-4 below still
+            // between the trigger and this wrapper - the pt-4 below still
             // gives the same visual breathing room, but it's now padding
             // *inside* a continuously-hoverable element instead of an empty
             // gap the cursor has to cross, which was closing the dropdown

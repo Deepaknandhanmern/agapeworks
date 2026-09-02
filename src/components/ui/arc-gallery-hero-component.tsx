@@ -126,7 +126,7 @@ export const ArcGalleryHero: React.FC<ArcGalleryHeroProps> = ({
             Software, built by people who care
           </h1>
           <p className="mt-4 text-lg text-foreground/70">
-            A distributed team of engineers, designers, and strategists — shipping real
+            A distributed team of engineers, designers, and strategists - shipping real
             products for founders worldwide.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

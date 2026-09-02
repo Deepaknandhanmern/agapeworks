@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 
   if (!estimate) {
     return NextResponse.json(
-      { error: "Couldn't generate an estimate right now — please try again in a moment." },
+      { error: "Couldn't generate an estimate right now - please try again in a moment." },
       { status: 502 },
     );
   }

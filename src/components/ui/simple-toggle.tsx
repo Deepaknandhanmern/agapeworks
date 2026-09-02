@@ -7,7 +7,7 @@ interface SwitchProps {
   "aria-label"?: string;
 }
 
-/** A plain pill switch, on-brand (no decorative artwork) — see dos-and-donts.tsx. */
+/** A plain pill switch, on-brand (no decorative artwork) - see dos-and-donts.tsx. */
 function Switch({ checked, defaultChecked, onCheckedChange, ...rest }: SwitchProps) {
   return (
     <label className="relative inline-flex h-7 w-12 cursor-pointer items-center">

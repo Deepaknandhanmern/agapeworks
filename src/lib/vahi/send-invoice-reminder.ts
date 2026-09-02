@@ -4,13 +4,13 @@ import { invoiceGrandTotal, formatINR } from "@/lib/vahi/invoice-math";
 import type { Invoice, InvoiceLineItem, BillingCustomer, BillingAccount } from "@/generated/prisma/client";
 
 /**
- * Branded as the merchant's own business, not Agape Works or "Vahi" — the
+ * Branded as the merchant's own business, not Agape Works or "Vahi" - the
  * customer receiving this has a relationship with the merchant, not with
  * the tool they bill through. A small "Sent via Vahi" footer line is the
  * only Vahi branding, same as how e.g. Mailchimp credits itself quietly at
  * the bottom of a sender's newsletter.
  *
- * Best-effort — returns false without throwing on any failure so a missing
+ * Best-effort - returns false without throwing on any failure so a missing
  * key or Resend outage never breaks the caller (manual button or cron job).
  */
 export async function sendInvoiceReminder(
@@ -31,7 +31,7 @@ export async function sendInvoiceReminder(
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || "Agape Works <onboarding@resend.dev>",
       to: invoice.customer.email,
-      subject: `Payment reminder — Invoice ${invoice.invoiceNumber} from ${invoice.account.businessName}`,
+      subject: `Payment reminder - Invoice ${invoice.invoiceNumber} from ${invoice.account.businessName}`,
       html: `<!doctype html>
 <html><body style="margin:0;padding:0;background:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:32px 16px;">
@@ -52,7 +52,7 @@ This is a reminder that invoice <strong>${invoice.invoiceNumber}</strong> for <s
 </td></tr>
 </table></td></tr></table>
 </body></html>`,
-      text: `Hi ${invoice.customer.name},\n\nThis is a reminder that invoice ${invoice.invoiceNumber} for ${total} ${dueText} and is still unpaid.\n\nView it here: ${publicUrl}\n\n— ${invoice.account.businessName}`,
+      text: `Hi ${invoice.customer.name},\n\nThis is a reminder that invoice ${invoice.invoiceNumber} for ${total} ${dueText} and is still unpaid.\n\nView it here: ${publicUrl}\n\n - ${invoice.account.businessName}`,
     });
     return true;
   } catch {

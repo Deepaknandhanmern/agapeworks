@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-// Kept intentionally minimal (no Header, no DotPattern) — an error boundary
+// Kept intentionally minimal (no Header, no DotPattern) - an error boundary
 // should depend on as little as possible, since it exists precisely for the
 // case where something else on the page already broke.
 export default function GlobalError({

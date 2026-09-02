@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { emailLayout, escapeHtml } from "./layout";
 
 /**
- * Best-effort — returns without throwing on any failure (missing/invalid
+ * Best-effort - returns without throwing on any failure (missing/invalid
  * key, Resend error) so posting an update never fails because the email
  * didn't send. The update itself is already saved by the time this runs.
  */
@@ -39,9 +39,9 @@ export async function sendUpdateNotification(input: {
         ctaLabel: "View full status page",
         ctaUrl: input.statusUrl,
       }),
-      text: `Hi ${input.clientName},\n\nThere's a new update on ${input.projectName}: "${input.updateTitle}".\n\nSee it here: ${input.statusUrl}\n\n— Agape Works`,
+      text: `Hi ${input.clientName},\n\nThere's a new update on ${input.projectName}: "${input.updateTitle}".\n\nSee it here: ${input.statusUrl}\n\n - Agape Works`,
     });
   } catch {
-    // Swallow — the update is already saved; email is a nice-to-have.
+    // Swallow - the update is already saved; email is a nice-to-have.
   }
 }

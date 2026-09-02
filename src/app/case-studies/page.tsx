@@ -4,7 +4,7 @@ import { getAllCaseStudies } from "@/lib/content";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Agape Works",
+  title: "Case Studies - Agape Works",
   description: "How Agape Works has approached real client projects, end to end.",
 };
 
@@ -24,7 +24,7 @@ export default function CaseStudiesIndexPage() {
             How we&apos;ve approached real projects.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            The brief, the approach, and what shipped — for clients we&apos;ve built with,
+            The brief, the approach, and what shipped - for clients we&apos;ve built with,
             end to end.
           </p>
         </section>

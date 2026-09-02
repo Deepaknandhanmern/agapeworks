@@ -4,7 +4,7 @@ import { getAllBlogPosts } from "@/lib/content";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Blog — Agape Works",
+  title: "Blog - Agape Works",
   description: "Notes on product strategy, SaaS development, SEO, and AEO from Agape Works.",
 };
 
@@ -32,7 +32,7 @@ export default async function BlogIndexPage() {
             Notes on building software that ships.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            Product strategy, SaaS development, SEO, and AEO — written from the inside of real
+            Product strategy, SaaS development, SEO, and AEO - written from the inside of real
             engagements, not from a content calendar.
           </p>
         </section>
@@ -64,7 +64,7 @@ export default async function BlogIndexPage() {
               </a>
             ))}
             {posts.length === 0 && (
-              <p className="py-8 text-muted-foreground">No posts published yet — check back soon.</p>
+              <p className="py-8 text-muted-foreground">No posts published yet - check back soon.</p>
             )}
           </div>
         </section>

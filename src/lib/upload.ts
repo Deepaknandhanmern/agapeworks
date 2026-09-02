@@ -12,7 +12,7 @@ const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
  *
  * This writes to local disk, which works for local dev and any host with a
  * persistent filesystem (e.g. a VPS). It will NOT work on serverless hosting
- * (Vercel's filesystem is read-only/ephemeral outside /tmp at runtime) — if
+ * (Vercel's filesystem is read-only/ephemeral outside /tmp at runtime) - if
  * this ever deploys there, swap this function's body for an upload to
  * @vercel/blob (or S3/Cloudinary) and keep the same signature/return shape
  * so nothing else in the app needs to change.

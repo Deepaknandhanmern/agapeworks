@@ -3,8 +3,7 @@
 import type { CSSProperties } from "react";
 import { Play, Sparkles, Star } from "lucide-react";
 
-// Standalone hero built to a pasted spec for a company called "Qumica" —
-// not wired into any page. Not part of the Agape Works / Vahi / Sellara /
+// Standalone hero built to a pasted spec for a company called "Qumica" - // not wired into any page. Not part of the Agape Works / Vahi / Sellara /
 // Wedly product set; kept here as a self-contained reference component.
 const VIDEO_SRC =
   "https://cdn.sceneai.art/Hero%20Section%20Video/247f75dd-335a-4aaa-ba65-47df2f7b24b9.mp4";

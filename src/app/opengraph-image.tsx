@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { OG_MARK_DATA_URI } from "@/lib/og-mark";
 
-export const alt = "Agape Works — product engineering that ships";
+export const alt = "Agape Works - product engineering that ships";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

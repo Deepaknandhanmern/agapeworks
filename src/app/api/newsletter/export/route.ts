@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
 import { db } from "@/lib/db";
 
-// Not covered by proxy.ts (only /dashboard/* is) — this route isn't under
+// Not covered by proxy.ts (only /dashboard/* is) - this route isn't under
 // that path, so it's the only gate; check directly rather than requireAuth(),
 // which throws (fine inside a Server Action, but turns into an ugly 500 here).
 export async function GET() {

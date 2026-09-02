@@ -1,4 +1,4 @@
-// Account-scoped session tokens for Vahi — parallel to src/lib/session-token.ts
+// Account-scoped session tokens for Vahi - parallel to src/lib/session-token.ts
 // (the admin dashboard's), kept separate because Vahi has many accounts
 // (one per business) instead of one shared admin password. Same HMAC
 // approach so proxy.ts can verify it without framework imports.

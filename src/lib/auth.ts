@@ -54,14 +54,14 @@ export const isAuthenticated = cache(async (): Promise<boolean> => {
   return isValidSessionToken(cookieStore.get(SESSION_COOKIE)?.value, getSessionSecret());
 });
 
-/** Guard for Server Actions — every mutation must call this first. */
+/** Guard for Server Actions - every mutation must call this first. */
 export async function requireAuth(): Promise<void> {
   if (!(await isAuthenticated())) {
     throw new Error("Unauthorized");
   }
 }
 
-/** 2FA is opt-in — off entirely until this env var is set. */
+/** 2FA is opt-in - off entirely until this env var is set. */
 export function isTotpEnabled(): boolean {
   return !!process.env.ADMIN_TOTP_SECRET;
 }

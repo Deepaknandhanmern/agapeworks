@@ -9,7 +9,7 @@ export function Integrations() {
 					The Stack We Build With
 				</h2>
 				<p className="text-lg text-muted-foreground leading-8">
-					No hype-chasing — just the tools and platforms we&apos;ve
+					No hype-chasing - just the tools and platforms we&apos;ve
 					shipped real, production client work with.
 				</p>
 			</div>

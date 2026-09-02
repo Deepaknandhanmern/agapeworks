@@ -2,12 +2,12 @@ import "server-only";
 import { db } from "@/lib/db";
 import { clientProjectDetailInclude } from "./client-project-detail-include";
 
-// Session-based (email-owned) reads/writes for the client portal — kept
+// Session-based (email-owned) reads/writes for the client portal - kept
 // separate from status-page.ts on purpose. That file is deliberately a pure
 // capability URL (token-only, no search-by-anything-else); this one is the
 // opposite shape (session-identity-only, no token), so they never merge.
 
-/** Ownership check shared by every write below — null if the id doesn't exist or belongs to a different email. */
+/** Ownership check shared by every write below - null if the id doesn't exist or belongs to a different email. */
 async function findOwnedProjectId(id: string, email: string): Promise<string | null> {
   const project = await db.clientProject.findFirst({
     where: { id, clientEmail: { equals: email, mode: "insensitive" } },
@@ -17,7 +17,7 @@ async function findOwnedProjectId(id: string, email: string): Promise<string | n
 }
 
 /**
- * List view for /client — includes just enough of each project's latest
+ * List view for /client - includes just enough of each project's latest
  * activity (most recent update/file createdAt) to compute an unread
  * indicator against `clientLastViewedAt`, without pulling full detail.
  */
@@ -50,7 +50,7 @@ export function getClientProjectForEmail(id: string, email: string) {
   });
 }
 
-/** Called when a client opens /client/[id] — powers the unread indicator on /client. */
+/** Called when a client opens /client/[id] - powers the unread indicator on /client. */
 export async function markProjectViewed(id: string, email: string): Promise<void> {
   await db.clientProject.updateMany({
     where: { id, clientEmail: { equals: email, mode: "insensitive" } },
@@ -86,7 +86,7 @@ export async function addFileForClientOwnedProject(
   return db.projectFile.create({ data: { clientProjectId: projectId, ...file } });
 }
 
-/** Used by the login-link request action — existence check only, no data returned. */
+/** Used by the login-link request action - existence check only, no data returned. */
 export async function hasClientProjectForEmail(email: string): Promise<boolean> {
   const project = await db.clientProject.findFirst({
     where: { clientEmail: { equals: email, mode: "insensitive" } },

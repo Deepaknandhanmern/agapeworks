@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { clientProjectDetailInclude } from "./client-project-detail-include";
 
 /**
- * Public reads for the no-login client status page — deliberately no
+ * Public reads for the no-login client status page - deliberately no
  * requireAuth() here. Access is gated by knowing the unguessable
  * statusToken, not a session; never widen this to list/search by anything
  * else (name, email) or it stops being a capability URL. (The session-based

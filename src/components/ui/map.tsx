@@ -35,7 +35,7 @@ export function WorldMap({
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
   // next-themes' useTheme()/resolvedTheme never resolved to "dark" here even
   // though the .dark class was correctly applied to <html> and matchMedia
-  // correctly reported dark — reproducible in both dev and production
+  // correctly reported dark - reproducible in both dev and production
   // builds, so read the class directly instead (the same mechanism the
   // Tailwind dark: variant itself relies on, already proven correct) and
   // watch it with a MutationObserver so it stays in sync if the visitor
@@ -96,7 +96,7 @@ export function WorldMap({
     <div className="w-full aspect-[2/1] md:aspect-[2.5/1] lg:aspect-[2/1] bg-white rounded-lg relative font-sans overflow-hidden">
       {/*
         A plain <img>, not next/image: this src is a data: URI that changes
-        after mount (light/dark recompute) — next/image's <Image> silently
+        after mount (light/dark recompute) - next/image's <Image> silently
         never updated its rendered src when that happened here (reproduced
         in both dev and production builds), even though the component's own
         React state was confirmed correct. Since it's already an inline

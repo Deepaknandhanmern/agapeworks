@@ -63,7 +63,7 @@ export function ProductsTeaser() {
             </h3>
 
             <p className="max-w-md text-white/50">
-              An AI cart plugin for WooCommerce — recovers abandoned carts and nudges shoppers
+              An AI cart plugin for WooCommerce - recovers abandoned carts and nudges shoppers
               toward checkout, automatically.
             </p>
 

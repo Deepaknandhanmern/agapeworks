@@ -40,7 +40,7 @@ export function FilePreviewDialog({
         </DialogHeader>
         <div className="h-[75vh] w-full overflow-hidden rounded-lg border bg-muted">
           {contentType.startsWith("image/") ? (
-            // eslint-disable-next-line @next/next/no-img-element -- signed, expiring URL — not worth next/image's remote-pattern config for this
+            // eslint-disable-next-line @next/next/no-img-element -- signed, expiring URL - not worth next/image's remote-pattern config for this
             <img src={url} alt={fileName} className="h-full w-full object-contain" />
           ) : (
             <iframe src={url} title={fileName} className="h-full w-full" />

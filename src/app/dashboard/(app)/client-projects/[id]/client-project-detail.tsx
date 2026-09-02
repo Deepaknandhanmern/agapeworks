@@ -94,7 +94,7 @@ function PostUpdateForm({ id }: { id: string }) {
   useEffect(() => {
     if (wasPending.current && !pending && !state?.error) {
       playChime();
-      notify.success("Update posted — client notified", { title: "Client notified" });
+      notify.success("Update posted - client notified", { title: "Client notified" });
     }
     wasPending.current = pending;
   }, [pending, state]);
@@ -106,7 +106,7 @@ function PostUpdateForm({ id }: { id: string }) {
         <Input id="title" name="title" placeholder="Checkout flow is live" required />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="body">Details — and what&apos;s next</Label>
+        <Label htmlFor="body">Details - and what&apos;s next</Label>
         <Textarea
           id="body"
           name="body"
