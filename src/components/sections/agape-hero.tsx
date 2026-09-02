@@ -129,10 +129,10 @@ export function AgapeHero() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/portfolio"
+                href="/products"
                 className="inline-flex items-center gap-2 rounded-full bg-transparent px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:text-white"
               >
-                See our work
+                Our products
                 <Play className="h-4 w-4" />
               </Link>
             </div>

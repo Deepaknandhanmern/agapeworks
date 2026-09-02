@@ -21,6 +21,7 @@ import {
 	Users,
 	Star,
 	Handshake,
+	Briefcase,
 } from 'lucide-react';
 
 // Floating pill nav: pinned/expanded at all times on desktop (md+) — mobile
@@ -430,5 +431,11 @@ const companyLinks: LinkItem[] = [
 		href: '/collaboration',
 		icon: Handshake,
 		description: 'Collaborate with us for mutual growth',
+	},
+	{
+		title: 'Careers',
+		href: '/careers',
+		icon: Briefcase,
+		description: 'Senior engineers only — see what we look for',
 	},
 ];

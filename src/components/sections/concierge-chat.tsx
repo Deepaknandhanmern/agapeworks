@@ -3,7 +3,7 @@
 import * as React from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { MessageCircle, X, Send, Sparkles, RotateCcw } from "lucide-react";
+import { MessageCircle, X, Send, Sparkles, RotateCcw, Mail } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
@@ -11,6 +11,24 @@ type ChatMessage = { role: "user" | "assistant"; content: string };
 const MAX_MESSAGES = 20;
 
 const EXCLUDED_PREFIXES = ["/dashboard", "/vahi", "/status", "/invoice", "/sellara", "/signin", "/signup"];
+
+const SUPPORT_EMAIL = "studio@agapeworks.in";
+
+// Escalation to a real person — the chat transcript rides along in the
+// email body so nothing has to be re-explained.
+function buildHandoffMailto(messages: ChatMessage[]) {
+  const transcript = messages
+    .map((m) => `${m.role === "user" ? "Me" : "Concierge"}: ${m.content}`)
+    .join("\n\n");
+  const body = transcript
+    ? `Continuing from the concierge chat on agapeworks.in:\n\n${transcript}\n\n---\n\n`
+    : "";
+  const params = new URLSearchParams({
+    subject: "Following up from the Agape Works concierge chat",
+    body,
+  });
+  return `mailto:${SUPPORT_EMAIL}?${params.toString()}`;
+}
 
 function WelcomeBubble() {
   return (
@@ -126,6 +144,15 @@ export function ConciergeChat() {
                 <p className="text-sm font-semibold text-background">Agape Works concierge</p>
               </div>
               <div className="flex items-center gap-1">
+                <a
+                  href={buildHandoffMailto(messages)}
+                  onClick={() => trackEvent("concierge_human_handoff")}
+                  aria-label="Talk to a real person"
+                  title="Talk to a real person"
+                  className="rounded-md p-1 text-background/70 hover:bg-background/10 hover:text-background"
+                >
+                  <Mail className="size-3.5" />
+                </a>
                 {messages.length > 0 && (
                   <button
                     type="button"

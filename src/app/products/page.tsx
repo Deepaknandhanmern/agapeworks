@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Clock } from "lucide-react";
 import { FaWordpress, FaShopify } from "react-icons/fa6";
 import { ViviraDownloadButton } from "@/components/sections/vivira-download-button";
+import { ViviraRoiCalculator } from "@/components/sections/vivira-roi-calculator";
 
 // Served directly from this site (public/downloads/vivira.zip) — not a
 // redirect to the subdomain. That file isn't in the repo yet; drop the real
@@ -66,6 +67,10 @@ export default function ProductsPage() {
               </div>
             </TabsContent>
           </Tabs>
+        </section>
+
+        <section className="border-t bg-muted/20 px-4 py-24">
+          <ViviraRoiCalculator />
         </section>
       </main>
     </div>

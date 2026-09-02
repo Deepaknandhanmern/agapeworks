@@ -12,6 +12,7 @@ const staticRoutes = [
   "/case-studies",
   "/collaboration",
   "/partner-program",
+  "/careers",
   "/products",
   "/billing",
   "/sellara",
