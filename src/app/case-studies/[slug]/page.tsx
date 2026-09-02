@@ -49,8 +49,21 @@ export default async function CaseStudyPage({
     components: mdxComponents,
   });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: frontmatter.title,
+    description: frontmatter.summary,
+    datePublished: frontmatter.date,
+    about: { "@type": "Organization", name: frontmatter.client },
+    author: { "@type": "Organization", name: "Agape Works" },
+    publisher: { "@type": "Organization", name: "Agape Works" },
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      {/* eslint-disable-next-line react/no-danger -- static JSON built from this case study's own frontmatter above, not raw user input */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
 
       <main className="flex-1">

@@ -166,12 +166,15 @@
 @theme {
   --animate-marquee: marquee var(--duration, 30s) linear infinite;
   --animate-marquee-reverse: marquee-reverse var(--duration, 30s) linear infinite;
-  /* "Coming soon" banner text (src/components/sections/sellara-coming-soon.tsx) */
+  /* "Coming soon" / shimmer banner text (src/components/sections/products-teaser.tsx, src/components/ui/header-3.tsx) */
   --animate-shimmer: shimmer 3.5s linear infinite;
   /* BorderBeam (src/components/ui/border-beam.tsx) */
   --animate-border-beam: border-beam calc(var(--duration) * 1s) infinite linear;
-  /* Homepage cinematic hero entrance (src/components/sections/agape-hero.tsx) */
-  --animate-hero-rise: hero-rise 0.9s cubic-bezier(.22, 1, .36, 1) forwards;
+  /* Typewriter cursor (src/components/sections/agape-hero.tsx) */
+  --animate-blink: blink 1s step-end infinite;
+  /* Qumica hero (src/components/sections/qumica-hero.tsx) */
+  --animate-gradient-shift: gradient-shift 4s ease infinite;
+  --animate-shimmer-sweep: shimmer-sweep 3s ease-in-out infinite;
   /* Accordion (src/components/ui/accordion.tsx) */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -201,22 +204,46 @@
   }
 }
 
-@keyframes hero-rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
+@keyframes blink {
+  0%, 100% {
     opacity: 1;
-    transform: translateY(0);
+  }
+  50% {
+    opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-hero-rise {
+  .animate-blink {
     animation: none;
-    opacity: 1;
-    transform: none;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-20deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-shift,
+  .animate-shimmer-sweep {
+    animation: none;
   }
 }
 
@@ -313,5 +340,31 @@
     opacity: 1;
     filter: none;
     transform: none;
+  }
+}
+
+/* Hero entrance stagger (src/components/sections/agape-hero.tsx) */
+@keyframes hero-fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-slide-in-1 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; }
+.animate-fade-slide-in-2 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; animation-delay: 0.15s; }
+.animate-fade-slide-in-3 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; animation-delay: 0.3s; }
+.animate-fade-slide-in-4 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; animation-delay: 0.45s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-slide-in-1,
+  .animate-fade-slide-in-2,
+  .animate-fade-slide-in-3,
+  .animate-fade-slide-in-4 {
+    animation: none;
+    opacity: 1;
   }
 }

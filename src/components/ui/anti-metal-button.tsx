@@ -75,8 +75,8 @@ export const AntiMetalButton = React.forwardRef<
     className,
     children,
     label,
-    accentFrom = "#d6f54a",
-    accentTo = "#c5ea2c",
+    accentFrom = "#fde68a",
+    accentTo = "#fbbf24",
     dotColor = "#0f0f0f",
     href,
     ...rest

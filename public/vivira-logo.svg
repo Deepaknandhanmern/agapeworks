@@ -1,0 +1,26 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vivira logo">
+  <defs>
+    <linearGradient id="viviraGrad" x1="4" y1="6" x2="44" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="55%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Cart -->
+  <path
+    d="M5 7H10L13.5 27.5C13.8 29.4 15.4 30.8 17.3 30.8H33.5C35.3 30.8 36.9 29.5 37.2 27.7L40 14H12.5"
+    stroke="url(#viviraGrad)"
+    stroke-width="3.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="19" cy="38" r="3" fill="url(#viviraGrad)"/>
+  <circle cx="32" cy="38" r="3" fill="url(#viviraGrad)"/>
+
+  <!-- AI spark -->
+  <path
+    d="M37 2L38.6 6.4L43 8L38.6 9.6L37 14L35.4 9.6L31 8L35.4 6.4L37 2Z"
+    fill="url(#viviraGrad)"
+  />
+</svg>

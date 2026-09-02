@@ -3,7 +3,6 @@ import { Header } from "@/components/ui/header-3";
 import { ContactForm } from "@/components/sections/contact-form";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
-import { Calendar } from "@/components/ui/calendar";
 
 export const metadata: Metadata = {
   title: "Contact — Agape Works",
@@ -28,9 +27,7 @@ const contactPoints = [
   },
 ];
 
-// Placeholder hrefs — swap in the real profile/scheduling URLs.
-const calendlyUrl = "#";
-
+// Placeholder hrefs — swap in the real profile URLs.
 const socialLinks = [
   { icon: FaLinkedin, label: "LinkedIn", href: "#" },
   { icon: FaFacebook, label: "Facebook", href: "#" },
@@ -89,10 +86,6 @@ export default function ContactPage() {
 
             <ContactForm />
           </div>
-        </section>
-
-        <section className="mx-auto w-full max-w-3xl px-4 pb-24">
-          <Calendar bookingLink={calendlyUrl} />
         </section>
       </main>
     </div>

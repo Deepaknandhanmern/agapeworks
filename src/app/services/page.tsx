@@ -4,8 +4,6 @@ import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { AnimatedFeatureCard } from "@/components/ui/feature-card-1";
-import { AIVoiceInput } from "@/components/ui/ai-voice-input";
-import { DeviceShowcase } from "@/components/sections/device-showcase";
 import { Marquee } from "@/components/ui/marquee";
 import { mainServices, supportingServices } from "@/lib/services-data";
 import { DotPattern } from "@/components/ui/dot-pattern";
@@ -63,25 +61,6 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* AI Solutions demo */}
-        <section className="border-t bg-muted/20">
-          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-3 px-4 py-24 text-center">
-            <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
-              AI Solutions
-            </div>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-              Built-in AI, not bolted on
-            </h2>
-            <p className="max-w-lg text-muted-foreground">
-              A taste of the kind of voice and conversational interfaces we build into products —
-              click the mic to try it.
-            </p>
-            <div className="mt-4 w-full max-w-md rounded-2xl border bg-card p-4 shadow-sm">
-              <AIVoiceInput demoMode />
-            </div>
-          </div>
-        </section>
-
         {/* Supporting / Technical Services */}
         <section className="border-t bg-muted/20">
           <div className="mx-auto w-full max-w-5xl px-4 py-24">
@@ -106,20 +85,6 @@ export default function ServicesPage() {
               ))}
             </div>
           </div>
-        </section>
-
-        {/* Device showcase */}
-        <section className="mx-auto w-full max-w-5xl px-4 pb-24">
-          <div className="mb-16 flex flex-col items-center gap-3 text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-              Built for every screen
-            </h2>
-            <p className="max-w-lg text-muted-foreground">
-              Scroll to see how a mobile app and a SaaS dashboard come together, screen by
-              screen.
-            </p>
-          </div>
-          <DeviceShowcase />
         </section>
 
         {/* Technologies */}

@@ -10,7 +10,7 @@ type ChatMessage = { role: "user" | "assistant"; content: string };
 
 const MAX_MESSAGES = 20;
 
-const EXCLUDED_PREFIXES = ["/dashboard", "/vahi", "/status", "/invoice", "/sellara", "/signin", "/signup", "/wedly"];
+const EXCLUDED_PREFIXES = ["/dashboard", "/vahi", "/status", "/invoice", "/sellara", "/signin", "/signup"];
 
 function WelcomeBubble() {
   return (

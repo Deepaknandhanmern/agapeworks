@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { Footerdemo } from "@/components/ui/footer-section";
 import { AnnouncementToast } from "@/components/sections/announcement-toast";
-import { WedlyTeaser } from "@/components/sections/wedly-teaser";
+import { ViviraTeaser } from "@/components/sections/vivira-teaser";
 import { ConciergeChat } from "@/components/sections/concierge-chat";
 import { GoogleAnalytics } from "@/components/sections/google-analytics";
 import { BackToTopButton } from "@/components/ui/back-to-top-button";
@@ -56,14 +56,35 @@ export const metadata: Metadata = {
 // Sitewide, not per-page — sameAs is deliberately omitted rather than
 // pointing at the footer's placeholder "#" social links (see
 // src/components/ui/footer-section.tsx); fill it in once those are real.
+// address is region/country-level only (no street address on file) — real,
+// not fabricated, since a fake precise address would be worse than none.
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   name: "Agape Works",
   url: SITE_URL,
   logo: `${SITE_URL}/logo-black.png`,
   description: SITE_DESCRIPTION,
   email: "studio@agapeworks.in",
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Tamil Nadu",
+    addressCountry: "IN",
+  },
+  areaServed: [
+    { "@type": "City", name: "Coimbatore" },
+    { "@type": "City", name: "Chennai" },
+  ],
+};
+
+// Lets search engines and AI answer engines resolve "Agape Works" as a
+// distinct named entity tied to this URL, separate from the Organization
+// (which describes the business itself, not the website as an artifact).
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Agape Works",
+  url: SITE_URL,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -78,11 +99,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
+        {/* eslint-disable-next-line react/no-danger -- static JSON we authored above, not user input */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <GoogleAnalytics />
         {children}
         <Footerdemo />
         <AnnouncementToast />
-        <WedlyTeaser />
+        <ViviraTeaser />
         <ConciergeChat />
         <BackToTopButton />
       </body>

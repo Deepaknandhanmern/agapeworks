@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -44,12 +43,8 @@ const socialLinks = [
 ];
 
 function Footerdemo() {
-  const pathname = usePathname();
   const [subscribed, setSubscribed] = React.useState(false);
   const [error, setError] = React.useState("");
-
-  // /wedly is deliberately bare — just the countdown, no site chrome.
-  if (pathname?.startsWith("/wedly")) return null;
 
   const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

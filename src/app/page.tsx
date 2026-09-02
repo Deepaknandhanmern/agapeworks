@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { ColorfulBentoGrid } from "@/components/ui/colorful-bento-grid";
 import { Integrations } from "@/components/ui/integrations-4-2";
@@ -5,11 +6,31 @@ import HowItWorks from "@/components/ui/how-it-works";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { WorldMap } from "@/components/ui/map";
 import { AgapeHero } from "@/components/sections/agape-hero";
+import { SiteBanner } from "@/components/sections/site-banner";
 import Testimonial1 from "@/components/ui/testimonial-1";
 import { FAQ } from "@/components/ui/faq-section";
 import { ProductsTeaser } from "@/components/sections/products-teaser";
 import { Reveal } from "@/components/ui/reveal";
-import { Gauge, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
+
+const HOME_TITLE = "Agape Works — Software Development Company in Coimbatore & Chennai";
+const HOME_DESCRIPTION =
+  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond — fixed scope, senior engineers only, weekly working demos.";
+
+export const metadata: Metadata = {
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    url: "/",
+  },
+  twitter: {
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+  },
+};
 
 const process = [
   {
@@ -38,30 +59,13 @@ export default function Home() {
   return (
     <div className="home-theme flex min-h-screen flex-col bg-background">
       <main className="flex-1">
+        <SiteBanner />
         <AgapeHero />
 
         {/* About us */}
         <Reveal>
           <section className="border-b">
             <Testimonial1 />
-          </section>
-        </Reveal>
-
-        {/* Trust strip */}
-        <Reveal>
-          <section className="border-y bg-muted/20">
-            <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-4 px-4 py-8 sm:flex-row sm:justify-between">
-              <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Trusted by teams shipping real products
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold text-muted-foreground/70">
-                <span>Northwind</span>
-                <span>Solace</span>
-                <span>Fernbank</span>
-                <span>Loom &amp; Co.</span>
-                <span>Vantage</span>
-              </div>
-            </div>
           </section>
         </Reveal>
 
@@ -79,8 +83,16 @@ export default function Home() {
 
         {/* Process */}
         <Reveal>
-          <section className="border-t bg-white">
-            <div className="mx-auto w-full max-w-5xl px-4 pt-24">
+          <section className="relative overflow-hidden border-t bg-white">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.16),transparent_70%)] blur-3xl"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-0 h-[380px] w-[560px] -translate-x-[15%] -translate-y-1/4 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.14),transparent_70%)] blur-3xl"
+            />
+            <div className="relative mx-auto w-full max-w-5xl px-4 pt-24">
               <div className="mb-4 flex flex-col items-center gap-3 text-center">
                 <h2 className="text-3xl font-semibold tracking-tight text-foreground">
                   How we work
@@ -90,15 +102,25 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <HowItWorks features={[...process]} />
+            <div className="relative">
+              <HowItWorks features={[...process]} />
+            </div>
           </section>
         </Reveal>
 
         {/* Why us */}
         <Reveal>
-          <section className="mx-auto w-full max-w-5xl px-4 py-24">
-            <div className="grid items-center gap-10 sm:grid-cols-2">
-              <div className="flex flex-col gap-4">
+          <section className="relative overflow-hidden">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute right-0 top-1/2 h-[380px] w-[380px] -translate-y-1/2 translate-x-1/3 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.16),transparent_70%)] blur-3xl"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-0 top-1/4 h-[300px] w-[300px] -translate-x-1/3 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.14),transparent_70%)] blur-3xl"
+            />
+            <div className="relative mx-auto w-full max-w-3xl px-4 py-24">
+              <div className="flex flex-col items-center gap-4 text-center">
                 <h2 className="text-3xl font-semibold tracking-tight text-foreground">
                   Care isn&apos;t a slogan here — it&apos;s the process.
                 </h2>
@@ -119,24 +141,6 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-              </div>
-              <div className="flex flex-col gap-4 rounded-xl border bg-card p-6 shadow-sm">
-                <div className="flex items-center gap-2">
-                  <Gauge className="size-4 text-muted-foreground" />
-                  <span className="text-sm font-medium text-muted-foreground">
-                    Typical engagement
-                  </span>
-                </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div className="rounded-lg border p-4">
-                    <p className="text-2xl font-semibold text-foreground">2–4</p>
-                    <p className="text-muted-foreground">weeks to first ship</p>
-                  </div>
-                  <div className="rounded-lg border p-4">
-                    <p className="text-2xl font-semibold text-foreground">100%</p>
-                    <p className="text-muted-foreground">code ownership, yours</p>
-                  </div>
-                </div>
               </div>
             </div>
           </section>
@@ -195,6 +199,14 @@ export default function Home() {
         {/* CTA */}
         <Reveal>
           <section className="relative overflow-hidden border-t bg-muted/20">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-[65%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.2),transparent_70%)] blur-3xl"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-[35%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.2),transparent_70%)] blur-3xl"
+            />
             <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
             <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
               <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">

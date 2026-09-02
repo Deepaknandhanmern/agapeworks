@@ -5,6 +5,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { DotPattern } from "@/components/ui/dot-pattern";
+import { AIVoiceInput } from "@/components/ui/ai-voice-input";
 import { serviceDetails, getServiceDetailBySlug } from "@/lib/service-detail-data";
 
 export function generateStaticParams() {
@@ -33,8 +34,30 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   const Icon = service.icon;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    provider: { "@type": "Organization", name: "Agape Works" },
+    areaServed: [
+      { "@type": "City", name: "Coimbatore" },
+      { "@type": "City", name: "Chennai" },
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: service.title,
+      itemListElement: service.included.map((item) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: item },
+      })),
+    },
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      {/* eslint-disable-next-line react/no-danger -- static JSON built from this service's own data above, not raw user input */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
 
       <main className="flex-1">
@@ -52,6 +75,23 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             {service.description}
           </p>
         </section>
+
+        {service.slug === "ai-solutions" && (
+          <section className="border-t bg-muted/20">
+            <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-3 px-4 py-24 text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+                Built-in AI, not bolted on
+              </h2>
+              <p className="max-w-lg text-muted-foreground">
+                A taste of the kind of voice and conversational interfaces we build into
+                products — click the mic to try it.
+              </p>
+              <div className="mt-4 w-full max-w-md rounded-2xl border bg-card p-4 shadow-sm">
+                <AIVoiceInput demoMode />
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="border-t bg-muted/20">
           <div className="mx-auto w-full max-w-3xl px-4 py-20">

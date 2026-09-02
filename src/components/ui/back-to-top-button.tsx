@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { ArrowUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -9,10 +8,8 @@ const SHOW_AFTER_PX = 400;
 
 // Global, present on every route (including /dashboard) — unlike the
 // marketing footer's own scroll-to-top, which only exists at the bottom of
-// the page and is skipped entirely on the dashboard. /wedly is excluded
-// since that page is deliberately bare (just the countdown, no site chrome).
+// the page and is skipped entirely on the dashboard.
 export function BackToTopButton() {
-  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -21,8 +18,6 @@ export function BackToTopButton() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  if (pathname?.startsWith("/wedly")) return null;
 
   return (
     <button

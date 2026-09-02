@@ -1,13 +1,5 @@
 import { z } from "zod";
 
-export const budgetOptions = [
-  "Under $10k",
-  "$10k – $25k",
-  "$25k – $50k",
-  "$50k+",
-  "Not sure yet",
-] as const;
-
 export const timelineOptions = [
   "ASAP",
   "Within 1 month",
@@ -26,7 +18,6 @@ export const sourceOptions = [
 
 export const stepOneSchema = z.object({
   service: z.string().min(1, "Select a service"),
-  budget: z.enum(budgetOptions, { message: "Select a budget range" }),
   timeline: z.enum(timelineOptions, { message: "Select a timeline" }),
 });
 

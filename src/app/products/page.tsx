@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
-import { AntiMetalButton } from "@/components/ui/anti-metal-button";
-import { DotPattern } from "@/components/ui/dot-pattern";
-import { Sparkles } from "lucide-react";
-import { SellaraComingSoon } from "@/components/sections/sellara-coming-soon";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Clock } from "lucide-react";
+import { FaWordpress, FaShopify } from "react-icons/fa6";
+
+// Served directly from this site (public/downloads/vivira.zip) — not a
+// redirect to the subdomain. That file isn't in the repo yet; drop the real
+// plugin .zip in at that path and this link starts working.
+const VIVIRA_DOWNLOAD_PATH = "/downloads/vivira.zip";
 
 export const metadata: Metadata = {
   title: "Products — Agape Works",
-  description:
-    "The Digital Presence Plan — a complete website, hosting, and care, sold as one flat payment for 1, 2, or 3 years. No monthly billing.",
+  description: "Vivira — an AI cart plugin for WooCommerce that recovers abandoned carts automatically.",
 };
 
 export default function ProductsPage() {
@@ -17,81 +20,57 @@ export default function ProductsPage() {
       <Header />
 
       <main className="flex-1">
-        <section className="mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 pb-16 pt-8 text-center sm:pt-10">
-          <div className="inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
-            Products
-          </div>
+        <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 pb-16 pt-8 text-center sm:pt-10">
+          {/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
+          <img src="/vivira-logo.svg" alt="Vivira" className="size-14" />
           <h1 className="max-w-2xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            One website. One payment. Years of peace of mind.
+            Vivira — an AI cart that recovers itself
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
-            The Digital Presence Plan gets your business a website, hosting, and ongoing care —
-            paid once upfront for the term you choose. No monthly bills to track.
+            Vivira watches for abandoned carts and brings shoppers back automatically, so stores
+            keep the sales they&apos;d otherwise lose.
           </p>
-        </section>
 
-        {/* Sellara — not launched yet, so a simple animated teaser rather
-            than a full pitch with pricing/CTAs (see /sellara for the full
-            early-access page this still links to). */}
-        <SellaraComingSoon />
+          <Tabs defaultValue="wordpress" className="mt-4 flex w-full flex-col items-center">
+            <TabsList>
+              <TabsTrigger value="wordpress" className="gap-2">
+                <FaWordpress className="size-4" /> WordPress
+              </TabsTrigger>
+              <TabsTrigger value="shopify" className="gap-2">
+                <FaShopify className="size-4" /> Shopify
+              </TabsTrigger>
+            </TabsList>
 
-        {/* Digital Presence Plan — launching soon, no pricing disclosed here */}
-        <section className="border-t bg-muted/20">
-          <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-3 px-4 py-16 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
-              <Sparkles className="size-3.5" /> Launching soon
-            </span>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Digital Presence Plan
-            </h2>
-            <p className="max-w-lg text-muted-foreground">
-              A complete website, hosting, and ongoing care — one flat payment, no monthly bills.
-              Get in touch to be first in line.
-            </p>
-            <a
-              href="/contact"
-              className="mt-2 inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Get in touch
-            </a>
-          </div>
-        </section>
+            <TabsContent value="wordpress" className="w-full">
+              <div className="flex flex-col items-center gap-4 rounded-2xl border bg-card p-8 text-center shadow-sm">
+                <h2 className="text-xl font-semibold text-foreground">Vivira for WooCommerce</h2>
+                <p className="max-w-md text-muted-foreground">
+                  Install Vivira on your WordPress + WooCommerce store to start recovering
+                  abandoned carts automatically.
+                </p>
+                <a
+                  href={VIVIRA_DOWNLOAD_PATH}
+                  download
+                  className="mt-2 inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                >
+                  Download for WordPress
+                </a>
+              </div>
+            </TabsContent>
 
-        {/* Vahi teaser — no pricing disclosed here, see /billing to learn more */}
-        <section className="border-t bg-muted/20">
-          <a
-            href="/billing"
-            className="group mx-auto flex w-full max-w-5xl flex-col items-start gap-4 px-4 py-14 sm:flex-row sm:items-center sm:justify-between"
-          >
-            <div>
-              <span className="mb-3 inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
-                Now available
-              </span>
-              <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Vahi — GST billing, without the paperwork
-              </h2>
-              <p className="mt-2 max-w-lg text-muted-foreground">
-                Create GST-compliant invoices, track payments, and share bills over WhatsApp.
-              </p>
-            </div>
-            <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-transform group-hover:scale-[1.03]">
-              Learn more
-            </span>
-          </a>
-        </section>
-
-        {/* CTA */}
-        <section className="relative overflow-hidden border-t">
-          <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
-          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
-            <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
-              Ready to get your business online?
-            </h2>
-            <p className="max-w-md text-muted-foreground">
-              Tell us a bit about your business — we&apos;ll take it from there.
-            </p>
-            <AntiMetalButton href="/contact" label="Get started" />
-          </div>
+            <TabsContent value="shopify" className="w-full">
+              <div className="flex flex-col items-center gap-4 rounded-2xl border border-dashed bg-muted/20 p-8 text-center">
+                <span className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
+                  <Clock className="size-3.5" /> Coming soon
+                </span>
+                <h2 className="text-xl font-semibold text-foreground">Vivira for Shopify</h2>
+                <p className="max-w-md text-muted-foreground">
+                  A Shopify version of Vivira is on the way. WooCommerce stores can install it
+                  today from the WordPress tab.
+                </p>
+              </div>
+            </TabsContent>
+          </Tabs>
         </section>
       </main>
     </div>

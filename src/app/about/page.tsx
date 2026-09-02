@@ -159,7 +159,7 @@ export default function AboutPage() {
             achievementsDescription="No inflated numbers — just the standard every engagement is held to, the same one listed above."
             achievements={[
               { label: "Weeks to first ship", value: "2–4" },
-              { label: "Code ownership, yours", value: "100%" },
+              { label: "Reply time, every message", value: "1 day" },
               { label: "Bait-and-switch juniors", value: "0" },
               { label: "Senior engineer on your call", value: "1+" },
             ]}

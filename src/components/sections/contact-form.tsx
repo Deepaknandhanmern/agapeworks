@@ -22,7 +22,6 @@ import { services } from "@/lib/services-data";
 import {
   contactFormSchema,
   type ContactFormValues,
-  budgetOptions,
   timelineOptions,
   sourceOptions,
 } from "@/lib/contact-schema";
@@ -31,7 +30,7 @@ import { trackEvent } from "@/lib/analytics";
 type Status = "idle" | "loading" | "success" | "error";
 
 const STEP_FIELDS = [
-  ["service", "budget", "timeline"],
+  ["service", "timeline"],
   ["message", "source"],
   ["name", "email", "company"],
 ] as const;
@@ -202,30 +201,6 @@ export function ContactForm() {
                       </SelectContent>
                     </Select>
                     <FieldError message={errors.service?.message} />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="budget">Budget range</Label>
-                    <Select
-                      value={watch("budget")}
-                      onValueChange={(v) =>
-                        setValue("budget", v as (typeof budgetOptions)[number], {
-                          shouldValidate: true,
-                        })
-                      }
-                    >
-                      <SelectTrigger id="budget" className="h-11 w-full">
-                        <SelectValue placeholder="Select a budget range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {budgetOptions.map((b) => (
-                          <SelectItem key={b} value={b}>
-                            {b}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FieldError message={errors.budget?.message} />
                   </div>
 
                   <div className="flex flex-col gap-2">

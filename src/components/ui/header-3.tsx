@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -24,7 +23,6 @@ import {
 	Users,
 	Star,
 	Handshake,
-	Heart,
 } from 'lucide-react';
 
 // Floating pill nav: pinned/expanded at all times on desktop (md+) — mobile
@@ -98,9 +96,15 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 			</MenuItem>
 			<MenuItem setActive={setActive} active={active} item="Products" dark={dark}>
 				<div className="flex w-[26rem] gap-4">
-					<Link href="/wedly" className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4">
+					<a
+						href="https://vivira.agapeworks.in"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4"
+					>
 						<span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
-							<Heart className="size-3 text-amber-300" /> Wedly
+							{/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
+							<img src="/vivira-logo.svg" alt="" className="size-3" /> Vivira
 						</span>
 						<p
 							className="animate-shimmer bg-clip-text text-lg font-semibold tracking-tight text-transparent"
@@ -109,17 +113,22 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 								backgroundSize: '200% auto',
 							}}
 						>
-							Launching soon
+							Live now
 						</p>
 						<span className="mt-1 block text-xs text-white/40 transition-colors group-hover:text-white/70">
-							Wedding memories, live →
+							AI cart for WooCommerce →
 						</span>
-					</Link>
+					</a>
 					<div className="flex flex-1 flex-col gap-3">
-						<HoveredLink href="/products" dark={dark} className="flex flex-col gap-0.5">
-							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Digital Presence Plan</span>
-							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>Website + hosting, launching soon</span>
-						</HoveredLink>
+						<a
+							href="https://vivira.agapeworks.in"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="flex flex-col gap-0.5 rounded-md px-1 py-1.5 transition-colors hover:bg-white/5"
+						>
+							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Vivira</span>
+							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>AI-powered cart recovery for WooCommerce stores</span>
+						</a>
 						<HoveredLink href="/products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
 							See all products →
 						</HoveredLink>
@@ -149,8 +158,6 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {}) {
 	const [open, setOpen] = React.useState(false);
 	const dark = variant === 'dark';
-	const pathname = usePathname();
-	const isHome = pathname === '/';
 
 	React.useEffect(() => {
 		if (open) {
@@ -165,9 +172,7 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 
 	return (
 		<>
-			{/* Shown on every page except home — the home page's hero is its own
-			    distinct opening moment and doesn't need a banner competing with it. */}
-			{!isHome && <SiteBanner />}
+			<SiteBanner />
 
 			{/* Mobile: plain bar (non-sticky, scrolls with the page) + full-screen drawer */}
 			<header

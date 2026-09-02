@@ -10,7 +10,6 @@ import {
   Wrench,
   Cog,
   ShieldCheck,
-  Store,
   type LucideIcon,
 } from "lucide-react";
 
@@ -68,25 +67,6 @@ export const mainServices: ServiceItem[] = [
     description:
       "Digital marketing, social media, content, performance campaigns, brand identity and graphic design.",
     icon: Megaphone,
-  },
-  {
-    step: "08",
-    title: "Digital Presence Plan",
-    description:
-      "A complete website, hosting, and care — one flat payment for a 1, 2, or 3-year term. See /products.",
-    icon: Store,
-  },
-  {
-    step: "09",
-    title: "Sellara — AI Commerce Platform (Early Access)",
-    description: "An AI-first e-commerce platform for merchants — early access. See /sellara.",
-    icon: Bot,
-  },
-  {
-    step: "10",
-    title: "Vahi — GST Billing",
-    description: "GST-compliant invoicing and payment tracking for small businesses. See /billing.",
-    icon: Wrench,
   },
 ];
 

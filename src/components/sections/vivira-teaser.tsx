@@ -4,18 +4,15 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import Link from "next/link";
 
-const STORAGE_KEY = "agape-wedly-teaser-dismissed";
+const STORAGE_KEY = "agape-vivira-teaser-dismissed";
 const EASE = [0.16, 1, 0.3, 1] as const;
+const VIVIRA_URL = "https://vivira.agapeworks.in";
 
-/**
- * Bottom-left counterpart to AnnouncementToast (which owns bottom-right) —
- * a lightweight, no-page-yet teaser for "Wedly," a wedding-planning SaaS
- * idea being floated. No /wedly page exists, so this links to /contact
- * ("interested? tell us") rather than a dead or fabricated product page.
- */
-export function WedlyTeaser() {
+// Bottom-left counterpart to AnnouncementToast (which owns bottom-right) —
+// Vivira is the one product currently being promoted site-wide, hosted on
+// its own subdomain, so this links out there rather than to a page here.
+export function ViviraTeaser() {
   const pathname = usePathname();
   const [dismissed, setDismissed] = useState(true);
 
@@ -30,8 +27,7 @@ export function WedlyTeaser() {
   if (
     pathname?.startsWith("/dashboard") ||
     pathname?.startsWith("/status") ||
-    pathname?.startsWith("/client") ||
-    pathname?.startsWith("/wedly")
+    pathname?.startsWith("/client")
   ) {
     return null;
   }
@@ -56,9 +52,14 @@ export function WedlyTeaser() {
             transition={{ duration: 0.5, ease: EASE }}
             className="relative flex items-center gap-2 rounded-full border bg-background/95 py-2 pl-4 pr-3 shadow-lg backdrop-blur-sm"
           >
-            <Link href="/contact" className="text-sm font-medium text-foreground hover:underline">
-              💍 Wedly — a wedding-planning SaaS we&apos;re exploring. Interested?
-            </Link>
+            <a
+              href={VIVIRA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-foreground hover:underline"
+            >
+              🛒 Vivira — our AI cart plugin for WooCommerce. Take a look
+            </a>
             <button
               type="button"
               onClick={handleDismiss}

@@ -1,6 +1,6 @@
 "use client"
 
-import { BellRing, X, Clock, Check, Heart, Receipt, Star, Handshake, Sparkles, type LucideIcon } from "lucide-react"
+import { BellRing, X, Clock, Check, ShoppingCart, Receipt, Star, Handshake, Sparkles, type LucideIcon } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
 
@@ -21,12 +21,12 @@ interface Notification {
 // somewhere real; nothing here is invented.
 const initialNotifications: Notification[] = [
     {
-        id: "wedly",
-        icon: Heart,
-        title: "Wedly is launching soon",
-        description: "Our new wedding memories platform — live photo walls, QR uploads, and more.",
+        id: "vivira",
+        icon: ShoppingCart,
+        title: "Vivira is live",
+        description: "Our AI cart plugin for WooCommerce — recovers abandoned carts automatically.",
         time: "New",
-        href: "/wedly",
+        href: "https://vivira.agapeworks.in",
         read: false,
     },
     {
@@ -81,6 +81,9 @@ function NotificationRow({
         <Link
             href={notification.href}
             onClick={() => onRead(notification.id)}
+            {...(notification.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
             className={cn(
                 "flex items-start gap-3 rounded-md p-3 transition-all duration-200",
                 detailed ? "rounded-lg" : "",

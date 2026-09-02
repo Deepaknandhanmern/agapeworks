@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { anthropic, SCOPING_MODEL } from "@/lib/ai/client";
+import { gemini, CONCIERGE_MODEL } from "@/lib/ai/gemini-client";
 import { buildConciergeSystemPrompt } from "@/lib/ai/concierge-prompt";
 
 const messageSchema = z.object({
@@ -12,7 +12,7 @@ const bodySchema = z.object({
 });
 
 export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.GEMINI_API_KEY) {
     return Response.json({ error: "Chat isn't available right now — try the contact form instead." }, { status: 503 });
   }
 
@@ -29,22 +29,34 @@ export async function POST(request: Request) {
   }
 
   try {
-    const stream = anthropic.messages.stream({
-      model: SCOPING_MODEL,
-      max_tokens: 512,
-      system: buildConciergeSystemPrompt(),
-      messages: parsed.data.messages,
+    // Gemini has no separate "assistant" role — prior replies are "model".
+    const contents = parsed.data.messages.map((m) => ({
+      role: m.role === "assistant" ? ("model" as const) : ("user" as const),
+      parts: [{ text: m.content }],
+    }));
+
+    const stream = await gemini.models.generateContentStream({
+      model: CONCIERGE_MODEL,
+      contents,
+      config: {
+        systemInstruction: buildConciergeSystemPrompt(),
+        maxOutputTokens: 512,
+      },
     });
 
     const encoder = new TextEncoder();
     const readable = new ReadableStream<Uint8Array>({
-      start(controller) {
-        stream.on("text", (text) => controller.enqueue(encoder.encode(text)));
-        stream.on("end", () => controller.close());
-        stream.on("error", () => controller.close());
-      },
-      cancel() {
-        stream.abort();
+      async start(controller) {
+        try {
+          for await (const chunk of stream) {
+            if (chunk.text) controller.enqueue(encoder.encode(chunk.text));
+          }
+        } catch {
+          // Mid-stream failure — close what's been sent rather than erroring
+          // out a response that's already started.
+        } finally {
+          controller.close();
+        }
       },
     });
 

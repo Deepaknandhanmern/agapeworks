@@ -30,13 +30,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
+  // The form no longer asks for a budget range — the DB column is still
+  // required (other admin tooling reads it), so it's stored as this fixed
+  // placeholder rather than adding a migration to drop it.
+  const NO_BUDGET_COLLECTED = "Not specified";
+
   const enquiry = await db.enquiry.create({
     data: {
       name: fields.name,
       email: fields.email,
       company: fields.company || null,
       service: fields.service,
-      budget: fields.budget,
+      budget: NO_BUDGET_COLLECTED,
       timeline: fields.timeline,
       source: fields.source || null,
       message: fields.message,
@@ -50,7 +55,7 @@ export async function POST(request: Request) {
   const [triage] = await Promise.all([
     triageEnquiry({
       service: fields.service,
-      budget: fields.budget,
+      budget: NO_BUDGET_COLLECTED,
       timeline: fields.timeline,
       message: fields.message,
     }),

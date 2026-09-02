@@ -1,0 +1,36 @@
+# Agape Works
+
+> Agape Works is a software development studio based in Tamil Nadu, India, serving clients in Coimbatore, Chennai, and worldwide. We build web, mobile, SaaS, AI-powered, and e-commerce software for businesses — fixed scope, senior engineers only, weekly working demos, full code ownership handed to the client.
+
+## Services
+
+- Web Development — https://agapeworks.in/services/web-development
+- Mobile App Development — https://agapeworks.in/services/mobile-app-development
+- AI Solutions — https://agapeworks.in/services/ai-solutions
+- E-Commerce Development — https://agapeworks.in/services/ecommerce-development
+- Custom Software & Automation — https://agapeworks.in/services/custom-software-automation
+- Digital Marketing & Branding — https://agapeworks.in/services/digital-marketing-branding
+- SaaS Development — https://agapeworks.in/saas
+- Full services overview — https://agapeworks.in/services
+
+## Products
+
+- Vivira — an AI cart-recovery plugin for WooCommerce, live now — https://vivira.agapeworks.in
+- Vahi — GST-compliant billing and invoicing for small businesses — https://agapeworks.in/billing
+- Sellara — an AI-first e-commerce platform, early access — https://agapeworks.in/sellara
+
+## Company
+
+- About — https://agapeworks.in/about
+- Portfolio (live client projects) — https://agapeworks.in/portfolio
+- Case studies — https://agapeworks.in/case-studies
+- Contact — https://agapeworks.in/contact
+- Get an instant AI project estimate — https://agapeworks.in/scope
+
+## Facts
+
+- Locations: Coimbatore and Chennai, Tamil Nadu, India (remote-first, works with clients worldwide)
+- Contact: studio@agapeworks.in
+- Typical engagement: first working version ships in 2-4 weeks, then continues in weekly releases
+- The senior engineer who scopes a project is the same one who builds it — no bait-and-switch juniors
+- Clients receive full code ownership and documentation, not just a finished build
