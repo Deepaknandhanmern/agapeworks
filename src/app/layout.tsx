@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { Footerdemo } from "@/components/ui/footer-section";
-import { AnnouncementToast } from "@/components/sections/announcement-toast";
-import { ViviraTeaser } from "@/components/sections/vivira-teaser";
-import { ConciergeChat } from "@/components/sections/concierge-chat";
 import { GoogleAnalytics } from "@/components/sections/google-analytics";
-import { BackToTopButton } from "@/components/ui/back-to-top-button";
+import { ClientWidgets } from "@/components/sections/client-widgets";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -107,10 +104,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <GoogleAnalytics />
         {children}
         <Footerdemo />
-        <AnnouncementToast />
-        <ViviraTeaser />
-        <ConciergeChat />
-        <BackToTopButton />
+        <ClientWidgets />
       </body>
     </html>
   );
