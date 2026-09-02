@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -47,9 +46,12 @@ const socialLinks = [
 
 function Footerdemo() {
   const pathname = usePathname();
-  const isVivira = pathname?.startsWith("/products") ?? false;
   const [subscribed, setSubscribed] = React.useState(false);
   const [error, setError] = React.useState("");
+
+  // /products (Vivira) has its own gradient footer, see
+  // src/components/sections/vivira-gradient-footer.tsx.
+  if (pathname?.startsWith("/products")) return null;
 
   const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,7 +76,7 @@ function Footerdemo() {
   };
 
   return (
-    <footer className={cn("relative border-t bg-background text-foreground", isVivira && "vivira-theme")}>
+    <footer className="relative border-t bg-background text-foreground">
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">

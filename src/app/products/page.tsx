@@ -6,6 +6,7 @@ import { ViviraProductHeader } from "@/components/sections/vivira-product-header
 import { ViviraDownloadButton } from "@/components/sections/vivira-download-button";
 import { ViviraRoiCalculator } from "@/components/sections/vivira-roi-calculator";
 import { ViviraPricingSection } from "@/components/sections/vivira-pricing-section";
+import { ViviraGradientFooter } from "@/components/sections/vivira-gradient-footer";
 
 // Served directly from this site (public/downloads/vivira.zip) - not a
 // redirect to the subdomain. That file isn't in the repo yet; drop the real
@@ -71,10 +72,12 @@ export default function ProductsPage() {
           <ViviraRoiCalculator />
         </section>
 
-        <section className="border-t">
+        <section id="pricing" className="border-t">
           <ViviraPricingSection />
         </section>
       </main>
+
+      <ViviraGradientFooter />
     </div>
   );
 }
