@@ -10,8 +10,12 @@ import { ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 // headline, arrow-icon CTAs), reskinned with real Agape Works content: real
 // nav routes, the studio's own real logo asset, and the uploaded background
 // image in place of the mockup's fabricated spacecraft photo.
-const BACKGROUND_IMAGE =
-  "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e2dbea0-c0a9-413f-a57b-af279633c0df_3840w.jpg";
+//
+// Hosted locally (public/hero-background.jpg, downloaded from the original
+// Supabase URL) rather than referenced remotely — a remote source makes
+// next/image's optimizer fetch it cross-origin on every cold cache miss,
+// which was costing real LCP time in production.
+const BACKGROUND_IMAGE = "/hero-background.jpg";
 
 // Same top-level items as the shared Header (src/components/ui/header-3.tsx)
 // used on every other page — Capabilities/Company point at the closest

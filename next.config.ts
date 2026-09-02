@@ -18,14 +18,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "api.microlink.io",
       },
-      {
-        // Homepage hero background (src/components/sections/agape-hero.tsx)
-        // — routing it through next/image instead of a plain <img> lets
-        // Next serve a properly sized/compressed version per device instead
-        // of shipping the full 3840px-wide source to every phone.
-        protocol: "https",
-        hostname: "hoirqrkdgbmvpwutwuwj.supabase.co",
-      },
     ],
   },
 };
