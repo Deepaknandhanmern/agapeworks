@@ -96,19 +96,11 @@ export function ViviraProductHeader() {
       </header>
 
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-32">
-        {/* Ambient gradient glow (Vivira's own orange-to-purple mark colors),
-            decorative only, behind an otherwise flat black hero. */}
+        {/* Page-level ambient blobs (src/app/products/page.tsx) already
+            supply the color here - just a soft top lift for text contrast. */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[900px] -translate-x-[65%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.22),transparent_70%)] blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[900px] -translate-x-[35%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.22),transparent_70%)] blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.08),transparent)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(255,255,255,0.06),transparent)]"
         />
 
         <div className="relative z-10 flex flex-col items-center">

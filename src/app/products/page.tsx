@@ -20,13 +20,16 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <div className="vivira-theme relative flex min-h-screen flex-col text-foreground">
-      {/* Color, not black, is the dominant background here - black is
-          reserved for UI surfaces (nav, cards, footer) on top of it. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(160deg,#f97316_0%,#c026d3_45%,#9333ea_75%,#000000_100%)]"
-      />
+    <div className="vivira-theme relative flex min-h-screen flex-col bg-black text-foreground">
+      {/* Soft ambient color blobs (Vivira's orange/purple mark) instead of a
+          hard diagonal gradient sweep - color still reads as dominant, but
+          as depth/glow rather than a flat poster-style wash. */}
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-1/4 -top-1/4 h-[70vh] w-[70vh] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.35),transparent_70%)] blur-3xl" />
+        <div className="absolute -right-1/4 top-1/4 h-[80vh] w-[80vh] rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.35),transparent_70%)] blur-3xl" />
+        <div className="absolute -left-1/3 bottom-0 h-[75vh] w-[75vh] rounded-full bg-[radial-gradient(circle,rgba(192,38,211,0.3),transparent_70%)] blur-3xl" />
+        <div className="absolute -right-1/3 -bottom-1/4 h-[65vh] w-[65vh] rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.25),transparent_70%)] blur-3xl" />
+      </div>
 
       <main className="flex-1">
         <ViviraProductHeader />

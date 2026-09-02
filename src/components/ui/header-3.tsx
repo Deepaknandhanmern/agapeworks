@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
@@ -25,26 +24,10 @@ import {
 } from 'lucide-react';
 
 // Floating pill nav: pinned/expanded at all times on desktop (md+) - mobile
-// keeps the plain sticky bar + full-screen drawer below.
-const containerVariants = {
-	hidden: { y: -80, opacity: 0 },
-	visible: {
-		y: 0,
-		opacity: 1,
-		transition: {
-			type: 'spring' as const,
-			damping: 20,
-			stiffness: 300,
-			staggerChildren: 0.07,
-			delayChildren: 0.15,
-		},
-	},
-};
-
-const fadeVariants = {
-	hidden: { opacity: 0, x: -16 },
-	visible: { opacity: 1, x: 0, transition: { type: 'spring' as const, damping: 15 } },
-};
+// keeps the plain sticky bar + full-screen drawer below. Renders statically
+// (no entrance animation) - this is a real Next.js page component, not a
+// persistent layout element, so it fully remounts on every navigation; a
+// JS-driven fade/spring-in here replayed on every single page load.
 
 type LinkItem = {
 	title: string;
@@ -252,51 +235,41 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 			{/* Desktop */}
 			{dark ? (
 				/* Split into three pills: logo | links | CTA (non-sticky, scrolls with the page) */
-				<motion.div
-					initial="hidden"
-					animate="visible"
-					variants={containerVariants}
-					className="relative z-50 hidden w-full items-center justify-between gap-4 px-6 py-6 md:flex md:px-10"
-				>
-					<motion.div variants={fadeVariants} className="flex shrink-0 items-center">
+				<div className="relative z-50 hidden w-full items-center justify-between gap-4 px-6 py-6 md:flex md:px-10">
+					<div className="flex shrink-0 items-center">
 						<Link href="/" className="flex items-center gap-2 rounded-full border border-white/10 bg-neutral-900/90 py-3 pl-4 pr-6 backdrop-blur-sm">
 							<Image src="/logo-white.png" alt="Agape Works" width={181} height={32} className="h-6 w-auto" priority />
 						</Link>
-					</motion.div>
+					</div>
 
-					<motion.div variants={fadeVariants} className="rounded-full border border-white/10 bg-neutral-900/90 px-3 py-2 backdrop-blur-sm">
+					<div className="rounded-full border border-white/10 bg-neutral-900/90 px-3 py-2 backdrop-blur-sm">
 						<DesktopNavLinks dark />
-					</motion.div>
+					</div>
 
-					<motion.div variants={fadeVariants} className="flex shrink-0 items-center gap-4">
+					<div className="flex shrink-0 items-center gap-4">
 						<Link href="/signin" className="text-sm font-medium text-white/70 transition-colors hover:text-white">
 							Sign In
 						</Link>
 						<Button asChild className="rounded-full bg-white px-6 py-3 text-black hover:bg-neutral-200">
 							<Link href="/contact">Contact</Link>
 						</Button>
-					</motion.div>
-				</motion.div>
+					</div>
+				</div>
 			) : (
 				/* Single pill, non-sticky (scrolls with the page) */
 				<div className="relative z-50 hidden w-full justify-center py-6 md:flex">
-					<motion.nav
-						initial="hidden"
-						animate="visible"
-						variants={containerVariants}
-						className="relative flex h-14 items-center gap-3 overflow-visible rounded-full border bg-background/80 px-3 shadow-lg backdrop-blur-sm"
-					>
-						<motion.div variants={fadeVariants} className="flex shrink-0 items-center">
+					<nav className="relative flex h-14 items-center gap-3 overflow-visible rounded-full border bg-background/80 px-3 shadow-lg backdrop-blur-sm">
+						<div className="flex shrink-0 items-center">
 							<Link href="/" className="hover:bg-accent rounded-md p-1">
 								<Image src="/logo-black.png" alt="Agape Works" width={181} height={32} className="h-6 w-auto" priority />
 							</Link>
-						</motion.div>
+						</div>
 
-						<motion.div variants={fadeVariants}>
+						<div>
 							<DesktopNavLinks />
-						</motion.div>
+						</div>
 
-						<motion.div variants={fadeVariants} className="flex shrink-0 items-center gap-3 pr-1">
+						<div className="flex shrink-0 items-center gap-3 pr-1">
 							<NotificationAlertDialog />
 							<Link href="/signin" className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
 								Sign In
@@ -304,8 +277,8 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 							<Button asChild>
 								<Link href="/contact">Contact</Link>
 							</Button>
-						</motion.div>
-					</motion.nav>
+						</div>
+					</nav>
 				</div>
 			)}
 		</>
