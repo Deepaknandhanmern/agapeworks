@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Link, { type LinkProps } from "next/link";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Adapted from the classic Aceternity "navbar-menu" hover-dropdown pattern.
@@ -37,11 +38,14 @@ export const MenuItem = ({
       <motion.p
         transition={{ duration: 0.3 }}
         className={cn(
-          "cursor-pointer text-sm font-medium",
+          "flex cursor-pointer items-center gap-1 text-sm font-medium",
           dark ? "text-white/80 hover:text-white" : "text-foreground hover:opacity-80",
         )}
       >
         {item}
+        <ChevronDown
+          className={cn("size-3.5 transition-transform duration-200", active === item && "rotate-180")}
+        />
       </motion.p>
       {active !== null && (
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={transition}>
