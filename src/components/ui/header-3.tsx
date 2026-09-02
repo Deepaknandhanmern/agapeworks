@@ -17,8 +17,6 @@ import {
 	SmartphoneIcon,
 	LayersIcon,
 	BotIcon,
-	ShoppingCartIcon,
-	CogIcon,
 	MegaphoneIcon,
 	Users,
 	Star,
@@ -405,18 +403,6 @@ const mainServiceLinks: LinkItem[] = [
 		href: '/services/ai-solutions',
 		description: 'Custom AI features, LLM integrations, and automation',
 		icon: BotIcon,
-	},
-	{
-		title: 'E-Commerce Development',
-		href: '/services/ecommerce-development',
-		description: 'Online stores, checkout flows, and payment integrations',
-		icon: ShoppingCartIcon,
-	},
-	{
-		title: 'Custom Software & Automation',
-		href: '/services/custom-software-automation',
-		description: 'Bespoke internal tools and workflow automation',
-		icon: CogIcon,
 	},
 	{
 		title: 'Digital Marketing & Branding',

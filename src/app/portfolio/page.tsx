@@ -22,7 +22,7 @@ export default async function PortfolioPage() {
         <section id="all-work" className="mx-auto w-full max-w-5xl px-4 pb-24 pt-8">
           <div className="mb-10 flex flex-col items-center gap-3 text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-              All projects
+              Recent projects
             </h2>
             <p className="max-w-lg text-muted-foreground">
               Click any project to preview the live site right here on this page.

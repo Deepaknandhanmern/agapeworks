@@ -87,13 +87,13 @@ function NotificationRow({
             className={cn(
                 "flex items-start gap-3 rounded-md p-3 transition-all duration-200",
                 detailed ? "rounded-lg" : "",
-                notification.read ? "bg-gray-100" : "bg-indigo-50 shadow-sm",
+                notification.read ? "bg-gray-100" : "bg-amber-50 shadow-sm",
             )}
         >
             <div
                 className={cn(
                     "flex size-10 shrink-0 items-center justify-center rounded-full",
-                    notification.read ? "bg-gray-200 text-gray-600" : "bg-indigo-200 text-indigo-700",
+                    notification.read ? "bg-gray-200 text-gray-600" : "bg-amber-200 text-amber-900",
                 )}
             >
                 <Icon className="size-4.5" />
@@ -103,14 +103,14 @@ function NotificationRow({
                     <p className={cn("text-sm font-medium", notification.read ? "text-gray-700" : "text-gray-900")}>
                         {notification.title}
                     </p>
-                    {!notification.read && <span className="mt-1 size-2 shrink-0 rounded-full bg-indigo-500" />}
+                    {!notification.read && <span className="mt-1 size-2 shrink-0 rounded-full bg-amber-500" />}
                 </div>
                 <p className={cn("text-xs text-gray-500", detailed ? "" : "truncate")}>{notification.description}</p>
                 <div className="mt-1 flex items-center text-xs text-gray-400">
                     <Clock className="mr-1 h-3 w-3" />
                     {notification.time}
                     {detailed && notification.read && (
-                        <span className="ml-3 flex items-center text-indigo-500">
+                        <span className="ml-3 flex items-center text-amber-600">
                             <Check className="mr-1 h-3 w-3" />
                             Read
                         </span>
@@ -172,11 +172,11 @@ export function NotificationAlertDialog() {
                         role="dialog"
                         aria-label="Announcements"
                     >
-                        <div className="rounded-lg border-2 border-indigo-200 bg-white p-6 shadow-xl">
+                        <div className="rounded-lg border-2 border-amber-200 bg-white p-6 shadow-xl">
                             <div className="flex flex-col space-y-2">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                        <BellRing className="h-5 w-5 text-indigo-500" />
+                                        <BellRing className="h-5 w-5 text-amber-600" />
                                         <h3 className="text-lg font-semibold">Announcements</h3>
                                     </div>
                                     <div className="flex items-center gap-1">
@@ -185,7 +185,7 @@ export function NotificationAlertDialog() {
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={markAllAsRead}
-                                                className="text-xs text-indigo-500 hover:text-indigo-600"
+                                                className="text-xs text-amber-700 hover:text-amber-800"
                                             >
                                                 Mark all as read
                                             </Button>
@@ -216,12 +216,11 @@ export function NotificationAlertDialog() {
                                 <Button
                                     variant="outline"
                                     onClick={() => setOpen(false)}
-                                    className="mt-2 border-indigo-200 text-indigo-700 hover:bg-indigo-50 sm:mt-0"
+                                    className="mt-2 sm:mt-0"
                                 >
                                     Close
                                 </Button>
                                 <Button
-                                    className="bg-indigo-500 hover:bg-indigo-600"
                                     onClick={() => {
                                         setOpen(false)
                                         setShowAllNotifications(true)
@@ -253,7 +252,7 @@ export function NotificationAlertDialog() {
                     <div className="flex flex-col h-full">
                         <div className="p-4 border-b border-gray-200 flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                                <BellRing className="h-5 w-5 text-indigo-500" />
+                                <BellRing className="h-5 w-5 text-amber-600" />
                                 <h2 className="text-lg font-semibold">All Announcements</h2>
                             </div>
                             <Button
@@ -269,7 +268,7 @@ export function NotificationAlertDialog() {
                                 <span className="sr-only">Close</span>
                             </Button>
                         </div>
-                        <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-indigo-200">
+                        <div className="flex-1 overflow-y-auto p-4 space-y-3 scrollbar-thin scrollbar-thumb-amber-200">
                             {notifications.length === 0 ? (
                                 <div className="flex flex-col items-center justify-center h-full text-gray-500">
                                     <BellRing className="h-12 w-12 mb-2 text-gray-300" />
@@ -283,7 +282,7 @@ export function NotificationAlertDialog() {
                         </div>
                         <div className="p-4 border-t border-gray-200">
                             <Button
-                                className="w-full bg-indigo-500 hover:bg-indigo-600"
+                                className="w-full"
                                 onClick={() => {
                                     markAllAsRead()
                                     setShowAllNotifications(false)

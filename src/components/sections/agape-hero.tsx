@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 
 // Homepage hero — same structure as a pasted "space travel" hero mockup
@@ -28,15 +29,20 @@ export function AgapeHero() {
 
   return (
     <section className="relative min-h-screen w-full isolate overflow-hidden bg-black text-white">
-      {/* eslint-disable-next-line @next/next/no-img-element -- full-bleed hero background, not worth next/image here */}
-      <img src={BACKGROUND_IMAGE} alt="" className="absolute inset-0 h-full w-full object-cover" />
+      <Image
+        src={BACKGROUND_IMAGE}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
       <div className="pointer-events-none absolute inset-0 bg-black/50" />
 
       <header className="relative z-10 xl:top-4">
         <div className="mx-6 flex items-center justify-between pt-4">
           <Link href="/" className="flex items-center gap-2">
-            {/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
-            <img src="/logo-white.png" alt="Agape Works" className="h-8 w-auto" />
+            <Image src="/logo-white.png" alt="Agape Works" width={181} height={32} className="h-8 w-auto" priority />
           </Link>
 
           <nav className="hidden md:flex items-center gap-2">

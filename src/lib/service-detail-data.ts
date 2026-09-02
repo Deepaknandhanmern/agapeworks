@@ -1,9 +1,7 @@
 import {
   Bot,
-  Cog,
   Globe,
   Megaphone,
-  ShoppingCart,
   Smartphone,
   type LucideIcon,
 } from "lucide-react";
@@ -70,38 +68,6 @@ export const serviceDetails: ServiceDetail[] = [
       "Workflow automation (triage, summarization, routing)",
       "Voice and conversational interfaces",
       "Retrieval-augmented search over your own knowledge base",
-    ],
-  },
-  {
-    slug: "ecommerce-development",
-    title: "E-Commerce Development",
-    icon: ShoppingCart,
-    eyebrow: "E-Commerce Development",
-    tagline: "Storefronts, checkout, and payments that actually convert",
-    description:
-      "Custom storefronts built around your catalog and your customers — not a generic theme. Payment integrations, inventory, and order management wired up end-to-end.",
-    included: [
-      "Custom storefront design and build",
-      "Payment gateway integration (Razorpay, Stripe, UPI)",
-      "Inventory and order management",
-      "Cart and checkout flow optimization",
-      "Shipping and fulfillment integrations",
-    ],
-  },
-  {
-    slug: "custom-software-automation",
-    title: "Custom Software & Automation",
-    icon: Cog,
-    eyebrow: "Custom Software & Automation",
-    tagline: "Replace the manual, error-prone process with software that just works",
-    description:
-      "Internal dashboards, admin panels, and workflow automation built around how your team actually works — not a rigid off-the-shelf tool you have to bend your process around.",
-    included: [
-      "Internal dashboards and admin panels",
-      "Workflow and process automation",
-      "Third-party API and tool integrations",
-      "Legacy system modernization",
-      "Data migration and cleanup",
     ],
   },
   {

@@ -3,12 +3,10 @@ import {
   Globe,
   Megaphone,
   Search,
-  ShoppingCart,
   Smartphone,
   SquareStack,
   Webhook,
   Wrench,
-  Cog,
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
@@ -49,20 +47,6 @@ export const mainServices: ServiceItem[] = [
   },
   {
     step: "05",
-    title: "E-Commerce Development",
-    description:
-      "Online stores, checkout flows, payment integrations, and inventory systems that convert.",
-    icon: ShoppingCart,
-  },
-  {
-    step: "06",
-    title: "Custom Software & Automation",
-    description:
-      "Bespoke internal tools and workflow automation that replace manual, error-prone processes.",
-    icon: Cog,
-  },
-  {
-    step: "07",
     title: "Digital Marketing & Branding",
     description:
       "Digital marketing, social media, content, performance campaigns, brand identity and graphic design.",

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { OG_MARK_DATA_URI } from "@/lib/og-mark";
 
 export const alt = "Agape Works — product engineering that ships";
 export const size = { width: 1200, height: 630 };
@@ -23,13 +24,14 @@ export default function OpengraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 12,
+            gap: 16,
             fontSize: 32,
             fontWeight: 700,
             letterSpacing: "-0.02em",
           }}
         >
-          <div style={{ width: 14, height: 14, borderRadius: 999, background: "#fcd34d" }} />
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/og's Satori renderer requires a plain img element, not next/image */}
+          <img src={OG_MARK_DATA_URI} width={44} height={38} alt="" />
           Agape Works
         </div>
         <div

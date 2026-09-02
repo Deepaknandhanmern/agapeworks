@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getBlogPostBySlug } from "@/lib/content";
+import { OG_MARK_DATA_URI } from "@/lib/og-mark";
 
 export const alt = "Agape Works blog post";
 export const size = { width: 1200, height: 630 };
@@ -23,8 +24,9 @@ export default async function OpengraphImage({ params }: { params: { slug: strin
           color: "#ffffff",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 28, fontWeight: 700 }}>
-          <div style={{ width: 12, height: 12, borderRadius: 999, background: "#fcd34d" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 14, fontSize: 28, fontWeight: 700 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/og's Satori renderer requires a plain img element, not next/image */}
+          <img src={OG_MARK_DATA_URI} width={38} height={33} alt="" />
           Agape Works — Blog
         </div>
         <div

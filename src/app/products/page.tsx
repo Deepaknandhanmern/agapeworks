@@ -3,6 +3,7 @@ import { Header } from "@/components/ui/header-3";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Clock } from "lucide-react";
 import { FaWordpress, FaShopify } from "react-icons/fa6";
+import { ViviraDownloadButton } from "@/components/sections/vivira-download-button";
 
 // Served directly from this site (public/downloads/vivira.zip) — not a
 // redirect to the subdomain. That file isn't in the repo yet; drop the real
@@ -34,10 +35,10 @@ export default function ProductsPage() {
           <Tabs defaultValue="wordpress" className="mt-4 flex w-full flex-col items-center">
             <TabsList>
               <TabsTrigger value="wordpress" className="gap-2">
-                <FaWordpress className="size-4" /> WordPress
+                <FaWordpress className="size-4 text-[#21759B]" /> WordPress
               </TabsTrigger>
               <TabsTrigger value="shopify" className="gap-2">
-                <FaShopify className="size-4" /> Shopify
+                <FaShopify className="size-4 text-[#95BF47]" /> Shopify
               </TabsTrigger>
             </TabsList>
 
@@ -48,13 +49,7 @@ export default function ProductsPage() {
                   Install Vivira on your WordPress + WooCommerce store to start recovering
                   abandoned carts automatically.
                 </p>
-                <a
-                  href={VIVIRA_DOWNLOAD_PATH}
-                  download
-                  className="mt-2 inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-                >
-                  Download for WordPress
-                </a>
+                <ViviraDownloadButton href={VIVIRA_DOWNLOAD_PATH} />
               </div>
             </TabsContent>
 
