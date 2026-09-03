@@ -38,32 +38,19 @@
 
 /* Placeholder shown in place of the (deliberately omitted) hotlinked
    CloudFront videos from the original spec - see each component's
-   *_VIDEO_SRC constant to swap in a real source. */
+   *_VIDEO_SRC constant to swap in a real source. Plain bg-black, same as
+   the rest of the page, per the original spec's background. */
 .asme-video-placeholder {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg, #111 0%, #1c1c1c 35%, #0a0a0a 70%, #161616 100%);
-  background-size: 220% 220%;
-  animation: asmeShimmer 8s ease-in-out infinite;
-  color: rgba(255, 255, 255, 0.35);
+  background: #000;
+  color: rgba(255, 255, 255, 0.25);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
   padding: 1rem;
-}
-
-@keyframes asmeShimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .asme-video-placeholder {
-    animation: none;
-  }
 }
