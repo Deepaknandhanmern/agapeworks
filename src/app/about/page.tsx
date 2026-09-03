@@ -13,18 +13,23 @@ import {
   Users,
 } from "lucide-react";
 
+const ABOUT_TITLE = "About - Agape Works";
+const ABOUT_DESCRIPTION =
+  "Agape Works is a remote-first product engineering team built on one standard: selfless, deliberate care for the product and the people building it.";
+
 export const metadata: Metadata = {
-  title: "About - Agape Works",
-  description:
-    "Agape Works is a remote-first product engineering team built on one standard: selfless, deliberate care for the product and the people building it.",
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
+  openGraph: { title: ABOUT_TITLE, description: ABOUT_DESCRIPTION, url: "/about" },
+  twitter: { title: ABOUT_TITLE, description: ABOUT_DESCRIPTION },
 };
 
 const values = [
   {
     icon: Users,
-    title: "Senior engineers only",
+    title: "No bait-and-switch",
     description:
-      "No bait-and-switch juniors. The people who scope your project are the people who build it.",
+      "No hand-off to a different team after the pitch. The people who scope your project are the people who build it.",
   },
   {
     icon: MessageCircle,
@@ -75,7 +80,7 @@ export default function AboutPage() {
         <section className="mx-auto w-full max-w-3xl px-4 pb-24 text-center">
           <p className="text-lg leading-8 text-muted-foreground">
             Most software studios optimize for one of two things: speed, or polish. We built Agape
-            Works around a different bet - that a small team of senior engineers, working
+            Works around a different bet - that a small team, working
             directly with a client and shipping visibly every week, produces better outcomes than
             either extreme. Fixed scope. Real access. Code your own team can maintain long after
             we&apos;re gone.
@@ -136,7 +141,7 @@ export default function AboutPage() {
         <section className="border-t">
           <About3
             title="The team behind the work"
-            description="A small, senior, remote-first team - the people who scope your project are the same people who build it, every time."
+            description="A small, remote-first team - the people who scope your project are the same people who build it, every time."
             mainImage={{
               src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
               alt: "Engineers collaborating on a laptop",
@@ -161,7 +166,7 @@ export default function AboutPage() {
               { label: "Weeks to first ship", value: "2–4" },
               { label: "Reply time, every message", value: "1 day" },
               { label: "Bait-and-switch juniors", value: "0" },
-              { label: "Senior engineer on your call", value: "1+" },
+              { label: "Engineer on your call, not an account manager", value: "1+" },
             ]}
           />
         </section>

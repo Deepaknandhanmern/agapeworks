@@ -29,12 +29,118 @@ import {
 // persistent layout element, so it fully remounts on every navigation; a
 // JS-driven fade/spring-in here replayed on every single page load.
 
-type LinkItem = {
+export type LinkItem = {
 	title: string;
 	href: string;
 	icon: LucideIcon;
 	description?: string;
 };
+
+// Panel contents shared by the mega-menu Header (this file) and the
+// homepage hero's own pill nav (agape-hero.tsx), which reuses these inside
+// its own MenuItem triggers so the two navs can't drift out of sync.
+export function CapabilitiesMenuContent({ dark = false }: { dark?: boolean }) {
+	return (
+		<div className="w-72">
+			<p className={cn('mb-2 px-1 text-xs font-semibold uppercase tracking-wide', dark ? 'text-white/50' : 'text-muted-foreground')}>
+				Main Services
+			</p>
+			<div className="flex flex-col gap-1">
+				{mainServiceLinks.map((item) => (
+					<HoveredLink key={item.title} href={item.href} dark={dark} className="flex items-center gap-2 rounded-md px-1 py-1.5">
+						<item.icon className={cn('size-4 shrink-0', dark ? 'text-white/70' : 'text-foreground')} />
+						<span className={cn('text-sm font-medium', dark ? 'text-white' : 'text-foreground')}>{item.title}</span>
+					</HoveredLink>
+				))}
+			</div>
+			<div className={cn('mt-3 flex flex-col gap-1.5 border-t pt-3', dark ? 'border-white/10' : 'border-border')}>
+				<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
+					Not sure yet?{' '}
+					<HoveredLink href="/scope" dark={dark} className="font-medium underline-offset-2 hover:underline">
+						Get an instant estimate
+					</HoveredLink>
+				</p>
+				<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
+					Have a Vahi account?{' '}
+					<HoveredLink href="/vahi/login" dark={dark} className="font-medium underline-offset-2 hover:underline">
+						Sign in
+					</HoveredLink>
+				</p>
+			</div>
+		</div>
+	);
+}
+
+export function ProductsMenuContent({ dark = false }: { dark?: boolean }) {
+	return (
+		<div className="flex w-[26rem] gap-4">
+			<a
+				href="https://vivira.agapeworks.in"
+				target="_blank"
+				rel="noopener noreferrer"
+				className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4"
+			>
+				{/* Brand-gradient glow, matching vivira-logo.svg's orange->purple
+					cart stroke - the card was flat black with nothing tying it to
+					Vivira's own mark. Painted behind the .relative wrapper below via
+					paint order (positioned, z-auto, tree order), not z-index. */}
+				<span
+					aria-hidden
+					className="pointer-events-none absolute -right-10 -bottom-10 size-28 rounded-full opacity-60 blur-2xl"
+					style={{ background: 'linear-gradient(135deg, #f97316, #9333ea)' }}
+				/>
+				<div className="relative">
+					<span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
+						{/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
+						<img src="/vivira-logo.svg" alt="" className="size-3" /> Vivira
+					</span>
+					<p
+						className="animate-shimmer bg-clip-text text-lg font-semibold tracking-tight text-transparent"
+						style={{
+							backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.35) 0%, #ffffff 50%, rgba(255,255,255,0.35) 100%)',
+							backgroundSize: '200% auto',
+						}}
+					>
+						Live now
+					</p>
+					<span className="mt-1 block text-xs text-white/40 transition-colors group-hover:text-white/70">
+						AI cart for WooCommerce →
+					</span>
+				</div>
+			</a>
+			<div className="flex flex-1 flex-col gap-3">
+				<a
+					href="https://vivira.agapeworks.in"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="flex flex-col gap-0.5 rounded-md px-1 py-1.5 transition-colors hover:bg-white/5"
+				>
+					<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Vivira</span>
+					<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>AI-powered cart recovery for WooCommerce stores</span>
+				</a>
+				<HoveredLink href="/products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
+					See all products →
+				</HoveredLink>
+			</div>
+		</div>
+	);
+}
+
+export function CompanyMenuContent({ dark = false }: { dark?: boolean }) {
+	return (
+		<div className="flex w-64 flex-col gap-3">
+			{companyLinks.map((item) => (
+				<HoveredLink key={item.title} href={item.href} dark={dark} className="flex items-start gap-2">
+					<item.icon className={cn('mt-0.5 size-4 shrink-0', dark ? 'text-white/70' : 'text-foreground')} />
+					<span>
+						<span className={cn('block font-medium', dark ? 'text-white' : 'text-foreground')}>{item.title}</span>
+						<span className={cn('block text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>{item.description}</span>
+					</span>
+				</HoveredLink>
+			))}
+		</div>
+	);
+}
 
 function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 	const [active, setActive] = React.useState<string | null>(null);
@@ -42,93 +148,13 @@ function DesktopNavLinks({ dark = false }: { dark?: boolean }) {
 	return (
 		<Menu setActive={setActive}>
 			<MenuItem setActive={setActive} active={active} item="Capabilities" dark={dark}>
-				<div className="w-72">
-					<p className={cn('mb-2 px-1 text-xs font-semibold uppercase tracking-wide', dark ? 'text-white/50' : 'text-muted-foreground')}>
-						Main Services
-					</p>
-					<div className="flex flex-col gap-1">
-						{mainServiceLinks.map((item) => (
-							<HoveredLink key={item.title} href={item.href} dark={dark} className="flex items-center gap-2 rounded-md px-1 py-1.5">
-								<item.icon className={cn('size-4 shrink-0', dark ? 'text-white/70' : 'text-foreground')} />
-								<span className={cn('text-sm font-medium', dark ? 'text-white' : 'text-foreground')}>{item.title}</span>
-							</HoveredLink>
-						))}
-					</div>
-					<div className={cn('mt-3 flex flex-col gap-1.5 border-t pt-3', dark ? 'border-white/10' : 'border-border')}>
-						<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-							Not sure yet?{' '}
-							<HoveredLink href="/scope" dark={dark} className="font-medium underline-offset-2 hover:underline">
-								Get an instant estimate
-							</HoveredLink>
-						</p>
-						<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-							Ready now?{' '}
-							<HoveredLink href="/contact" dark={dark} className="font-medium underline-offset-2 hover:underline">
-								Schedule a demo
-							</HoveredLink>
-						</p>
-						<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-							Have a Vahi account?{' '}
-							<HoveredLink href="/vahi/login" dark={dark} className="font-medium underline-offset-2 hover:underline">
-								Sign in
-							</HoveredLink>
-						</p>
-					</div>
-				</div>
+				<CapabilitiesMenuContent dark={dark} />
 			</MenuItem>
 			<MenuItem setActive={setActive} active={active} item="Products" dark={dark}>
-				<div className="flex w-[26rem] gap-4">
-					<a
-						href="https://vivira.agapeworks.in"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="group relative block w-44 shrink-0 overflow-hidden rounded-xl bg-black p-4"
-					>
-						<span className="mb-6 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60">
-							{/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
-							<img src="/vivira-logo.svg" alt="" className="size-3" /> Vivira
-						</span>
-						<p
-							className="animate-shimmer bg-clip-text text-lg font-semibold tracking-tight text-transparent"
-							style={{
-								backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.35) 0%, #ffffff 50%, rgba(255,255,255,0.35) 100%)',
-								backgroundSize: '200% auto',
-							}}
-						>
-							Live now
-						</p>
-						<span className="mt-1 block text-xs text-white/40 transition-colors group-hover:text-white/70">
-							AI cart for WooCommerce →
-						</span>
-					</a>
-					<div className="flex flex-1 flex-col gap-3">
-						<a
-							href="https://vivira.agapeworks.in"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex flex-col gap-0.5 rounded-md px-1 py-1.5 transition-colors hover:bg-white/5"
-						>
-							<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Vivira</span>
-							<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>AI-powered cart recovery for WooCommerce stores</span>
-						</a>
-						<HoveredLink href="/products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
-							See all products →
-						</HoveredLink>
-					</div>
-				</div>
+				<ProductsMenuContent dark={dark} />
 			</MenuItem>
 			<MenuItem setActive={setActive} active={active} item="Company" dark={dark}>
-				<div className="flex w-64 flex-col gap-3">
-					{companyLinks.map((item) => (
-						<HoveredLink key={item.title} href={item.href} dark={dark} className="flex items-start gap-2">
-							<item.icon className={cn('mt-0.5 size-4 shrink-0', dark ? 'text-white/70' : 'text-foreground')} />
-							<span>
-								<span className={cn('block font-medium', dark ? 'text-white' : 'text-foreground')}>{item.title}</span>
-								<span className={cn('block text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>{item.description}</span>
-							</span>
-						</HoveredLink>
-					))}
-				</div>
+				<CompanyMenuContent dark={dark} />
 			</MenuItem>
 			<HoveredLink href="/portfolio" dark={dark} className="font-medium">
 				Digital Experiences
@@ -409,6 +435,6 @@ const companyLinks: LinkItem[] = [
 		title: 'Careers',
 		href: '/careers',
 		icon: Briefcase,
-		description: 'Senior engineers only - see what we look for',
+		description: 'Remote-first, direct client access - see what we look for',
 	},
 ];

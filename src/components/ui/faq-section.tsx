@@ -22,7 +22,7 @@ const faqs = [
   {
     question: "Who actually builds my project?",
     answer:
-      "The senior engineer who scopes your project is the same one who builds it - no bait-and-switch juniors, and no account-manager layer relaying messages between you and the people writing the code.",
+      "The engineer who scopes your project is the same one who builds it - no bait-and-switch handoff, and no account-manager layer relaying messages between you and the people writing the code.",
   },
   {
     question: "Do I own the code afterward?",

@@ -3,9 +3,14 @@ import { Header } from "@/components/ui/header-3";
 import { getAllCaseStudies } from "@/lib/content";
 import { ArrowRight } from "lucide-react";
 
+const CASE_STUDIES_TITLE = "Case Studies - Agape Works";
+const CASE_STUDIES_DESCRIPTION = "How Agape Works has approached real client projects, end to end.";
+
 export const metadata: Metadata = {
-  title: "Case Studies - Agape Works",
-  description: "How Agape Works has approached real client projects, end to end.",
+  title: CASE_STUDIES_TITLE,
+  description: CASE_STUDIES_DESCRIPTION,
+  openGraph: { title: CASE_STUDIES_TITLE, description: CASE_STUDIES_DESCRIPTION, url: "/case-studies" },
+  twitter: { title: CASE_STUDIES_TITLE, description: CASE_STUDIES_DESCRIPTION },
 };
 
 export default function CaseStudiesIndexPage() {

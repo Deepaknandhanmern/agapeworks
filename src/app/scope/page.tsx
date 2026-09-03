@@ -3,10 +3,15 @@ import { Header } from "@/components/ui/header-3";
 import { ScopeForm } from "@/components/sections/scope-form";
 import { Clock, ShieldCheck, Users } from "lucide-react";
 
+const SCOPE_TITLE = "Instant Project Estimate - Agape Works";
+const SCOPE_DESCRIPTION =
+  "Tell us what you're building and get a rough timeline, budget range, and build phases in seconds - powered by the same AI capability Agape Works builds for clients.";
+
 export const metadata: Metadata = {
-  title: "Instant Project Estimate - Agape Works",
-  description:
-    "Tell us what you're building and get a rough timeline, budget range, and build phases in seconds - powered by the same AI capability Agape Works builds for clients.",
+  title: SCOPE_TITLE,
+  description: SCOPE_DESCRIPTION,
+  openGraph: { title: SCOPE_TITLE, description: SCOPE_DESCRIPTION, url: "/scope" },
+  twitter: { title: SCOPE_TITLE, description: SCOPE_DESCRIPTION },
 };
 
 const points = [

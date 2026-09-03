@@ -5,10 +5,15 @@ import { DotPattern } from "@/components/ui/dot-pattern";
 import { Check } from "lucide-react";
 import { vahiPlans } from "@/lib/products-data";
 
+const BILLING_TITLE = "Vahi - GST Billing - Agape Works";
+const BILLING_DESCRIPTION =
+  "Vahi is a simple GST-compliant invoicing and billing tool for small businesses - track payments, share invoices over WhatsApp, priced per year.";
+
 export const metadata: Metadata = {
-  title: "Vahi - GST Billing - Agape Works",
-  description:
-    "Vahi is a simple GST-compliant invoicing and billing tool for small businesses - track payments, share invoices over WhatsApp, priced per year.",
+  title: BILLING_TITLE,
+  description: BILLING_DESCRIPTION,
+  openGraph: { title: BILLING_TITLE, description: BILLING_DESCRIPTION, url: "/billing" },
+  twitter: { title: BILLING_TITLE, description: BILLING_DESCRIPTION },
 };
 
 const includes = [

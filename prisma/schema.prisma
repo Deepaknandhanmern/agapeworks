@@ -61,6 +61,18 @@ model ViviraDownloadLead {
   createdAt DateTime @default(now())
 }
 
+// Uploaded from the admin dashboard (src/app/dashboard/(app)/vivira) -
+// append-only history rather than a single mutable row, so past releases
+// stay visible/auditable. The live download link always uses whichever row
+// has the newest uploadedAt (see getViviraDownloadHref in src/lib/vivira.ts).
+model ViviraPluginRelease {
+  id          String   @id @default(cuid())
+  fileName    String
+  storagePath String
+  sizeBytes   Int
+  uploadedAt  DateTime @default(now())
+}
+
 model Enquiry {
   id          String   @id @default(cuid())
   name        String

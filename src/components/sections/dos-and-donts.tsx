@@ -6,7 +6,7 @@ import { Check, X } from "lucide-react";
 import Switch from "@/components/ui/simple-toggle";
 
 const dos = [
-  "Senior engineers scope and build your project - the same people, start to finish.",
+  "The same engineers scope and build your project, start to finish.",
   "Ship visible, working demos every week.",
   "Agree on fixed scope before writing a line of code.",
   "Hand off documentation your own team can actually maintain.",

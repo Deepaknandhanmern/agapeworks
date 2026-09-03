@@ -253,6 +253,16 @@ export async function getAllNewsletterSubscribersForDashboard() {
   return db.newsletterSubscriber.findMany({ orderBy: { createdAt: "desc" } });
 }
 
+export async function getAllViviraDownloadLeadsForDashboard() {
+  await requireAuth();
+  return db.viviraDownloadLead.findMany({ orderBy: { createdAt: "desc" } });
+}
+
+export async function getAllViviraReleasesForDashboard() {
+  await requireAuth();
+  return db.viviraPluginRelease.findMany({ orderBy: { uploadedAt: "desc" } });
+}
+
 export async function getAllBillingAccountsForDashboard() {
   await requireAuth();
   return db.billingAccount.findMany({

@@ -18,10 +18,15 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+const PARTNER_PROGRAM_TITLE = "Partner Program - Agape Works";
+const PARTNER_PROGRAM_DESCRIPTION =
+  "Refer clients or resell under your own brand - how Agape Works' agency and referral partner program actually works.";
+
 export const metadata: Metadata = {
-  title: "Partner Program - Agape Works",
-  description:
-    "Refer clients or resell under your own brand - how Agape Works' agency and referral partner program actually works.",
+  title: PARTNER_PROGRAM_TITLE,
+  description: PARTNER_PROGRAM_DESCRIPTION,
+  openGraph: { title: PARTNER_PROGRAM_TITLE, description: PARTNER_PROGRAM_DESCRIPTION, url: "/partner-program" },
+  twitter: { title: PARTNER_PROGRAM_TITLE, description: PARTNER_PROGRAM_DESCRIPTION },
 };
 
 const tracks = [

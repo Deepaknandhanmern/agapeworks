@@ -12,8 +12,8 @@ const TriageResultSchema = z.object({
 
 export type TriageResult = z.infer<typeof TriageResultSchema>;
 
-const SYSTEM_PROMPT = `You triage inbound leads for Agape Works, a small studio of senior
-engineers doing fixed-scope web/mobile/SaaS/AI development work. Given a contact form
+const SYSTEM_PROMPT = `You triage inbound leads for Agape Works, a small studio
+doing fixed-scope web/mobile/SaaS/AI development work. Given a contact form
 submission, decide how urgently the team should respond and write a one-line summary.
 
 Weigh these signals together - no single field decides it alone:

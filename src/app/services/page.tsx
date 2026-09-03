@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { AnimatedFeatureCard } from "@/components/ui/feature-card-1";
@@ -11,10 +9,15 @@ import { techStack } from "@/lib/tech-stack-data";
 
 const cardColors = ["orange", "purple", "blue"] as const;
 
+const SERVICES_TITLE = "Services - Agape Works";
+const SERVICES_DESCRIPTION =
+  "Web, mobile, SaaS, and e-commerce development, AI solutions, custom software, SEO & AEO, and digital marketing - built on Next.js, React, React Native, Flutter, Laravel, PHP, WordPress, WooCommerce, and MySQL.";
+
 export const metadata: Metadata = {
-  title: "Services - Agape Works",
-  description:
-    "Web, mobile, SaaS, and e-commerce development, AI solutions, custom software, SEO & AEO, and digital marketing - built on Next.js, React, React Native, Flutter, Laravel, PHP, WordPress, WooCommerce, and MySQL.",
+  title: SERVICES_TITLE,
+  description: SERVICES_DESCRIPTION,
+  openGraph: { title: SERVICES_TITLE, description: SERVICES_DESCRIPTION, url: "/services" },
+  twitter: { title: SERVICES_TITLE, description: SERVICES_DESCRIPTION },
 };
 
 export default function ServicesPage() {
@@ -121,14 +124,7 @@ export default function ServicesPage() {
               obligation.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <AntiMetalButton href="/contact" label="Book a demo" />
-              <Link
-                href="/scope"
-                className="inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-sm font-medium text-foreground hover:bg-accent"
-              >
-                Get an instant estimate instead
-                <ArrowRight className="size-4" />
-              </Link>
+              <AntiMetalButton href="/scope" label="Get an instant estimate" className="w-56" />
             </div>
           </div>
         </section>

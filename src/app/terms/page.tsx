@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/ui/header-3";
 
+const TERMS_TITLE = "Terms of Service - Agape Works";
+const TERMS_DESCRIPTION = "The terms governing your use of agapeworks.in and its products.";
+
 export const metadata: Metadata = {
-  title: "Terms of Service - Agape Works",
-  description: "The terms governing your use of agapeworks.in and its products.",
+  title: TERMS_TITLE,
+  description: TERMS_DESCRIPTION,
+  openGraph: { title: TERMS_TITLE, description: TERMS_DESCRIPTION, url: "/terms" },
+  twitter: { title: TERMS_TITLE, description: TERMS_DESCRIPTION },
 };
 
 const EFFECTIVE_DATE = "August 31, 2026";

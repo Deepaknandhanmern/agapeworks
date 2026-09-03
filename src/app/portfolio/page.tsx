@@ -4,9 +4,15 @@ import { PortfolioHero } from "@/components/sections/portfolio-hero";
 import { PortfolioGrid } from "@/components/sections/portfolio-grid";
 import { getProjects } from "@/lib/portfolio-data";
 
+const PORTFOLIO_TITLE = "Portfolio - Agape Works";
+const PORTFOLIO_DESCRIPTION =
+  "Live projects built and shipped by Agape Works - click a project to preview it right on this page.";
+
 export const metadata: Metadata = {
-  title: "Portfolio - Agape Works",
-  description: "Live projects built and shipped by Agape Works - click a project to preview it right on this page.",
+  title: PORTFOLIO_TITLE,
+  description: PORTFOLIO_DESCRIPTION,
+  openGraph: { title: PORTFOLIO_TITLE, description: PORTFOLIO_DESCRIPTION, url: "/portfolio" },
+  twitter: { title: PORTFOLIO_TITLE, description: PORTFOLIO_DESCRIPTION },
 };
 
 export default async function PortfolioPage() {

@@ -10,12 +10,11 @@ import { SiteBanner } from "@/components/sections/site-banner";
 import Testimonial1 from "@/components/ui/testimonial-1";
 import { FAQ } from "@/components/ui/faq-section";
 import { ProductsTeaser } from "@/components/sections/products-teaser";
+import { PortfolioShowcase } from "@/components/sections/portfolio-showcase";
 import { Reveal } from "@/components/ui/reveal";
-import { ShieldCheck } from "lucide-react";
-
 const HOME_TITLE = "Agape Works - Software Development Company in Coimbatore & Chennai";
 const HOME_DESCRIPTION =
-  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond - fixed scope, senior engineers only, weekly working demos.";
+  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond - fixed scope, the same team from kickoff to launch, weekly working demos.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -81,6 +80,13 @@ export default function Home() {
           </section>
         </Reveal>
 
+        {/* Portfolio */}
+        <Reveal>
+          <section className="border-t">
+            <PortfolioShowcase />
+          </section>
+        </Reveal>
+
         {/* Process */}
         <Reveal>
           <section className="relative overflow-hidden border-t bg-white">
@@ -104,44 +110,6 @@ export default function Home() {
             </div>
             <div className="relative">
               <HowItWorks features={[...process]} />
-            </div>
-          </section>
-        </Reveal>
-
-        {/* Why us */}
-        <Reveal>
-          <section className="relative overflow-hidden">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute right-0 top-1/2 h-[380px] w-[380px] -translate-y-1/2 translate-x-1/3 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.16),transparent_70%)] blur-3xl"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-0 top-1/4 h-[300px] w-[300px] -translate-x-1/3 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.14),transparent_70%)] blur-3xl"
-            />
-            <div className="relative mx-auto w-full max-w-3xl px-4 py-24">
-              <div className="flex flex-col items-center gap-4 text-center">
-                <h2 className="text-3xl font-semibold tracking-tight text-foreground">
-                  Care isn&apos;t a slogan here - it&apos;s the process.
-                </h2>
-                <p className="leading-7 text-muted-foreground">
-                  Agape means selfless, deliberate care - and that&apos;s the standard we hold our
-                  engagements to. Fixed scope, weekly demos, and code your own team can maintain
-                  long after we&apos;re gone.
-                </p>
-                <ul className="flex flex-col gap-3 pt-2">
-                  {[
-                    "Senior engineers only - no bait-and-switch juniors",
-                    "Fixed-scope engagements with weekly, working demos",
-                    "Documentation and handoff built in, not bolted on",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-foreground">
-                      <ShieldCheck className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </section>
         </Reveal>

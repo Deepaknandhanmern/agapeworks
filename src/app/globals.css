@@ -128,37 +128,81 @@
    .home-theme, same amber accent for brand continuity across the site.
    Scoped so Card/Button/Input/Dialog etc. all pick up the dark palette
    automatically via the semantic tokens, no per-component overrides. */
+/* Vivira product page - light, with the product's own orange/purple brand
+   gradient as the accent (not the site's amber) since Vivira already has a
+   distinct visual identity from the rest of the site. */
 .vivira-theme {
-  --background: #000000;
-  --foreground: #ffffff;
-  --card: #0a0a0a;
-  --card-foreground: #ffffff;
-  --popover: #0a0a0a;
-  --popover-foreground: #ffffff;
-  --primary: #ffffff;
-  --primary-foreground: #000000;
-  --secondary: #1a1a1a;
-  --secondary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.06);
-  --muted-foreground: rgba(255, 255, 255, 0.6);
-  --accent: #fcd34d;
-  --accent-foreground: #000000;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #fcd34d;
-  --chart-1: #fcd34d;
-  --chart-2: #ffffff;
-  --chart-3: rgba(255, 255, 255, 0.7);
-  --chart-4: rgba(255, 255, 255, 0.45);
-  --chart-5: rgba(255, 255, 255, 0.25);
-  --sidebar: #0a0a0a;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #000000;
-  --sidebar-accent: #fcd34d;
-  --sidebar-accent-foreground: #000000;
-  --sidebar-border: rgba(255, 255, 255, 0.12);
-  --sidebar-ring: #fcd34d;
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #0a0a0a;
+  --muted: rgba(0, 0, 0, 0.04);
+  --muted-foreground: rgba(0, 0, 0, 0.6);
+  --accent: #f97316;
+  --accent-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: rgba(0, 0, 0, 0.1);
+  --ring: #f97316;
+  --chart-1: #f97316;
+  --chart-2: #9333ea;
+  --chart-3: #0a0a0a;
+  --chart-4: rgba(0, 0, 0, 0.45);
+  --chart-5: rgba(0, 0, 0, 0.25);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #0a0a0a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f97316;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(0, 0, 0, 0.1);
+  --sidebar-ring: #f97316;
+}
+
+/* Shared "liquid glass" card treatment (Vivira product page). True
+   glassmorphism (near-invisible fill + blur) needs a colorful background to
+   refract - Vivira's page is white now, so this reads as a frosted white
+   card instead: a translucent white fill (lets the page's own ambient
+   orange/purple glow tint through faintly at the edges) with a soft
+   elevation shadow, plus the same ::before gradient-border mask trick as
+   before, just inverted to a dark-tinted highlight for a light surface. */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: none;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.04) 20%,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.04) 80%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 @layer base {

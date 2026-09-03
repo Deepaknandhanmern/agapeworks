@@ -29,7 +29,7 @@ const columns = [
 
 export function ViviraGradientFooter() {
   return (
-    <RuixenGradientFooter gradientHeight="40vh" className="vivira-theme border-t border-white/10">
+    <RuixenGradientFooter gradientHeight="40vh" className="vivira-theme border-t border-black/10">
       <div className="mx-auto w-full max-w-5xl px-6 pt-12">
         <div className="grid gap-10 pb-10 sm:grid-cols-2 lg:grid-cols-6">
           <div className="lg:col-span-2">
@@ -65,7 +65,7 @@ export function ViviraGradientFooter() {
           </nav>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 pb-2 text-xs uppercase tracking-wider text-muted-foreground sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-black/10 pt-6 pb-2 text-xs uppercase tracking-wider text-muted-foreground sm:flex-row">
           <span>&copy; {new Date().getFullYear()} Agape Works</span>
           <span>Coimbatore &amp; Chennai, India</span>
         </div>

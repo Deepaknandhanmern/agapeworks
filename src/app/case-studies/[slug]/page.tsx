@@ -28,9 +28,13 @@ export async function generateMetadata({
     options: { parseFrontmatter: true },
   });
 
+  const title = `${frontmatter.title} - Agape Works`;
+
   return {
-    title: `${frontmatter.title} - Agape Works`,
+    title,
     description: frontmatter.summary,
+    openGraph: { title, description: frontmatter.summary, url: `/case-studies/${slug}` },
+    twitter: { title, description: frontmatter.summary },
   };
 }
 

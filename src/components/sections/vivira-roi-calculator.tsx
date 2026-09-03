@@ -32,7 +32,7 @@ export function ViviraRoiCalculator() {
   const recoveredRevenue = recoveredOrders * aov;
 
   return (
-    <div className="mx-auto w-full max-w-2xl rounded-2xl border bg-card p-6 shadow-sm sm:p-8">
+    <div className="liquid-glass mx-auto w-full max-w-2xl rounded-2xl p-6 sm:p-8">
       <div className="mb-6 flex items-center gap-2">
         <Calculator className="size-5 text-foreground" />
         <h2 className="text-xl font-semibold text-foreground">Estimate what recovery could be worth</h2>

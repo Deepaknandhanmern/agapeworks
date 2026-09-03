@@ -4,9 +4,14 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
 
+const CONTACT_TITLE = "Contact - Agape Works";
+const CONTACT_DESCRIPTION = "Tell us about your project - Agape Works replies within one business day.";
+
 export const metadata: Metadata = {
-  title: "Contact - Agape Works",
-  description: "Tell us about your project - Agape Works replies within one business day.",
+  title: CONTACT_TITLE,
+  description: CONTACT_DESCRIPTION,
+  openGraph: { title: CONTACT_TITLE, description: CONTACT_DESCRIPTION, url: "/contact" },
+  twitter: { title: CONTACT_TITLE, description: CONTACT_DESCRIPTION },
 };
 
 const contactPoints = [

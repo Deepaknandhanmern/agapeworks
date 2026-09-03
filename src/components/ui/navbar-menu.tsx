@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
 
 const transition = {
   type: "spring" as const,
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
+  mass: 0.3,
+  damping: 25,
+  stiffness: 400,
   restDelta: 0.001,
   restSpeed: 0.001,
 };
@@ -25,12 +25,14 @@ export const MenuItem = ({
   active,
   item,
   dark = false,
+  triggerClassName,
   children,
 }: {
   setActive: (item: string) => void;
   active: string | null;
   item: string;
   dark?: boolean;
+  triggerClassName?: string;
   children?: React.ReactNode;
 }) => {
   return (
@@ -40,6 +42,7 @@ export const MenuItem = ({
         className={cn(
           "flex cursor-pointer items-center gap-1 text-sm font-medium",
           dark ? "text-white/80 hover:text-white" : "text-foreground hover:opacity-80",
+          triggerClassName,
         )}
       >
         {item}

@@ -105,7 +105,7 @@ export const ColorfulBentoGrid = () => {
             Everything it takes to build, ship, and grow.
           </h2>
           <p className="max-w-sm text-base font-medium text-neutral-500">
-            Full-stack product development - web, mobile, SaaS, and AI - handled by one senior
+            Full-stack product development - web, mobile, SaaS, and AI - handled by one
             team, start to finish.
           </p>
         </div>

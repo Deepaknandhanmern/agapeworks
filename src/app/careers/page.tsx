@@ -9,18 +9,23 @@ import {
   Mail,
 } from "lucide-react";
 
+const CAREERS_TITLE = "Careers - Agape Works";
+const CAREERS_DESCRIPTION =
+  "Agape Works hires engineers who own outcomes end to end - no bait-and-switch juniors. Remote-first, direct client access, weekly working demos.";
+
 export const metadata: Metadata = {
-  title: "Careers - Agape Works",
-  description:
-    "Agape Works hires senior engineers only - no bait-and-switch juniors. Remote-first, direct client access, weekly working demos.",
+  title: CAREERS_TITLE,
+  description: CAREERS_DESCRIPTION,
+  openGraph: { title: CAREERS_TITLE, description: CAREERS_DESCRIPTION, url: "/careers" },
+  twitter: { title: CAREERS_TITLE, description: CAREERS_DESCRIPTION },
 };
 
 const lookingFor = [
   {
     icon: Users,
-    title: "Genuinely senior",
+    title: "Owns the outcome",
     description:
-      "You've shipped production software end to end, more than once, without someone senior reviewing every decision.",
+      "You've shipped production software end to end, more than once, without needing sign-off on every decision.",
   },
   {
     icon: MessageCircle,
@@ -53,12 +58,12 @@ export default function CareersPage() {
             Careers
           </div>
           <h1 className="max-w-2xl text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Senior engineers only. No exceptions.
+            People who own outcomes end to end. No exceptions.
           </h1>
           <p className="max-w-xl text-balance text-lg leading-7 text-muted-foreground">
             Agape Works is a small, remote-first team - the people who scope a project are the
-            same people who build it. That only works if everyone on the team is genuinely
-            senior.
+            same people who build it. That only works if everyone on the team can own their part
+            without hand-holding.
           </p>
         </section>
 

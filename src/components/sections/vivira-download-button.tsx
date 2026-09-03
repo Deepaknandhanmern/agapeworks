@@ -11,12 +11,21 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { trackEvent } from "@/lib/analytics";
 
 // Lead-capture gate, not an account - a name/email save (no password, no
 // session) before the actual .zip download starts, mirroring the newsletter
 // signup's DB-backed-but-passwordless pattern rather than a real auth build.
-export function ViviraDownloadButton({ href }: { href: string }) {
+export function ViviraDownloadButton({
+  href,
+  label = "Download for WordPress",
+  className,
+}: {
+  href: string;
+  label?: string;
+  className?: string;
+}) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -68,9 +77,9 @@ export function ViviraDownloadButton({ href }: { href: string }) {
       <Button
         type="button"
         onClick={() => setOpen(true)}
-        className="mt-2 h-11 px-6"
+        className={cn("mt-2 h-11 px-6", className)}
       >
-        Download for WordPress
+        {label}
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>

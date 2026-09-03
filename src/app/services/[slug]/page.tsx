@@ -21,9 +21,13 @@ export async function generateMetadata({
   const service = getServiceDetailBySlug(slug);
   if (!service) return {};
 
+  const title = `${service.title} - Agape Works`;
+
   return {
-    title: `${service.title} - Agape Works`,
+    title,
     description: service.description,
+    openGraph: { title, description: service.description, url: `/services/${slug}` },
+    twitter: { title, description: service.description },
   };
 }
 

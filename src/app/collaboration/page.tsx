@@ -13,10 +13,15 @@ import {
   Users,
 } from "lucide-react";
 
+const COLLABORATION_TITLE = "Collaboration - Agape Works";
+const COLLABORATION_DESCRIPTION =
+  "How Agape Works collaborates with clients and partners - direct access, weekly demos, and a handful of ways to work together.";
+
 export const metadata: Metadata = {
-  title: "Collaboration - Agape Works",
-  description:
-    "How Agape Works collaborates with clients and partners - direct access, weekly demos, and a handful of ways to work together.",
+  title: COLLABORATION_TITLE,
+  description: COLLABORATION_DESCRIPTION,
+  openGraph: { title: COLLABORATION_TITLE, description: COLLABORATION_DESCRIPTION, url: "/collaboration" },
+  twitter: { title: COLLABORATION_TITLE, description: COLLABORATION_DESCRIPTION },
 };
 
 const principles = [

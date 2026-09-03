@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/ui/header-3";
 
+const PRIVACY_TITLE = "Privacy Policy - Agape Works";
+const PRIVACY_DESCRIPTION = "How Agape Works collects, uses, and protects your information.";
+
 export const metadata: Metadata = {
-  title: "Privacy Policy - Agape Works",
-  description: "How Agape Works collects, uses, and protects your information.",
+  title: PRIVACY_TITLE,
+  description: PRIVACY_DESCRIPTION,
+  openGraph: { title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION, url: "/privacy" },
+  twitter: { title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION },
 };
 
 const EFFECTIVE_DATE = "August 31, 2026";

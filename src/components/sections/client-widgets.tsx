@@ -23,6 +23,10 @@ const BackToTopButton = dynamic(
   () => import("@/components/ui/back-to-top-button").then((m) => m.BackToTopButton),
   { ssr: false },
 );
+const TabTitleAway = dynamic(
+  () => import("@/components/ui/tab-title-away").then((m) => m.TabTitleAway),
+  { ssr: false },
+);
 
 export function ClientWidgets() {
   return (
@@ -31,6 +35,7 @@ export function ClientWidgets() {
       <ViviraTeaser />
       <ConciergeChat />
       <BackToTopButton />
+      <TabTitleAway />
     </>
   );
 }
