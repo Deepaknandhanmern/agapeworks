@@ -12,6 +12,7 @@ export type ProjectFormValues = {
   description: string;
   order: number;
   screenshot: string | null;
+  category: string;
 };
 
 export function ProjectForm({
@@ -39,6 +40,19 @@ export function ProjectForm({
       <div className="grid gap-2">
         <Label htmlFor="description">Description</Label>
         <Input id="description" name="description" defaultValue={defaultValues?.description} required />
+      </div>
+
+      <div className="grid gap-2">
+        <Label htmlFor="category">Section</Label>
+        <select
+          id="category"
+          name="category"
+          defaultValue={defaultValues?.category ?? "project"}
+          className="h-9 rounded-md border border-input bg-transparent px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+        >
+          <option value="project">Recent projects</option>
+          <option value="landing_page">Landing Page</option>
+        </select>
       </div>
 
       <div className="grid gap-2">

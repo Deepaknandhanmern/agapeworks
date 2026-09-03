@@ -7,7 +7,7 @@ import { DotPattern } from "@/components/ui/dot-pattern";
 import { WorldMap } from "@/components/ui/map";
 import { AgapeHero } from "@/components/sections/agape-hero";
 import { SiteBanner } from "@/components/sections/site-banner";
-import Testimonial1 from "@/components/ui/testimonial-1";
+import { AgapeAboutEditorial } from "@/components/sections/agape-about-editorial";
 import { FAQ } from "@/components/ui/faq-section";
 import { ProductsTeaser } from "@/components/sections/products-teaser";
 import { PortfolioShowcase } from "@/components/sections/portfolio-showcase";
@@ -62,11 +62,7 @@ export default function Home() {
         <AgapeHero />
 
         {/* About us */}
-        <Reveal>
-          <section className="border-b">
-            <Testimonial1 />
-          </section>
-        </Reveal>
+        <AgapeAboutEditorial />
 
         {/* Services */}
         <Reveal>

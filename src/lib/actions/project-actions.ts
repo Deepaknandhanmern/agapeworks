@@ -13,6 +13,7 @@ const projectSchema = z.object({
   url: z.string().optional(),
   description: z.string().min(1, "Description is required"),
   order: z.coerce.number().int().default(0),
+  category: z.enum(["project", "landing_page"]).default("project"),
 });
 
 async function resolveScreenshot(formData: FormData, existing?: string | null): Promise<string | null> {
@@ -34,6 +35,7 @@ export async function createProjectAction(
     url: formData.get("url"),
     description: formData.get("description"),
     order: formData.get("order") || 0,
+    category: formData.get("category") || "project",
   });
 
   if (!parsed.success) {
@@ -53,6 +55,7 @@ export async function createProjectAction(
       url: parsed.data.url || null,
       description: parsed.data.description,
       order: parsed.data.order,
+      category: parsed.data.category,
       screenshot,
     },
   });
@@ -76,6 +79,7 @@ export async function updateProjectAction(
     url: formData.get("url"),
     description: formData.get("description"),
     order: formData.get("order") || 0,
+    category: formData.get("category") || "project",
   });
 
   if (!parsed.success) {
@@ -96,6 +100,7 @@ export async function updateProjectAction(
       url: parsed.data.url || null,
       description: parsed.data.description,
       order: parsed.data.order,
+      category: parsed.data.category,
       screenshot,
     },
   });

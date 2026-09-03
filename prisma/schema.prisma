@@ -39,6 +39,10 @@ model Project {
   url         String?
   description String
   screenshot  String?
+  // "project" (default, shown under "Recent projects") or "landing_page"
+  // (shown under the portfolio's "Landing Page" section) — plain string
+  // rather than a native enum, matching this schema's no-Postgres-enums rule.
+  category    String   @default("project")
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

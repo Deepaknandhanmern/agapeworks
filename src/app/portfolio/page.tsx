@@ -17,7 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default async function PortfolioPage() {
-  const projects = await getProjects();
+  const [projects, landingPages] = await Promise.all([
+    getProjects("project"),
+    getProjects("landing_page"),
+  ]);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -37,6 +40,20 @@ export default async function PortfolioPage() {
           </div>
           <PortfolioGrid projects={projects} />
         </section>
+
+        {landingPages.length > 0 && (
+          <section id="landing-pages" className="mx-auto w-full max-w-5xl px-4 pb-24">
+            <div className="mb-10 flex flex-col items-center gap-3 text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground">
+                Landing Page
+              </h2>
+              <p className="max-w-lg text-muted-foreground">
+                Click any page to preview it right here on this page.
+              </p>
+            </div>
+            <PortfolioGrid projects={landingPages} />
+          </section>
+        )}
       </main>
     </div>
   );

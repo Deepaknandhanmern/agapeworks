@@ -21,6 +21,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
           description: project.description,
           order: project.order,
           screenshot: project.screenshot,
+          category: project.category,
         }}
       />
     </div>

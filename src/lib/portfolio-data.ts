@@ -12,8 +12,9 @@ export type Project = {
   screenshot?: string | null;
 };
 
-export async function getProjects(): Promise<Project[]> {
+export async function getProjects(category: "project" | "landing_page" = "project"): Promise<Project[]> {
   return db.project.findMany({
+    where: { category },
     orderBy: [{ order: "asc" }, { createdAt: "asc" }],
     select: { id: true, name: true, url: true, description: true, screenshot: true },
   });
