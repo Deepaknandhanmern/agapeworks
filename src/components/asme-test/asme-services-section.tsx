@@ -1,0 +1,102 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { VideoPlaceholder } from "./video-placeholder";
+
+// See asme-hero.tsx's comment on why these are empty by default.
+const SERVICE_CARDS = [
+  {
+    videoSrc: "",
+    tag: "Strategy",
+    title: "Research & Insight",
+    description:
+      "We dig deep into data, culture, and human behavior to surface the insights that drive meaningful, lasting change.",
+  },
+  {
+    videoSrc: "",
+    tag: "Craft",
+    title: "Design & Execution",
+    description:
+      "From concept to launch, we obsess over every detail to deliver experiences that feel effortless and look extraordinary.",
+  },
+];
+
+function ServiceCard({
+  card,
+  inView,
+  index,
+}: {
+  card: (typeof SERVICE_CARDS)[number];
+  inView: boolean;
+  index: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: index * 0.15 }}
+      className="asme-glass group overflow-hidden rounded-3xl"
+    >
+      <div className="relative aspect-video overflow-hidden">
+        {card.videoSrc ? (
+          <video
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+            muted
+            autoPlay
+            loop
+            playsInline
+            preload="auto"
+            src={card.videoSrc}
+          />
+        ) : (
+          <VideoPlaceholder label={card.title} />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+      </div>
+
+      <div className="p-6 md:p-8">
+        <div className="mb-4 flex items-start justify-between">
+          <p className="text-xs uppercase tracking-widest text-white/40">{card.tag}</p>
+          <span className="asme-glass rounded-full p-2 text-white">
+            <ArrowUpRight size={16} />
+          </span>
+        </div>
+        <h3 className="mb-3 text-xl tracking-tight text-white md:text-2xl">{card.title}</h3>
+        <p className="text-sm leading-relaxed text-white/50">{card.description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+export function AsmeServicesSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section className="relative overflow-hidden bg-black px-6 py-28 md:py-40">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_60%)]"
+      />
+      <div ref={ref} className="relative mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="mb-12 flex items-end justify-between"
+        >
+          <h2 className="text-3xl tracking-tight text-white md:text-5xl">What we do</h2>
+          <p className="hidden text-sm text-white/40 md:block">Our services</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          {SERVICE_CARDS.map((card, index) => (
+            <ServiceCard key={card.title} card={card} inView={inView} index={index} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
