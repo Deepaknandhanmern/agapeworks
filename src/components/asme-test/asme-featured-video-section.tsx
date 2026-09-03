@@ -4,8 +4,8 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { VideoPlaceholder } from "./video-placeholder";
 
-// See asme-hero.tsx's comment on why this is empty by default.
-const FEATURED_VIDEO_SRC = "";
+const FEATURED_VIDEO_SRC =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260402_054547_9875cfc5-155a-4229-8ec8-b7ba7125cbf8.mp4";
 
 export function AsmeFeaturedVideoSection() {
   const ref = useRef<HTMLDivElement>(null);

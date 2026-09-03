@@ -5,8 +5,8 @@ import { motion, useInView } from "framer-motion";
 import { instrumentSerif } from "./asme-fonts";
 import { VideoPlaceholder } from "./video-placeholder";
 
-// See asme-hero.tsx's comment on why this is empty by default.
-const PHILOSOPHY_VIDEO_SRC = "";
+const PHILOSOPHY_VIDEO_SRC =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";
 
 export function AsmePhilosophySection() {
   const ref = useRef<HTMLDivElement>(null);

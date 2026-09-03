@@ -5,17 +5,18 @@ import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { VideoPlaceholder } from "./video-placeholder";
 
-// See asme-hero.tsx's comment on why these are empty by default.
 const SERVICE_CARDS = [
   {
-    videoSrc: "",
+    videoSrc:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4",
     tag: "Strategy",
     title: "Research & Insight",
     description:
       "We dig deep into data, culture, and human behavior to surface the insights that drive meaningful, lasting change.",
   },
   {
-    videoSrc: "",
+    videoSrc:
+      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4",
     tag: "Craft",
     title: "Design & Execution",
     description:

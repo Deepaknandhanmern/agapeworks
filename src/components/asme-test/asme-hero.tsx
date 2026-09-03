@@ -6,12 +6,8 @@ import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { instrumentSerif } from "./asme-fonts";
 import { VideoPlaceholder } from "./video-placeholder";
 
-// Recreated from a pasted "Asme" landing-page spec. The spec's hero video
-// pointed at another account's CloudFront path (user_.../hf_<timestamp>...,
-// consistent with a private AI-video-gen export) - left as an empty source
-// here per the user's own call, with the exact crossfade-loop logic below
-// still wired up and ready for a real URL.
-const HERO_VIDEO_SRC = "";
+const HERO_VIDEO_SRC =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4";
 
 export function AsmeHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
