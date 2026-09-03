@@ -3,9 +3,15 @@ import { Header } from "@/components/ui/header-3";
 import { getAllBlogPosts } from "@/lib/content";
 import { ArrowRight } from "lucide-react";
 
+const BLOG_TITLE = "Blog - Agape Works";
+const BLOG_DESCRIPTION = "Notes on product strategy, SaaS development, SEO, and AEO from Agape Works.";
+
 export const metadata: Metadata = {
-  title: "Blog - Agape Works",
-  description: "Notes on product strategy, SaaS development, SEO, and AEO from Agape Works.",
+  title: BLOG_TITLE,
+  description: BLOG_DESCRIPTION,
+  alternates: { canonical: "/blog" },
+  openGraph: { title: BLOG_TITLE, description: BLOG_DESCRIPTION, url: "/blog" },
+  twitter: { title: BLOG_TITLE, description: BLOG_DESCRIPTION },
 };
 
 function formatDate(date: string) {

@@ -20,6 +20,7 @@ const COLLABORATION_DESCRIPTION =
 export const metadata: Metadata = {
   title: COLLABORATION_TITLE,
   description: COLLABORATION_DESCRIPTION,
+  alternates: { canonical: "/collaboration" },
   openGraph: { title: COLLABORATION_TITLE, description: COLLABORATION_DESCRIPTION, url: "/collaboration" },
   twitter: { title: COLLABORATION_TITLE, description: COLLABORATION_DESCRIPTION },
 };

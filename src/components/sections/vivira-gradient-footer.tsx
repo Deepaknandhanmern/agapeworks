@@ -5,9 +5,9 @@ const columns = [
   {
     title: "Product",
     links: [
-      { label: "Download for WordPress", href: "/products#install" },
+      { label: "Download for WordPress", href: "/products#pricing" },
       { label: "Pricing", href: "/products#pricing" },
-      { label: "ROI calculator", href: "/products#install" },
+      { label: "ROI calculator", href: "/products#roi" },
     ],
   },
   {

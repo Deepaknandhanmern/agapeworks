@@ -49,10 +49,10 @@ export default function OpengraphImage() {
             color: "transparent",
           }}
         >
-          An AI cart that recovers itself
+          Recovered revenue, on autopilot
         </div>
         <div style={{ display: "flex", marginTop: 28, fontSize: 28, color: "rgba(255,255,255,0.6)" }}>
-          Watches for abandoned carts and brings shoppers back automatically.
+          Autonomous WhatsApp recovery, COD fraud shields, and 1-click UPI purchases.
         </div>
       </div>
     ),

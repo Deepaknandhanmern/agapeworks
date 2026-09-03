@@ -25,6 +25,7 @@ const PARTNER_PROGRAM_DESCRIPTION =
 export const metadata: Metadata = {
   title: PARTNER_PROGRAM_TITLE,
   description: PARTNER_PROGRAM_DESCRIPTION,
+  alternates: { canonical: "/partner-program" },
   openGraph: { title: PARTNER_PROGRAM_TITLE, description: PARTNER_PROGRAM_DESCRIPTION, url: "/partner-program" },
   twitter: { title: PARTNER_PROGRAM_TITLE, description: PARTNER_PROGRAM_DESCRIPTION },
 };

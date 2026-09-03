@@ -5,6 +5,7 @@ import { SignInForm } from "./signin-form";
 
 export const metadata: Metadata = {
   title: "Sign In - Agape Works",
+  robots: { index: false, follow: false },
 };
 
 export default async function SignInPageRoute({

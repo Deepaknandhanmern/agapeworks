@@ -11,6 +11,7 @@ const PORTFOLIO_DESCRIPTION =
 export const metadata: Metadata = {
   title: PORTFOLIO_TITLE,
   description: PORTFOLIO_DESCRIPTION,
+  alternates: { canonical: "/portfolio" },
   openGraph: { title: PORTFOLIO_TITLE, description: PORTFOLIO_DESCRIPTION, url: "/portfolio" },
   twitter: { title: PORTFOLIO_TITLE, description: PORTFOLIO_DESCRIPTION },
 };

@@ -8,6 +8,7 @@ const SELLARA_DESCRIPTION =
 export const metadata: Metadata = {
   title: SELLARA_TITLE,
   description: SELLARA_DESCRIPTION,
+  alternates: { canonical: "/sellara" },
   openGraph: { title: SELLARA_TITLE, description: SELLARA_DESCRIPTION, url: "/sellara" },
   twitter: { title: SELLARA_TITLE, description: SELLARA_DESCRIPTION },
 };

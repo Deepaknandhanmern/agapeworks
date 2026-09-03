@@ -16,6 +16,7 @@ const CAREERS_DESCRIPTION =
 export const metadata: Metadata = {
   title: CAREERS_TITLE,
   description: CAREERS_DESCRIPTION,
+  alternates: { canonical: "/careers" },
   openGraph: { title: CAREERS_TITLE, description: CAREERS_DESCRIPTION, url: "/careers" },
   twitter: { title: CAREERS_TITLE, description: CAREERS_DESCRIPTION },
 };

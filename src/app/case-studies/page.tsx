@@ -9,6 +9,7 @@ const CASE_STUDIES_DESCRIPTION = "How Agape Works has approached real client pro
 export const metadata: Metadata = {
   title: CASE_STUDIES_TITLE,
   description: CASE_STUDIES_DESCRIPTION,
+  alternates: { canonical: "/case-studies" },
   openGraph: { title: CASE_STUDIES_TITLE, description: CASE_STUDIES_DESCRIPTION, url: "/case-studies" },
   twitter: { title: CASE_STUDIES_TITLE, description: CASE_STUDIES_DESCRIPTION },
 };

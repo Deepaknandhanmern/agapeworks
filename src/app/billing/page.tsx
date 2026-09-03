@@ -12,6 +12,7 @@ const BILLING_DESCRIPTION =
 export const metadata: Metadata = {
   title: BILLING_TITLE,
   description: BILLING_DESCRIPTION,
+  alternates: { canonical: "/billing" },
   openGraph: { title: BILLING_TITLE, description: BILLING_DESCRIPTION, url: "/billing" },
   twitter: { title: BILLING_TITLE, description: BILLING_DESCRIPTION },
 };

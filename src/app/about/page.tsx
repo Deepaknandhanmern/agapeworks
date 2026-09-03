@@ -20,6 +20,7 @@ const ABOUT_DESCRIPTION =
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
   description: ABOUT_DESCRIPTION,
+  alternates: { canonical: "/about" },
   openGraph: { title: ABOUT_TITLE, description: ABOUT_DESCRIPTION, url: "/about" },
   twitter: { title: ABOUT_TITLE, description: ABOUT_DESCRIPTION },
 };

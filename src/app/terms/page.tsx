@@ -8,6 +8,7 @@ const TERMS_DESCRIPTION = "The terms governing your use of agapeworks.in and its
 export const metadata: Metadata = {
   title: TERMS_TITLE,
   description: TERMS_DESCRIPTION,
+  alternates: { canonical: "/terms" },
   openGraph: { title: TERMS_TITLE, description: TERMS_DESCRIPTION, url: "/terms" },
   twitter: { title: TERMS_TITLE, description: TERMS_DESCRIPTION },
 };

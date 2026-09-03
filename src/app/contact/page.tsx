@@ -10,6 +10,7 @@ const CONTACT_DESCRIPTION = "Tell us about your project - Agape Works replies wi
 export const metadata: Metadata = {
   title: CONTACT_TITLE,
   description: CONTACT_DESCRIPTION,
+  alternates: { canonical: "/contact" },
   openGraph: { title: CONTACT_TITLE, description: CONTACT_DESCRIPTION, url: "/contact" },
   twitter: { title: CONTACT_TITLE, description: CONTACT_DESCRIPTION },
 };

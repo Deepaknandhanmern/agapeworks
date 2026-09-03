@@ -10,6 +10,7 @@ const SCOPE_DESCRIPTION =
 export const metadata: Metadata = {
   title: SCOPE_TITLE,
   description: SCOPE_DESCRIPTION,
+  alternates: { canonical: "/scope" },
   openGraph: { title: SCOPE_TITLE, description: SCOPE_DESCRIPTION, url: "/scope" },
   twitter: { title: SCOPE_TITLE, description: SCOPE_DESCRIPTION },
 };

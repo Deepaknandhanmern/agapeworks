@@ -33,6 +33,7 @@ export async function generateMetadata({
   return {
     title,
     description: frontmatter.summary,
+    alternates: { canonical: `/case-studies/${slug}` },
     openGraph: { title, description: frontmatter.summary, url: `/case-studies/${slug}` },
     twitter: { title, description: frontmatter.summary },
   };

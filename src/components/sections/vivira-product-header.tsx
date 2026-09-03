@@ -91,9 +91,11 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
             tighter gap-4, replacing individual mb-* margins. Copy and the
             CTA target are unchanged; colors flipped for the light page. */}
         <div className="relative z-10 flex flex-col items-center gap-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-2 backdrop-blur-sm">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            <span className="text-xs text-foreground/70">Live now for WooCommerce</span>
+          <div className="inline-flex flex-wrap items-center justify-center gap-2 rounded-full border border-black/10 bg-black/5 px-4 py-2 text-center backdrop-blur-sm">
+            <span className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
+            <span className="text-xs text-foreground/70">
+              Official Meta Cloud API v20.0 verified · 3-minute WordPress setup
+            </span>
           </div>
 
           <div className="flex flex-col items-center gap-4">
@@ -106,7 +108,7 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
                   backgroundClip: "text",
                 }}
               >
-                Vivira - an AI cart
+                Turn abandoned carts into
               </span>
               <br />
               {/* Brand gradient (same orange->purple as vivira-logo.svg /
@@ -120,24 +122,34 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
                   backgroundSize: "200% auto",
                 }}
               >
-                that recovers itself
+                recovered revenue, on autopilot
               </span>
             </h1>
 
             <p className="max-w-2xl px-6 text-center text-sm leading-relaxed tracking-tight text-muted-foreground sm:text-base">
-              Vivira watches for abandoned carts and brings shoppers back automatically, so stores
-              keep the sales they&apos;d otherwise lose.
+              70% of shoppers leave your store without completing checkout. Vivira recovers 20-30%
+              of lost sales through autonomous WhatsApp sequences, 0-100 COD fraud shields, and
+              1-click UPI purchases.
             </p>
           </div>
 
-          <a
-            href="#install"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
-            style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
-          >
-            Get started
-            <ArrowRight size={16} />
-          </a>
+          <div className="flex flex-col items-center gap-3 sm:flex-row">
+            <a
+              href="#pricing"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
+              style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
+            >
+              Start 7-Day Free Trial
+              <ArrowRight size={16} />
+            </a>
+            <a
+              href="#journey"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-black/10 px-8 text-base font-medium text-foreground transition-colors hover:bg-black/5"
+            >
+              Watch Live 6-Step Demo
+            </a>
+          </div>
+          <p className="-mt-4 text-xs text-muted-foreground">No credit card needed</p>
         </div>
       </section>
     </>

@@ -26,10 +26,12 @@ export async function generateMetadata({
   return {
     title: `${post.title} - Agape Works`,
     description: post.description,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       type: "article",
       title: post.title,
       description: post.description,
+      url: `/blog/${slug}`,
       publishedTime: post.date,
       authors: [post.author],
     },

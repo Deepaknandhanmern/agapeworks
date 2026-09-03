@@ -8,6 +8,7 @@ const SAAS_DESCRIPTION =
 export const metadata: Metadata = {
   title: SAAS_TITLE,
   description: SAAS_DESCRIPTION,
+  alternates: { canonical: "/saas" },
   openGraph: { title: SAAS_TITLE, description: SAAS_DESCRIPTION, url: "/saas" },
   twitter: { title: SAAS_TITLE, description: SAAS_DESCRIPTION },
 };

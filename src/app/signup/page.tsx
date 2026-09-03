@@ -5,6 +5,7 @@ import { SignUpForm } from "./signup-form";
 
 export const metadata: Metadata = {
   title: "Sign Up - Agape Works",
+  robots: { index: false, follow: false },
 };
 
 export default function SignUpPageRoute() {

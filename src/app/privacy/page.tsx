@@ -8,6 +8,7 @@ const PRIVACY_DESCRIPTION = "How Agape Works collects, uses, and protects your i
 export const metadata: Metadata = {
   title: PRIVACY_TITLE,
   description: PRIVACY_DESCRIPTION,
+  alternates: { canonical: "/privacy" },
   openGraph: { title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION, url: "/privacy" },
   twitter: { title: PRIVACY_TITLE, description: PRIVACY_DESCRIPTION },
 };
