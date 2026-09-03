@@ -35,7 +35,7 @@ export function ViviraGradientFooter() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 text-foreground">
               {/* eslint-disable-next-line @next/next/no-img-element -- small static logo, not worth next/image */}
-              <img src="/vivira-logo.svg" alt="" className="size-6" />
+              <img src="/vivira-logo-mark.png" alt="" className="h-6 w-auto" />
               <span className="font-semibold">Vivira</span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">

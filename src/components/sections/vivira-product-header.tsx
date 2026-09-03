@@ -34,7 +34,7 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
         <nav className="mx-auto max-w-7xl px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/vivira-logo.svg" alt="Vivira" width={28} height={28} />
+              <Image src="/vivira-logo-mark.png" alt="Vivira" width={47} height={28} className="w-auto" />
               <span className="text-lg font-semibold text-foreground">Vivira</span>
             </Link>
 
