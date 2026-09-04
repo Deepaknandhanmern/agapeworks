@@ -17,10 +17,10 @@ const plans = [
     monthly: 0,
     yearly: 0,
     yearlySavings: null as string | null,
-    description: "Up to 50 recoveries/month - see Vivira work before you commit to more.",
+    description: "Up to 25 recoveries/month - see Vivira work before you commit to more.",
     popular: false,
     features: [
-      { text: "Up to 50 recoveries/month", icon: <Database size={20} /> },
+      { text: "Up to 25 recoveries/month", icon: <Database size={20} /> },
       { text: "1-step recovery sequence", icon: <Server size={20} /> },
       { text: "Basic COD check", icon: <ShieldCheck size={20} /> },
     ],
