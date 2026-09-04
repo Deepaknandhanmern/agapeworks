@@ -167,8 +167,13 @@ export function NotificationAlertDialog() {
                         className="fixed inset-0 z-40 cursor-default"
                         onClick={() => setOpen(false)}
                     />
+                    {/* Viewport-anchored (fixed, edge-to-edge minus margin) on mobile
+                        so its width/position can never depend on where the bell
+                        icon happens to sit in the header - that's what caused it
+                        to overflow/overlap other elements on narrow screens.
+                        Reverts to a compact dropdown anchored to the bell at sm+. */}
                     <div
-                        className="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] max-w-md"
+                        className="fixed left-4 right-4 top-16 z-50 sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-96 sm:max-w-md"
                         role="dialog"
                         aria-label="Announcements"
                     >
