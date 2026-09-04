@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -12,13 +11,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Clock, Mail, MapPin, Send } from "lucide-react";
+import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
-import { CircularRevealHeading } from "@/components/ui/circular-reveal-heading";
-
-// Same categories as the nav's Capabilities dropdown (header-3.tsx), shortened
-// to single words for the rotating ring.
-const serviceCategories = ["Web", "Mobile", "SaaS", "AI", "Marketing"];
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -38,6 +32,7 @@ const legalLinks = [
 // here (a footer isn't the place to duplicate its icon-card treatment).
 const contactPoints = [
   { icon: Mail, value: "studio@agapeworks.in" },
+  { icon: Phone, value: "+91 73739 44336" },
   { icon: Clock, value: "Replies within 1 business day" },
   { icon: MapPin, value: "Coimbatore & Chennai, India" },
 ];
@@ -84,16 +79,6 @@ function Footerdemo() {
   return (
     <footer className="relative border-t bg-background text-foreground">
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
-        <div className="mb-12 flex justify-center">
-          <CircularRevealHeading
-            items={serviceCategories}
-            size="sm"
-            centerContent={
-              <Image src="/icon.png" alt="Agape Works" width={56} height={56} className="rounded-full" />
-            }
-          />
-        </div>
-
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative">
             <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
