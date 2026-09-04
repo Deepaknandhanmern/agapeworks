@@ -90,7 +90,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistMono.variable} ${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col overflow-x-hidden">
         {/* eslint-disable-next-line react/no-danger -- static JSON we authored above, not user input */}
         <script
           type="application/ld+json"

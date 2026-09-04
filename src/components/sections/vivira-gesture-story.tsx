@@ -123,7 +123,7 @@ export function ViviraGestureStory() {
             <p className="mb-4 text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase">
               {category.label}
             </p>
-            <div className="grid grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 md:grid-cols-3">
               {category.items.map((item) => (
                 <div key={item.caption} className="liquid-glass flex flex-col items-center gap-2 rounded-2xl px-3 py-5 text-center">
                   {item.render()}
