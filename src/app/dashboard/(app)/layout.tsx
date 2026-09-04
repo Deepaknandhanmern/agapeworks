@@ -6,12 +6,13 @@ import { logoutAction } from "@/lib/actions/auth-actions";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/dashboard/command-palette";
 import { NotificationsToaster } from "@/components/ui/toast";
-import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users, Receipt, Mail, Package } from "lucide-react";
+import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users, Receipt, Mail, Package, Quote } from "lucide-react";
 
 const navItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
   { label: "Blog", href: "/dashboard/blog", icon: Newspaper },
   { label: "Projects", href: "/dashboard/projects", icon: FolderKanban },
+  { label: "Testimonials", href: "/dashboard/testimonials", icon: Quote },
   { label: "Client projects", href: "/dashboard/client-projects", icon: Users },
   { label: "Enquiries", href: "/dashboard/enquiries", icon: Inbox },
   { label: "Newsletter", href: "/dashboard/newsletter", icon: Mail },

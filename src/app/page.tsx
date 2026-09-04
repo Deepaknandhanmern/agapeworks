@@ -11,6 +11,7 @@ import Testimonial1 from "@/components/ui/testimonial-1";
 import { FAQ } from "@/components/ui/faq-section";
 import { ProductsTeaser } from "@/components/sections/products-teaser";
 import { PortfolioShowcase } from "@/components/sections/portfolio-showcase";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { Reveal } from "@/components/ui/reveal";
 const HOME_TITLE = "Agape Works - Software Development Company in Coimbatore & Chennai";
 const HOME_DESCRIPTION =
@@ -85,6 +86,13 @@ export default function Home() {
           <section className="border-t">
             <PortfolioShowcase />
           </section>
+        </Reveal>
+
+        {/* Testimonials - renders nothing at all until a real one is
+            published, so no wrapping section/border here (would otherwise
+            draw an empty divider line with nothing in it). */}
+        <Reveal>
+          <TestimonialsSection />
         </Reveal>
 
         {/* Process */}

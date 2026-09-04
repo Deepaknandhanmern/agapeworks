@@ -231,6 +231,16 @@ export async function getProjectByIdForDashboard(id: string) {
   return db.project.findUnique({ where: { id } });
 }
 
+export async function getAllTestimonialsForDashboard() {
+  await requireAuth();
+  return db.testimonial.findMany({ orderBy: [{ order: "asc" }, { createdAt: "asc" }] });
+}
+
+export async function getTestimonialByIdForDashboard(id: string) {
+  await requireAuth();
+  return db.testimonial.findUnique({ where: { id } });
+}
+
 export async function getAllClientProjectsForDashboard() {
   await requireAuth();
   return db.clientProject.findMany({ orderBy: { createdAt: "desc" } });
