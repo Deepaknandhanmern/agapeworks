@@ -3,6 +3,7 @@ import { ViviraProductHeader } from "@/components/sections/vivira-product-header
 import { ViviraRoiSliderCalculator } from "@/components/sections/vivira-roi-slider-calculator";
 import { ViviraRecoveryJourney } from "@/components/sections/vivira-recovery-journey";
 import { ViviraGestureStory } from "@/components/sections/vivira-gesture-story";
+import { ViviraPlatformDownload } from "@/components/sections/vivira-platform-download";
 import { ViviraPricingSection } from "@/components/sections/vivira-pricing-section";
 import { ViviraEngineDirectory } from "@/components/sections/vivira-engine-directory";
 import { ViviraGradientFooter } from "@/components/sections/vivira-gradient-footer";
@@ -51,6 +52,10 @@ export default async function ProductsPage() {
             <ViviraRoiSliderCalculator />
           </div>
         </section>
+
+        <div className="border-t">
+          <ViviraPlatformDownload downloadHref={downloadHref} />
+        </div>
 
         <div className="border-t">
           <ViviraRecoveryJourney />
