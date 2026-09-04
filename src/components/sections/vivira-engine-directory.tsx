@@ -6,81 +6,45 @@ import {
 } from "@/components/ui/accordion";
 import { Reveal } from "@/components/ui/reveal";
 
-// Exactly the engines given in the spec, grouped into the suites given -
-// engines 31-41 weren't itemized in the source content, so this list has
-// an honest gap between Owner Intelligence (#30) and Milestone Engines
-// (#42) rather than inventing filler to round the count out.
+// Only the 13 engines actually built, tested, and live in the plugin as of
+// 2026-09-03 (see Vivira_AI_Website_Content_and_Copy.md Section 5). Do not
+// add an engine here until it's been through that same verification -
+// several previously listed here (GST invoice, live courier GPS, Gemini
+// Vision, virtual mannequin, CEO briefing, Meta CAPI, multi-currency, etc.)
+// exist only as unaudited code, not as something a customer can use today.
 const suites = [
   {
-    name: "Recovery & Cart Engines",
+    name: "Recovery & Conversion",
     range: "1-5",
-    engines: ["WhatsApp 3-Step", "Exit Nudge", "10-min Timer", "Back-in-Stock", "SMS Fallback"],
-  },
-  {
-    name: "Fraud & Logistics",
-    range: "6-10",
     engines: [
-      "0-100 COD Scorer",
-      "Partial COD Deposit",
-      "Live Courier GPS",
-      "AI Address Verifier",
-      "1-Click Pre-Dispatch Cancel",
+      "WhatsApp 3-Step Abandoned Cart Recovery",
+      "Slide-Out Cart Drawer",
+      "Mobile Sticky Buy Bar",
+      "Social Proof Popups",
+      "Exit-Intent Discount Offer",
     ],
   },
   {
-    name: "AI Sales & Search",
-    range: "11-16",
+    name: "Fraud & Delivery Risk",
+    range: "6-7",
+    engines: ["COD Fraud & RTO Risk Shield (0-100 scoring + WhatsApp verification)", "Delivery Risk Profiling"],
+  },
+  {
+    name: "AI & Automation",
+    range: "8-10",
     engines: [
-      "Gemini Vision Snap & Find",
-      "Voice Transcriber",
-      "Sizing Concierge",
-      "Complete the Look",
-      "Multi-language AI",
-      "Semantic Search",
+      "AI WhatsApp Support & Shopping Agent (with human hand-off)",
+      "On-Site AI Chat Widget (text + voice)",
+      "Visual Automation Builder + AI Workflow Generator",
     ],
   },
   {
-    name: "Merchandising",
-    range: "17-22",
+    name: "Analytics & Controls",
+    range: "11-13",
     engines: [
-      "Virtual Mannequin",
-      "Shoppable Reels",
-      "Volume Discounts",
-      "Color Palette",
-      "FOMO Badges",
-      "Post-Purchase Upsells",
-    ],
-  },
-  {
-    name: "Retention & Tax",
-    range: "23-28",
-    engines: [
-      "GST Invoice PDF",
-      "5% Cashback Wallet",
-      "Scratch Cards",
-      "VIP LTV Scorer",
-      "Fake Review Shield",
-      "Multi-Currency",
-    ],
-  },
-  {
-    name: "Owner Intelligence",
-    range: "29-30",
-    engines: ["9:00 AM CEO Briefing", "Meta CAPI Server-Sync"],
-  },
-  {
-    name: "Milestone Engines",
-    range: "42-50",
-    engines: [
-      "WhatsApp 5-Star Reviews & Google Sync",
-      "Price Drop Watchdog",
-      "Gift Finder",
-      "Product Care Guide",
-      "Search Recovery",
-      "Festival VIP Broadcast",
-      "Birthday VIP Gifts",
-      "Doorstep UPI",
-      "Pre-Order Restock Gate",
+      "Customer Segmentation (VIP, high-value, returning, inactive, risk flags)",
+      "Revenue Attribution Analytics",
+      "AI Token & Budget Usage Controls",
     ],
   },
 ];

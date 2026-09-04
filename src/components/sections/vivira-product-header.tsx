@@ -134,31 +134,14 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
           </div>
 
           <div className="flex flex-col items-center gap-3 sm:flex-row">
-            <div className="relative">
-              <a
-                href="#pricing"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
-                style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
-              >
-                Start 7-Day Free Trial
-                <ArrowRight size={16} />
-              </a>
-              {/* Same Open Peeps figure/pose used for "WhatsApp reminder
-                  sent" in "The recovery, illustrated" (BodyDevice - its
-                  hand/phone prop sits at a known, consistent torso-height
-                  position, unlike BodyPointingUp which turned out to reach
-                  up-and-diagonally rather than straight ahead). Positioned
-                  to the button's left, unflipped, so that hand lands on the
-                  button rather than reaching away from it - hidden below sm
-                  where there's no room beside it. */}
-              <img
-                src="/gestures/reminder-sent.svg"
-                alt=""
-                aria-hidden="true"
-                style={{ transform: "rotate(-8deg)" }}
-                className="pointer-events-none absolute -left-24 -top-16 hidden h-36 w-auto sm:block"
-              />
-            </div>
+            <a
+              href="#pricing"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
+              style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
+            >
+              Start 7-Day Free Trial
+              <ArrowRight size={16} />
+            </a>
             <a
               href="#journey"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-black/10 px-8 text-base font-medium text-foreground transition-colors hover:bg-black/5"

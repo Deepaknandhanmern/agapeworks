@@ -47,16 +47,7 @@ export default async function ProductsPage() {
             aria-hidden="true"
             className="pointer-events-none absolute left-1/2 bottom-0 h-[340px] w-[480px] -translate-x-[20%] translate-y-1/4 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.14),transparent_70%)] blur-3xl"
           />
-          <div className="relative mx-auto w-full max-w-2xl">
-            {/* Same Open Peeps figure as "Browses the store" - perched on
-                the calculator's top edge as if reading the numbers over
-                the shopper's shoulder. */}
-            <img
-              src="/gestures/browses.svg"
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-20 right-6 hidden h-32 w-auto sm:block"
-            />
+          <div className="relative">
             <ViviraRoiSliderCalculator />
           </div>
         </section>
