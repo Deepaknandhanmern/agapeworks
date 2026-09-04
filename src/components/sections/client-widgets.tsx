@@ -15,8 +15,8 @@ const ViviraTeaser = dynamic(
   () => import("@/components/sections/vivira-teaser").then((m) => m.ViviraTeaser),
   { ssr: false },
 );
-const ConciergeChat = dynamic(
-  () => import("@/components/sections/concierge-chat").then((m) => m.ConciergeChat),
+const WhatsAppButton = dynamic(
+  () => import("@/components/sections/whatsapp-button").then((m) => m.WhatsAppButton),
   { ssr: false },
 );
 const BackToTopButton = dynamic(
@@ -33,7 +33,7 @@ export function ClientWidgets() {
     <>
       <AnnouncementToast />
       <ViviraTeaser />
-      <ConciergeChat />
+      <WhatsAppButton />
       <BackToTopButton />
       <TabTitleAway />
     </>
