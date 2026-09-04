@@ -12,13 +12,17 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 
-// Real hand-drawn people (Open Peeps by Pablo Stanley, CC0, served via the
-// DiceBear API and saved to /public/gestures) illustrate Vivira's actual,
-// verified recovery flow. Deliberately does NOT depict fulfillment/courier/
-// GST steps - those aren't part of what Vivira does today (see the "6-step"
-// journey copy above, which currently overclaims a couple of those - worth
-// reconciling separately). A small lucide icon badge on each portrait
-// carries the specific action/prop a static illustration can't show.
+// Real hand-drawn, full-body people (Open Peeps by Pablo Stanley, CC0)
+// illustrate Vivira's actual, verified recovery flow. Each body/head/face is
+// composed from the MIT-licensed hello-efficiency-inc/openpeeps-generator
+// component set (recolored to Vivira's orange/purple) and saved as a flat
+// SVG under /public/gestures - see scripts referenced in the commit that
+// added them for how they were assembled. Deliberately does NOT depict
+// fulfillment/courier/GST steps - those aren't part of what Vivira does
+// today (see the "6-step" journey copy above, which currently overclaims a
+// couple of those - worth reconciling separately). A small lucide icon badge
+// on each portrait carries the specific action/prop a static illustration
+// can't show.
 
 const ORANGE = "#f97316";
 const PURPLE = "#9333ea";
@@ -46,9 +50,9 @@ function QuestionBadge() {
 
 function Portrait({ src, badge }: { src: string; badge?: React.ReactNode }) {
   return (
-    <div className="relative h-24 w-24 sm:h-28 sm:w-28">
+    <div className="relative h-36 w-28 sm:h-44 sm:w-32">
       {/* eslint-disable-next-line @next/next/no-img-element -- static CC0 illustrations, no need for next/image processing */}
-      <img src={src} alt="" className="h-full w-full" />
+      <img src={src} alt="" className="h-full w-full object-contain" />
       {badge}
     </div>
   );
