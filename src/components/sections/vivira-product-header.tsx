@@ -143,14 +143,20 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
                 Start 7-Day Free Trial
                 <ArrowRight size={16} />
               </a>
-              {/* Same Open Peeps figure used in "The recovery, illustrated"
-                  (Adds to cart pose), leaning in as if reaching for this
-                  button - hidden below sm where there's no room beside it. */}
+              {/* Same Open Peeps figure/pose used for "WhatsApp reminder
+                  sent" in "The recovery, illustrated" (BodyDevice - its
+                  hand/phone prop sits at a known, consistent torso-height
+                  position, unlike BodyPointingUp which turned out to reach
+                  up-and-diagonally rather than straight ahead). Positioned
+                  to the button's left, unflipped, so that hand lands on the
+                  button rather than reaching away from it - hidden below sm
+                  where there's no room beside it. */}
               <img
-                src="/gestures/adds-to-cart.svg"
+                src="/gestures/reminder-sent.svg"
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-14 -top-16 hidden h-28 w-auto -scale-x-100 sm:block"
+                style={{ transform: "rotate(-8deg)" }}
+                className="pointer-events-none absolute -left-24 -top-16 hidden h-36 w-auto sm:block"
               />
             </div>
             <a
