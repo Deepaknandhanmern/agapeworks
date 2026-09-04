@@ -4,7 +4,7 @@ import { ViviraDownloadButton } from "@/components/sections/vivira-download-butt
 
 export function ViviraPlatformDownload({ downloadHref }: { downloadHref: string }) {
   return (
-    <section className="relative mx-auto w-full max-w-4xl px-4 py-24">
+    <section id="download" className="relative mx-auto w-full max-w-4xl px-4 py-24">
       <Reveal className="mb-12 text-center">
         <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           Get Vivira for your store

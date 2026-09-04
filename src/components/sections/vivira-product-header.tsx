@@ -137,11 +137,11 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
           <div className="flex flex-col items-center gap-3 sm:flex-row">
             <Magnetic>
               <a
-                href="#pricing"
+                href="#download"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
                 style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
               >
-                Start 7-Day Free Trial
+                Get Started Free
                 <ArrowRight size={16} />
               </a>
             </Magnetic>
@@ -152,7 +152,7 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
               Watch Live 6-Step Demo
             </a>
           </div>
-          <p className="-mt-4 text-xs text-muted-foreground">No credit card needed</p>
+          <p className="-mt-4 text-xs text-muted-foreground">Free tier included, no credit card needed</p>
         </div>
       </section>
     </>

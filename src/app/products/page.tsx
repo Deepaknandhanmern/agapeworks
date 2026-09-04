@@ -91,11 +91,11 @@ export default async function ProductsPage() {
               paying for themselves.
             </p>
             <a
-              href="#pricing"
+              href="#download"
               className="relative inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
               style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
             >
-              Start 7-Day Free Trial
+              Get Started Free
             </a>
           </div>
         </section>
