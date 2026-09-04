@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import { CopyableText } from "@/components/ui/copyable-text";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -127,7 +128,7 @@ function Footerdemo() {
               {contactPoints.map(({ icon: Icon, value }) => (
                 <p key={value} className="flex items-center gap-2">
                   <Icon className="size-3.5 shrink-0 text-muted-foreground" />
-                  {value}
+                  {Icon === Mail ? <CopyableText text={value} /> : value}
                 </p>
               ))}
             </address>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 import { MenuItem, HoveredLink } from "@/components/ui/navbar-menu";
+import { Magnetic } from "@/components/ui/magnetic";
 import {
   CapabilitiesMenuContent,
   ProductsMenuContent,
@@ -60,9 +61,19 @@ function DesktopHeroNavLinks() {
 
 export function AgapeHero() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const glowRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative min-h-screen w-full isolate overflow-hidden bg-black text-white">
+    <section
+      className="relative min-h-screen w-full isolate overflow-hidden bg-black text-white"
+      onMouseMove={(e) => {
+        const el = glowRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+        el.style.setProperty("--my", `${e.clientY - rect.top}px`);
+      }}
+    >
       <Image
         src={BACKGROUND_IMAGE}
         alt=""
@@ -72,6 +83,17 @@ export function AgapeHero() {
         className="object-cover"
       />
       <div className="pointer-events-none absolute inset-0 bg-black/50" />
+      {/* Soft cursor-following glow, behind the content (z-10) but above
+          the background image/overlay - purely decorative, ignores clicks. */}
+      <div
+        ref={glowRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5] opacity-70 transition-opacity duration-300"
+        style={{
+          background:
+            "radial-gradient(500px circle at var(--mx, 50%) var(--my, 40%), rgba(249,115,22,0.18), transparent 60%)",
+        }}
+      />
 
       {/* z-20: the hero content block below is also z-10, and since equal
           z-index ties break by DOM order, that later block would otherwise
@@ -156,20 +178,24 @@ export function AgapeHero() {
             </div>
 
             <div className="animate-fade-slide-in-4 flex flex-row flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/scope"
-                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15"
-              >
-                Start a project
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-2 rounded-full bg-transparent px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:text-white"
-              >
-                Our products
-                <Play className="h-4 w-4" />
-              </Link>
+              <Magnetic>
+                <Link
+                  href="/scope"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-medium text-white ring-1 ring-white/15 transition-colors hover:bg-white/15"
+                >
+                  Start a project
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 rounded-full bg-transparent px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:text-white"
+                >
+                  Our products
+                  <Play className="h-4 w-4" />
+                </Link>
+              </Magnetic>
             </div>
           </div>
         </div>

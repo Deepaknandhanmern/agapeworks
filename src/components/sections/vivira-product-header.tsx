@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { ViviraDownloadButton } from "@/components/sections/vivira-download-button";
+import { Magnetic } from "@/components/ui/magnetic";
 
 // Same nav/hero mechanics as a pasted generic "SaaS template" (fixed blurred
 // dark nav, centered gradient headline, badge pill, hamburger overlay),
@@ -134,14 +135,16 @@ export function ViviraProductHeader({ downloadHref }: { downloadHref: string }) 
           </div>
 
           <div className="flex flex-col items-center gap-3 sm:flex-row">
-            <a
-              href="#pricing"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
-              style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
-            >
-              Start 7-Day Free Trial
-              <ArrowRight size={16} />
-            </a>
+            <Magnetic>
+              <a
+                href="#pricing"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg px-8 text-base font-medium text-white shadow-lg shadow-orange-500/20 transition-transform hover:scale-105 active:scale-95"
+                style={{ background: "linear-gradient(90deg, #f97316 0%, #9333ea 100%)" }}
+              >
+                Start 7-Day Free Trial
+                <ArrowRight size={16} />
+              </a>
+            </Magnetic>
             <a
               href="#journey"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-black/10 px-8 text-base font-medium text-foreground transition-colors hover:bg-black/5"

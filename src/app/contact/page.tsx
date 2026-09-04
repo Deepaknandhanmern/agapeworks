@@ -3,6 +3,7 @@ import { Header } from "@/components/ui/header-3";
 import { ContactForm } from "@/components/sections/contact-form";
 import { Clock, Mail, MapPin } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import { CopyableText } from "@/components/ui/copyable-text";
 
 const CONTACT_TITLE = "Contact - Agape Works";
 const CONTACT_DESCRIPTION = "Tell us about your project - Agape Works replies within one business day.";
@@ -69,7 +70,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-foreground">{label}</p>
-                    <p className="text-sm text-muted-foreground">{value}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {Icon === Mail ? <CopyableText text={value} /> : value}
+                    </p>
                   </div>
                 </div>
               ))}

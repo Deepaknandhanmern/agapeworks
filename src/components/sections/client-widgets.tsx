@@ -7,10 +7,6 @@ import dynamic from "next/dynamic";
 // and hydrated after it instead of shipping their JS to every page upfront.
 // `ssr: false` requires a Client Component boundary, hence this wrapper
 // rather than calling dynamic() directly from the (server) root layout.
-const AnnouncementToast = dynamic(
-  () => import("@/components/sections/announcement-toast").then((m) => m.AnnouncementToast),
-  { ssr: false },
-);
 const ViviraTeaser = dynamic(
   () => import("@/components/sections/vivira-teaser").then((m) => m.ViviraTeaser),
   { ssr: false },
@@ -27,11 +23,15 @@ const TabTitleAway = dynamic(
   () => import("@/components/ui/tab-title-away").then((m) => m.TabTitleAway),
   { ssr: false },
 );
+const ScrollProgressBar = dynamic(
+  () => import("@/components/ui/scroll-progress-bar").then((m) => m.ScrollProgressBar),
+  { ssr: false },
+);
 
 export function ClientWidgets() {
   return (
     <>
-      <AnnouncementToast />
+      <ScrollProgressBar />
       <ViviraTeaser />
       <WhatsAppButton />
       <BackToTopButton />
