@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ViviraProductHeader } from "@/components/sections/vivira-product-header";
 import { ViviraRoiSliderCalculator } from "@/components/sections/vivira-roi-slider-calculator";
 import { ViviraRecoveryJourney } from "@/components/sections/vivira-recovery-journey";
+import { ViviraGestureStory } from "@/components/sections/vivira-gesture-story";
 import { ViviraPricingSection } from "@/components/sections/vivira-pricing-section";
 import { ViviraEngineDirectory } from "@/components/sections/vivira-engine-directory";
 import { ViviraGradientFooter } from "@/components/sections/vivira-gradient-footer";
@@ -53,6 +54,10 @@ export default async function ProductsPage() {
 
         <div className="border-t">
           <ViviraRecoveryJourney />
+        </div>
+
+        <div className="border-t">
+          <ViviraGestureStory />
         </div>
 
         <section id="pricing" className="border-t">
