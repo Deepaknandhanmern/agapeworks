@@ -4,9 +4,23 @@ import { SESSION_COOKIE, isValidSessionToken } from "@/lib/session-token";
 import { VAHI_SESSION_COOKIE, verifyVahiSessionToken } from "@/lib/vahi/session-token";
 import { CLIENT_SESSION_COOKIE, verifyClientSessionToken } from "@/lib/client-portal/session-token";
 
+// vivira.agapeworks.in shares this same app/deployment (same Passenger app
+// root as agapeworks.in - see the subdomain's own .htaccess) rather than
+// being a separate site, so its root path is rewritten to /products here
+// instead of showing the main Agape Works homepage. The URL bar stays on
+// the vivira subdomain since this is a rewrite, not a redirect.
+const VIVIRA_HOST = "vivira.agapeworks.in";
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const host = request.headers.get("host") ?? "";
   const secret = process.env.SESSION_SECRET;
+
+  if (host === VIVIRA_HOST || host.startsWith(`${VIVIRA_HOST}:`)) {
+    if (pathname === "/") {
+      return NextResponse.rewrite(new URL("/products", request.url));
+    }
+  }
 
   // Maintenance mode - toggled by the MAINTENANCE_MODE env var (no redeploy
   // needed, just flip it and restart the app). Excluded from the redirect:
