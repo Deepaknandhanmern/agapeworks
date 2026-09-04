@@ -33,7 +33,7 @@ const plans = [
     description: "For growing stores that want the full recovery sequence, live.",
     popular: true,
     features: [
-      { text: "Unlimited recoveries, full 3-step sequence", icon: <Server size={20} /> },
+      { text: "Up to 300 recoveries/month, full 3-step sequence", icon: <Server size={20} /> },
       { text: "COD fraud shield + WhatsApp verification", icon: <ShieldCheck size={20} /> },
       { text: "AI WhatsApp agent + on-site AI chat widget", icon: <Sparkles size={20} /> },
       { text: "Cart drawer, sticky bar, social proof, exit-intent", icon: <Database size={20} /> },
@@ -49,8 +49,10 @@ const plans = [
     popular: false,
     features: [
       { text: "Everything in Pro Growth", icon: <Database size={20} /> },
+      { text: "Higher cap: up to 1,000 recoveries/month", icon: <Database size={20} /> },
       { text: "Priority WhatsApp support, faster SLA", icon: <ShieldCheck size={20} /> },
       { text: "Early access to new engines as they're verified", icon: <Sparkles size={20} /> },
+      { text: "Need more than 1,000/month? Contact us.", icon: <Sparkles size={20} /> },
     ],
   },
 ];
