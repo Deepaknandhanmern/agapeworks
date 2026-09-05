@@ -50,6 +50,13 @@ export const MenuItem = ({
           className={cn("size-3.5 transition-transform duration-200", active === item && "rotate-180")}
         />
       </motion.p>
+      {active === item && (
+        <motion.div
+          layoutId="nav-underline"
+          transition={transition}
+          className={cn("absolute -bottom-1 inset-x-0 h-0.5 rounded-full", dark ? "bg-white" : "bg-foreground")}
+        />
+      )}
       {active !== null && (
         <motion.div initial={{ opacity: 0, scale: 0.85, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={transition}>
           {active === item && (

@@ -130,7 +130,7 @@ function Footerdemo() {
               {contactPoints.map(({ icon: Icon, value }) => (
                 <p key={value} className="flex items-center gap-2">
                   <Icon className="size-3.5 shrink-0 text-muted-foreground" />
-                  {Icon === Mail ? <CopyableText text={value} /> : value}
+                  {Icon === Mail || Icon === Phone ? <CopyableText text={value} /> : value}
                 </p>
               ))}
             </address>

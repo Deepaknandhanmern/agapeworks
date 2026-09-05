@@ -22,7 +22,7 @@ function LivePreview({
 }) {
   return (
     <div className="relative w-full" style={{ paddingTop: "62.5%" }}>
-      <div className="absolute inset-0 overflow-hidden bg-muted">
+      <div className="absolute inset-0 overflow-hidden bg-muted transition-transform duration-500 group-hover:scale-110">
         {screenshot ? (
           // eslint-disable-next-line @next/next/no-img-element -- static local asset, not worth next/image for a single file
           <img src={screenshot} alt={`${title} website preview`} className="h-full w-full object-cover object-top" />

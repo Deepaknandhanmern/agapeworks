@@ -1,10 +1,10 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
-import { CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { AnimatedCheckmark } from "@/components/ui/animated-checkmark";
 import { submitPublicTestimonialAction } from "@/lib/actions/public-testimonial-actions";
 import { fireConfetti } from "@/lib/confetti";
 
@@ -28,7 +28,7 @@ export function TestimonialSubmitForm() {
   if (submitted) {
     return (
       <div className="flex flex-col items-center gap-3 rounded-2xl border bg-card p-8 text-center">
-        <CheckCircle2 className="size-10 text-emerald-500" />
+        <AnimatedCheckmark className="size-10 text-emerald-500" />
         <h2 className="text-lg font-semibold text-foreground">Thank you!</h2>
         <p className="text-sm text-muted-foreground">
           We've received your testimonial and will review it shortly.

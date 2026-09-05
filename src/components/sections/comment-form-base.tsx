@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { AnimatedCheckmark } from "@/components/ui/animated-checkmark";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -52,7 +52,7 @@ export function CommentFormBase({
   if (status === "success") {
     return (
       <div className="flex items-center gap-2 rounded-xl border bg-card p-4 text-sm text-foreground">
-        <CheckCircle2 className="size-4 text-[#006300]" />
+        <AnimatedCheckmark className="size-4 text-[#006300]" strokeWidth={4} />
         Feedback sent - thanks!
         <button
           type="button"

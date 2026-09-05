@@ -4,8 +4,9 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ChevronLeft, Mail } from "lucide-react";
+import { ChevronLeft, Mail } from "lucide-react";
 import { LoaderHelix } from "@/components/ui/loader-helix";
+import { AnimatedCheckmark } from "@/components/ui/animated-checkmark";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -123,13 +124,7 @@ export function ContactForm() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="flex flex-col items-center justify-center gap-3 py-16 text-center"
           >
-            <motion.div
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 15 }}
-            >
-              <CheckCircle2 className="size-12 text-primary" />
-            </motion.div>
+            <AnimatedCheckmark />
             <h3 className="text-xl font-semibold text-foreground">Message sent</h3>
             <p className="max-w-xs text-sm text-muted-foreground">
               Thanks for reaching out - we&apos;ll get back to you within one business day.

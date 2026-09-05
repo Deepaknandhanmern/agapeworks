@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 import { MenuItem, HoveredLink } from "@/components/ui/navbar-menu";
 import { Magnetic } from "@/components/ui/magnetic";
+import { RotatingWord } from "@/components/ui/rotating-word";
 import { AVAILABILITY_COPY, type AvailabilityStatus } from "@/lib/availability";
 import {
   CapabilitiesMenuContent,
@@ -169,7 +170,8 @@ export function AgapeHero({ availability = "open" }: { availability?: Availabili
               <h1 className="animate-fade-slide-in-2 text-4xl font-normal font-serif tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl leading-tight">
                 Software, built{" "}
                 <br className="hidden sm:block" />
-                with genuine care
+                with genuine{" "}
+                <RotatingWord words={["care", "craft", "precision", "purpose"]} />
               </h1>
 
               <p className="animate-fade-slide-in-3 mx-auto max-w-2xl text-base leading-relaxed tracking-tight text-white/80 sm:text-lg">

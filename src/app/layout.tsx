@@ -3,6 +3,8 @@ import { Geist_Mono, Inter, Montserrat } from "next/font/google";
 import { Footerdemo } from "@/components/ui/footer-section";
 import { GoogleAnalytics } from "@/components/sections/google-analytics";
 import { ClientWidgets } from "@/components/sections/client-widgets";
+import { GrainOverlay } from "@/components/ui/grain-overlay";
+import { PageTransition } from "@/components/ui/page-transition";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -102,7 +104,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <GoogleAnalytics />
-        {children}
+        <GrainOverlay />
+        <PageTransition>{children}</PageTransition>
         <Footerdemo />
         <ClientWidgets />
       </body>
