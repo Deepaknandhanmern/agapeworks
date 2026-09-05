@@ -60,12 +60,6 @@ export function CapabilitiesMenuContent({ dark = false }: { dark?: boolean }) {
 						Get an instant estimate
 					</HoveredLink>
 				</p>
-				<p className={cn('text-sm', dark ? 'text-white/50' : 'text-muted-foreground')}>
-					Have a Vahi account?{' '}
-					<HoveredLink href="/vahi/login" dark={dark} className="font-medium underline-offset-2 hover:underline">
-						Sign in
-					</HoveredLink>
-				</p>
 			</div>
 		</div>
 	);
@@ -246,12 +240,6 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 									className={cn('rounded-md p-2 text-sm font-medium', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}
 								>
 									Products
-								</a>
-								<a
-									href="/vahi/login"
-									className={cn('rounded-md p-2 text-sm font-medium', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}
-								>
-									Vahi sign in
 								</a>
 							</div>
 						</div>
