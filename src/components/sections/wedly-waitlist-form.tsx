@@ -8,7 +8,7 @@ import { AnimatedCheckmark } from "@/components/ui/animated-checkmark";
 import { joinWedlyWaitlistAction } from "@/lib/actions/wedly-waitlist-actions";
 import { fireConfetti } from "@/lib/confetti";
 
-const WEDLY_COLORS = ["#D4AF37", "#1C1917", "#FAF6ED", "#f5e6b8"];
+const WEDLY_COLORS = ["#8B2942", "#E8998D", "#3A2A32", "#F5ECE9"];
 
 export function WedlyWaitlistForm() {
   const [state, formAction, pending] = useActionState(joinWedlyWaitlistAction, undefined);
@@ -29,10 +29,10 @@ export function WedlyWaitlistForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center gap-2 rounded-2xl border border-[#1C1917]/10 bg-white/60 p-6 text-center">
-        <AnimatedCheckmark className="size-9 text-[#D4AF37]" />
-        <p className="font-medium text-[#1C1917]">You&apos;re on the list</p>
-        <p className="text-sm text-[#1C1917]/60">We&apos;ll email you when early access opens.</p>
+      <div className="flex flex-col items-center gap-2 rounded-2xl border border-[#3A2A32]/10 bg-white/60 p-6 text-center">
+        <AnimatedCheckmark className="size-9 text-[#8B2942]" />
+        <p className="font-medium text-[#3A2A32]">You&apos;re on the list</p>
+        <p className="text-sm text-[#3A2A32]/60">We&apos;ll email you when early access opens.</p>
       </div>
     );
   }
@@ -57,13 +57,13 @@ export function WedlyWaitlistForm() {
             type="email"
             required
             placeholder="you@email.com"
-            className="h-12 border-[#1C1917]/15 bg-white text-[#1C1917] placeholder:text-[#1C1917]/40"
+            className="h-12 border-[#3A2A32]/15 bg-white text-[#3A2A32] placeholder:text-[#3A2A32]/40"
           />
         </div>
         <Button
           type="submit"
           disabled={pending}
-          className="h-12 shrink-0 bg-[#1C1917] px-6 text-white hover:bg-[#1C1917]/90"
+          className="h-12 shrink-0 bg-[#8B2942] px-6 text-white hover:bg-[#8B2942]/90"
         >
           {pending ? "Joining..." : "Join the waitlist"}
         </Button>

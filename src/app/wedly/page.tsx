@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import {
-  Sparkles,
   LayoutTemplate,
   BookHeart,
   Camera,
@@ -114,18 +114,10 @@ export default function WedlyPage() {
       }
     >
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between px-4 py-6 sm:px-6">
-        <div className="flex items-center gap-2">
-          <div
-            className="flex size-8 items-center justify-center rounded-lg"
-            style={{ background: "linear-gradient(135deg, #D4AF37, #f5e6b8)" }}
-          >
-            <Sparkles className="size-4 text-[#1C1917]" />
-          </div>
-          <span className="font-heading text-lg font-semibold text-foreground">Wedly</span>
-        </div>
+        <span className="font-heading text-lg font-semibold text-foreground">Wedly</span>
         <a
           href="#waitlist"
-          className="rounded-full border border-[#1C1917]/15 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-[#1C1917]/5"
+          className="rounded-full border border-[#3A2A32]/15 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-[#3A2A32]/5"
         >
           Join waitlist
         </a>
@@ -135,10 +127,19 @@ export default function WedlyPage() {
         {/* Hero */}
         <section
           id="waitlist"
-          className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 pb-20 pt-10 text-center sm:pt-16"
+          className="mx-auto flex w-full max-w-3xl flex-col items-center gap-6 px-4 pb-20 pt-6 text-center sm:pt-10"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 px-3 py-1 text-xs font-medium text-[#8a6d1f]">
-            <span className="size-1.5 rounded-full bg-[#D4AF37]" />
+          <Image
+            src="/wedly-logo.png"
+            alt="Wedly - Plan, Invite, Celebrate - all in one wedding platform"
+            width={280}
+            height={280}
+            className="h-auto w-48 sm:w-56"
+            priority
+          />
+
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#8B2942]/30 bg-[#8B2942]/10 px-3 py-1 text-xs font-medium text-[#8B2942]">
+            <span className="size-1.5 rounded-full bg-[#8B2942]" />
             Coming soon - early access opening soon
           </div>
 
@@ -156,7 +157,7 @@ export default function WedlyPage() {
         </section>
 
         {/* Built features */}
-        <section className="border-t border-[#1C1917]/5 bg-white/40">
+        <section className="border-t border-[#3A2A32]/5 bg-white/40">
           <div className="mx-auto w-full max-w-5xl px-4 py-20 sm:px-6">
             <Reveal className="mb-10 text-center">
               <h2 className="text-3xl font-semibold tracking-tight text-foreground">
@@ -169,9 +170,9 @@ export default function WedlyPage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {builtFeatures.map(({ icon: Icon, title, description }, i) => (
                 <Reveal key={title} delay={i * 0.05}>
-                  <div className="flex h-full flex-col gap-3 rounded-xl border border-[#1C1917]/10 bg-white p-6 shadow-sm">
-                    <div className="flex size-10 items-center justify-center rounded-lg bg-[#D4AF37]/15">
-                      <Icon className="size-5 text-[#8a6d1f]" />
+                  <div className="flex h-full flex-col gap-3 rounded-xl border border-[#3A2A32]/10 bg-white p-6 shadow-sm">
+                    <div className="flex size-10 items-center justify-center rounded-lg bg-[#8B2942]/10">
+                      <Icon className="size-5 text-[#8B2942]" />
                     </div>
                     <h3 className="font-semibold text-foreground">{title}</h3>
                     <p className="text-sm leading-6 text-muted-foreground">{description}</p>
@@ -183,7 +184,7 @@ export default function WedlyPage() {
         </section>
 
         {/* In active development */}
-        <section className="border-t border-[#1C1917]/5">
+        <section className="border-t border-[#3A2A32]/5">
           <div className="mx-auto w-full max-w-3xl px-4 py-20 text-center sm:px-6">
             <Reveal>
               <h2 className="text-2xl font-semibold tracking-tight text-foreground">
@@ -198,9 +199,9 @@ export default function WedlyPage() {
               {inProgressFeatures.map(({ icon: Icon, title }) => (
                 <div
                   key={title}
-                  className="flex items-center gap-3 rounded-lg border border-dashed border-[#1C1917]/15 bg-white/40 px-4 py-3 text-left text-sm text-muted-foreground"
+                  className="flex items-center gap-3 rounded-lg border border-dashed border-[#3A2A32]/15 bg-white/40 px-4 py-3 text-left text-sm text-muted-foreground"
                 >
-                  <Icon className="size-4 shrink-0 text-[#1C1917]/40" />
+                  <Icon className="size-4 shrink-0 text-[#3A2A32]/40" />
                   {title}
                 </div>
               ))}
@@ -209,7 +210,7 @@ export default function WedlyPage() {
         </section>
 
         {/* Pricing */}
-        <section className="border-t border-[#1C1917]/5 bg-white/40">
+        <section className="border-t border-[#3A2A32]/5 bg-white/40">
           <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center sm:px-6">
             <Reveal>
               <h2 className="text-3xl font-semibold tracking-tight text-foreground">
@@ -226,12 +227,12 @@ export default function WedlyPage() {
                   <div
                     className={`flex h-full flex-col items-center gap-2 rounded-xl border p-8 ${
                       tier.popular
-                        ? "border-[#D4AF37] bg-[#D4AF37]/5 shadow-md"
-                        : "border-[#1C1917]/10 bg-white"
+                        ? "border-[#8B2942] bg-[#8B2942]/5 shadow-md"
+                        : "border-[#3A2A32]/10 bg-white"
                     }`}
                   >
                     {tier.popular && (
-                      <span className="mb-1 rounded-full bg-[#D4AF37] px-3 py-1 text-xs font-medium text-[#1C1917]">
+                      <span className="mb-1 rounded-full bg-[#8B2942] px-3 py-1 text-xs font-medium text-white">
                         Popular
                       </span>
                     )}
@@ -245,7 +246,7 @@ export default function WedlyPage() {
         </section>
 
         {/* Final CTA */}
-        <section className="border-t border-[#1C1917]/5">
+        <section className="border-t border-[#3A2A32]/5">
           <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-5 px-4 py-20 text-center sm:px-6">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Be first to know when Wedly opens.
@@ -255,7 +256,7 @@ export default function WedlyPage() {
         </section>
       </main>
 
-      <footer className="border-t border-[#1C1917]/5 px-4 py-8 text-center text-xs text-muted-foreground sm:px-6">
+      <footer className="border-t border-[#3A2A32]/5 px-4 py-8 text-center text-xs text-muted-foreground sm:px-6">
         <p>
           Wedly is built by{" "}
           <a href="https://agapeworks.in" className="underline underline-offset-4 hover:text-foreground">
