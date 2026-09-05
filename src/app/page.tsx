@@ -13,6 +13,7 @@ import { ProductsTeaser } from "@/components/sections/products-teaser";
 import { PortfolioShowcase } from "@/components/sections/portfolio-showcase";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { Reveal } from "@/components/ui/reveal";
+import { getAvailabilityStatus } from "@/lib/data/site-settings";
 const HOME_TITLE = "Agape Works - Software Development Company in Coimbatore & Chennai";
 const HOME_DESCRIPTION =
   "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond - fixed scope, the same team from kickoff to launch, weekly working demos.";
@@ -55,12 +56,14 @@ const process = [
   },
 ] as const;
 
-export default function Home() {
+export default async function Home() {
+  const availability = await getAvailabilityStatus();
+
   return (
     <div className="home-theme flex min-h-screen flex-col bg-background">
       <main className="flex-1">
         <SiteBanner />
-        <AgapeHero />
+        <AgapeHero availability={availability} />
 
         {/* About us */}
         <Reveal>

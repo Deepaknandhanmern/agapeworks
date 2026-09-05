@@ -14,6 +14,7 @@ import {
 import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { CopyableText } from "@/components/ui/copyable-text";
+import { fireConfetti } from "@/lib/confetti";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -72,6 +73,7 @@ function Footerdemo() {
         return;
       }
       setSubscribed(true);
+      fireConfetti(24);
     } catch {
       setError("Couldn't reach the server. Please try again.");
     }

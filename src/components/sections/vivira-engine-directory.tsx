@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -84,6 +86,16 @@ export function ViviraEngineDirectory() {
             </AccordionItem>
           ))}
         </Accordion>
+      </Reveal>
+
+      <Reveal delay={0.1} className="mt-6 text-center">
+        <Link
+          href="/products/changelog"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+        >
+          See the full changelog &amp; roadmap
+          <ArrowRight className="size-3.5" />
+        </Link>
       </Reveal>
     </section>
   );

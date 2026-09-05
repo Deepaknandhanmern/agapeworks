@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Menu, Play, X } from "lucide-react";
 import { MenuItem, HoveredLink } from "@/components/ui/navbar-menu";
 import { Magnetic } from "@/components/ui/magnetic";
+import { AVAILABILITY_COPY, type AvailabilityStatus } from "@/lib/availability";
 import {
   CapabilitiesMenuContent,
   ProductsMenuContent,
@@ -59,7 +60,7 @@ function DesktopHeroNavLinks() {
   );
 }
 
-export function AgapeHero() {
+export function AgapeHero({ availability = "open" }: { availability?: AvailabilityStatus }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const glowRef = useRef<HTMLDivElement>(null);
 
@@ -157,10 +158,10 @@ export function AgapeHero() {
           <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 text-center">
             <div className="animate-fade-slide-in-1 inline-flex items-center gap-3 rounded-full bg-white/10 px-2.5 py-2 ring-1 ring-white/15 backdrop-blur">
               <span className="inline-flex items-center rounded-full bg-white/90 px-2 py-0.5 text-xs font-medium text-neutral-900">
-                Open
+                {AVAILABILITY_COPY[availability].badge}
               </span>
               <span className="text-sm font-medium text-white/90">
-                Currently taking on new projects
+                {AVAILABILITY_COPY[availability].text}
               </span>
             </div>
 

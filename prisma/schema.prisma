@@ -9,6 +9,16 @@
 // configures the CLI (migrate/studio), via prisma7.config.ts, not the
 // runtime client.
 
+// Generic key/value store for small, single-value site settings that don't
+// warrant their own model - first use is the homepage's availability badge
+// (src/components/sections/agape-hero.tsx), set from /dashboard/settings
+// instead of being hardcoded in the hero's source.
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"

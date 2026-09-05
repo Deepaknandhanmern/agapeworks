@@ -26,6 +26,7 @@ import {
   sourceOptions,
 } from "@/lib/contact-schema";
 import { trackEvent } from "@/lib/analytics";
+import { fireConfetti } from "@/lib/confetti";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -94,6 +95,7 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      fireConfetti();
       trackEvent("contact_form_submitted", { service: data.service });
       reset();
       setStep(0);
