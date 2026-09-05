@@ -1,7 +1,8 @@
 "use client"
 
 import { BellRing, X, Clock, Check, ShoppingCart, Receipt, Star, Handshake, Sparkles, type LucideIcon } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
@@ -128,6 +129,18 @@ export function NotificationAlertDialog() {
     const [open, setOpen] = useState(false)
     const [showAllNotifications, setShowAllNotifications] = useState(false)
 
+    // The header this bell lives in uses backdrop-blur, which (like transform
+    // and filter) creates a new containing block for `position: fixed`
+    // descendants in modern browsers - so a merely-fixed panel ends up
+    // anchored to the small nav pill instead of the actual viewport, causing
+    // it to render cut off / offset. Portaling straight to <body> sidesteps
+    // that entirely. `mounted` guards against document being unavailable
+    // during SSR.
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
     const markAsRead = (id: string) => {
         setNotifications(
             notifications.map((notification) => (notification.id === id ? { ...notification, read: true } : notification)),
@@ -158,7 +171,7 @@ export function NotificationAlertDialog() {
                 )}
             </Button>
 
-            {open && (
+            {open && mounted && createPortal(
                 <>
                     {/* Click-outside-to-close backdrop */}
                     <button
@@ -237,10 +250,12 @@ export function NotificationAlertDialog() {
                             </div>
                         </div>
                     </div>
-                </>
+                </>,
+                document.body,
             )}
 
             {/* Full slide-over panel, opened from "View All" */}
+            {mounted && createPortal(
             <div
                 className={cn(
                     "fixed inset-0 bg-black/50 z-50 transition-opacity duration-300",
@@ -299,7 +314,9 @@ export function NotificationAlertDialog() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>,
+                document.body,
+            )}
         </div>
     )
 }
