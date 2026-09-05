@@ -192,7 +192,7 @@ export function AgapeHero({ availability = "open" }: { availability?: Availabili
               </Magnetic>
               <Magnetic>
                 <Link
-                  href="/products"
+                  href="/our-products"
                   className="inline-flex items-center gap-2 rounded-full bg-transparent px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:text-white"
                 >
                   Our products

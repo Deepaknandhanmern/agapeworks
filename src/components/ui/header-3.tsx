@@ -132,7 +132,7 @@ export function ProductsMenuContent({ dark = false }: { dark?: boolean }) {
 					</span>
 					<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>All-in-one wedding website & guest experience platform</span>
 				</a>
-				<HoveredLink href="/products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
+				<HoveredLink href="/our-products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
 					See all products →
 				</HoveredLink>
 			</div>
@@ -242,7 +242,7 @@ export function Header({ variant = 'light' }: { variant?: 'light' | 'dark' } = {
 									Digital Experiences
 								</a>
 								<a
-									href="/products"
+									href="/our-products"
 									className={cn('rounded-md p-2 text-sm font-medium', dark ? 'text-white/80 hover:bg-white/10 hover:text-white' : 'hover:bg-accent')}
 								>
 									Products

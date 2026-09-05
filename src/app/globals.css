@@ -202,6 +202,43 @@
   --sidebar-ring: #8b2942;
 }
 
+/* Products showcase (/our-products, src/app/our-products/page.tsx) - an
+   editorial "elite/premium" treatment distinct from the rest of the site:
+   warm cream, muted antique-gold accent, soft near-black text. Markets both
+   Vivira and Wedly without being either product's own brand palette. */
+.luxury-theme {
+  --background: #faf6ef;
+  --foreground: #1a1613;
+  --card: #ffffff;
+  --card-foreground: #1a1613;
+  --popover: #ffffff;
+  --popover-foreground: #1a1613;
+  --primary: #1a1613;
+  --primary-foreground: #faf6ef;
+  --secondary: #f2ead9;
+  --secondary-foreground: #1a1613;
+  --muted: rgba(26, 22, 19, 0.05);
+  --muted-foreground: rgba(26, 22, 19, 0.6);
+  --accent: #a8823a;
+  --accent-foreground: #ffffff;
+  --border: rgba(26, 22, 19, 0.1);
+  --input: rgba(26, 22, 19, 0.1);
+  --ring: #a8823a;
+  --chart-1: #a8823a;
+  --chart-2: #d9c08f;
+  --chart-3: #1a1613;
+  --chart-4: rgba(168, 130, 58, 0.5);
+  --chart-5: rgba(26, 22, 19, 0.25);
+  --sidebar: #faf6ef;
+  --sidebar-foreground: #1a1613;
+  --sidebar-primary: #1a1613;
+  --sidebar-primary-foreground: #faf6ef;
+  --sidebar-accent: #a8823a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(26, 22, 19, 0.1);
+  --sidebar-ring: #a8823a;
+}
+
 /* Shared "liquid glass" card treatment (Vivira product page). True
    glassmorphism (near-invisible fill + blur) needs a colorful background to
    refract - Vivira's page is white now, so this reads as a frosted white
