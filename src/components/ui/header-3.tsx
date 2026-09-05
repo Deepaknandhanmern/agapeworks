@@ -118,6 +118,20 @@ export function ProductsMenuContent({ dark = false }: { dark?: boolean }) {
 					<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Vivira</span>
 					<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>AI-powered cart recovery for WooCommerce stores</span>
 				</a>
+				<a
+					href="https://wedly.agapeworks.in"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="flex flex-col gap-0.5 rounded-md px-1 py-1.5 transition-colors hover:bg-white/5"
+				>
+					<span className="flex items-center gap-1.5">
+						<span className={cn('font-medium', dark ? 'text-white' : 'text-foreground')}>Wedly</span>
+						<span className="rounded-full bg-[#8B2942]/10 px-1.5 py-0.5 text-[10px] font-medium text-[#8B2942]">
+							Coming soon
+						</span>
+					</span>
+					<span className={cn('text-xs', dark ? 'text-white/50' : 'text-muted-foreground')}>All-in-one wedding website & guest experience platform</span>
+				</a>
 				<HoveredLink href="/products" dark={dark} className={cn('mt-auto text-sm font-medium underline-offset-2 hover:underline', dark ? 'text-white' : 'text-foreground')}>
 					See all products →
 				</HoveredLink>
