@@ -4,12 +4,14 @@ import { SESSION_COOKIE, isValidSessionToken } from "@/lib/session-token";
 import { VAHI_SESSION_COOKIE, verifyVahiSessionToken } from "@/lib/vahi/session-token";
 import { CLIENT_SESSION_COOKIE, verifyClientSessionToken } from "@/lib/client-portal/session-token";
 
-// vivira.agapeworks.in shares this same app/deployment (same Passenger app
-// root as agapeworks.in - see the subdomain's own .htaccess) rather than
-// being a separate site, so its root path is rewritten to /products here
-// instead of showing the main Agape Works homepage. The URL bar stays on
-// the vivira subdomain since this is a rewrite, not a redirect.
+// vivira.agapeworks.in and wedly.agapeworks.in share this same app/deployment
+// (same Passenger app root as agapeworks.in - see each subdomain's own
+// .htaccess) rather than being a separate site, so each one's root path is
+// rewritten to its real route here instead of showing the main Agape Works
+// homepage. The URL bar stays on the subdomain since this is a rewrite, not
+// a redirect.
 const VIVIRA_HOST = "vivira.agapeworks.in";
+const WEDLY_HOST = "wedly.agapeworks.in";
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -19,6 +21,12 @@ export function proxy(request: NextRequest) {
   if (host === VIVIRA_HOST || host.startsWith(`${VIVIRA_HOST}:`)) {
     if (pathname === "/") {
       return NextResponse.rewrite(new URL("/products", request.url));
+    }
+  }
+
+  if (host === WEDLY_HOST || host.startsWith(`${WEDLY_HOST}:`)) {
+    if (pathname === "/") {
+      return NextResponse.rewrite(new URL("/wedly", request.url));
     }
   }
 

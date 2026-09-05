@@ -4,9 +4,9 @@
 // random trajectory via inline CSS animation, then removed from the DOM once
 // it finishes. No canvas, no npm package; just a one-off delight moment for
 // a successful form submission.
-const COLORS = ["#f97316", "#9333ea", "#f59e0b", "#10b981", "#3b82f6"];
+const DEFAULT_COLORS = ["#f97316", "#9333ea", "#f59e0b", "#10b981", "#3b82f6"];
 
-export function fireConfetti(count = 40) {
+export function fireConfetti(count = 40, colors: string[] = DEFAULT_COLORS) {
   if (typeof document === "undefined") return;
 
   const container = document.createElement("div");
@@ -28,7 +28,7 @@ export function fireConfetti(count = 40) {
       top:-5vh;
       width:${size}px;
       height:${size}px;
-      background:${COLORS[i % COLORS.length]};
+      background:${colors[i % colors.length]};
       border-radius:${Math.random() > 0.5 ? "50%" : "2px"};
       opacity:0.9;
       animation:vivira-confetti-fall ${duration}s ease-in ${delay}s forwards;

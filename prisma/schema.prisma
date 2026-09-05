@@ -81,6 +81,16 @@ model NewsletterSubscriber {
   createdAt DateTime @default(now())
 }
 
+// wedly.agapeworks.in "coming soon" waitlist signup - Wedly (the wedding
+// SaaS) isn't deployed anywhere yet, so this is the only real capture
+// mechanism on that page until there's an actual app to sign up for.
+model WedlyWaitlistSignup {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}
+
 // Captured before the Vivira WordPress plugin download is allowed to start
 // (src/components/sections/vivira-download-button.tsx) — a lightweight lead
 // gate, not an account: no password, no session.

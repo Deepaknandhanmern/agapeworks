@@ -6,7 +6,7 @@ import { logoutAction } from "@/lib/actions/auth-actions";
 import { Button } from "@/components/ui/button";
 import { CommandPalette } from "@/components/dashboard/command-palette";
 import { NotificationsToaster } from "@/components/ui/toast";
-import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users, Receipt, Mail, Package, Quote, Settings } from "lucide-react";
+import { LayoutDashboard, Newspaper, FolderKanban, Inbox, Users, Receipt, Mail, Package, Quote, Settings, Heart } from "lucide-react";
 
 const navItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
@@ -17,6 +17,7 @@ const navItems = [
   { label: "Enquiries", href: "/dashboard/enquiries", icon: Inbox },
   { label: "Newsletter", href: "/dashboard/newsletter", icon: Mail },
   { label: "Vivira", href: "/dashboard/vivira", icon: Package },
+  { label: "Wedly waitlist", href: "/dashboard/wedly", icon: Heart },
   { label: "Vahi accounts", href: "/dashboard/billing-accounts", icon: Receipt },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];

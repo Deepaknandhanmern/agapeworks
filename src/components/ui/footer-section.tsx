@@ -52,9 +52,10 @@ function Footerdemo() {
   const [subscribed, setSubscribed] = React.useState(false);
   const [error, setError] = React.useState("");
 
-  // /products (Vivira) has its own gradient footer, see
-  // src/components/sections/vivira-gradient-footer.tsx.
-  if (pathname?.startsWith("/products")) return null;
+  // /products (Vivira) and /wedly (Wedly) each have their own footer, see
+  // src/components/sections/vivira-gradient-footer.tsx and the footer
+  // built directly into src/app/wedly/page.tsx.
+  if (pathname?.startsWith("/products") || pathname?.startsWith("/wedly")) return null;
 
   const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

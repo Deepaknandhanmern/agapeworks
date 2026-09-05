@@ -268,6 +268,11 @@ export async function getAllViviraDownloadLeadsForDashboard() {
   return db.viviraDownloadLead.findMany({ orderBy: { createdAt: "desc" } });
 }
 
+export async function getAllWedlyWaitlistSignupsForDashboard() {
+  await requireAuth();
+  return db.wedlyWaitlistSignup.findMany({ orderBy: { createdAt: "desc" } });
+}
+
 export async function getAllViviraReleasesForDashboard() {
   await requireAuth();
   return db.viviraPluginRelease.findMany({ orderBy: { uploadedAt: "desc" } });
