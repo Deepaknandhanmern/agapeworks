@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/ui/header-3";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
-import { About3 } from "@/components/ui/about-3";
 import Testimonial1 from "@/components/ui/testimonial-1";
 import { DosAndDonts } from "@/components/sections/dos-and-donts";
 import { DotPattern } from "@/components/ui/dot-pattern";
@@ -136,40 +135,6 @@ export default function AboutPage() {
             continents and time zones. Remote-first isn&apos;t a compromise for us - it&apos;s
             how we&apos;ve chosen to hire the right person for each engagement, wherever they are.
           </p>
-        </section>
-
-        {/* Team, process, and honest stats */}
-        <section className="border-t">
-          <About3
-            title="The team behind the work"
-            description="A small, remote-first team - the people who scope your project are the same people who build it, every time."
-            mainImage={{
-              src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop",
-              alt: "Engineers collaborating on a laptop",
-            }}
-            secondaryImage={{
-              src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop",
-              alt: "Remote engineer working from a laptop",
-            }}
-            breakout={{
-              src: "/logo-black.png",
-              alt: "Agape Works",
-              title: "Fixed scope. Real access. Weekly demos.",
-              description:
-                "Every engagement runs on the same standard - no matter the size of the project.",
-              buttonText: "See our process",
-              buttonUrl: "/services",
-            }}
-            companies={[]}
-            achievementsTitle="What we actually commit to"
-            achievementsDescription="No inflated numbers - just the standard every engagement is held to, the same one listed above."
-            achievements={[
-              { label: "Weeks to first ship", value: "2–4" },
-              { label: "Reply time, every message", value: "1 day" },
-              { label: "Bait-and-switch juniors", value: "0" },
-              { label: "Engineer on your call, not an account manager", value: "1+" },
-            ]}
-          />
         </section>
 
         {/* CTA */}
