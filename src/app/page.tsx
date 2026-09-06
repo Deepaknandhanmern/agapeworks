@@ -4,8 +4,7 @@ import { ColorfulBentoGrid } from "@/components/ui/colorful-bento-grid";
 import { Integrations } from "@/components/ui/integrations-4-2";
 import HowItWorks from "@/components/ui/how-it-works";
 import { DotPattern } from "@/components/ui/dot-pattern";
-import { GyroidCanvas } from "@/components/ui/gyroid-canvas";
-import { WorldMap } from "@/components/ui/map";
+import { LazyWorldMap, LazyGyroid } from "@/components/sections/lazy-visuals";
 import { AgapeHero } from "@/components/sections/agape-hero";
 import { SiteBanner } from "@/components/sections/site-banner";
 import Testimonial1 from "@/components/ui/testimonial-1";
@@ -144,7 +143,7 @@ export default async function Home() {
                   and the GCC.
                 </p>
               </div>
-              <WorldMap
+              <LazyWorldMap
                 lineColor="#fcd34d"
                 dots={[
                   {
@@ -183,7 +182,7 @@ export default async function Home() {
             <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
               {/* Replaces the two blurred gradient blobs that used to sit
                   here - same job (colour + focal point), actually shaped. */}
-              <GyroidCanvas className="h-[260px] w-[260px] sm:h-[320px] sm:w-[320px]" />
+              <LazyGyroid className="h-[260px] w-[260px] sm:h-[320px] sm:w-[320px]" />
               <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
                 Ready to build something worth shipping?
               </h2>

@@ -510,6 +510,15 @@
     transform: translateY(0);
   }
 }
+/* Route-change fade, replacing the framer-motion one that used to live in
+   PageTransition (see that file - it sits in the root layout, so importing
+   framer-motion there taxed every route). */
+@keyframes page-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-page-fade { animation: page-fade 0.2s ease-in-out both; }
+
 .animate-fade-slide-in-1 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; }
 .animate-fade-slide-in-2 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; animation-delay: 0.15s; }
 .animate-fade-slide-in-3 { opacity: 0; animation: hero-fade-slide-in 0.6s ease forwards; animation-delay: 0.3s; }
@@ -519,7 +528,8 @@
   .animate-fade-slide-in-1,
   .animate-fade-slide-in-2,
   .animate-fade-slide-in-3,
-  .animate-fade-slide-in-4 {
+  .animate-fade-slide-in-4,
+  .animate-page-fade {
     animation: none;
     opacity: 1;
   }

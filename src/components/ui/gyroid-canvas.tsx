@@ -13,8 +13,12 @@ import { cn } from "@/lib/utils";
  * Python/numpy renderer and looking at still frames, rather than guessed.
  */
 
-const FRAG = `
+// Raymarching cost is per-pixel and linear in step count, so phones get a
+// shorter march. MAX_STEPS has to be a compile-time constant in GLSL ES 1.0
+// (loop bounds can't be uniforms), hence templating it into the source.
+const makeFrag = (maxSteps: number) => `
 precision highp float;
+#define MAX_STEPS ${maxSteps}
 
 uniform vec2  uRes;
 uniform float uTime;
@@ -56,7 +60,7 @@ void main(){
 
   float t = 0.0;
   bool hit = false;
-  for (int i = 0; i < 96; i++){
+  for (int i = 0; i < MAX_STEPS; i++){
     vec3 p = ro + rd * t;
     float d = map(p);
     if (d < 0.0012){ hit = true; break; }
@@ -136,8 +140,10 @@ export function GyroidCanvas({ className }: { className?: string }) {
       return;
     }
 
+    const isSmall = window.matchMedia("(max-width: 768px)").matches;
+
     const vs = compile(gl, gl.VERTEX_SHADER, VERT);
-    const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+    const fs = compile(gl, gl.FRAGMENT_SHADER, makeFrag(isSmall ? 56 : 96));
     const prog = vs && fs ? gl.createProgram() : null;
     if (!vs || !fs || !prog) {
       setFailed(true);
@@ -167,7 +173,7 @@ export function GyroidCanvas({ className }: { className?: string }) {
     const resize = () => {
       // Capped DPR - this is a per-pixel raymarch, so 3x on a phone is a
       // straight 9x cost for no visible gain.
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, isSmall ? 1.25 : 2);
       const w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
       const h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
       if (canvas.width !== w || canvas.height !== h) {

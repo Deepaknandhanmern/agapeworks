@@ -7,9 +7,13 @@ import { GrainOverlay } from "@/components/ui/grain-overlay";
 import { PageTransition } from "@/components/ui/page-transition";
 import "./globals.css";
 
+// Only used inside the dashboard (and one admin-facing snippet), so it's
+// declared for the CSS variable but not preloaded - preloading it made every
+// public page pay for a font file none of them render.
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 // Secondary/body text (globals.css --font-sans).
