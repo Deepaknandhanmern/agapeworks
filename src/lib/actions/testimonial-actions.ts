@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { recordAudit } from "@/lib/audit";
 import { saveUploadedImage } from "@/lib/upload";
 import type { ActionState } from "@/lib/actions/blog-actions";
 
@@ -119,6 +120,8 @@ export async function updateTestimonialAction(
 export async function deleteTestimonialAction(id: string): Promise<void> {
   await requireAuth();
   await db.testimonial.delete({ where: { id } }).catch(() => null);
+  await recordAudit({ action: "delete", entity: "testimonial", entityId: id });
+
   revalidatePath("/");
   revalidatePath("/about");
   revalidatePath("/dashboard/testimonials");

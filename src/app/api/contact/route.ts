@@ -3,6 +3,7 @@ import { contactFormSchema } from "@/lib/contact-schema";
 import { db } from "@/lib/db";
 import { triageEnquiry } from "@/lib/ai/enquiry-triage";
 import { sendEnquiryAutoReply } from "@/lib/email/send-enquiry-autoreply";
+import { sendEnquiryNotification } from "@/lib/email/send-enquiry-notification";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -60,6 +61,16 @@ export async function POST(request: Request) {
       message: fields.message,
     }),
     sendEnquiryAutoReply({ name: fields.name, email: fields.email, service: fields.service }),
+    sendEnquiryNotification({
+      id: enquiry.id,
+      name: fields.name,
+      email: fields.email,
+      company: fields.company || null,
+      service: fields.service,
+      timeline: fields.timeline,
+      source: fields.source || null,
+      message: fields.message,
+    }),
   ]);
   if (triage) {
     await db.enquiry

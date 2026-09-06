@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { recordAudit } from "@/lib/audit";
 import { slugify } from "@/lib/slugify";
 import { saveUploadedImage } from "@/lib/upload";
 
@@ -155,6 +156,9 @@ export async function deleteBlogPostAction(id: string): Promise<void> {
   if (!existing) return;
 
   await db.blogPost.delete({ where: { id } });
+
+  await recordAudit({ action: "delete", entity: "blog post", entityId: id });
+
 
   revalidatePath("/blog");
   revalidatePath(`/blog/${existing.slug}`);

@@ -50,6 +50,9 @@ export default async function DashboardBlogPage() {
                 </td>
                 <td className="p-4 text-right">
                   <div className="flex items-center justify-end gap-2">
+                    <Button asChild variant="ghost" size="sm">
+                      <Link href={`/dashboard/blog/${post.id}/preview`}>Preview</Link>
+                    </Button>
                     <Button asChild variant="outline" size="sm">
                       <Link href={`/dashboard/blog/${post.id}`}>Edit</Link>
                     </Button>

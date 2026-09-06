@@ -276,3 +276,19 @@ model InvoiceLineItem {
   rate      Float
   taxRate   Float
 }
+
+// Admin audit trail. Every destructive or state-changing dashboard action
+// appends one row here so there's a record of who changed what and when.
+// `actor` is a constant for now (single shared admin login) - it becomes
+// meaningful the moment there's more than one account.
+model AuditLog {
+  id        String   @id @default(cuid())
+  actor     String   @default("admin")
+  action    String
+  entity    String
+  entityId  String?
+  summary   String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}

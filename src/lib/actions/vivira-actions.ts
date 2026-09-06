@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { recordAudit } from "@/lib/audit";
 import { uploadViviraRelease } from "@/lib/vivira-storage";
 
 export async function uploadViviraReleaseAction(
@@ -41,5 +42,7 @@ export async function uploadViviraReleaseAction(
 export async function deleteViviraDownloadLeadAction(id: string): Promise<void> {
   await requireAuth();
   await db.viviraDownloadLead.delete({ where: { id } }).catch(() => null);
+  await recordAudit({ action: "delete", entity: "vivira download lead", entityId: id });
+
   revalidatePath("/dashboard/vivira");
 }

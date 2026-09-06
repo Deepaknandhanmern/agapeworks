@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { requireAuth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import { recordAudit } from "@/lib/audit";
 import { saveUploadedImage } from "@/lib/upload";
 import type { ActionState } from "@/lib/actions/blog-actions";
 
@@ -112,6 +113,8 @@ export async function updateProjectAction(
 export async function deleteProjectAction(id: string): Promise<void> {
   await requireAuth();
   await db.project.delete({ where: { id } }).catch(() => null);
+  await recordAudit({ action: "delete", entity: "project", entityId: id });
+
   revalidatePath("/portfolio");
   revalidatePath("/dashboard/projects");
 }

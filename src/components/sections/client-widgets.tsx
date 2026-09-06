@@ -31,6 +31,10 @@ const AgapeEasterEgg = dynamic(
   () => import("@/components/ui/agape-easter-egg").then((m) => m.AgapeEasterEgg),
   { ssr: false },
 );
+const SiteCommandPalette = dynamic(
+  () => import("@/components/sections/site-command-palette").then((m) => m.SiteCommandPalette),
+  { ssr: false },
+);
 
 export function ClientWidgets() {
   return (
@@ -41,6 +45,7 @@ export function ClientWidgets() {
       <BackToTopButton />
       <TabTitleAway />
       <AgapeEasterEgg />
+      <SiteCommandPalette />
     </>
   );
 }
