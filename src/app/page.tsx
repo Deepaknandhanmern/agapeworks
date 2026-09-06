@@ -10,7 +10,6 @@ import { SiteBanner } from "@/components/sections/site-banner";
 import Testimonial1 from "@/components/ui/testimonial-1";
 import { FAQ } from "@/components/ui/faq-section";
 import { ProductsTeaser } from "@/components/sections/products-teaser";
-import { PortfolioShowcase } from "@/components/sections/portfolio-showcase";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { Reveal } from "@/components/ui/reveal";
 import { getAvailabilityStatus } from "@/lib/data/site-settings";
@@ -81,13 +80,6 @@ export default async function Home() {
         <Reveal>
           <section className="border-t">
             <Integrations />
-          </section>
-        </Reveal>
-
-        {/* Portfolio */}
-        <Reveal>
-          <section className="border-t">
-            <PortfolioShowcase />
           </section>
         </Reveal>
 
