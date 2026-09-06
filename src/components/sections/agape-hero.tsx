@@ -103,7 +103,7 @@ export function AgapeHero({ availability = "open" }: { availability?: Availabili
       <header className="relative z-20 xl:top-4">
         <div className="mx-6 flex items-center justify-between pt-4">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logo-white.png" alt="Agape Works" width={181} height={32} className="h-8 w-auto" priority />
+            <Image src="/logo-white.png" alt="Agape Works" width={181} height={32} className="h-6 w-auto sm:h-8" priority />
           </Link>
 
           <div className="hidden md:flex items-center gap-2">
@@ -130,9 +130,13 @@ export function AgapeHero({ availability = "open" }: { availability?: Availabili
         </div>
       </header>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay. z-[15]: above the hero content block (z-10) so the
+          menu actually covers it - at z-[9] the black panel painted
+          underneath the hero text, which read as the overlay being
+          transparent. Stays below the header (z-20) so the close button
+          remains clickable over it. */}
       <div
-        className={`fixed inset-0 z-[9] flex flex-col justify-center gap-8 bg-black/95 px-8 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-[15] flex flex-col justify-center gap-8 bg-black/95 px-8 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
