@@ -87,6 +87,8 @@ export default async function BlogPostPage({
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span>·</span>
             <span>{post.author}</span>
+            <span>·</span>
+            <span>{post.readingMinutes} min read</span>
             {post.tags.map((tag) => (
               <span key={tag} className="rounded-full border px-2 py-0.5">
                 {tag}

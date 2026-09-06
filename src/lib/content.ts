@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { db } from "@/lib/db";
+import { readingMinutes } from "@/lib/reading-time";
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), "src/content/case-studies");
 
@@ -13,6 +14,7 @@ export type BlogPostMeta = {
   author: string;
   tags: string[];
   coverImage: string | null;
+  readingMinutes: number;
 };
 
 export type BlogPost = BlogPostMeta & { content: string };
@@ -53,6 +55,7 @@ function toBlogPostMeta(post: {
   author: string;
   tags: string;
   coverImage: string | null;
+  content: string;
 }): BlogPostMeta {
   return {
     slug: post.slug,
@@ -62,6 +65,7 @@ function toBlogPostMeta(post: {
     author: post.author,
     tags: JSON.parse(post.tags) as string[],
     coverImage: post.coverImage,
+    readingMinutes: readingMinutes(post.content),
   };
 }
 

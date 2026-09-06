@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { ExternalLink } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { mdxComponents } from "@/components/mdx-components";
 import {
   getAllCaseStudies,
@@ -88,15 +89,15 @@ export default async function CaseStudyPage({
           </h1>
           <p className="mb-8 text-lg text-muted-foreground">{frontmatter.summary}</p>
           {frontmatter.liveUrl && (
-            <a
-              href={frontmatter.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mb-8 inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground"
-            >
-              Visit live site
-              <ExternalLink className="size-3.5" />
-            </a>
+            <div className="mb-8">
+              <LinkPreview
+                url={frontmatter.liveUrl}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground"
+              >
+                Visit live site
+                <ExternalLink className="size-3.5" />
+              </LinkPreview>
+            </div>
           )}
           <div>{content}</div>
         </article>
