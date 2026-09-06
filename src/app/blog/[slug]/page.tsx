@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Header } from "@/components/ui/header-3";
 import { mdxComponents } from "@/components/mdx-components";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
+import { RelatedPosts } from "@/components/sections/related-posts";
 import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/content";
 
 export async function generateStaticParams() {
@@ -60,6 +62,8 @@ export default async function BlogPostPage({
   const post = await getBlogPostBySlug(slug);
   if (!post) notFound();
 
+  const allPosts = await getAllBlogPosts();
+
   const { content } = await compileMDX({
     source: post.content,
     components: mdxComponents,
@@ -79,6 +83,13 @@ export default async function BlogPostPage({
     <div className="flex min-h-screen flex-col bg-background">
       {/* eslint-disable-next-line react/no-danger -- static JSON built from this post's own frontmatter above, not raw user input */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${slug}` },
+        ]}
+      />
       <Header />
 
       <main className="flex-1">
@@ -99,6 +110,8 @@ export default async function BlogPostPage({
             {post.title}
           </h1>
           <div>{content}</div>
+
+          <RelatedPosts current={post} all={allPosts} />
         </article>
       </main>
     </div>

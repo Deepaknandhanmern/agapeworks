@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
 import { AntiMetalButton } from "@/components/ui/anti-metal-button";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { AIVoiceInput } from "@/components/ui/ai-voice-input";
@@ -63,6 +64,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     <div className="flex min-h-screen flex-col bg-background">
       {/* eslint-disable-next-line react/no-danger -- static JSON built from this service's own data above, not raw user input */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+          { name: service.title, path: `/services/${slug}` },
+        ]}
+      />
       <Header />
 
       <main className="flex-1">

@@ -69,6 +69,9 @@ const organizationJsonLd = {
   logo: `${SITE_URL}/logo-black.png`,
   description: SITE_DESCRIPTION,
   email: "studio@agapeworks.in",
+  // Same number already published in the footer and on /contact - E.164 so
+  // search engines and dialers parse it unambiguously.
+  telephone: "+91-73739-44336",
   address: {
     "@type": "PostalAddress",
     addressRegion: "Tamil Nadu",

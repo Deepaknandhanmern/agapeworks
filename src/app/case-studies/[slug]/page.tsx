@@ -4,6 +4,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { ExternalLink } from "lucide-react";
 import { Header } from "@/components/ui/header-3";
 import { LinkPreview } from "@/components/ui/link-preview";
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-json-ld";
 import { mdxComponents } from "@/components/mdx-components";
 import {
   getAllCaseStudies,
@@ -70,6 +71,13 @@ export default async function CaseStudyPage({
     <div className="flex min-h-screen flex-col bg-background">
       {/* eslint-disable-next-line react/no-danger -- static JSON built from this case study's own frontmatter above, not raw user input */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Case studies", path: "/case-studies" },
+          { name: frontmatter.title, path: `/case-studies/${slug}` },
+        ]}
+      />
       <Header />
 
       <main className="flex-1">
