@@ -4,6 +4,7 @@ import { ColorfulBentoGrid } from "@/components/ui/colorful-bento-grid";
 import { Integrations } from "@/components/ui/integrations-4-2";
 import HowItWorks from "@/components/ui/how-it-works";
 import { DotPattern } from "@/components/ui/dot-pattern";
+import { GyroidCanvas } from "@/components/ui/gyroid-canvas";
 import { WorldMap } from "@/components/ui/map";
 import { AgapeHero } from "@/components/sections/agape-hero";
 import { SiteBanner } from "@/components/sections/site-banner";
@@ -178,16 +179,11 @@ export default async function Home() {
         {/* CTA */}
         <Reveal>
           <section className="relative overflow-hidden border-t bg-muted/20">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[480px] w-[480px] -translate-x-[65%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(249,115,22,0.2),transparent_70%)] blur-3xl"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-[35%] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(147,51,234,0.2),transparent_70%)] blur-3xl"
-            />
             <DotPattern className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
             <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center gap-6 px-4 py-24 text-center">
+              {/* Replaces the two blurred gradient blobs that used to sit
+                  here - same job (colour + focal point), actually shaped. */}
+              <GyroidCanvas className="h-[260px] w-[260px] sm:h-[320px] sm:w-[320px]" />
               <h2 className="max-w-xl text-balance text-3xl font-semibold tracking-tight text-foreground">
                 Ready to build something worth shipping?
               </h2>

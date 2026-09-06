@@ -14,7 +14,6 @@ import {
 import { Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa6";
 import { CopyableText } from "@/components/ui/copyable-text";
-import { CurrentlyBuilding } from "@/components/ui/currently-building";
 import { fireConfetti } from "@/lib/confetti";
 
 const quickLinks = [
@@ -162,7 +161,6 @@ function Footerdemo() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-center gap-3 border-t pt-8 text-center">
-          <CurrentlyBuilding />
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             {legalLinks.map((link) => (
               <Link key={link.label} href={link.href} className="transition-colors hover:text-primary">
