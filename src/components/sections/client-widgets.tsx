@@ -27,6 +27,10 @@ const ScrollProgressBar = dynamic(
   () => import("@/components/ui/scroll-progress-bar").then((m) => m.ScrollProgressBar),
   { ssr: false },
 );
+const AgapeEasterEgg = dynamic(
+  () => import("@/components/ui/agape-easter-egg").then((m) => m.AgapeEasterEgg),
+  { ssr: false },
+);
 
 export function ClientWidgets() {
   return (
@@ -36,6 +40,7 @@ export function ClientWidgets() {
       <WhatsAppButton />
       <BackToTopButton />
       <TabTitleAway />
+      <AgapeEasterEgg />
     </>
   );
 }
