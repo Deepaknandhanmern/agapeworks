@@ -9,10 +9,12 @@ import { usePathname } from "next/navigation";
 // `<body>` intact now that this div sits between it and the page content.
 //
 // Deliberately CSS rather than framer-motion: this sits in the root layout,
-// so importing framer-motion here put it in every route's bundle - including
-// pure-text pages like /terms that use no animation at all. The exit half of
-// the old AnimatePresence fade is dropped; App Router can't hold the outgoing
-// route long enough for it to reliably play anyway.
+// so importing framer-motion here put it in every route's bundle.
+//
+// React's <ViewTransition> would be the nicer implementation (native
+// crossfade, no client component needed), but it isn't available on this
+// project's React 19.2.8 - it only exists in the canary builds Next's own
+// docs assume. Revisit if React is ever moved to canary.
 export function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 

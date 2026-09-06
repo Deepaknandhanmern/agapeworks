@@ -1,12 +1,59 @@
 import type { MDXRemoteProps } from "next-mdx-remote/rsc";
+import type { ReactNode } from "react";
+import { HeadingAnchor } from "@/components/ui/heading-anchor";
+
+/**
+ * Derives the heading id from the rendered text. Done here rather than with
+ * rehype-slug/rehype-autolink-headings so the anchors cost no new
+ * dependencies - the heading children are already plain text in this content.
+ */
+function toText(node: ReactNode): string {
+  if (node === null || node === undefined || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(toText).join("");
+  if (typeof node === "object" && "props" in node) {
+    return toText((node as { props?: { children?: ReactNode } }).props?.children);
+  }
+  return "";
+}
+
+function slugify(node: ReactNode): string {
+  return toText(node)
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
 
 export const mdxComponents: NonNullable<MDXRemoteProps["components"]> = {
-  h2: (props) => (
-    <h2 className="mt-10 mb-4 text-2xl font-semibold text-foreground" {...props} />
-  ),
-  h3: (props) => (
-    <h3 className="mt-8 mb-3 text-xl font-semibold text-foreground" {...props} />
-  ),
+  h2: ({ children, ...props }) => {
+    const slug = slugify(children);
+    return (
+      // scroll-mt clears the fixed header when jumping to an anchor.
+      <h2
+        id={slug}
+        className="group mt-10 mb-4 scroll-mt-24 text-2xl font-semibold text-foreground"
+        {...props}
+      >
+        {children}
+        <HeadingAnchor slug={slug} />
+      </h2>
+    );
+  },
+  h3: ({ children, ...props }) => {
+    const slug = slugify(children);
+    return (
+      <h3
+        id={slug}
+        className="group mt-8 mb-3 scroll-mt-24 text-xl font-semibold text-foreground"
+        {...props}
+      >
+        {children}
+        <HeadingAnchor slug={slug} />
+      </h3>
+    );
+  },
   p: (props) => <p className="mb-4 leading-7 text-muted-foreground" {...props} />,
   ul: (props) => (
     <ul className="mb-4 ml-6 list-disc space-y-2 text-muted-foreground" {...props} />

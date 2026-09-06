@@ -293,6 +293,14 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
+  /* Brand-tinted text selection instead of the browser default blue.
+     `color: inherit` keeps it working on both the light marketing pages and
+     the dark hero/product sections - a fixed text colour would break one or
+     the other, and a translucent orange reads correctly over both. */
+  ::selection {
+    background-color: rgba(249, 115, 22, 0.32);
+    color: inherit;
+  }
 }
 
 /* Aurora background component — Tailwind v4 has no tailwind.config.js,
@@ -510,9 +518,8 @@
     transform: translateY(0);
   }
 }
-/* Route-change fade, replacing the framer-motion one that used to live in
-   PageTransition (see that file - it sits in the root layout, so importing
-   framer-motion there taxed every route). */
+/* Route-change fade used by PageTransition (see that file for why it's CSS
+   rather than framer-motion or React's <ViewTransition>). */
 @keyframes page-fade {
   from { opacity: 0; }
   to { opacity: 1; }
