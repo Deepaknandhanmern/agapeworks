@@ -67,7 +67,7 @@ export function ViviraGradientFooter() {
 
         <div className="flex flex-col items-center justify-between gap-3 border-t border-black/10 pt-6 pb-2 text-xs uppercase tracking-wider text-muted-foreground sm:flex-row">
           <span>&copy; {new Date().getFullYear()} Agape Works</span>
-          <span>Coimbatore &amp; Chennai, India</span>
+          <span>Udumalpet, Coimbatore &amp; Chennai, India</span>
         </div>
       </div>
     </RuixenGradientFooter>

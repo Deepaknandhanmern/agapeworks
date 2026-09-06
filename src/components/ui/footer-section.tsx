@@ -36,7 +36,7 @@ const contactPoints = [
   { icon: Mail, value: "studio@agapeworks.in" },
   { icon: Phone, value: "+91 73739 44336" },
   { icon: Clock, value: "Replies within 1 business day" },
-  { icon: MapPin, value: "Coimbatore & Chennai, India" },
+  { icon: MapPin, value: "Udumalpet, Coimbatore & Chennai, India" },
 ];
 
 // Same three profiles as the contact page - placeholder hrefs until real

@@ -52,7 +52,12 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
   },
   alternates: {
-    types: { "application/rss+xml": "/rss.xml" },
+    types: {
+      "application/rss+xml": "/rss.xml",
+      // Discovery hint for AI answer engines - /llms.txt is otherwise only
+      // findable by convention (guessing the path).
+      "text/plain": "/llms.txt",
+    },
   },
 };
 
@@ -74,10 +79,12 @@ const organizationJsonLd = {
   telephone: "+91-73739-44336",
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Udumalpet",
     addressRegion: "Tamil Nadu",
     addressCountry: "IN",
   },
   areaServed: [
+    { "@type": "City", name: "Udumalpet" },
     { "@type": "City", name: "Coimbatore" },
     { "@type": "City", name: "Chennai" },
   ],

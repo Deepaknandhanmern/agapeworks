@@ -30,7 +30,7 @@ const contactPoints = [
   {
     icon: MapPin,
     label: "Based in",
-    value: "Coimbatore & Chennai, India",
+    value: "Udumalpet, Coimbatore & Chennai, India",
   },
 ];
 

@@ -13,9 +13,9 @@ import { ProductsTeaser } from "@/components/sections/products-teaser";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { Reveal } from "@/components/ui/reveal";
 import { getAvailabilityStatus } from "@/lib/data/site-settings";
-const HOME_TITLE = "Agape Works - Software Development Company in Coimbatore & Chennai";
+const HOME_TITLE = "Agape Works - Software Development Company in Udumalpet, Coimbatore & Chennai";
 const HOME_DESCRIPTION =
-  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Coimbatore, Chennai, and beyond - fixed scope, the same team from kickoff to launch, weekly working demos.";
+  "Agape Works builds web, mobile, SaaS, and AI-powered software for businesses in Udumalpet, Coimbatore, Chennai, and beyond - fixed scope, the same team from kickoff to launch, weekly working demos.";
 
 export const metadata: Metadata = {
   title: HOME_TITLE,

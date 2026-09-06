@@ -47,6 +47,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     description: service.description,
     provider: { "@type": "Organization", name: "Agape Works" },
     areaServed: [
+      { "@type": "City", name: "Udumalpet" },
       { "@type": "City", name: "Coimbatore" },
       { "@type": "City", name: "Chennai" },
     ],
